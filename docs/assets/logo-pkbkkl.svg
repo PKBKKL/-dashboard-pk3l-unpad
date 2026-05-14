@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" aria-label="PKBKKL">
+  <!-- Roots fanning out below soil -->
+  <g stroke="#7ec43b" stroke-width="3.5" stroke-linecap="round" fill="none">
+    <path d="M32 36 Q22 44 14 52" />
+    <path d="M32 36 Q26 46 22 58" />
+    <path d="M32 36 Q32 48 32 60" />
+    <path d="M32 36 Q38 46 42 58" />
+    <path d="M32 36 Q42 44 50 52" />
+  </g>
+  <!-- Soil line -->
+  <rect x="22" y="32" width="20" height="3" rx="1" fill="#2d2a26" />
+  <!-- Stem -->
+  <line x1="32" y1="32" x2="32" y2="14" stroke="#7ec43b" stroke-width="4" stroke-linecap="round" />
+  <!-- Leaf (asymmetric, curving right like original) -->
+  <path d="M32 14 C32 14 26 8 28 4 C32 2 36 8 36 12 C36 13 34 14 32 14 Z" fill="#7ec43b" />
+</svg>

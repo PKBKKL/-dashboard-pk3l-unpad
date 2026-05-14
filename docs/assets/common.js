@@ -114,12 +114,14 @@ export function renderSidebar(currentPage) {
   const sidebar = $("#sidebar");
   if (!sidebar) return;
   sidebar.innerHTML = `
-    <div class="px-5 py-6 border-b border-slate-200">
-      <div class="text-[11px] uppercase tracking-wide text-slate-400">PKBKKL UNPAD</div>
-      <a href="./index.html" class="block mt-1 text-base font-semibold text-slate-900 leading-tight">
-        Dashboard Pemantauan Lingkungan
-      </a>
-    </div>
+    <a href="./index.html" class="sidebar-brand" style="text-decoration: none;">
+      <img class="logo-img" src="./assets/logo-pkbkkl.png" alt="PKBKKL"
+        onerror="this.onerror=null; this.src='./assets/logo-pkbkkl.svg'" />
+      <div class="brand-text">
+        <span class="org-mark">UNIVERSITAS PADJADJARAN</span>
+        <span class="product-name">Dashboard Pemantauan Lingkungan</span>
+      </div>
+    </a>
     <nav class="px-3 py-4 space-y-1">
       ${NAV.map((n) => `
         <a href="${n.href}" class="nav-link${currentPage === n.href.replace("./", "") ? " active" : ""}">
@@ -128,6 +130,10 @@ export function renderSidebar(currentPage) {
         </a>
       `).join("")}
     </nav>
+    <div class="sidebar-footer">
+      <div class="green-campus">Green Campus UNPAD</div>
+      <div>Universitas Padjadjaran · Jatinangor</div>
+    </div>
   `;
 }
 
@@ -136,8 +142,8 @@ export function renderHeader({ title, period, description }) {
   if (!header) return;
   header.innerHTML = `
     <div class="flex flex-wrap items-baseline gap-3">
-      <h1 class="text-2xl font-semibold text-slate-900">${title}</h1>
-      ${period ? `<span class="text-sm text-slate-400 bg-slate-100 rounded-full px-3 py-1">${period}</span>` : ""}
+      <h1 class="text-2xl font-semibold">${title}</h1>
+      ${period ? `<span class="text-sm period-pill rounded-full px-3 py-1">${period}</span>` : ""}
     </div>
     ${description ? `<p class="mt-2 text-slate-600 leading-relaxed max-w-3xl">${description}</p>` : ""}
   `;
@@ -204,8 +210,8 @@ export function renderFooter(meta) {
   const footer = $("#page-footer");
   if (!footer) return;
   footer.innerHTML = `
-    <div class="mt-16 pt-6 border-t border-slate-200 text-xs text-slate-400 flex flex-wrap items-center justify-between gap-2">
-      <span>${meta.dashboard.organization} · ${meta.dashboard.subtitle}</span>
+    <div class="flex flex-wrap items-center justify-between gap-2">
+      <span><span class="leaf-mark"></span>${meta.dashboard.organization} · ${meta.dashboard.subtitle}</span>
       <span>v${meta.dashboard.version} · diperbarui ${meta.dashboard.last_updated}</span>
     </div>
   `;

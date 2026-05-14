@@ -69,12 +69,14 @@
     "organik": "#16a34a",
     "anorganik": "#2563eb",
     "residu": "#737373",
-    "kompos": "#65a30d",
+    "kompos": "#84cc16",
     "rdf": "#0891b2",
     "maggot": "#eab308",
     "dumping": "#ef4444",
     "compliant": "#16a34a",
     "exceedance": "#dc2626",
-    "below_detection": "#94a3b8"
+    "below_detection": "#94a3b8",
+    "leaf": "#7ec43b",
+    "forest": "#14532d"
   }
 }

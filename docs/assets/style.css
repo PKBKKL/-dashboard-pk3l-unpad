@@ -1,11 +1,25 @@
-/* Custom layer on top of Tailwind Play CDN */
+/* Custom layer on top of Tailwind Play CDN — PKBKKL Green Campus theme */
 
 :root {
-  --brand-50: #eef9f1;
-  --brand-100: #d4f0db;
-  --brand-500: #16a34a;
-  --brand-700: #15803d;
-  --brand-900: #14532d;
+  /* Brand palette — diturunkan dari logo PKBKKL */
+  --brand-50: #f0fdf4;   /* lightest green wash */
+  --brand-100: #dcfce7;
+  --brand-200: #bbf7d0;
+  --brand-300: #86efac;
+  --brand-400: #4ade80;
+  --brand-500: #16a34a;  /* primary action */
+  --brand-600: #15803d;
+  --brand-700: #166534;
+  --brand-800: #14532d;  /* deep forest, seperti teks logo */
+  --brand-900: #052e16;
+
+  /* Leaf accent — diturunkan dari sprout di logo */
+  --leaf-300: #bef264;
+  --leaf-400: #a3e635;
+  --leaf-500: #7ec43b;   /* warna sprout logo */
+  --leaf-600: #65a30d;
+
+  /* Ink (netral) */
   --ink-50: #f8fafc;
   --ink-100: #f1f5f9;
   --ink-200: #e2e8f0;
@@ -13,14 +27,20 @@
   --ink-600: #475569;
   --ink-700: #334155;
   --ink-900: #0f172a;
+
+  /* Accent untuk status */
+  --status-warning: #f59e0b;
+  --status-danger: #dc2626;
 }
 
-* {
-  -webkit-font-smoothing: antialiased;
-}
+* { -webkit-font-smoothing: antialiased; }
 
 body {
-  background: var(--ink-50);
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(126, 196, 59, 0.07), transparent 60%),
+    radial-gradient(900px 500px at 100% 0%, rgba(22, 163, 74, 0.06), transparent 60%),
+    linear-gradient(180deg, var(--ink-50), #f6fbf7);
+  background-attachment: fixed;
   color: var(--ink-900);
   font-family: Inter, ui-sans-serif, system-ui, "Segoe UI", Roboto, sans-serif;
 }
@@ -28,8 +48,53 @@ body {
 .card {
   background: white;
   border-radius: 0.75rem;
-  border: 1px solid var(--ink-200);
-  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.04);
+  border: 1px solid var(--brand-100);
+  box-shadow: 0 1px 2px 0 rgb(20 83 45 / 0.04);
+}
+
+.card.card-accent {
+  border-left: 4px solid var(--leaf-500);
+}
+
+/* ─── Sidebar ─── */
+
+#sidebar {
+  background: linear-gradient(180deg, white 0%, var(--brand-50) 100%);
+  border-right: 1px solid var(--brand-100);
+}
+
+.sidebar-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 1.25rem 1.25rem 1.1rem;
+  border-bottom: 1px solid var(--brand-100);
+  text-decoration: none;
+}
+.sidebar-brand .logo-img {
+  height: 40px;
+  width: auto;
+  max-width: 200px;
+  object-fit: contain;
+}
+.sidebar-brand .brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+.sidebar-brand .org-mark {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--brand-800);
+  letter-spacing: 0.08em;
+}
+.sidebar-brand .product-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink-900);
+  margin-top: 1px;
+  line-height: 1.25;
 }
 
 .nav-link {
@@ -42,49 +107,66 @@ body {
   color: var(--ink-700);
   transition: background-color 0.15s, color 0.15s;
 }
-
-.nav-link:hover {
-  background: var(--ink-100);
-  color: var(--ink-900);
-}
-
+.nav-link:hover { background: var(--brand-50); color: var(--brand-800); }
 .nav-link.active {
-  background: var(--brand-50);
-  color: var(--brand-900);
-  font-weight: 500;
+  background: var(--brand-100);
+  color: var(--brand-800);
+  font-weight: 600;
+}
+.nav-link.active span:first-child { color: var(--leaf-600); }
+
+.sidebar-footer {
+  margin-top: auto;
+  padding: 0.75rem 1.25rem 1rem;
+  border-top: 1px solid var(--brand-100);
+  font-size: 0.7rem;
+  color: var(--ink-400);
+}
+.sidebar-footer .green-campus {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--leaf-600);
+  font-weight: 600;
+  margin-bottom: 0.15rem;
+}
+.sidebar-footer .green-campus::before {
+  content: "";
+  width: 6px; height: 6px;
+  background: var(--leaf-500);
+  border-radius: 50%;
+  display: inline-block;
 }
 
-.tabular-nums {
-  font-variant-numeric: tabular-nums;
+/* ─── Page header ─── */
+
+#page-header h1 {
+  color: var(--brand-800);
+}
+#page-header .period-pill {
+  background: var(--brand-100);
+  color: var(--brand-800);
 }
 
-.fade-in {
-  animation: fade-in 0.25s ease-out;
-}
+/* ─── KPI cards (accent dipercerah dengan green theme) ─── */
+/* (Class accent diatur dari JS via Tailwind utilities; ini overrides minor) */
 
+/* ─── Tables ─── */
+.tabular-nums { font-variant-numeric: tabular-nums; }
+.fade-in { animation: fade-in 0.25s ease-out; }
 @keyframes fade-in {
   from { opacity: 0; transform: translateY(4px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Plotly tweaks for consistent look */
-.js-plotly-plot .plotly .modebar {
-  display: none !important;
-}
-
-.js-plotly-plot .plotly .legendtext {
-  font-size: 12px !important;
-}
-
-/* Table */
 table.data-table {
   width: 100%;
   font-size: 0.875rem;
   border-collapse: collapse;
 }
 table.data-table thead {
-  background: var(--ink-50);
-  color: var(--ink-600);
+  background: var(--brand-50);
+  color: var(--brand-800);
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -93,15 +175,14 @@ table.data-table th, table.data-table td {
   padding: 0.6rem 1rem;
   text-align: left;
 }
-table.data-table tbody tr {
-  border-top: 1px solid var(--ink-200);
-}
+table.data-table tbody tr { border-top: 1px solid var(--brand-100); }
+table.data-table tbody tr:hover { background: var(--brand-50); }
 table.data-table th.num, table.data-table td.num {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-/* Status pills */
+/* ─── Status pills ─── */
 .pill {
   display: inline-flex;
   align-items: center;
@@ -115,53 +196,32 @@ table.data-table th.num, table.data-table td.num {
 .pill-exceedance { background: #fee2e2; color: #991b1b; }
 .pill-none { color: var(--ink-400); }
 
-/* Heatmap (CSS-grid based) */
-.heatmap-table {
-  border-collapse: separate;
-  border-spacing: 0;
+/* ─── Plotly tweaks ─── */
+.js-plotly-plot .plotly .modebar { display: none !important; }
+.js-plotly-plot .plotly .legendtext { font-size: 12px !important; }
+
+/* ─── Footer ─── */
+#page-footer {
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--brand-100);
   font-size: 0.75rem;
+  color: var(--ink-400);
 }
-.heatmap-table th {
-  font-weight: normal;
-  color: var(--ink-600);
-  padding: 0.25rem 0.4rem;
-  min-width: 38px;
-  text-align: center;
-}
-.heatmap-table td {
-  text-align: center;
-  padding: 0.3rem 0.4rem;
-  font-variant-numeric: tabular-nums;
-  min-width: 38px;
-  border-radius: 4px;
-}
-.heatmap-table td.row-label {
-  text-align: left;
-  background: transparent;
-  color: var(--ink-700);
-  white-space: nowrap;
-  padding-right: 0.6rem;
+#page-footer .leaf-mark {
+  display: inline-block;
+  width: 8px; height: 8px;
+  background: var(--leaf-500);
+  border-radius: 50%;
+  margin-right: 0.3rem;
+  vertical-align: middle;
 }
 
-/* Loading state */
-.skeleton {
-  background: linear-gradient(90deg, var(--ink-100), var(--ink-200), var(--ink-100));
-  background-size: 200% 100%;
-  animation: skeleton 1.4s ease-in-out infinite;
-  border-radius: 0.5rem;
-}
-@keyframes skeleton {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
-}
-
-/* Mobile sidebar toggle */
+/* ─── Mobile sidebar toggle ─── */
 @media (max-width: 1024px) {
   #sidebar {
     transform: translateX(-100%);
     transition: transform 0.2s;
   }
-  #sidebar.open {
-    transform: translateX(0);
-  }
+  #sidebar.open { transform: translateX(0); }
 }
