@@ -5,7 +5,7 @@ import { getMeta } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "Dashboard Pemantauan Lingkungan UNPAD",
-  description: "Pusat Keselamatan, Kesehatan Kerja, dan Lingkungan (PK3L) Universitas Padjadjaran",
+  description: "Pusat Keselamatan, Keamanan dan Ketertiban Lingkungan (PK3L) Universitas Padjadjaran",
 };
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
