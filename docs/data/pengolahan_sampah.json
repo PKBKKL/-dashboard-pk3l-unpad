@@ -1,0 +1,1666 @@
+{
+  "dataset_id": "pengolahan_sampah",
+  "version": "1.0",
+  "generated_at": "2026-05-14T10:00:00+07:00",
+  "source_files": [
+    "Data Pengolahan Sampah.md"
+  ],
+  "period": {
+    "start": "2025-12-01",
+    "end": "2026-01-31"
+  },
+  "data_quality_flags": [
+    {
+      "severity": "info",
+      "message": "Tanggal pada Des25 dan Jan26 baris awal diperbaiki dari serial Excel terbalik (M/D → D/M)."
+    },
+    {
+      "severity": "info",
+      "message": "Metode pengolahan baru 'Bubur Maggot' muncul mulai Januari 2026 (2 record, total 390 kg)."
+    }
+  ],
+  "unit_default": "kg",
+  "categories": [
+    {
+      "id": "organik",
+      "label": "Organik",
+      "color_key": "organik"
+    },
+    {
+      "id": "anorganik",
+      "label": "Anorganik",
+      "color_key": "anorganik"
+    },
+    {
+      "id": "residu",
+      "label": "Residu",
+      "color_key": "residu"
+    }
+  ],
+  "processing_methods": [
+    {
+      "id": "kompos",
+      "label": "Kompos",
+      "for_category": "organik",
+      "color_key": "kompos"
+    },
+    {
+      "id": "rdf",
+      "label": "Bahan RDF",
+      "for_category": "anorganik",
+      "color_key": "rdf"
+    },
+    {
+      "id": "maggot",
+      "label": "Bubur Maggot",
+      "for_category": "organik",
+      "color_key": "maggot"
+    },
+    {
+      "id": "dumping",
+      "label": "Dumping",
+      "for_category": "residu",
+      "color_key": "dumping"
+    }
+  ],
+  "monthly_summary": [
+    {
+      "month": "2025-12",
+      "label": "Desember 2025",
+      "incoming_kg": 15287,
+      "processed_kg": 12878,
+      "residual_kg": 2409,
+      "output": {
+        "kompos_kg": 1805.4,
+        "rdf_kg": 771.2,
+        "maggot_kg": 0
+      },
+      "output_total_kg": 2576.6,
+      "processing_rate_pct": 84.24,
+      "incoming_by_category_kg": {
+        "organik": 9065,
+        "anorganik": 3927,
+        "residu": 2295
+      }
+    },
+    {
+      "month": "2026-01",
+      "label": "Januari 2026",
+      "incoming_kg": 14776,
+      "processed_kg": 11495,
+      "residual_kg": 3281,
+      "output": {
+        "kompos_kg": 1233,
+        "rdf_kg": 994,
+        "maggot_kg": 390
+      },
+      "output_total_kg": 2617,
+      "processing_rate_pct": 77.8,
+      "incoming_by_category_kg": {
+        "organik": 8462,
+        "anorganik": 4874,
+        "residu": 1440
+      }
+    }
+  ],
+  "daily_entries": [
+    {
+      "date": "2025-12-01",
+      "date_corrected_from_md": true,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 70,
+          "processed_kg": 70,
+          "residual_kg": 0,
+          "method": "kompos",
+          "output_kg": 15,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 110,
+          "processed_kg": 110,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 22,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 70,
+          "processed_kg": 0,
+          "residual_kg": 70,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 250,
+        "processed_kg": 180,
+        "residual_kg": 70
+      }
+    },
+    {
+      "date": "2025-12-02",
+      "date_corrected_from_md": true,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 60,
+          "processed_kg": 60,
+          "residual_kg": 0,
+          "method": "kompos",
+          "output_kg": 12,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 90,
+          "processed_kg": 90,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 18,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 50,
+          "processed_kg": 0,
+          "residual_kg": 50,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 200,
+        "processed_kg": 150,
+        "residual_kg": 50
+      }
+    },
+    {
+      "date": "2025-12-03",
+      "date_corrected_from_md": true,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 50,
+          "processed_kg": 50,
+          "residual_kg": 0,
+          "method": "kompos",
+          "output_kg": 10,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 130,
+          "processed_kg": 130,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 26,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 25,
+          "processed_kg": 0,
+          "residual_kg": 25,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 205,
+        "processed_kg": 180,
+        "residual_kg": 25
+      }
+    },
+    {
+      "date": "2025-12-04",
+      "date_corrected_from_md": true,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 70,
+          "processed_kg": 70,
+          "residual_kg": 0,
+          "method": "kompos",
+          "output_kg": 14,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 110,
+          "processed_kg": 110,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 22,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 50,
+          "processed_kg": 0,
+          "residual_kg": 50,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 230,
+        "processed_kg": 180,
+        "residual_kg": 50
+      }
+    },
+    {
+      "date": "2025-12-05",
+      "date_corrected_from_md": true,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 60,
+          "processed_kg": 60,
+          "residual_kg": 0,
+          "method": "kompos",
+          "output_kg": 12,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 100,
+          "processed_kg": 100,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 20,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 40,
+          "processed_kg": 0,
+          "residual_kg": 40,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 200,
+        "processed_kg": 160,
+        "residual_kg": 40
+      }
+    },
+    {
+      "date": "2025-12-08",
+      "date_corrected_from_md": true,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 50,
+          "processed_kg": 50,
+          "residual_kg": 0,
+          "method": "kompos",
+          "output_kg": 10,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 110,
+          "processed_kg": 110,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 22,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 50,
+          "processed_kg": 0,
+          "residual_kg": 50,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 210,
+        "processed_kg": 160,
+        "residual_kg": 50
+      }
+    },
+    {
+      "date": "2025-12-09",
+      "date_corrected_from_md": true,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 60,
+          "processed_kg": 60,
+          "residual_kg": 0,
+          "method": "kompos",
+          "output_kg": 12,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 110,
+          "processed_kg": 110,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 22,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 25,
+          "processed_kg": 0,
+          "residual_kg": 25,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 195,
+        "processed_kg": 170,
+        "residual_kg": 25
+      }
+    },
+    {
+      "date": "2025-12-10",
+      "date_corrected_from_md": true,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 70,
+          "processed_kg": 70,
+          "residual_kg": 0,
+          "method": "kompos",
+          "output_kg": 14,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 110,
+          "processed_kg": 110,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 22,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 50,
+          "processed_kg": 0,
+          "residual_kg": 50,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 230,
+        "processed_kg": 180,
+        "residual_kg": 50
+      }
+    },
+    {
+      "date": "2025-12-11",
+      "date_corrected_from_md": true,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 80,
+          "processed_kg": 80,
+          "residual_kg": 0,
+          "method": "kompos",
+          "output_kg": 16,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 100,
+          "processed_kg": 100,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 20,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 60,
+          "processed_kg": 0,
+          "residual_kg": 60,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 240,
+        "processed_kg": 180,
+        "residual_kg": 60
+      }
+    },
+    {
+      "date": "2025-12-12",
+      "date_corrected_from_md": false,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 50,
+          "processed_kg": 50,
+          "residual_kg": 0,
+          "method": "kompos",
+          "output_kg": 10,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 90,
+          "processed_kg": 90,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 18,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 50,
+          "processed_kg": 0,
+          "residual_kg": 50,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 190,
+        "processed_kg": 140,
+        "residual_kg": 50
+      }
+    },
+    {
+      "date": "2025-12-15",
+      "date_corrected_from_md": false,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 600,
+          "processed_kg": 600,
+          "residual_kg": 0,
+          "method": "kompos",
+          "output_kg": 120,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 700,
+          "processed_kg": 700,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 140,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 500,
+          "processed_kg": 0,
+          "residual_kg": 500,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 1800,
+        "processed_kg": 1300,
+        "residual_kg": 500
+      }
+    },
+    {
+      "date": "2025-12-16",
+      "date_corrected_from_md": false,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 750,
+          "processed_kg": 750,
+          "residual_kg": 0,
+          "method": "kompos",
+          "output_kg": 150,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 50,
+          "processed_kg": 50,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 10,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 50,
+          "processed_kg": 0,
+          "residual_kg": 50,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 850,
+        "processed_kg": 800,
+        "residual_kg": 50
+      }
+    },
+    {
+      "date": "2025-12-17",
+      "date_corrected_from_md": false,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 500,
+          "processed_kg": 500,
+          "residual_kg": 0,
+          "method": "kompos",
+          "output_kg": 100,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 75,
+          "processed_kg": 75,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 15,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 25,
+          "processed_kg": 0,
+          "residual_kg": 25,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 600,
+        "processed_kg": 575,
+        "residual_kg": 25
+      }
+    },
+    {
+      "date": "2025-12-18",
+      "date_corrected_from_md": false,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 800,
+          "processed_kg": 800,
+          "residual_kg": 0,
+          "method": "kompos",
+          "output_kg": 160,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 50,
+          "processed_kg": 50,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 10,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 50,
+          "processed_kg": 0,
+          "residual_kg": 50,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 900,
+        "processed_kg": 850,
+        "residual_kg": 50
+      }
+    },
+    {
+      "date": "2025-12-19",
+      "date_corrected_from_md": false,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 800,
+          "processed_kg": 800,
+          "residual_kg": 0,
+          "method": "kompos",
+          "output_kg": 160,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 50,
+          "processed_kg": 50,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 10,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 50,
+          "processed_kg": 0,
+          "residual_kg": 50,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 900,
+        "processed_kg": 850,
+        "residual_kg": 50
+      }
+    },
+    {
+      "date": "2025-12-22",
+      "date_corrected_from_md": false,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 800,
+          "processed_kg": 800,
+          "residual_kg": 0,
+          "method": "kompos",
+          "output_kg": 160,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 50,
+          "processed_kg": 50,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 10,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 50,
+          "processed_kg": 0,
+          "residual_kg": 50,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 900,
+        "processed_kg": 850,
+        "residual_kg": 50
+      }
+    },
+    {
+      "date": "2025-12-23",
+      "date_corrected_from_md": false,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 143,
+          "processed_kg": 100,
+          "residual_kg": 43,
+          "method": "kompos",
+          "output_kg": 20,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 121,
+          "processed_kg": 50,
+          "residual_kg": 71,
+          "method": "rdf",
+          "output_kg": 10,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 200,
+          "processed_kg": 0,
+          "residual_kg": 200,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 464,
+        "processed_kg": 150,
+        "residual_kg": 314
+      }
+    },
+    {
+      "date": "2025-12-24",
+      "date_corrected_from_md": false,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 1052,
+          "processed_kg": 1052,
+          "residual_kg": 0,
+          "method": "kompos",
+          "output_kg": 210.4,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 501,
+          "processed_kg": 501,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 100.2,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 150,
+          "processed_kg": 0,
+          "residual_kg": 150,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 1703,
+        "processed_kg": 1553,
+        "residual_kg": 150
+      }
+    },
+    {
+      "date": "2025-12-29",
+      "date_corrected_from_md": false,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 1200,
+          "processed_kg": 1200,
+          "residual_kg": 0,
+          "method": "kompos",
+          "output_kg": 240,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 670,
+          "processed_kg": 670,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 134,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 250,
+          "processed_kg": 0,
+          "residual_kg": 250,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 2120,
+        "processed_kg": 1870,
+        "residual_kg": 250
+      }
+    },
+    {
+      "date": "2025-12-30",
+      "date_corrected_from_md": false,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 1050,
+          "processed_kg": 1050,
+          "residual_kg": 0,
+          "method": "kompos",
+          "output_kg": 210,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 350,
+          "processed_kg": 350,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 70,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 150,
+          "processed_kg": 0,
+          "residual_kg": 150,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 1550,
+        "processed_kg": 1400,
+        "residual_kg": 150
+      }
+    },
+    {
+      "date": "2025-12-31",
+      "date_corrected_from_md": false,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 750,
+          "processed_kg": 750,
+          "residual_kg": 0,
+          "method": "kompos",
+          "output_kg": 150,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 250,
+          "processed_kg": 250,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 50,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 350,
+          "processed_kg": 0,
+          "residual_kg": 350,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 1350,
+        "processed_kg": 1000,
+        "residual_kg": 350
+      }
+    },
+    {
+      "date": "2026-01-06",
+      "date_corrected_from_md": true,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 400,
+          "processed_kg": 70,
+          "residual_kg": 330,
+          "method": "kompos",
+          "output_kg": 15,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 340,
+          "processed_kg": 340,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 70,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 55,
+          "processed_kg": 0,
+          "residual_kg": 55,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 795,
+        "processed_kg": 410,
+        "residual_kg": 385
+      }
+    },
+    {
+      "date": "2026-01-07",
+      "date_corrected_from_md": true,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 410,
+          "processed_kg": 200,
+          "residual_kg": 210,
+          "method": "kompos",
+          "output_kg": 40,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 341,
+          "processed_kg": 341,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 75,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 60,
+          "processed_kg": 0,
+          "residual_kg": 60,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 811,
+        "processed_kg": 541,
+        "residual_kg": 270
+      }
+    },
+    {
+      "date": "2026-01-08",
+      "date_corrected_from_md": true,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 286,
+          "processed_kg": 150,
+          "residual_kg": 136,
+          "method": "kompos",
+          "output_kg": 30,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 372,
+          "processed_kg": 372,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 70,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 45,
+          "processed_kg": 0,
+          "residual_kg": 45,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 703,
+        "processed_kg": 522,
+        "residual_kg": 181
+      }
+    },
+    {
+      "date": "2026-01-10",
+      "date_corrected_from_md": true,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 140,
+          "processed_kg": 140,
+          "residual_kg": 0,
+          "method": "maggot",
+          "output_kg": 80,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 110,
+          "processed_kg": 110,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 25,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 50,
+          "processed_kg": 0,
+          "residual_kg": 50,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 300,
+        "processed_kg": 250,
+        "residual_kg": 50
+      }
+    },
+    {
+      "date": "2026-01-12",
+      "date_corrected_from_md": true,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 360,
+          "processed_kg": 360,
+          "residual_kg": 0,
+          "method": "kompos",
+          "output_kg": 65,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 100,
+          "processed_kg": 100,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 20,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 50,
+          "processed_kg": 0,
+          "residual_kg": 50,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 510,
+        "processed_kg": 460,
+        "residual_kg": 50
+      }
+    },
+    {
+      "date": "2026-01-13",
+      "date_corrected_from_md": false,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 250,
+          "processed_kg": 250,
+          "residual_kg": 0,
+          "method": "kompos",
+          "output_kg": 50,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 110,
+          "processed_kg": 110,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 25,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 60,
+          "processed_kg": 0,
+          "residual_kg": 60,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 420,
+        "processed_kg": 360,
+        "residual_kg": 60
+      }
+    },
+    {
+      "date": "2026-01-14",
+      "date_corrected_from_md": false,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 352,
+          "processed_kg": 352,
+          "residual_kg": 0,
+          "method": "maggot",
+          "output_kg": 310,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 110,
+          "processed_kg": 110,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 24,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 35,
+          "processed_kg": 0,
+          "residual_kg": 35,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 497,
+        "processed_kg": 462,
+        "residual_kg": 35
+      }
+    },
+    {
+      "date": "2026-01-15",
+      "date_corrected_from_md": false,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 70,
+          "processed_kg": 70,
+          "residual_kg": 0,
+          "method": "kompos",
+          "output_kg": 15,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 110,
+          "processed_kg": 110,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 23,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 50,
+          "processed_kg": 0,
+          "residual_kg": 50,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 230,
+        "processed_kg": 180,
+        "residual_kg": 50
+      }
+    },
+    {
+      "date": "2026-01-16",
+      "date_corrected_from_md": false,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 80,
+          "processed_kg": 80,
+          "residual_kg": 0,
+          "method": "kompos",
+          "output_kg": 15,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 100,
+          "processed_kg": 100,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 20,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 60,
+          "processed_kg": 0,
+          "residual_kg": 60,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 240,
+        "processed_kg": 180,
+        "residual_kg": 60
+      }
+    },
+    {
+      "date": "2026-01-17",
+      "date_corrected_from_md": false,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 50,
+          "processed_kg": 50,
+          "residual_kg": 0,
+          "method": "kompos",
+          "output_kg": 10,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 90,
+          "processed_kg": 90,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 15,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 50,
+          "processed_kg": 0,
+          "residual_kg": 50,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 190,
+        "processed_kg": 140,
+        "residual_kg": 50
+      }
+    },
+    {
+      "date": "2026-01-19",
+      "date_corrected_from_md": false,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 216,
+          "processed_kg": 216,
+          "residual_kg": 0,
+          "method": "kompos",
+          "output_kg": 45,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 232,
+          "processed_kg": 232,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 51,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 50,
+          "processed_kg": 0,
+          "residual_kg": 50,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 498,
+        "processed_kg": 448,
+        "residual_kg": 50
+      }
+    },
+    {
+      "date": "2026-01-20",
+      "date_corrected_from_md": false,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 208,
+          "processed_kg": 208,
+          "residual_kg": 0,
+          "method": "kompos",
+          "output_kg": 43,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 181,
+          "processed_kg": 181,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 40,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 50,
+          "processed_kg": 0,
+          "residual_kg": 50,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 439,
+        "processed_kg": 389,
+        "residual_kg": 50
+      }
+    },
+    {
+      "date": "2026-01-21",
+      "date_corrected_from_md": false,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 500,
+          "processed_kg": 500,
+          "residual_kg": 0,
+          "method": "kompos",
+          "output_kg": 110,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 75,
+          "processed_kg": 75,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 15,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 25,
+          "processed_kg": 0,
+          "residual_kg": 25,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 600,
+        "processed_kg": 575,
+        "residual_kg": 25
+      }
+    },
+    {
+      "date": "2026-01-22",
+      "date_corrected_from_md": false,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 800,
+          "processed_kg": 800,
+          "residual_kg": 0,
+          "method": "kompos",
+          "output_kg": 160,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 50,
+          "processed_kg": 50,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 10,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 50,
+          "processed_kg": 0,
+          "residual_kg": 50,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 900,
+        "processed_kg": 850,
+        "residual_kg": 50
+      }
+    },
+    {
+      "date": "2026-01-23",
+      "date_corrected_from_md": false,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 800,
+          "processed_kg": 800,
+          "residual_kg": 0,
+          "method": "kompos",
+          "output_kg": 160,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 50,
+          "processed_kg": 50,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 10,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 50,
+          "processed_kg": 0,
+          "residual_kg": 50,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 900,
+        "processed_kg": 850,
+        "residual_kg": 50
+      }
+    },
+    {
+      "date": "2026-01-26",
+      "date_corrected_from_md": false,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 1040,
+          "processed_kg": 450,
+          "residual_kg": 590,
+          "method": "kompos",
+          "output_kg": 90,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 900,
+          "processed_kg": 900,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 180,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 50,
+          "processed_kg": 0,
+          "residual_kg": 50,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 1990,
+        "processed_kg": 1350,
+        "residual_kg": 640
+      }
+    },
+    {
+      "date": "2026-01-27",
+      "date_corrected_from_md": false,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 925,
+          "processed_kg": 350,
+          "residual_kg": 575,
+          "method": "kompos",
+          "output_kg": 70,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 460,
+          "processed_kg": 460,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 92,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 200,
+          "processed_kg": 0,
+          "residual_kg": 200,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 1585,
+        "processed_kg": 810,
+        "residual_kg": 775
+      }
+    },
+    {
+      "date": "2026-01-28",
+      "date_corrected_from_md": false,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 780,
+          "processed_kg": 780,
+          "residual_kg": 0,
+          "method": "kompos",
+          "output_kg": 156,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 700,
+          "processed_kg": 700,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 140,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 150,
+          "processed_kg": 0,
+          "residual_kg": 150,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 1630,
+        "processed_kg": 1480,
+        "residual_kg": 150
+      }
+    },
+    {
+      "date": "2026-01-29",
+      "date_corrected_from_md": false,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 490,
+          "processed_kg": 490,
+          "residual_kg": 0,
+          "method": "kompos",
+          "output_kg": 98,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 245,
+          "processed_kg": 245,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 49,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 250,
+          "processed_kg": 0,
+          "residual_kg": 250,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 985,
+        "processed_kg": 735,
+        "residual_kg": 250
+      }
+    },
+    {
+      "date": "2026-01-30",
+      "date_corrected_from_md": false,
+      "items": [
+        {
+          "category": "organik",
+          "incoming_kg": 305,
+          "processed_kg": 305,
+          "residual_kg": 0,
+          "method": "kompos",
+          "output_kg": 61,
+          "status": "Proses Komposting"
+        },
+        {
+          "category": "anorganik",
+          "incoming_kg": 198,
+          "processed_kg": 198,
+          "residual_kg": 0,
+          "method": "rdf",
+          "output_kg": 40,
+          "status": "Menunggu Pengiriman"
+        },
+        {
+          "category": "residu",
+          "incoming_kg": 50,
+          "processed_kg": 0,
+          "residual_kg": 50,
+          "method": "dumping",
+          "output_kg": 0,
+          "status": "Geser ke Area Dumping"
+        }
+      ],
+      "totals": {
+        "incoming_kg": 553,
+        "processed_kg": 503,
+        "residual_kg": 50
+      }
+    }
+  ]
+}

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kualitas Air</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="./assets/style.css" />
+</head>
+<body>
+  <div class="min-h-screen flex">
+    <aside id="sidebar" class="hidden lg:flex fixed left-0 top-0 h-screen w-64 flex-col border-r border-slate-200 bg-white z-20"></aside>
+    <main class="flex-1 ml-0 lg:ml-64 px-6 py-6 lg:px-10 lg:py-8 max-w-[1400px]">
+      <button id="sidebar-toggle" class="lg:hidden mb-3 p-2 rounded border border-slate-200 bg-white">≡</button>
+
+      <section id="page-header" class="mb-8"></section>
+      <section id="kpis" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"></section>
+
+      <section class="card p-5 mt-8">
+        <h3 class="text-sm font-semibold text-slate-900 mb-1">Kepatuhan per Titik Sampling</h3>
+        <p class="text-xs text-slate-400 mb-3">
+          Hijau = parameter patuh terhadap baku mutu. Merah = di atas baku mutu.
+          Parameter tanpa baku mutu eksplisit (Kesadahan, DHL, PO₄) tidak dihitung.
+        </p>
+        <div id="chart-compliance"></div>
+      </section>
+
+      <section class="card p-5 mt-6">
+        <h3 class="text-sm font-semibold text-slate-900 mb-1">Peta Titik Sampling</h3>
+        <p class="text-xs text-slate-400 mb-3">Warna marker menunjukkan persentase kepatuhan parameter.</p>
+        <div id="map" style="height: 420px; border-radius: 8px;"></div>
+      </section>
+
+      <section class="mt-10">
+        <h2 class="text-base font-semibold text-slate-900 mb-3">Filter Jenis Sampel</h2>
+        <div id="filter" class="flex flex-wrap gap-2 mb-6"></div>
+        <div id="reports" class="space-y-6"></div>
+      </section>
+
+      <section id="flags" class="mt-8"></section>
+      <footer id="page-footer"></footer>
+    </main>
+  </div>
+
+  <script type="module">
+    import {
+      bootstrap, renderHeader, renderKpis, renderFlags, $,
+      loadDataset, loadShared, fmtPct, fmtThreshold,
+    } from "./assets/common.js";
+    import { groupedBar } from "./assets/charts.js";
+
+    const meta = await bootstrap("kualitas-air.html");
+    const [data, locsData, regsData] = await Promise.all([
+      loadDataset("water_quality"),
+      loadShared("locations"),
+      loadShared("regulations"),
+    ]);
+    const p = meta.color_palette;
+    const locations = locsData.locations;
+    const regulations = regsData.regulations;
+
+    const SAMPLE_LABEL = {
+      air_permukaan: "Air Permukaan",
+      air_limbah: "Air Limbah",
+      air_sumur: "Air Sumur",
+    };
+
+    renderHeader({
+      title: "Kualitas Air",
+      period: `Sampling ${data.period.start} – ${data.period.end}`,
+      description: `Sembilan Laporan Hasil Uji (LHU) dari <b>${data.issuing_lab.name}</b> (akreditasi ${data.issuing_lab.accreditation}). Status kepatuhan dihitung berdasarkan baku mutu masing-masing matriks. Parameter '^' yang bersifat minimum (mis. DO) sudah dikoreksi arahnya.`,
+    });
+
+    const totalParams = data.reports.reduce((a, r) => a + r.summary.total_parameters, 0);
+    const totalCompliant = data.reports.reduce((a, r) => a + r.summary.compliant_count, 0);
+    const totalNon = data.reports.reduce((a, r) => a + r.summary.non_compliant_count, 0);
+    const compliancePct = (totalCompliant / Math.max(1, totalParams)) * 100;
+
+    renderKpis("#kpis", [
+      { label: "Jumlah LHU", value: String(data.reports.length), icon: "droplet" },
+      { label: "Parameter Patuh", value: String(totalCompliant), trend: `dari ${totalParams}`, accent: "brand" },
+      { label: "Parameter Tidak Patuh", value: String(totalNon), accent: "red" },
+      { label: "Rasio Kepatuhan", value: fmtPct(compliancePct), accent: "blue" },
+    ]);
+
+    // Chart compliance per LHU
+    groupedBar("chart-compliance", {
+      x: data.reports.map(r => r.location_label_raw),
+      yLabel: "parameter",
+      series: [
+        { label: "Patuh", color: p.compliant, y: data.reports.map(r => r.summary.compliant_count) },
+        { label: "Tidak Patuh", color: p.exceedance, y: data.reports.map(r => r.summary.non_compliant_count) },
+      ],
+    });
+
+    // Filter pills
+    const sampleTypes = [...new Set(data.reports.map(r => r.sample_type))].sort();
+    const selected = new Set(sampleTypes);
+    function renderFilter() {
+      $("#filter").innerHTML = sampleTypes.map(s => `
+        <button data-type="${s}" class="filter-pill px-3 py-1.5 rounded-full text-xs border ${selected.has(s) ? "bg-green-100 border-green-300 text-green-800" : "bg-white border-slate-200 text-slate-600"}">
+          ${SAMPLE_LABEL[s] ?? s}
+        </button>
+      `).join("");
+      document.querySelectorAll(".filter-pill").forEach(btn => {
+        btn.onclick = () => {
+          const t = btn.dataset.type;
+          selected.has(t) ? selected.delete(t) : selected.add(t);
+          renderFilter();
+          renderReports();
+        };
+      });
+    }
+
+    function statusPill(m) {
+      if (m.compliant === null) return `<span class="pill pill-none">— tanpa baku mutu</span>`;
+      if (m.compliant) {
+        return m.source_flagged_exceedance
+          ? `<span class="pill pill-warning">Patuh (lab ^)</span>`
+          : `<span class="pill pill-compliant">Patuh</span>`;
+      }
+      return `<span class="pill pill-exceedance">Di atas baku mutu</span>`;
+    }
+
+    function renderReports() {
+      const filtered = data.reports.filter(r => selected.has(r.sample_type));
+      $("#reports").innerHTML = filtered.map(r => {
+        const loc = locations[r.location_id] ?? {};
+        const reg = regulations[r.regulation_id] ?? {};
+        const rows = r.measurements.map(m => `
+          <tr>
+            <td>${m.parameter_label}</td>
+            <td class="text-slate-400">${m.category ? m.category[0].toUpperCase() + m.category.slice(1) : "—"}</td>
+            <td class="num">${m.result_display || "—"}${m.below_detection_limit ? ' <span class="text-[10px] text-slate-400">(BDL)</span>' : ""}</td>
+            <td class="text-xs text-slate-500">${m.unit ?? ""}</td>
+            <td class="num text-xs">${fmtThreshold(m.threshold)}</td>
+            <td>${statusPill(m)}</td>
+          </tr>
+        `).join("");
+        return `
+          <article class="card overflow-hidden">
+            <header class="px-5 py-4 border-b border-slate-200 flex flex-wrap items-baseline justify-between gap-2">
+              <div>
+                <h3 class="text-sm font-semibold text-slate-900">${r.location_label_raw}
+                  <span class="ml-2 text-xs text-slate-400 font-normal">${SAMPLE_LABEL[r.sample_type] ?? r.sample_type}</span>
+                </h3>
+                <div class="text-xs text-slate-400 mt-0.5">
+                  LHU ${r.report_no} · sampling ${r.sampling_date}
+                  ${loc.lat ? ` · ${loc.lat.toFixed(5)}, ${loc.lon.toFixed(5)}` : ""}
+                </div>
+              </div>
+              <div class="text-right">
+                <div class="text-xs text-slate-400">Kepatuhan</div>
+                <div class="text-lg font-semibold tabular-nums text-slate-900">${fmtPct(r.summary.compliance_pct)}</div>
+              </div>
+            </header>
+            ${reg.short_name ? `<div class="px-5 py-3 bg-slate-50 text-xs text-slate-600 border-b border-slate-200">
+              Acuan: <strong class="text-slate-900">${reg.short_name}</strong> · ${reg.scope}
+            </div>` : ""}
+            <div class="overflow-x-auto">
+              <table class="data-table">
+                <thead><tr>
+                  <th>Parameter</th><th>Kategori</th><th class="num">Hasil</th>
+                  <th>Satuan</th><th class="num">Baku Mutu</th><th>Status</th>
+                </tr></thead>
+                <tbody>${rows}</tbody>
+              </table>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    renderFilter();
+    renderReports();
+
+    // ─── Map ─────────────────────────────────────────────────────
+    const samplePoints = data.reports
+      .map(r => {
+        const loc = locations[r.location_id];
+        if (!loc?.lat) return null;
+        return { ...loc, label: r.location_label_raw, type: r.sample_type, pct: r.summary.compliance_pct ?? 0 };
+      })
+      .filter(Boolean);
+    const map = L.map("map").setView([-6.926, 107.773], 14);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      maxZoom: 19,
+    }).addTo(map);
+    samplePoints.forEach(s => {
+      const color = s.pct >= 80 ? "#16a34a" : s.pct >= 50 ? "#f59e0b" : "#dc2626";
+      L.circleMarker([s.lat, s.lon], {
+        radius: 8,
+        fillColor: color,
+        color: "white",
+        weight: 2,
+        fillOpacity: 0.9,
+      }).addTo(map)
+        .bindPopup(`<strong>${s.label}</strong><br>${SAMPLE_LABEL[s.type] ?? s.type}<br>Kepatuhan: ${fmtPct(s.pct)}`);
+    });
+
+    renderFlags(data.data_quality_flags);
+  </script>
+</body>
+</html>

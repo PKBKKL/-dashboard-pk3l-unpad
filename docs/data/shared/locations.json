@@ -1,0 +1,208 @@
+{
+  "version": "1.0",
+  "locations": {
+    "rsptn": {
+      "label": "RSPTN",
+      "type": "rumah_sakit",
+      "campus": "jatinangor"
+    },
+    "fk": {
+      "label": "Fakultas Kedokteran",
+      "type": "fakultas",
+      "campus": "jatinangor"
+    },
+    "fkg": {
+      "label": "Fakultas Kedokteran Gigi",
+      "type": "fakultas",
+      "campus": "jatinangor"
+    },
+    "fapsi": {
+      "label": "Fakultas Psikologi",
+      "type": "fakultas",
+      "campus": "jatinangor"
+    },
+    "fkep": {
+      "label": "Fakultas Keperawatan",
+      "type": "fakultas",
+      "campus": "jatinangor"
+    },
+    "fmipa": {
+      "label": "Fakultas MIPA",
+      "type": "fakultas",
+      "campus": "jatinangor"
+    },
+    "fapet": {
+      "label": "Fakultas Peternakan",
+      "type": "fakultas",
+      "campus": "jatinangor"
+    },
+    "faperta": {
+      "label": "Fakultas Pertanian",
+      "type": "fakultas",
+      "campus": "jatinangor"
+    },
+    "ftip": {
+      "label": "Fakultas Teknologi Industri Pertanian",
+      "type": "fakultas",
+      "campus": "jatinangor"
+    },
+    "fpik": {
+      "label": "Fakultas Perikanan dan Ilmu Kelautan",
+      "type": "fakultas",
+      "campus": "jatinangor"
+    },
+    "ftg": {
+      "label": "Fakultas Teknik Geologi",
+      "type": "fakultas",
+      "campus": "jatinangor"
+    },
+    "farmasi": {
+      "label": "Fakultas Farmasi",
+      "type": "fakultas",
+      "campus": "jatinangor"
+    },
+    "ppbs": {
+      "label": "Pusat Pelayanan Basic Science (PPBS)",
+      "type": "pusat",
+      "campus": "jatinangor"
+    },
+    "bale-santika": {
+      "label": "Bale Santika",
+      "type": "gedung",
+      "campus": "jatinangor"
+    },
+    "feb": {
+      "label": "Fakultas Ekonomi dan Bisnis",
+      "type": "fakultas",
+      "campus": "jatinangor"
+    },
+    "fikom": {
+      "label": "Fakultas Ilmu Komunikasi",
+      "type": "fakultas",
+      "campus": "jatinangor"
+    },
+    "fh": {
+      "label": "Fakultas Hukum",
+      "type": "fakultas",
+      "campus": "jatinangor"
+    },
+    "fisip": {
+      "label": "Fakultas Ilmu Sosial dan Ilmu Politik",
+      "type": "fakultas",
+      "campus": "jatinangor"
+    },
+    "fib": {
+      "label": "Fakultas Ilmu Budaya",
+      "type": "fakultas",
+      "campus": "jatinangor"
+    },
+    "indomaret": {
+      "label": "Indomaret Kampus",
+      "type": "komersial",
+      "campus": "jatinangor"
+    },
+    "sc": {
+      "label": "Student Center",
+      "type": "gedung",
+      "campus": "jatinangor"
+    },
+    "lapangan-merah": {
+      "label": "Lapangan Merah",
+      "type": "lapangan",
+      "campus": "jatinangor"
+    },
+    "gor-jati": {
+      "label": "GOR Jati",
+      "type": "olahraga",
+      "campus": "jatinangor"
+    },
+    "mru": {
+      "label": "MRU",
+      "type": "gedung",
+      "campus": "jatinangor"
+    },
+    "ciparanje": {
+      "label": "Ciparanje",
+      "type": "area",
+      "campus": "jatinangor"
+    },
+    "rektorat": {
+      "label": "Rektorat",
+      "type": "gedung",
+      "campus": "jatinangor"
+    },
+    "bale-wilasa": {
+      "label": "Bale Wilasa",
+      "type": "gedung",
+      "campus": "jatinangor"
+    },
+    "tugu-makalangan": {
+      "label": "Tugu Makalangan",
+      "type": "landmark",
+      "campus": "jatinangor"
+    },
+    "sekebitung": {
+      "label": "Sekebitung",
+      "type": "titik-sampling-air",
+      "lat": -6.909917,
+      "lon": 107.769778,
+      "campus": "jatinangor"
+    },
+    "outlet-ciparanje": {
+      "label": "Outlet Ciparanje",
+      "type": "titik-sampling-air",
+      "lat": -6.911361,
+      "lon": 107.771,
+      "campus": "jatinangor"
+    },
+    "embung": {
+      "label": "Badan Air Embung",
+      "type": "titik-sampling-air",
+      "lat": -6.91625,
+      "lon": 107.773167,
+      "campus": "jatinangor"
+    },
+    "inlet-ekoriparian": {
+      "label": "Inlet Ekoriparian",
+      "type": "titik-sampling-air",
+      "lat": -6.930806,
+      "lon": 107.773361,
+      "campus": "jatinangor"
+    },
+    "badan-ekoriparian": {
+      "label": "Badan Air Ekoriparian",
+      "type": "titik-sampling-air",
+      "lat": -6.931194,
+      "lon": 107.774167,
+      "campus": "jatinangor"
+    },
+    "outlet-ekoriparian": {
+      "label": "Outlet Ekoriparian",
+      "type": "titik-sampling-air",
+      "lat": -6.931972,
+      "lon": 107.774167,
+      "campus": "jatinangor"
+    },
+    "ipal-kimia": {
+      "label": "Outlet IPAL Prodi Kimia (Klinik)",
+      "type": "titik-sampling-limbah",
+      "lat": -6.931833,
+      "lon": 107.776583,
+      "campus": "jatinangor"
+    },
+    "ipal-rs": {
+      "label": "Outlet IPAL Rumah Sakit UNPAD",
+      "type": "titik-sampling-limbah",
+      "lat": -6.931167,
+      "lon": 107.772639,
+      "campus": "jatinangor"
+    },
+    "sumur-pantau": {
+      "label": "Sumur Pantau",
+      "type": "titik-sampling-tanah",
+      "lat": -6.924861,
+      "lon": 107.77425,
+      "campus": "jatinangor"
+    }
+  }
+}

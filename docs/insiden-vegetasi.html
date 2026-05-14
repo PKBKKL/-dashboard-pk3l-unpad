@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Insiden Vegetasi</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="./assets/style.css" />
+</head>
+<body>
+  <div class="min-h-screen flex">
+    <aside id="sidebar" class="hidden lg:flex fixed left-0 top-0 h-screen w-64 flex-col border-r border-slate-200 bg-white z-20"></aside>
+    <main class="flex-1 ml-0 lg:ml-64 px-6 py-6 lg:px-10 lg:py-8 max-w-[1400px]">
+      <button id="sidebar-toggle" class="lg:hidden mb-3 p-2 rounded border border-slate-200 bg-white">≡</button>
+
+      <section id="page-header" class="mb-8"></section>
+      <section id="kpis" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"></section>
+
+      <section class="card p-5 mt-8">
+        <h3 class="text-sm font-semibold text-slate-900 mb-1">Tren Bulanan per Jenis Kejadian</h3>
+        <p class="text-xs text-slate-400 mb-3">
+          Puncak Desember (13 kejadian) didominasi pohon patah (7) dan roboh (4). Juli juga tinggi dengan 4 pohon roboh.
+        </p>
+        <div id="chart-tren"></div>
+      </section>
+
+      <section class="card p-5 mt-6">
+        <h3 class="text-sm font-semibold text-slate-900 mb-1">Distribusi Lokasi × Bulan</h3>
+        <p class="text-xs text-slate-400 mb-3">Intensitas warna menunjukkan jumlah kejadian per bulan. Lokasi diurutkan dari yang paling banyak kejadian.</p>
+        <div id="heatmap"></div>
+      </section>
+
+      <section class="card overflow-hidden mt-8">
+        <header class="px-5 py-4 border-b border-slate-200">
+          <h3 class="text-sm font-semibold text-slate-900">Top Lokasi dengan Kejadian Terbanyak</h3>
+        </header>
+        <div class="overflow-x-auto">
+          <table class="data-table" id="top-table">
+            <thead><tr>
+              <th>Lokasi</th>
+              <th class="num">Total</th>
+              <th>Rincian</th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="flags" class="mt-8"></section>
+      <footer id="page-footer"></footer>
+    </main>
+  </div>
+
+  <script type="module">
+    import {
+      bootstrap, renderHeader, renderKpis, renderFlags, $, MONTH_SHORT,
+      loadDataset, loadShared, fmtInt,
+    } from "./assets/common.js";
+    import { stackedBar, heatmap } from "./assets/charts.js";
+
+    const meta = await bootstrap("insiden-vegetasi.html");
+    const [data, locsData] = await Promise.all([
+      loadDataset("tree_incidents"),
+      loadShared("locations"),
+    ]);
+    const p = meta.color_palette;
+    const locations = locsData.locations;
+
+    renderHeader({
+      title: "Insiden Vegetasi",
+      period: `${data.period.start} – ${data.period.end}`,
+      description: "Rekapitulasi kegiatan pohon di seluruh kampus UNPAD Jatinangor sepanjang 2025. Mencakup kegiatan terjadwal (penebangan, pemangkasan) dan insiden tak terencana (pohon roboh, pohon patah).",
+    });
+
+    const yt = data.yearly_totals;
+    renderKpis("#kpis", [
+      { label: "Total Kejadian", value: fmtInt(yt.total), icon: "trees" },
+      { label: "Penebangan", value: fmtInt(yt.penebangan), accent: "slate" },
+      { label: "Pemangkasan", value: fmtInt(yt.pemangkasan), accent: "brand" },
+      { label: "Insiden Tak Terencana", value: fmtInt(yt.pohon_roboh + yt.pohon_patah), unit: `${yt.pohon_roboh} roboh + ${yt.pohon_patah} patah`, accent: "red" },
+    ]);
+
+    // Stacked bar tren bulanan
+    const x = data.monthly_totals.map(m => MONTH_SHORT[parseInt(m.month.split("-")[1], 10) - 1]);
+    stackedBar("chart-tren", {
+      x,
+      yLabel: "Jumlah Kejadian",
+      series: [
+        { label: "Penebangan", color: p.residu, y: data.monthly_totals.map(m => m.penebangan) },
+        { label: "Pemangkasan", color: p.organik, y: data.monthly_totals.map(m => m.pemangkasan) },
+        { label: "Pohon Roboh", color: p.exceedance, y: data.monthly_totals.map(m => m.pohon_roboh) },
+        { label: "Pohon Patah", color: p.maggot, y: data.monthly_totals.map(m => m.pohon_patah) },
+      ],
+    });
+
+    // Heatmap lokasi × bulan
+    const sortedLocs = [...data.incidents_by_location].sort((a, b) => b.total - a.total);
+    const yLabels = sortedLocs.map(l => locations[l.location_id]?.label ?? l.location_id);
+    const z = sortedLocs.map(l => {
+      const row = Array(12).fill(0);
+      for (const mm of l.monthly) {
+        const idx = parseInt(mm.month.split("-")[1], 10) - 1;
+        row[idx] = mm.events.reduce((a, e) => a + e.count, 0);
+      }
+      return row;
+    });
+    heatmap("heatmap", { x: MONTH_SHORT, y: yLabels, z, height: Math.max(300, 30 * sortedLocs.length) });
+
+    // Top lokasi table
+    const EVENT_LABELS = {
+      penebangan: "Penebangan", pemangkasan: "Pemangkasan",
+      pohon_roboh: "Pohon Roboh", pohon_patah: "Pohon Patah",
+      unspecified: "Tidak diketahui",
+    };
+    $("#top-table tbody").innerHTML = sortedLocs.slice(0, 10).map(l => {
+      const events = {};
+      for (const m of l.monthly) {
+        for (const e of m.events) events[e.type] = (events[e.type] ?? 0) + e.count;
+      }
+      const rincian = Object.entries(events).map(([t, c]) => `${EVENT_LABELS[t] ?? t}: ${c}`).join(" · ");
+      return `<tr>
+        <td><strong>${locations[l.location_id]?.label ?? l.location_id}</strong></td>
+        <td class="num">${l.total}</td>
+        <td class="text-xs text-slate-600">${rincian}</td>
+      </tr>`;
+    }).join("");
+
+    renderFlags(data.data_quality_flags);
+  </script>
+</body>
+</html>

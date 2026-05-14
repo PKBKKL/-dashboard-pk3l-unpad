@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ringkasan</title>
+  <meta name="description" content="Dashboard Pemantauan Lingkungan PK3L Universitas Padjadjaran" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./assets/style.css" />
+</head>
+<body>
+  <div class="min-h-screen flex">
+    <aside id="sidebar" class="hidden lg:flex fixed left-0 top-0 h-screen w-64 flex-col border-r border-slate-200 bg-white z-20"></aside>
+    <main class="flex-1 ml-0 lg:ml-64 px-6 py-6 lg:px-10 lg:py-8 max-w-[1400px]">
+      <button id="sidebar-toggle" class="lg:hidden mb-3 p-2 rounded border border-slate-200 bg-white">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+      </button>
+
+      <section id="page-header" class="mb-8"></section>
+
+      <section id="kpis" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"></section>
+
+      <section class="mt-10">
+        <h2 class="text-base font-semibold text-slate-900 mb-3">Penjelasan Singkat Data</h2>
+        <div class="card p-5 space-y-4 text-sm text-slate-700 leading-relaxed">
+          <p>
+            <strong>Pengolahan Sampah.</strong> Catatan harian dari Tempat Pengelolaan Sampah PK3L UNPAD untuk dua
+            bulan operasional (Desember 2025 dan Januari 2026). Sampah dipilah menjadi tiga kategori (Organik,
+            Anorganik, Residu) dan diolah dengan empat metode: <em>Kompos</em> untuk organik, <em>Bahan RDF</em>
+            (Refuse-Derived Fuel) untuk anorganik, <em>Bubur Maggot</em> sebagai metode baru sejak Januari 2026, dan
+            <em>Dumping</em> untuk residu yang tidak dapat diolah.
+          </p>
+          <p>
+            <strong>Timbulan Sampah.</strong> Jumlah sampah yang masuk ke pengelolaan UNPAD per hari, dipantau dari
+            tujuh sumber kendaraan (Truk Tim Angsa, Truk IPDN, Pick Up, Viar, Cator, Mobil Traga, SOD RS). Pemisahan
+            kategori Organik vs Anorganik+Residu mulai konsisten dilakukan pada April 2026.
+          </p>
+          <p>
+            <strong>Kualitas Air.</strong> Sembilan Laporan Hasil Uji (LHU) dari Laboratorium Ekologi PULIK CESS UNPAD
+            (KAN LP-1491-IDN) untuk sampling 10–12 September 2025: enam titik air permukaan, dua titik air limbah
+            (IPAL Prodi Kimia & RS), dan satu sumur pantau. Acuan: PPRI 22/2021, Permen LH 5/2014, Permenkes 2/2023.
+          </p>
+          <p>
+            <strong>Insiden Vegetasi.</strong> Rekapitulasi kegiatan dan kejadian pohon di seluruh kampus Jatinangor
+            sepanjang 2025: penebangan dan pemangkasan terjadwal, serta insiden tak terencana (pohon roboh, pohon
+            patah) sebagai indikator manajemen risiko vegetasi.
+          </p>
+          <p>
+            <strong>Kecelakaan Lalu Lintas.</strong> Pencatatan kecelakaan di area kampus oleh Kantor Lingkungan,
+            mencakup kecelakaan tunggal, tabrakan antar pengguna jalan, serta insiden yang melibatkan armada sepeda
+            listrik Beam.
+          </p>
+        </div>
+      </section>
+
+      <section class="mt-10">
+        <h2 class="text-base font-semibold text-slate-900 mb-3">Periode Data per Domain</h2>
+        <div class="card overflow-hidden">
+          <table class="data-table" id="period-table">
+            <thead>
+              <tr>
+                <th>Domain</th>
+                <th>Periode</th>
+                <th>Sumber Data</th>
+                <th class="num">Catatan</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <footer id="page-footer"></footer>
+    </main>
+  </div>
+
+  <script type="module">
+    import {
+      bootstrap, renderHeader, renderKpis, $,
+      loadDataset, fmtInt, fmtPct,
+    } from "./assets/common.js";
+
+    const meta = await bootstrap("index.html");
+
+    const [pengolahan, timbulan, water, trees, traffic] = await Promise.all([
+      loadDataset("pengolahan_sampah"),
+      loadDataset("timbulan"),
+      loadDataset("water_quality"),
+      loadDataset("tree_incidents"),
+      loadDataset("traffic_accidents"),
+    ]);
+
+    renderHeader({
+      title: meta.dashboard.title,
+      description: `Ringkasan kinerja lingkungan Universitas Padjadjaran dari lima domain pengawasan PK3L: pengolahan sampah, timbulan harian, kualitas air, insiden vegetasi, dan keselamatan lalu lintas kampus. Data diperbarui terakhir ${meta.dashboard.last_updated}.`,
+    });
+
+    // ─── Compute KPIs ─────────────────────────────────────────────
+    const totalProcessed = pengolahan.monthly_summary.reduce((a, m) => a + m.processed_kg, 0);
+    const avgRate = pengolahan.monthly_summary.reduce((a, m) => a + m.processing_rate_pct, 0) / Math.max(1, pengolahan.monthly_summary.length);
+    const totalTimbulan = timbulan.monthly_summary.reduce((a, m) => a + (m.total_kg ?? 0), 0);
+    const activeMonths = timbulan.monthly_summary.filter(m => m.total_kg).length;
+
+    const waterTotal = water.reports.reduce((a, r) => a + r.summary.total_parameters, 0);
+    const waterCompliant = water.reports.reduce((a, r) => a + r.summary.compliant_count, 0);
+    const waterCompliancePct = (waterCompliant / Math.max(1, waterTotal)) * 100;
+
+    const treesTotal = trees.yearly_totals.total;
+    const treesUnplanned = trees.yearly_totals.pohon_roboh + trees.yearly_totals.pohon_patah;
+
+    const traffic2025 = traffic.yearly[0]?.total_yearly_computed ?? 0;
+    const traffic2026 = traffic.yearly[1]?.total_yearly_computed ?? 0;
+
+    const totalOutput = pengolahan.monthly_summary.reduce(
+      (a, m) => a + m.output.kompos_kg + m.output.rdf_kg + m.output.maggot_kg, 0,
+    );
+
+    renderKpis("#kpis", [
+      { label: "Sampah Diolah", value: fmtInt(totalProcessed), unit: "kg total", trend: `Rata-rata ${fmtPct(avgRate)} dari total masuk`, icon: "recycle", accent: "brand", href: "./pengolahan-sampah.html" },
+      { label: "Timbulan Sampah YTD", value: fmtInt(totalTimbulan), unit: "kg", trend: `Dari ${activeMonths} bulan aktif`, icon: "trash-2", accent: "slate", href: "./timbulan-sampah.html" },
+      { label: "Kepatuhan Parameter Air", value: fmtPct(waterCompliancePct), trend: `${waterCompliant} dari ${waterTotal} parameter di ${water.reports.length} LHU`, icon: "droplet", accent: "blue", href: "./kualitas-air.html" },
+      { label: "Total Insiden Pohon 2025", value: fmtInt(treesTotal), unit: "kejadian", trend: `${treesUnplanned} insiden tak terencana`, icon: "trees", accent: "brand", href: "./insiden-vegetasi.html" },
+      { label: "Kecelakaan 2025", value: fmtInt(traffic2025), unit: "kasus", trend: `${fmtInt(traffic2026)} kasus YTD 2026`, icon: "car-front", accent: "red", href: "./kecelakaan-lalu-lintas.html" },
+      { label: "Kompos + RDF + Maggot", value: fmtInt(totalOutput), unit: "kg hasil olahan", trend: "Akumulasi Des 2025 – Jan 2026", icon: "recycle", accent: "brand" },
+    ]);
+
+    // ─── Periode per Domain table ────────────────────────────────
+    const dsMap = {
+      pengolahan_sampah: pengolahan,
+      timbulan: timbulan,
+      water_quality: water,
+      tree_incidents: trees,
+      traffic_accidents: traffic,
+    };
+    const tbody = $("#period-table tbody");
+    tbody.innerHTML = meta.datasets.map((d) => {
+      const ds = dsMap[d.id];
+      return `<tr>
+        <td><strong>${d.label}</strong></td>
+        <td>${d.period_label}</td>
+        <td class="text-xs">${ds?.source_files?.[0] ?? "—"}</td>
+        <td class="num">${ds?.data_quality_flags?.length ?? 0}</td>
+      </tr>`;
+    }).join("");
+  </script>
+</body>
+</html>

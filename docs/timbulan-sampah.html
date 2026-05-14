@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Timbulan Sampah</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="./assets/style.css" />
+</head>
+<body>
+  <div class="min-h-screen flex">
+    <aside id="sidebar" class="hidden lg:flex fixed left-0 top-0 h-screen w-64 flex-col border-r border-slate-200 bg-white z-20"></aside>
+    <main class="flex-1 ml-0 lg:ml-64 px-6 py-6 lg:px-10 lg:py-8 max-w-[1400px]">
+      <button id="sidebar-toggle" class="lg:hidden mb-3 p-2 rounded border border-slate-200 bg-white">≡</button>
+
+      <section id="page-header" class="mb-8"></section>
+      <section id="kpis" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"></section>
+
+      <section class="grid gap-6 mt-8 lg:grid-cols-2">
+        <div class="card p-5">
+          <h3 class="text-sm font-semibold text-slate-900 mb-1">Timbulan Bulanan per Kategori</h3>
+          <p class="text-xs text-slate-400 mb-3">Hanya April 2026 yang memiliki breakdown kategori lengkap; bulan lain hanya total.</p>
+          <div id="chart-kategori"></div>
+        </div>
+        <div class="card p-5">
+          <h3 class="text-sm font-semibold text-slate-900 mb-1">Total vs Rata-rata Hari Aktif</h3>
+          <p class="text-xs text-slate-400 mb-3">Rata-rata per hari aktif lebih representatif daripada total bulanan.</p>
+          <div id="chart-tren"></div>
+        </div>
+      </section>
+
+      <section class="card overflow-hidden mt-8">
+        <header class="px-5 py-4 border-b border-slate-200">
+          <h3 class="text-sm font-semibold text-slate-900">Ringkasan Bulanan</h3>
+        </header>
+        <div class="overflow-x-auto">
+          <table class="data-table" id="monthly-table">
+            <thead>
+              <tr>
+                <th>Bulan</th>
+                <th class="num">Total</th>
+                <th class="num">Hari Aktif</th>
+                <th class="num">Avg/Hari Aktif</th>
+                <th class="num">Organik</th>
+                <th class="num">Anorganik+Residu</th>
+                <th>Kategori?</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="mt-10">
+        <h2 class="text-base font-semibold text-slate-900 mb-3">Sumber Kendaraan</h2>
+        <div class="card p-5">
+          <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 text-sm" id="vehicle-list"></div>
+        </div>
+      </section>
+
+      <section id="flags" class="mt-8"></section>
+      <footer id="page-footer"></footer>
+    </main>
+  </div>
+
+  <script type="module">
+    import {
+      bootstrap, renderHeader, renderKpis, renderFlags, $, MONTH_SHORT,
+      loadDataset, fmtInt, fmtKg, fmtMonth, fmtNum,
+    } from "./assets/common.js";
+    import { stackedBar, lineChart } from "./assets/charts.js";
+
+    const meta = await bootstrap("timbulan-sampah.html");
+    const data = await loadDataset("timbulan");
+    const p = meta.color_palette;
+
+    renderHeader({
+      title: "Timbulan Sampah",
+      period: `${data.period.start} – ${data.period.end}`,
+      description: "Jumlah sampah yang masuk ke pengelolaan UNPAD dari tujuh sumber kendaraan. Pemisahan kategori Organik vs Anorganik+Residu dilakukan konsisten sejak April 2026.",
+    });
+
+    const active = data.monthly_summary.filter(m => m.total_kg && m.total_kg > 0);
+    const totalYTD = active.reduce((a, m) => a + (m.total_kg ?? 0), 0);
+    const totalActiveDays = active.reduce((a, m) => a + m.days_active, 0);
+    const avgActive = totalYTD / Math.max(1, totalActiveDays);
+    const peak = [...active].sort((a, b) => (b.total_kg ?? 0) - (a.total_kg ?? 0))[0];
+
+    renderKpis("#kpis", [
+      { label: "Total YTD", value: fmtInt(totalYTD), unit: "kg", icon: "trash-2" },
+      { label: "Bulan Aktif", value: String(active.length), trend: `${totalActiveDays} hari operasi` },
+      { label: "Rata-rata / Hari Aktif", value: fmtInt(avgActive), unit: "kg/hari", accent: "brand" },
+      { label: "Bulan Puncak", value: peak ? fmtMonth(peak.month).split(" ")[0] : "—", unit: peak ? `${fmtInt(peak.total_kg)} kg` : null, accent: "amber" },
+    ]);
+
+    const xLabels = active.map(m => MONTH_SHORT[parseInt(m.month.split("-")[1], 10) - 1]);
+    stackedBar("chart-kategori", {
+      x: xLabels,
+      yLabel: "kg",
+      series: [
+        { label: "Organik (Daun + Ranting)", color: p.organik, y: active.map(m => m.organik_kg) },
+        { label: "Anorganik + Residu", color: p.anorganik, y: active.map(m => m.anorganik_residu_kg) },
+      ],
+    });
+
+    lineChart("chart-tren", {
+      x: xLabels,
+      yLabel: "kg",
+      series: [
+        { label: "Total (kg/bulan)", color: p.residu, y: active.map(m => m.total_kg ?? 0) },
+        { label: "Rata-rata (kg/hari aktif)", color: p.anorganik, y: active.map(m => m.avg_kg_per_active_day ?? 0) },
+      ],
+    });
+
+    $("#monthly-table tbody").innerHTML = data.monthly_summary.map(m => `
+      <tr>
+        <td><strong>${m.label}</strong></td>
+        <td class="num">${fmtKg(m.total_kg)}</td>
+        <td class="num">${m.days_active}</td>
+        <td class="num">${fmtNum(m.avg_kg_per_active_day)}</td>
+        <td class="num">${fmtKg(m.organik_kg)}</td>
+        <td class="num">${fmtKg(m.anorganik_residu_kg)}</td>
+        <td class="text-xs">${m.category_breakdown_available ? '<span class="text-green-700">tersedia</span>' : '<span class="text-slate-400">total saja</span>'}</td>
+      </tr>
+    `).join("");
+
+    $("#vehicle-list").innerHTML = data.vehicle_sources.map(v => `
+      <div class="flex justify-between items-baseline border-b border-slate-100 pb-2">
+        <div>
+          <div class="font-medium text-slate-900">${v.label}</div>
+          <div class="text-xs text-slate-400">${v.operator}${v.note ? " · " + v.note : ""}</div>
+        </div>
+        ${v.tare_kg ? `<div class="text-xs text-slate-600 tabular-nums">tare ${fmtInt(v.tare_kg)} kg</div>` : ""}
+      </div>
+    `).join("");
+
+    renderFlags(data.data_quality_flags);
+  </script>
+</body>
+</html>

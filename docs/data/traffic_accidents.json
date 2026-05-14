@@ -1,0 +1,185 @@
+{
+  "dataset_id": "traffic_accidents",
+  "version": "1.0",
+  "generated_at": "2026-05-14T10:00:00+07:00",
+  "source_files": [
+    "Kecelakaan Lalu Lintas.md"
+  ],
+  "period": {
+    "start": "2025-04-01",
+    "end": "2026-04-30"
+  },
+  "data_quality_flags": [
+    {
+      "severity": "info",
+      "message": "Persentase di sumber dihitung terhadap total tahun (33 untuk 2025). Untuk 2026 yang masih parsial, persentase dihitung ulang di frontend berdasarkan total YTD."
+    }
+  ],
+  "vehicle_types": [
+    {
+      "id": "tunggal_motor",
+      "label": "Tunggal Sepeda Motor"
+    },
+    {
+      "id": "tunggal_mobil",
+      "label": "Tunggal Mobil"
+    },
+    {
+      "id": "beam",
+      "label": "Beam (sepeda listrik)"
+    },
+    {
+      "id": "tabrak_2roda",
+      "label": "Tabrakan antar roda dua"
+    },
+    {
+      "id": "tabrak_2roda_beam",
+      "label": "Tabrakan roda dua dan Beam"
+    },
+    {
+      "id": "tabrak_2roda_4roda",
+      "label": "Tabrakan roda dua dan roda empat"
+    },
+    {
+      "id": "tabrak_4roda_beam",
+      "label": "Tabrakan roda empat dan Beam"
+    },
+    {
+      "id": "pejalan_kaki",
+      "label": "Pejalan kaki"
+    }
+  ],
+  "yearly": [
+    {
+      "year": 2025,
+      "monthly": [
+        {
+          "month": "2025-04",
+          "by_type": {
+            "tunggal_mobil": 1
+          },
+          "total": 1
+        },
+        {
+          "month": "2025-06",
+          "by_type": {
+            "tunggal_mobil": 1,
+            "tabrak_2roda": 1
+          },
+          "total": 2
+        },
+        {
+          "month": "2025-08",
+          "by_type": {
+            "tunggal_motor": 3
+          },
+          "total": 3
+        },
+        {
+          "month": "2025-09",
+          "by_type": {
+            "tunggal_motor": 6,
+            "beam": 2,
+            "tabrak_2roda": 3,
+            "tabrak_2roda_beam": 1,
+            "tabrak_2roda_4roda": 2,
+            "pejalan_kaki": 2
+          },
+          "total": 16
+        },
+        {
+          "month": "2025-10",
+          "by_type": {
+            "tunggal_motor": 3,
+            "tunggal_mobil": 1,
+            "tabrak_2roda_4roda": 2
+          },
+          "total": 6
+        },
+        {
+          "month": "2025-11",
+          "by_type": {
+            "tunggal_motor": 1,
+            "beam": 1,
+            "tabrak_2roda": 1
+          },
+          "total": 3
+        },
+        {
+          "month": "2025-12",
+          "by_type": {
+            "tunggal_motor": 2
+          },
+          "total": 2
+        }
+      ],
+      "total_yearly_computed": 33,
+      "total_yearly_reported": 33
+    },
+    {
+      "year": 2026,
+      "monthly": [
+        {
+          "month": "2026-01",
+          "by_type": {
+            "tunggal_mobil": 1,
+            "tabrak_2roda": 1
+          },
+          "total": 2
+        },
+        {
+          "month": "2026-03",
+          "by_type": {
+            "tunggal_motor": 1
+          },
+          "total": 1
+        },
+        {
+          "month": "2026-04",
+          "by_type": {
+            "tabrak_4roda_beam": 1
+          },
+          "total": 1
+        }
+      ],
+      "total_yearly_computed": 4,
+      "total_yearly_reported": 4,
+      "ytd_through_month": "2026-04"
+    }
+  ],
+  "incidents_detail_2026": [
+    {
+      "no": 1,
+      "month": "2026-01",
+      "type": "tunggal_mobil",
+      "location_id": "faperta",
+      "location_label_raw": "Pertanian",
+      "count": 1
+    },
+    {
+      "no": 2,
+      "month": "2026-01",
+      "type": "tabrak_2roda",
+      "location_id": "tugu-makalangan",
+      "location_label_raw": "Tugu makalangan",
+      "count": 1
+    },
+    {
+      "no": 3,
+      "month": "2026-01",
+      "type": "tunggal_motor",
+      "location_id": "fkg",
+      "location_label_raw": "FKG",
+      "count": 1
+    },
+    {
+      "no": 4,
+      "month": "2026-01",
+      "type": "tabrak_4roda_beam",
+      "location_id": "feb",
+      "location_label_raw": "FEB",
+      "count": 1,
+      "note": "Beam dan Mobil"
+    }
+  ]
+}

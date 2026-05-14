@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kecelakaan Lalu Lintas</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="./assets/style.css" />
+</head>
+<body>
+  <div class="min-h-screen flex">
+    <aside id="sidebar" class="hidden lg:flex fixed left-0 top-0 h-screen w-64 flex-col border-r border-slate-200 bg-white z-20"></aside>
+    <main class="flex-1 ml-0 lg:ml-64 px-6 py-6 lg:px-10 lg:py-8 max-w-[1400px]">
+      <button id="sidebar-toggle" class="lg:hidden mb-3 p-2 rounded border border-slate-200 bg-white">≡</button>
+
+      <section id="page-header" class="mb-8"></section>
+      <section id="kpis" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"></section>
+
+      <section class="card p-5 mt-8">
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+          <h3 class="text-sm font-semibold text-slate-900">Distribusi Bulanan per Jenis</h3>
+          <div id="year-tabs" class="flex gap-1 text-xs"></div>
+        </div>
+        <p id="year-caption" class="text-xs text-slate-400 mb-3"></p>
+        <div id="chart-monthly"></div>
+      </section>
+
+      <section class="card overflow-hidden mt-8">
+        <header class="px-5 py-4 border-b border-slate-200">
+          <h3 class="text-sm font-semibold text-slate-900">Detail Kasus 2026 per Lokasi</h3>
+        </header>
+        <div class="overflow-x-auto">
+          <table class="data-table" id="detail-table">
+            <thead><tr>
+              <th class="num">No</th>
+              <th>Bulan</th>
+              <th>Jenis</th>
+              <th>Lokasi</th>
+              <th class="num">Jumlah</th>
+              <th>Catatan</th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="flags" class="mt-8"></section>
+      <footer id="page-footer"></footer>
+    </main>
+  </div>
+
+  <script type="module">
+    import {
+      bootstrap, renderHeader, renderKpis, renderFlags, $, MONTH_SHORT,
+      loadDataset, loadShared, fmtInt,
+    } from "./assets/common.js";
+    import { stackedBar } from "./assets/charts.js";
+
+    const meta = await bootstrap("kecelakaan-lalu-lintas.html");
+    const [data, locsData] = await Promise.all([
+      loadDataset("traffic_accidents"),
+      loadShared("locations"),
+    ]);
+    const p = meta.color_palette;
+    const locations = locsData.locations;
+    const typeLabels = Object.fromEntries(data.vehicle_types.map(v => [v.id, v.label]));
+
+    renderHeader({
+      title: "Kecelakaan Lalu Lintas",
+      period: `${data.period.start} – ${data.period.end}`,
+      description: "Pencatatan kecelakaan di kawasan kampus UNPAD oleh Kantor Lingkungan. Mencakup kecelakaan tunggal, tabrakan antar pengguna jalan, serta insiden yang melibatkan armada sepeda listrik Beam. Data 2026 masih parsial.",
+    });
+
+    const y2025 = data.yearly.find(y => y.year === 2025);
+    const y2026 = data.yearly.find(y => y.year === 2026);
+
+    const beamCount = (y) => (y?.monthly ?? []).reduce((a, m) =>
+      a + (m.by_type.beam ?? 0) + (m.by_type.tabrak_2roda_beam ?? 0) + (m.by_type.tabrak_4roda_beam ?? 0), 0);
+    const pedCount = (y) => (y?.monthly ?? []).reduce((a, m) => a + (m.by_type.pejalan_kaki ?? 0), 0);
+
+    renderKpis("#kpis", [
+      { label: "Total 2025", value: fmtInt(y2025?.total_yearly_computed ?? 0), unit: "kasus", icon: "car-front", accent: "red" },
+      { label: "YTD 2026", value: fmtInt(y2026?.total_yearly_computed ?? 0), unit: "kasus", accent: "amber" },
+      { label: "Melibatkan Beam", value: fmtInt(beamCount(y2025) + beamCount(y2026)), accent: "slate" },
+      { label: "Pejalan Kaki", value: fmtInt(pedCount(y2025) + pedCount(y2026)) },
+    ]);
+
+    const PALETTE_CYCLE = [p.exceedance, p.maggot, p.anorganik, p.organik, p.rdf, p.residu, p.dumping, p.kompos];
+    let currentYear = 2025;
+
+    function renderTabs() {
+      $("#year-tabs").innerHTML = [2025, 2026].map(y => `
+        <button data-year="${y}" class="px-3 py-1.5 rounded-md border ${currentYear === y ? "bg-green-100 border-green-300 text-green-800 font-medium" : "border-slate-200 text-slate-600 bg-white"}">${y}</button>
+      `).join("");
+      document.querySelectorAll("[data-year]").forEach(btn => {
+        btn.onclick = () => { currentYear = Number(btn.dataset.year); renderTabs(); renderChart(); };
+      });
+    }
+    function renderChart() {
+      const y = data.yearly.find(y => y.year === currentYear);
+      const series = data.vehicle_types.map((v, i) => ({
+        label: v.label,
+        color: PALETTE_CYCLE[i % PALETTE_CYCLE.length],
+        y: MONTH_SHORT.map((_, idx) => {
+          const monthIso = `${currentYear}-${String(idx + 1).padStart(2, "0")}`;
+          const row = y?.monthly.find(mm => mm.month === monthIso);
+          return row?.by_type[v.id] ?? 0;
+        }),
+      }));
+      stackedBar("chart-monthly", { x: MONTH_SHORT, yLabel: "Jumlah Kasus", series });
+      $("#year-caption").textContent = currentYear === 2025
+        ? "September 2025 adalah puncak dengan 16 kasus."
+        : `Data 2026 masih parsial (YTD: ${y?.total_yearly_computed ?? 0} kasus).`;
+    }
+
+    renderTabs();
+    renderChart();
+
+    $("#detail-table tbody").innerHTML = (data.incidents_detail_2026 ?? []).map(it => `
+      <tr>
+        <td class="num text-slate-600">${it.no ?? ""}</td>
+        <td>${it.month}</td>
+        <td>${typeLabels[it.type] ?? it.type}</td>
+        <td>${locations[it.location_id]?.label ?? it.location_label_raw}</td>
+        <td class="num">${it.count}</td>
+        <td class="text-xs text-slate-400">${it.note ?? ""}</td>
+      </tr>
+    `).join("");
+
+    renderFlags(data.data_quality_flags);
+  </script>
+</body>
+</html>

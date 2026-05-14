@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pengolahan Sampah</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="./assets/style.css" />
+</head>
+<body>
+  <div class="min-h-screen flex">
+    <aside id="sidebar" class="hidden lg:flex fixed left-0 top-0 h-screen w-64 flex-col border-r border-slate-200 bg-white z-20"></aside>
+    <main class="flex-1 ml-0 lg:ml-64 px-6 py-6 lg:px-10 lg:py-8 max-w-[1400px]">
+      <button id="sidebar-toggle" class="lg:hidden mb-3 p-2 rounded border border-slate-200 bg-white">≡</button>
+
+      <section id="page-header" class="mb-8"></section>
+      <section id="kpis" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"></section>
+
+      <section class="grid gap-6 mt-8 lg:grid-cols-2">
+        <div class="card p-5">
+          <h3 class="text-sm font-semibold text-slate-900 mb-1">Komposisi Sampah Masuk per Bulan</h3>
+          <p class="text-xs text-slate-400 mb-3">Distribusi kategori (kg) — Organik mendominasi karena kontribusi daun & ranting taman.</p>
+          <div id="chart-komposisi"></div>
+        </div>
+        <div class="card p-5">
+          <h3 class="text-sm font-semibold text-slate-900 mb-1">Distribusi Hasil Olahan</h3>
+          <p class="text-xs text-slate-400 mb-3">Akumulasi seluruh periode. Bubur Maggot adalah metode baru sejak Januari 2026.</p>
+          <div id="chart-donut"></div>
+        </div>
+      </section>
+
+      <section class="card p-5 mt-6">
+        <h3 class="text-sm font-semibold text-slate-900 mb-1">Diolah vs Sisa (per Bulan)</h3>
+        <p class="text-xs text-slate-400 mb-3">Sampah yang berhasil diolah dibanding yang berakhir di area Dumping.</p>
+        <div id="chart-flow"></div>
+      </section>
+
+      <section class="card overflow-hidden mt-8">
+        <header class="px-5 py-4 border-b border-slate-200">
+          <h3 class="text-sm font-semibold text-slate-900">Ringkasan Bulanan</h3>
+        </header>
+        <div class="overflow-x-auto">
+          <table class="data-table" id="monthly-table">
+            <thead>
+              <tr>
+                <th>Bulan</th>
+                <th class="num">Masuk</th>
+                <th class="num">Diolah</th>
+                <th class="num">Sisa</th>
+                <th class="num">Kompos</th>
+                <th class="num">RDF</th>
+                <th class="num">Maggot</th>
+                <th class="num">Rasio</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="flags" class="mt-8"></section>
+      <footer id="page-footer"></footer>
+    </main>
+  </div>
+
+  <script type="module">
+    import {
+      bootstrap, renderHeader, renderKpis, renderFlags, $,
+      loadDataset, fmtInt, fmtKg, fmtPct,
+    } from "./assets/common.js";
+    import { stackedBar, donutChart, groupedBar } from "./assets/charts.js";
+
+    const meta = await bootstrap("pengolahan-sampah.html");
+    const data = await loadDataset("pengolahan_sampah");
+    const p = meta.color_palette;
+
+    renderHeader({
+      title: "Pengolahan Sampah",
+      period: `${data.period.start} – ${data.period.end}`,
+      description: "Pencatatan harian sampah yang masuk ke fasilitas pengolahan PK3L UNPAD dan diolah menjadi Kompos, Bahan RDF, atau Bubur Maggot. Sampah residu yang tidak dapat diolah dipindahkan ke area Dumping.",
+    });
+
+    const totalIn = data.monthly_summary.reduce((a, m) => a + m.incoming_kg, 0);
+    const totalProc = data.monthly_summary.reduce((a, m) => a + m.processed_kg, 0);
+    const totalResid = data.monthly_summary.reduce((a, m) => a + m.residual_kg, 0);
+    const totalKompos = data.monthly_summary.reduce((a, m) => a + m.output.kompos_kg, 0);
+    const totalRDF = data.monthly_summary.reduce((a, m) => a + m.output.rdf_kg, 0);
+    const totalMaggot = data.monthly_summary.reduce((a, m) => a + m.output.maggot_kg, 0);
+    const totalOut = totalKompos + totalRDF + totalMaggot;
+    const avgRate = data.monthly_summary.reduce((a, m) => a + m.processing_rate_pct, 0) / Math.max(1, data.monthly_summary.length);
+
+    renderKpis("#kpis", [
+      { label: "Total Sampah Masuk", value: fmtInt(totalIn), unit: "kg" },
+      { label: "Total Diolah", value: fmtInt(totalProc), unit: "kg", trend: `Sisa residu: ${fmtInt(totalResid)} kg`, icon: "recycle", accent: "brand" },
+      { label: "Rasio Pengolahan", value: fmtPct(avgRate), trend: "Rata-rata bulanan", accent: "brand" },
+      { label: "Total Hasil Olahan", value: fmtInt(totalOut), unit: "kg", accent: "amber" },
+    ]);
+
+    // Komposisi bulanan
+    const months = data.monthly_summary.map(m => m.label);
+    stackedBar("chart-komposisi", {
+      x: months,
+      yLabel: "kg",
+      series: [
+        { label: "Organik", color: p.organik, y: data.monthly_summary.map(m => m.incoming_by_category_kg?.organik ?? 0) },
+        { label: "Anorganik", color: p.anorganik, y: data.monthly_summary.map(m => m.incoming_by_category_kg?.anorganik ?? 0) },
+        { label: "Residu", color: p.residu, y: data.monthly_summary.map(m => m.incoming_by_category_kg?.residu ?? 0) },
+      ],
+    });
+
+    // Donut hasil olahan
+    donutChart("chart-donut", {
+      labels: ["Kompos", "Bahan RDF", "Bubur Maggot"],
+      values: [totalKompos, totalRDF, totalMaggot],
+      colors: [p.kompos, p.rdf, p.maggot],
+    });
+
+    // Grouped: diolah vs sisa
+    groupedBar("chart-flow", {
+      x: months,
+      yLabel: "kg",
+      series: [
+        { label: "Diolah", color: p.compliant, y: data.monthly_summary.map(m => m.processed_kg) },
+        { label: "Sisa (Residu)", color: p.residu, y: data.monthly_summary.map(m => m.residual_kg) },
+      ],
+    });
+
+    // Tabel bulanan
+    const tbody = $("#monthly-table tbody");
+    tbody.innerHTML = data.monthly_summary.map(m => `
+      <tr>
+        <td><strong>${m.label}</strong></td>
+        <td class="num">${fmtKg(m.incoming_kg)}</td>
+        <td class="num">${fmtKg(m.processed_kg)}</td>
+        <td class="num">${fmtKg(m.residual_kg)}</td>
+        <td class="num">${fmtKg(m.output.kompos_kg)}</td>
+        <td class="num">${fmtKg(m.output.rdf_kg)}</td>
+        <td class="num">${fmtKg(m.output.maggot_kg)}</td>
+        <td class="num text-green-700 font-medium">${fmtPct(m.processing_rate_pct)}</td>
+      </tr>
+    `).join("");
+
+    renderFlags(data.data_quality_flags);
+  </script>
+</body>
+</html>
