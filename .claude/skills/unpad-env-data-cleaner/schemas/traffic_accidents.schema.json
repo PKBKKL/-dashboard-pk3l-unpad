@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "traffic_accidents.schema.json",
+  "allOf": [{ "$ref": "_common.schema.json#/definitions/dataset_envelope" }],
+  "type": "object",
+  "required": ["dataset_id", "yearly", "vehicle_types"],
+  "properties": {
+    "dataset_id": { "const": "traffic_accidents" },
+    "yearly": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["year", "monthly", "total_yearly_computed"],
+        "properties": {
+          "year": { "type": "integer", "minimum": 2020 },
+          "total_yearly_computed": { "type": "integer", "minimum": 0 },
+          "total_yearly_reported": { "type": "integer", "minimum": 0 },
+          "monthly": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["month", "by_type", "total"],
+              "properties": {
+                "month": { "$ref": "_common.schema.json#/definitions/iso_month" },
+                "total": { "type": "integer", "minimum": 0 },
+                "by_type": {
+                  "type": "object",
+                  "additionalProperties": { "type": "integer", "minimum": 0 }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "incidents_detail_2026": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "location_id", "count"],
+        "properties": {
+          "type": { "type": "string" },
+          "location_id": { "type": "string" },
+          "count": { "type": "integer", "minimum": 1 }
+        }
+      }
+    }
+  }
+}

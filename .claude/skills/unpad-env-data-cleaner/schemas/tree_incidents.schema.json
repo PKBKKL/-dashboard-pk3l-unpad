@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tree_incidents.schema.json",
+  "allOf": [{ "$ref": "_common.schema.json#/definitions/dataset_envelope" }],
+  "type": "object",
+  "required": ["dataset_id", "monthly_totals", "yearly_totals", "incidents_by_location", "event_types"],
+  "properties": {
+    "dataset_id": { "const": "tree_incidents" },
+    "monthly_totals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["month", "total"],
+        "properties": {
+          "month": { "$ref": "_common.schema.json#/definitions/iso_month" },
+          "total": { "type": "integer" }
+        }
+      }
+    },
+    "incidents_by_location": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["location_id", "monthly", "total"],
+        "properties": {
+          "location_id": { "type": "string" },
+          "total": { "type": "integer", "minimum": 0 },
+          "monthly": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["month", "events"],
+              "properties": {
+                "month": { "$ref": "_common.schema.json#/definitions/iso_month" },
+                "events": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": ["type", "count"],
+                    "properties": {
+                      "type": { "type": "string" },
+                      "count": { "type": "integer", "minimum": 0 }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,495 @@
+{
+  "dataset_id": "tree_incidents",
+  "version": "1.0",
+  "generated_at": "2026-05-14T10:00:00+07:00",
+  "source_files": [
+    "Kecelakaan dan Kejadian Kantor Lingkungan Tahun 2025.md"
+  ],
+  "period": {
+    "start": "2025-01-01",
+    "end": "2025-12-31"
+  },
+  "data_quality_flags": [
+    {
+      "severity": "info",
+      "message": "Terdapat 1 kejadian tanpa keterangan jenis (mis. cell Farmasi Oktober '1'); ditandai 'unspecified'."
+    }
+  ],
+  "event_types": [
+    {
+      "id": "penebangan",
+      "label": "Penebangan Pohon",
+      "severity": "planned"
+    },
+    {
+      "id": "pemangkasan",
+      "label": "Pemangkasan Pohon",
+      "severity": "planned"
+    },
+    {
+      "id": "pohon_roboh",
+      "label": "Pohon Roboh",
+      "severity": "incident"
+    },
+    {
+      "id": "pohon_patah",
+      "label": "Pohon Patah",
+      "severity": "incident"
+    },
+    {
+      "id": "unspecified",
+      "label": "Tidak diketahui",
+      "severity": "unknown"
+    }
+  ],
+  "monthly_totals": [
+    {
+      "month": "2025-01",
+      "penebangan": 1,
+      "pemangkasan": 3,
+      "pohon_roboh": 2,
+      "pohon_patah": 0,
+      "total": 6
+    },
+    {
+      "month": "2025-02",
+      "penebangan": 1,
+      "pemangkasan": 0,
+      "pohon_roboh": 0,
+      "pohon_patah": 0,
+      "total": 1
+    },
+    {
+      "month": "2025-03",
+      "penebangan": 0,
+      "pemangkasan": 1,
+      "pohon_roboh": 0,
+      "pohon_patah": 0,
+      "total": 1
+    },
+    {
+      "month": "2025-04",
+      "penebangan": 0,
+      "pemangkasan": 1,
+      "pohon_roboh": 0,
+      "pohon_patah": 0,
+      "total": 1
+    },
+    {
+      "month": "2025-05",
+      "penebangan": 0,
+      "pemangkasan": 0,
+      "pohon_roboh": 0,
+      "pohon_patah": 0,
+      "total": 0
+    },
+    {
+      "month": "2025-06",
+      "penebangan": 0,
+      "pemangkasan": 0,
+      "pohon_roboh": 0,
+      "pohon_patah": 0,
+      "total": 0
+    },
+    {
+      "month": "2025-07",
+      "penebangan": 0,
+      "pemangkasan": 1,
+      "pohon_roboh": 4,
+      "pohon_patah": 0,
+      "total": 5
+    },
+    {
+      "month": "2025-08",
+      "penebangan": 1,
+      "pemangkasan": 0,
+      "pohon_roboh": 0,
+      "pohon_patah": 0,
+      "total": 1
+    },
+    {
+      "month": "2025-09",
+      "penebangan": 1,
+      "pemangkasan": 0,
+      "pohon_roboh": 1,
+      "pohon_patah": 0,
+      "total": 2
+    },
+    {
+      "month": "2025-10",
+      "penebangan": 1,
+      "pemangkasan": 1,
+      "pohon_roboh": 0,
+      "pohon_patah": 0,
+      "total": 2
+    },
+    {
+      "month": "2025-11",
+      "penebangan": 0,
+      "pemangkasan": 0,
+      "pohon_roboh": 0,
+      "pohon_patah": 0,
+      "total": 0
+    },
+    {
+      "month": "2025-12",
+      "penebangan": 0,
+      "pemangkasan": 2,
+      "pohon_roboh": 4,
+      "pohon_patah": 7,
+      "total": 13
+    }
+  ],
+  "yearly_totals": {
+    "penebangan": 5,
+    "pemangkasan": 9,
+    "pohon_roboh": 11,
+    "pohon_patah": 7,
+    "unspecified": 1,
+    "total": 33
+  },
+  "incidents_by_location": [
+    {
+      "location_id": "rsptn",
+      "monthly": [
+        {
+          "month": "2025-01",
+          "events": [
+            {
+              "type": "pohon_roboh",
+              "count": 1
+            }
+          ]
+        },
+        {
+          "month": "2025-02",
+          "events": [
+            {
+              "type": "penebangan",
+              "count": 1
+            }
+          ]
+        },
+        {
+          "month": "2025-07",
+          "events": [
+            {
+              "type": "penebangan",
+              "count": 1
+            }
+          ]
+        },
+        {
+          "month": "2025-08",
+          "events": [
+            {
+              "type": "penebangan",
+              "count": 1
+            }
+          ]
+        },
+        {
+          "month": "2025-10",
+          "events": [
+            {
+              "type": "pohon_roboh",
+              "count": 1
+            }
+          ]
+        }
+      ],
+      "total": 5
+    },
+    {
+      "location_id": "fk",
+      "monthly": [
+        {
+          "month": "2025-01",
+          "events": [
+            {
+              "type": "pemangkasan",
+              "count": 1
+            }
+          ]
+        },
+        {
+          "month": "2025-09",
+          "events": [
+            {
+              "type": "pemangkasan",
+              "count": 1
+            }
+          ]
+        }
+      ],
+      "total": 2
+    },
+    {
+      "location_id": "fkg",
+      "monthly": [
+        {
+          "month": "2025-01",
+          "events": [
+            {
+              "type": "penebangan",
+              "count": 1
+            }
+          ]
+        },
+        {
+          "month": "2025-10",
+          "events": [
+            {
+              "type": "pemangkasan",
+              "count": 1
+            }
+          ]
+        }
+      ],
+      "total": 2
+    },
+    {
+      "location_id": "fapsi",
+      "monthly": [
+        {
+          "month": "2025-10",
+          "events": [
+            {
+              "type": "pemangkasan",
+              "count": 1
+            }
+          ]
+        }
+      ],
+      "total": 1
+    },
+    {
+      "location_id": "faperta",
+      "monthly": [
+        {
+          "month": "2025-01",
+          "events": [
+            {
+              "type": "pemangkasan",
+              "count": 1
+            }
+          ]
+        },
+        {
+          "month": "2025-10",
+          "events": [
+            {
+              "type": "pohon_patah",
+              "count": 1
+            }
+          ]
+        }
+      ],
+      "total": 2
+    },
+    {
+      "location_id": "ftip",
+      "monthly": [
+        {
+          "month": "2025-06",
+          "events": [
+            {
+              "type": "pemangkasan",
+              "count": 1
+            }
+          ]
+        },
+        {
+          "month": "2025-10",
+          "events": [
+            {
+              "type": "pohon_patah",
+              "count": 1
+            }
+          ]
+        }
+      ],
+      "total": 2
+    },
+    {
+      "location_id": "fpik",
+      "monthly": [
+        {
+          "month": "2025-01",
+          "events": [
+            {
+              "type": "pemangkasan",
+              "count": 1
+            }
+          ]
+        }
+      ],
+      "total": 1
+    },
+    {
+      "location_id": "farmasi",
+      "monthly": [
+        {
+          "month": "2025-03",
+          "events": [
+            {
+              "type": "pemangkasan",
+              "count": 1
+            }
+          ]
+        },
+        {
+          "month": "2025-10",
+          "events": [
+            {
+              "type": "unspecified",
+              "count": 1
+            }
+          ]
+        }
+      ],
+      "total": 2
+    },
+    {
+      "location_id": "ppbs",
+      "monthly": [
+        {
+          "month": "2025-01",
+          "events": [
+            {
+              "type": "pohon_roboh",
+              "count": 1
+            }
+          ]
+        },
+        {
+          "month": "2025-08",
+          "events": [
+            {
+              "type": "penebangan",
+              "count": 1
+            }
+          ]
+        }
+      ],
+      "total": 2
+    },
+    {
+      "location_id": "fikom",
+      "monthly": [
+        {
+          "month": "2025-10",
+          "events": [
+            {
+              "type": "pohon_roboh",
+              "count": 1
+            }
+          ]
+        }
+      ],
+      "total": 1
+    },
+    {
+      "location_id": "fh",
+      "monthly": [
+        {
+          "month": "2025-06",
+          "events": [
+            {
+              "type": "pohon_roboh",
+              "count": 2
+            }
+          ]
+        },
+        {
+          "month": "2025-10",
+          "events": [
+            {
+              "type": "pohon_patah",
+              "count": 1
+            }
+          ]
+        }
+      ],
+      "total": 3
+    },
+    {
+      "location_id": "sc",
+      "monthly": [
+        {
+          "month": "2025-03",
+          "events": [
+            {
+              "type": "pemangkasan",
+              "count": 1
+            }
+          ]
+        }
+      ],
+      "total": 1
+    },
+    {
+      "location_id": "ciparanje",
+      "monthly": [
+        {
+          "month": "2025-06",
+          "events": [
+            {
+              "type": "pohon_roboh",
+              "count": 2
+            }
+          ]
+        },
+        {
+          "month": "2025-07",
+          "events": [
+            {
+              "type": "pohon_roboh",
+              "count": 1
+            }
+          ]
+        },
+        {
+          "month": "2025-10",
+          "events": [
+            {
+              "type": "pohon_patah",
+              "count": 1
+            }
+          ]
+        }
+      ],
+      "total": 4
+    },
+    {
+      "location_id": "rektorat",
+      "monthly": [
+        {
+          "month": "2025-10",
+          "events": [
+            {
+              "type": "pohon_patah",
+              "count": 2
+            }
+          ]
+        }
+      ],
+      "total": 2
+    },
+    {
+      "location_id": "bale-wilasa",
+      "monthly": [
+        {
+          "month": "2025-10",
+          "events": [
+            {
+              "type": "pohon_roboh",
+              "count": 2
+            }
+          ]
+        }
+      ],
+      "total": 2
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "pengolahan_sampah.schema.json",
+  "allOf": [{ "$ref": "_common.schema.json#/definitions/dataset_envelope" }],
+  "type": "object",
+  "required": ["dataset_id", "monthly_summary", "daily_entries", "categories", "processing_methods"],
+  "properties": {
+    "dataset_id": { "const": "pengolahan_sampah" },
+    "monthly_summary": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["month", "incoming_kg", "processed_kg"],
+        "properties": {
+          "month": { "$ref": "_common.schema.json#/definitions/iso_month" },
+          "incoming_kg": { "type": "number" },
+          "processed_kg": { "type": "number" },
+          "residual_kg": { "type": "number" },
+          "output": {
+            "type": "object",
+            "properties": {
+              "kompos_kg": { "type": "number" },
+              "rdf_kg": { "type": "number" },
+              "maggot_kg": { "type": "number" }
+            }
+          }
+        }
+      }
+    },
+    "daily_entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["date", "items"],
+        "properties": {
+          "date": { "$ref": "_common.schema.json#/definitions/iso_date" },
+          "date_corrected_from_md": { "type": "boolean" },
+          "items": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["category", "incoming_kg", "processed_kg", "residual_kg", "method"],
+              "properties": {
+                "category": { "enum": ["organik", "anorganik", "residu"] },
+                "method": { "type": ["string", "null"] },
+                "incoming_kg": { "type": "number" },
+                "processed_kg": { "type": "number" },
+                "residual_kg": { "type": "number" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

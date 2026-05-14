@@ -1,0 +1,42 @@
+# dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# next.js
+.next/
+out/
+build/
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# env
+.env*.local
+
+# logs
+*.log
+
+# python
+__pycache__/
+*.pyc
+.venv/
+
+# editor
+.vscode/
+.idea/
+
+# office lock files
+~$*
+
+# raw source binaries (kept locally, excluded from public repo)
+# dashboard reads from data/*.json which is committed
+*.xlsx
+*.pdf
+
+# data outputs (optional - keep cleaned data committed)
+# data/
+
+# skill scratch
+.claude/skills/*/output/

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "timbulan.schema.json",
+  "allOf": [{ "$ref": "_common.schema.json#/definitions/dataset_envelope" }],
+  "type": "object",
+  "required": ["dataset_id", "monthly_summary", "daily_entries", "vehicle_sources", "categories"],
+  "properties": {
+    "dataset_id": { "const": "timbulan" },
+    "monthly_summary": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["month", "total_kg"],
+        "properties": {
+          "month": { "$ref": "_common.schema.json#/definitions/iso_month" },
+          "total_kg": { "type": ["number", "null"] },
+          "days_active": { "type": "integer", "minimum": 0 },
+          "avg_kg_per_active_day": { "type": ["number", "null"] }
+        }
+      }
+    },
+    "daily_entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["date", "total_kg"],
+        "properties": {
+          "date": { "$ref": "_common.schema.json#/definitions/iso_date" },
+          "total_kg": { "type": "number" },
+          "by_category_kg": {
+            "oneOf": [
+              { "type": "null" },
+              {
+                "type": "object",
+                "properties": {
+                  "organik": { "type": "number" },
+                  "anorganik_residu": { "type": "number" },
+                  "sod": { "type": "number" }
+                }
+              }
+            ]
+          },
+          "quality_flag": { "type": ["string", "null"] }
+        }
+      }
+    }
+  }
+}

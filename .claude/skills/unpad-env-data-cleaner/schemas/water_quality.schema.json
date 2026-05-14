@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "water_quality.schema.json",
+  "allOf": [{ "$ref": "_common.schema.json#/definitions/dataset_envelope" }],
+  "type": "object",
+  "required": ["dataset_id", "reports", "parameter_dictionary", "issuing_lab"],
+  "properties": {
+    "dataset_id": { "const": "water_quality" },
+    "issuing_lab": {
+      "type": "object",
+      "required": ["name", "accreditation"],
+      "properties": {
+        "name": { "type": "string" },
+        "accreditation": { "type": "string" }
+      }
+    },
+    "reports": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["report_no", "sample_type", "location_id", "regulation_id", "measurements", "summary"],
+        "properties": {
+          "report_no": { "type": "string" },
+          "sample_type": { "enum": ["air_permukaan", "air_limbah", "air_sumur"] },
+          "location_id": { "type": "string" },
+          "regulation_id": { "type": "string" },
+          "measurements": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["parameter_id", "result", "compliant", "below_detection_limit", "source_flagged_exceedance"],
+              "properties": {
+                "parameter_id": { "type": "string" },
+                "result": { "type": ["number", "string", "null"] },
+                "result_display": { "type": "string" },
+                "below_detection_limit": { "type": "boolean" },
+                "compliant": { "type": ["boolean", "null"] },
+                "source_flagged_exceedance": { "type": "boolean" },
+                "threshold": {
+                  "oneOf": [
+                    { "type": "null" },
+                    { "$ref": "_common.schema.json#/definitions/threshold" }
+                  ]
+                }
+              }
+            }
+          },
+          "summary": {
+            "type": "object",
+            "required": ["total_parameters", "compliant_count", "non_compliant_count"],
+            "properties": {
+              "total_parameters": { "type": "integer", "minimum": 0 },
+              "compliant_count": { "type": "integer", "minimum": 0 },
+              "non_compliant_count": { "type": "integer", "minimum": 0 },
+              "compliance_pct": { "type": ["number", "null"] }
+            }
+          }
+        }
+      }
+    }
+  }
+}

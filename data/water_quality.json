@@ -1,0 +1,3099 @@
+{
+  "dataset_id": "water_quality",
+  "version": "1.0",
+  "generated_at": "2026-05-14T10:00:00+07:00",
+  "source_files": [
+    "Scan Sertifikat Hasil Uji Air Permukaan, Air Limbah, dan Air Tanah PK3L UNPAD Oktober 2025.md"
+  ],
+  "period": {
+    "start": "2025-09-10",
+    "end": "2025-10-08"
+  },
+  "data_quality_flags": [
+    {
+      "severity": "info",
+      "message": "Tanda '^' di sumber LHU diterapkan ke parameter DO meski baku mutu DO bersifat minimum (≥4 mg/L). Field `compliant` di spec ini mengoreksi arah; `source_flagged_exceedance` mempertahankan tanda asli."
+    },
+    {
+      "severity": "warning",
+      "message": "Penomoran parameter Biologi pada LHU 7 dan LHU 8 mengandung typo (nomor 13 muncul dua kali). Spec ini menormalkan ulang nomor berurutan."
+    }
+  ],
+  "issuing_lab": {
+    "name": "Laboratorium Ekologi PULIK CESS UNPAD",
+    "accreditation": "KAN LP-1491-IDN",
+    "address": "Jl. Sekeloa Selatan I Bandung 40132",
+    "head": "Dr. Gemilang Lara Utama S., S.Pt., M.I.L"
+  },
+  "parameter_dictionary": {
+    "suhu": {
+      "label": "Suhu",
+      "unit": "°C",
+      "category": "fisika"
+    },
+    "dhl": {
+      "label": "Daya Hantar Listrik (DHL)",
+      "unit": "µmhos/cm",
+      "category": "fisika"
+    },
+    "tss": {
+      "label": "Padatan Tersuspensi Total (TSS)",
+      "unit": "mg/L",
+      "category": "fisika"
+    },
+    "tds": {
+      "label": "Padatan Terlarut Total (TDS)",
+      "unit": "mg/L",
+      "category": "fisika"
+    },
+    "kekeruhan": {
+      "label": "Kekeruhan",
+      "unit": "NTU",
+      "category": "fisika"
+    },
+    "warna": {
+      "label": "Warna",
+      "unit": "TCU",
+      "category": "fisika"
+    },
+    "bau": {
+      "label": "Bau",
+      "unit": null,
+      "category": "fisika"
+    },
+    "ph": {
+      "label": "pH",
+      "unit": null,
+      "category": "kimia"
+    },
+    "kesadahan": {
+      "label": "Kesadahan (CaCO₃)",
+      "unit": "mg/L",
+      "category": "kimia"
+    },
+    "klorida": {
+      "label": "Klorida",
+      "unit": "mg/L",
+      "category": "kimia"
+    },
+    "fe": {
+      "label": "Besi (Fe)",
+      "unit": "mg/L",
+      "category": "kimia"
+    },
+    "mn": {
+      "label": "Mangan (Mn)",
+      "unit": "mg/L",
+      "category": "kimia"
+    },
+    "ni": {
+      "label": "Nikel (Ni)",
+      "unit": "mg/L",
+      "category": "kimia"
+    },
+    "zn": {
+      "label": "Seng (Zn)",
+      "unit": "mg/L",
+      "category": "kimia"
+    },
+    "cu": {
+      "label": "Tembaga (Cu)",
+      "unit": "mg/L",
+      "category": "kimia"
+    },
+    "cr_total": {
+      "label": "Krom Total (Cr)",
+      "unit": "mg/L",
+      "category": "kimia"
+    },
+    "cr6": {
+      "label": "Krom Heksavalen (Cr⁶⁺)",
+      "unit": "mg/L",
+      "category": "kimia"
+    },
+    "cd": {
+      "label": "Kadmium (Cd)",
+      "unit": "mg/L",
+      "category": "kimia"
+    },
+    "pb": {
+      "label": "Timbal (Pb)",
+      "unit": "mg/L",
+      "category": "kimia"
+    },
+    "bod": {
+      "label": "BOD",
+      "unit": "mg/L",
+      "category": "kimia"
+    },
+    "cod": {
+      "label": "COD",
+      "unit": "mg/L",
+      "category": "kimia"
+    },
+    "do": {
+      "label": "Oksigen Terlarut (DO)",
+      "unit": "mg/L",
+      "category": "kimia"
+    },
+    "tn": {
+      "label": "Total Nitrogen",
+      "unit": "mg/L",
+      "category": "kimia"
+    },
+    "no3_n": {
+      "label": "Nitrat sebagai N (NO₃-N)",
+      "unit": "mg/L",
+      "category": "kimia"
+    },
+    "no2_n": {
+      "label": "Nitrit sebagai N (NO₂-N)",
+      "unit": "mg/L",
+      "category": "kimia"
+    },
+    "po4": {
+      "label": "Orto Fosfat (PO₄³⁻)",
+      "unit": "mg/L",
+      "category": "kimia"
+    },
+    "minyak_lemak": {
+      "label": "Minyak dan Lemak",
+      "unit": "mg/L",
+      "category": "kimia"
+    },
+    "mpn_ecoli": {
+      "label": "MPN E. coli",
+      "unit": "JPT/100ml",
+      "category": "biologi"
+    },
+    "mpn_coliform": {
+      "label": "MPN Coliform",
+      "unit": "JPT/100ml",
+      "category": "biologi"
+    },
+    "ecoli_cfu": {
+      "label": "E. coli",
+      "unit": "CFU/100ml",
+      "category": "mikrobiologi"
+    },
+    "coliform_cfu": {
+      "label": "Total Coliform",
+      "unit": "CFU/100ml",
+      "category": "mikrobiologi"
+    }
+  },
+  "reports": [
+    {
+      "report_no": "1060810/LHU/AP/2025",
+      "order_no": "6910/PJL/LE/IX/2025",
+      "sample_code": "2509430 AP S",
+      "sample_type": "air_permukaan",
+      "location_id": "sekebitung",
+      "location_label_raw": "Sekebitung",
+      "coordinates_dms": "S 06° 54' 35,7\" - E 107° 46' 11,2\"",
+      "regulation_id": "ppri-22-2021-vi-kelas-2",
+      "regulation_raw": "PPRI Nomor 22 Tahun 2021, Lampiran VI. Kelas 2",
+      "sampling_method": "SNI 6989.57-2008",
+      "sampling_date": "2025-09-10",
+      "received_date": "2025-09-10",
+      "testing_period": {
+        "start": "2025-09-10",
+        "end": "2025-10-03"
+      },
+      "report_date": "2025-10-08",
+      "ambient_temp_c": null,
+      "measurements": [
+        {
+          "parameter_id": "suhu",
+          "parameter_label": "Suhu",
+          "category": "fisika",
+          "unit": "°C",
+          "result": 26,
+          "result_display": "26",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "deviation",
+            "max_dev": 3,
+            "reference": "ambient"
+          },
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "SNI 06-6989.23-2005"
+        },
+        {
+          "parameter_id": "dhl",
+          "parameter_label": "Daya Hantar Listrik (DHL)",
+          "category": "fisika",
+          "unit": "µmhos/cm",
+          "result": 160.15,
+          "result_display": "160,15",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.1:2019"
+        },
+        {
+          "parameter_id": "tss",
+          "parameter_label": "Padatan Tersuspensi Total (TSS)",
+          "category": "fisika",
+          "unit": "mg/L",
+          "result": 15.5,
+          "result_display": "15,5",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 50
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.3:2019"
+        },
+        {
+          "parameter_id": "ph",
+          "parameter_label": "pH",
+          "category": "kimia",
+          "unit": "-",
+          "result": 6.67,
+          "result_display": "6,67",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "range",
+            "min": 6,
+            "max": 9
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.11:2019"
+        },
+        {
+          "parameter_id": "kesadahan",
+          "parameter_label": "Kesadahan (CaCO₃)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 61.8,
+          "result_display": "61,80",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "SNI 06-6989.12-2004"
+        },
+        {
+          "parameter_id": "klorida",
+          "parameter_label": "Klorida",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.122,
+          "result_display": "0,122",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 300
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.19-2009"
+        },
+        {
+          "parameter_id": "fe",
+          "parameter_label": "Besi (Fe)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.037,
+          "result_display": "<0,037",
+          "below_detection_limit": true,
+          "threshold": null,
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "mn",
+          "parameter_label": "Mangan (Mn)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.079,
+          "result_display": "0,079",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "ni",
+          "parameter_label": "Nikel (Ni)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.035,
+          "result_display": "<0,035",
+          "below_detection_limit": true,
+          "threshold": {
+            "type": "max",
+            "max": 0.05
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "zn",
+          "parameter_label": "Seng (Zn)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.044,
+          "result_display": "0,044",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 0.05
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "cu",
+          "parameter_label": "Tembaga (Cu)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.016,
+          "result_display": "<0,016",
+          "below_detection_limit": true,
+          "threshold": {
+            "type": "max",
+            "max": 0.02
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "bod",
+          "parameter_label": "BOD",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 5.2,
+          "result_display": "5,2 ^",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 3
+          },
+          "compliant": false,
+          "source_flagged_exceedance": true,
+          "method": "SNI 6989.72:2009"
+        },
+        {
+          "parameter_id": "cod",
+          "parameter_label": "COD",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 3.32,
+          "result_display": "3,32",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 25
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.2:2009"
+        },
+        {
+          "parameter_id": "do",
+          "parameter_label": "Oksigen Terlarut (DO)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 5.5,
+          "result_display": "5,5 ^",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "min",
+            "min": 4
+          },
+          "compliant": true,
+          "source_flagged_exceedance": true,
+          "method": "Direct Reading",
+          "compliance_note": "DO baku mutu adalah minimum; nilai ≥ baku mutu menunjukkan kualitas oksigen baik. LHU memberi tanda '^' pada parameter ini meski compliant."
+        },
+        {
+          "parameter_id": "tn",
+          "parameter_label": "Total Nitrogen",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 36.209,
+          "result_display": "36,209 ^",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 15
+          },
+          "compliant": false,
+          "source_flagged_exceedance": true,
+          "method": "SK Gub KDH Tk I Jabar No 6"
+        },
+        {
+          "parameter_id": "po4",
+          "parameter_label": "Orto Fosfat (PO₄³⁻)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.247,
+          "result_display": "0,247",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "IK 7.4.18 – Usepa Phosver 3 - Spektrofotometri"
+        },
+        {
+          "parameter_id": "minyak_lemak",
+          "parameter_label": "Minyak dan Lemak",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.1,
+          "result_display": "<0,1",
+          "below_detection_limit": true,
+          "threshold": {
+            "type": "max",
+            "max": 1
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.10:2011"
+        },
+        {
+          "parameter_id": "mpn_ecoli",
+          "parameter_label": "MPN E. coli",
+          "category": "biologi",
+          "unit": "JPT/100 ml",
+          "result": 240000000,
+          "result_display": "24 × 10⁷",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 1000
+          },
+          "compliant": false,
+          "source_flagged_exceedance": true,
+          "method": "APHA 9221 E"
+        },
+        {
+          "parameter_id": "mpn_coliform",
+          "parameter_label": "MPN Coliform",
+          "category": "biologi",
+          "unit": "JPT/100 ml",
+          "result": 240000000,
+          "result_display": "24 × 10⁷",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 5000
+          },
+          "compliant": false,
+          "source_flagged_exceedance": true,
+          "method": "APHA 9221 B"
+        }
+      ],
+      "summary": {
+        "total_parameters": 19,
+        "compliant_count": 9,
+        "non_compliant_count": 4,
+        "non_compliant_parameters": [
+          "bod",
+          "tn",
+          "mpn_ecoli",
+          "mpn_coliform"
+        ],
+        "compliance_pct": 47.37
+      }
+    },
+    {
+      "report_no": "1070810/LHU/AP/2025",
+      "order_no": "6910/PJL/LE/IX/2025",
+      "sample_code": "2509431 AP S",
+      "sample_type": "air_permukaan",
+      "location_id": "outlet-ciparanje",
+      "location_label_raw": "Outlet Ciparanje",
+      "coordinates_dms": "S 06° 54' 40,9\" - E 107° 46' 15,6\"",
+      "regulation_id": "ppri-22-2021-vi-kelas-2",
+      "regulation_raw": "PPRI Nomor 22 Tahun 2021, Lampiran VI. Kelas 2",
+      "sampling_method": "SNI 6989.57-2008",
+      "sampling_date": "2025-09-10",
+      "received_date": "2025-09-10",
+      "testing_period": {
+        "start": "2025-09-10",
+        "end": "2025-10-03"
+      },
+      "report_date": "2025-10-08",
+      "ambient_temp_c": null,
+      "measurements": [
+        {
+          "parameter_id": "suhu",
+          "parameter_label": "Suhu",
+          "category": "fisika",
+          "unit": "°C",
+          "result": 24,
+          "result_display": "24",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "deviation",
+            "max_dev": 3,
+            "reference": "ambient"
+          },
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "SNI 06-6989.23-2005"
+        },
+        {
+          "parameter_id": "dhl",
+          "parameter_label": "Daya Hantar Listrik (DHL)",
+          "category": "fisika",
+          "unit": "µmhos/cm",
+          "result": 136.4,
+          "result_display": "136,4",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.1:2019"
+        },
+        {
+          "parameter_id": "tss",
+          "parameter_label": "Padatan Tersuspensi Total (TSS)",
+          "category": "fisika",
+          "unit": "mg/L",
+          "result": 18,
+          "result_display": "18",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 50
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.3:2019"
+        },
+        {
+          "parameter_id": "ph",
+          "parameter_label": "pH",
+          "category": "kimia",
+          "unit": "-",
+          "result": 7.82,
+          "result_display": "7,82",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "range",
+            "min": 6,
+            "max": 9
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.11:2019"
+        },
+        {
+          "parameter_id": "kesadahan",
+          "parameter_label": "Kesadahan (CaCO₃)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 55.8,
+          "result_display": "55,80",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "SNI 06-6989.12-2004"
+        },
+        {
+          "parameter_id": "klorida",
+          "parameter_label": "Klorida",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.24,
+          "result_display": "<0,24",
+          "below_detection_limit": true,
+          "threshold": {
+            "type": "max",
+            "max": 300
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.19-2009"
+        },
+        {
+          "parameter_id": "fe",
+          "parameter_label": "Besi (Fe)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.219,
+          "result_display": "0,219",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "mn",
+          "parameter_label": "Mangan (Mn)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.061,
+          "result_display": "0,061",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "ni",
+          "parameter_label": "Nikel (Ni)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.035,
+          "result_display": "<0,035",
+          "below_detection_limit": true,
+          "threshold": {
+            "type": "max",
+            "max": 0.05
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "zn",
+          "parameter_label": "Seng (Zn)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.03,
+          "result_display": "<0,030",
+          "below_detection_limit": true,
+          "threshold": {
+            "type": "max",
+            "max": 0.05
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "cu",
+          "parameter_label": "Tembaga (Cu)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.016,
+          "result_display": "<0,016",
+          "below_detection_limit": true,
+          "threshold": {
+            "type": "max",
+            "max": 0.02
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "bod",
+          "parameter_label": "BOD",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 7.1,
+          "result_display": "7,1 ^",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 3
+          },
+          "compliant": false,
+          "source_flagged_exceedance": true,
+          "method": "SNI 6989.72:2009"
+        },
+        {
+          "parameter_id": "cod",
+          "parameter_label": "COD",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 24.87,
+          "result_display": "24,87",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 25
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.2:2009"
+        },
+        {
+          "parameter_id": "do",
+          "parameter_label": "Oksigen Terlarut (DO)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 5.2,
+          "result_display": "5,2 ^",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "min",
+            "min": 4
+          },
+          "compliant": true,
+          "source_flagged_exceedance": true,
+          "method": "Direct Reading",
+          "compliance_note": "DO baku mutu adalah minimum; nilai ≥ baku mutu menunjukkan kualitas oksigen baik. LHU memberi tanda '^' pada parameter ini meski compliant."
+        },
+        {
+          "parameter_id": "tn",
+          "parameter_label": "Total Nitrogen",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 36.389,
+          "result_display": "36,389 ^",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 15
+          },
+          "compliant": false,
+          "source_flagged_exceedance": true,
+          "method": "SK Gub KDH Tk I Jabar No 6"
+        },
+        {
+          "parameter_id": "po4",
+          "parameter_label": "Orto Fosfat (PO₄³⁻)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.142,
+          "result_display": "0,142",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "IK 7.4.18 – Usepa Phosver 3 - Spektrofotometri"
+        },
+        {
+          "parameter_id": "minyak_lemak",
+          "parameter_label": "Minyak dan Lemak",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.14,
+          "result_display": "0,14",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 1
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.10:2011"
+        },
+        {
+          "parameter_id": "mpn_ecoli",
+          "parameter_label": "MPN E. coli",
+          "category": "biologi",
+          "unit": "JPT/100 ml",
+          "result": 2400000000,
+          "result_display": "24 × 10⁸",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 1000
+          },
+          "compliant": false,
+          "source_flagged_exceedance": true,
+          "method": "APHA 9221 E"
+        },
+        {
+          "parameter_id": "mpn_coliform",
+          "parameter_label": "MPN Coliform",
+          "category": "biologi",
+          "unit": "JPT/100 ml",
+          "result": 2400000000,
+          "result_display": "24 × 10⁸",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 5000
+          },
+          "compliant": false,
+          "source_flagged_exceedance": true,
+          "method": "APHA 9221 B"
+        }
+      ],
+      "summary": {
+        "total_parameters": 19,
+        "compliant_count": 9,
+        "non_compliant_count": 4,
+        "non_compliant_parameters": [
+          "bod",
+          "tn",
+          "mpn_ecoli",
+          "mpn_coliform"
+        ],
+        "compliance_pct": 47.37
+      }
+    },
+    {
+      "report_no": "1080810/LHU/AP/2025",
+      "order_no": "6910/PJL/LE/IX/2025",
+      "sample_code": "2509432 AP S",
+      "sample_type": "air_permukaan",
+      "location_id": "embung",
+      "location_label_raw": "Badan Air Embung",
+      "coordinates_dms": "S 06° 54' 58,5\" - E 107° 46' 23,4\"",
+      "regulation_id": "ppri-22-2021-vi-kelas-2",
+      "regulation_raw": "PPRI Nomor 22 Tahun 2021, Lampiran VI. Kelas 2",
+      "sampling_method": "SNI 6989.57-2008",
+      "sampling_date": "2025-09-10",
+      "received_date": "2025-09-10",
+      "testing_period": {
+        "start": "2025-09-10",
+        "end": "2025-10-03"
+      },
+      "report_date": "2025-10-08",
+      "ambient_temp_c": null,
+      "measurements": [
+        {
+          "parameter_id": "suhu",
+          "parameter_label": "Suhu",
+          "category": "fisika",
+          "unit": "°C",
+          "result": 25,
+          "result_display": "25",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "deviation",
+            "max_dev": 3,
+            "reference": "ambient"
+          },
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "SNI 06-6989.23-2005"
+        },
+        {
+          "parameter_id": "dhl",
+          "parameter_label": "Daya Hantar Listrik (DHL)",
+          "category": "fisika",
+          "unit": "µmhos/cm",
+          "result": 151.2,
+          "result_display": "151,2",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.1:2019"
+        },
+        {
+          "parameter_id": "tss",
+          "parameter_label": "Padatan Tersuspensi Total (TSS)",
+          "category": "fisika",
+          "unit": "mg/L",
+          "result": 6,
+          "result_display": "6",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 50
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.3:2019"
+        },
+        {
+          "parameter_id": "ph",
+          "parameter_label": "pH",
+          "category": "kimia",
+          "unit": "-",
+          "result": 7.82,
+          "result_display": "7,82",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "range",
+            "min": 6,
+            "max": 9
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.11:2019"
+        },
+        {
+          "parameter_id": "kesadahan",
+          "parameter_label": "Kesadahan (CaCO₃)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 60.7,
+          "result_display": "60,70",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "SNI 06-6989.12-2004"
+        },
+        {
+          "parameter_id": "klorida",
+          "parameter_label": "Klorida",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.24,
+          "result_display": "<0,24",
+          "below_detection_limit": true,
+          "threshold": {
+            "type": "max",
+            "max": 300
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.19-2009"
+        },
+        {
+          "parameter_id": "fe",
+          "parameter_label": "Besi (Fe)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.491,
+          "result_display": "0,491",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "mn",
+          "parameter_label": "Mangan (Mn)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.309,
+          "result_display": "0,309",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "ni",
+          "parameter_label": "Nikel (Ni)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.035,
+          "result_display": "<0,035",
+          "below_detection_limit": true,
+          "threshold": {
+            "type": "max",
+            "max": 0.05
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "zn",
+          "parameter_label": "Seng (Zn)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.031,
+          "result_display": "0,031",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 0.05
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "cu",
+          "parameter_label": "Tembaga (Cu)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.016,
+          "result_display": "<0,016",
+          "below_detection_limit": true,
+          "threshold": {
+            "type": "max",
+            "max": 0.02
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "bod",
+          "parameter_label": "BOD",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 6,
+          "result_display": "6,0 ^",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 3
+          },
+          "compliant": false,
+          "source_flagged_exceedance": true,
+          "method": "SNI 6989.72:2009"
+        },
+        {
+          "parameter_id": "cod",
+          "parameter_label": "COD",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 6.63,
+          "result_display": "6,63",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 25
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.2:2009"
+        },
+        {
+          "parameter_id": "do",
+          "parameter_label": "Oksigen Terlarut (DO)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 5.1,
+          "result_display": "5,1 ^",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "min",
+            "min": 4
+          },
+          "compliant": true,
+          "source_flagged_exceedance": true,
+          "method": "Direct Reading",
+          "compliance_note": "DO baku mutu adalah minimum; nilai ≥ baku mutu menunjukkan kualitas oksigen baik. LHU memberi tanda '^' pada parameter ini meski compliant."
+        },
+        {
+          "parameter_id": "tn",
+          "parameter_label": "Total Nitrogen",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 3.289,
+          "result_display": "3,289",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 15
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SK Gub KDH Tk I Jabar No 6"
+        },
+        {
+          "parameter_id": "po4",
+          "parameter_label": "Orto Fosfat (PO₄³⁻)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.073,
+          "result_display": "0,073",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "IK 7.4.18 – Usepa Phosver 3 - Spektrofotometri"
+        },
+        {
+          "parameter_id": "minyak_lemak",
+          "parameter_label": "Minyak dan Lemak",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.12,
+          "result_display": "0,12",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 1
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.10:2011"
+        },
+        {
+          "parameter_id": "mpn_ecoli",
+          "parameter_label": "MPN E. coli",
+          "category": "biologi",
+          "unit": "JPT/100 ml",
+          "result": 2400000000,
+          "result_display": "24 × 10⁸",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 1000
+          },
+          "compliant": false,
+          "source_flagged_exceedance": true,
+          "method": "APHA 9221 E"
+        },
+        {
+          "parameter_id": "mpn_coliform",
+          "parameter_label": "MPN Coliform",
+          "category": "biologi",
+          "unit": "JPT/100 ml",
+          "result": 2400000000,
+          "result_display": "24 × 10⁸",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 5000
+          },
+          "compliant": false,
+          "source_flagged_exceedance": true,
+          "method": "APHA 9221 B"
+        }
+      ],
+      "summary": {
+        "total_parameters": 19,
+        "compliant_count": 10,
+        "non_compliant_count": 3,
+        "non_compliant_parameters": [
+          "bod",
+          "mpn_ecoli",
+          "mpn_coliform"
+        ],
+        "compliance_pct": 52.63
+      }
+    },
+    {
+      "report_no": "1090810/LHU/AP/2025",
+      "order_no": "6910/PJL/LE/IX/2025",
+      "sample_code": "2509433 AP S",
+      "sample_type": "air_permukaan",
+      "location_id": "inlet-ekoriparian",
+      "location_label_raw": "Inlet Ekoriparian",
+      "coordinates_dms": "S 06° 55' 50,9\" - E 107° 46' 24,1\"",
+      "regulation_id": "ppri-22-2021-vi-kelas-2",
+      "regulation_raw": "PPRI Nomor 22 Tahun 2021, Lampiran VI. Kelas 2",
+      "sampling_method": "SNI 6989.57-2008",
+      "sampling_date": "2025-09-11",
+      "received_date": "2025-09-11",
+      "testing_period": {
+        "start": "2025-09-11",
+        "end": "2025-10-03"
+      },
+      "report_date": "2025-10-08",
+      "ambient_temp_c": null,
+      "measurements": [
+        {
+          "parameter_id": "suhu",
+          "parameter_label": "Suhu",
+          "category": "fisika",
+          "unit": "°C",
+          "result": 26,
+          "result_display": "26",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "deviation",
+            "max_dev": 3,
+            "reference": "ambient"
+          },
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "SNI 06-6989.23-2005"
+        },
+        {
+          "parameter_id": "dhl",
+          "parameter_label": "Daya Hantar Listrik (DHL)",
+          "category": "fisika",
+          "unit": "µmhos/cm",
+          "result": 223,
+          "result_display": "223",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.1:2019"
+        },
+        {
+          "parameter_id": "tss",
+          "parameter_label": "Padatan Tersuspensi Total (TSS)",
+          "category": "fisika",
+          "unit": "mg/L",
+          "result": 21,
+          "result_display": "21",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 50
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.3:2019"
+        },
+        {
+          "parameter_id": "ph",
+          "parameter_label": "pH",
+          "category": "kimia",
+          "unit": "-",
+          "result": 7.65,
+          "result_display": "7,65",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "range",
+            "min": 6,
+            "max": 9
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.11:2019"
+        },
+        {
+          "parameter_id": "kesadahan",
+          "parameter_label": "Kesadahan (CaCO₃)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 92.5,
+          "result_display": "92,50",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "SNI 06-6989.12-2004"
+        },
+        {
+          "parameter_id": "klorida",
+          "parameter_label": "Klorida",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 4.012,
+          "result_display": "4,012",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 300
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.19-2009"
+        },
+        {
+          "parameter_id": "fe",
+          "parameter_label": "Besi (Fe)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.418,
+          "result_display": "0,418",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "mn",
+          "parameter_label": "Mangan (Mn)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.08,
+          "result_display": "0,080",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "ni",
+          "parameter_label": "Nikel (Ni)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.035,
+          "result_display": "<0,035",
+          "below_detection_limit": true,
+          "threshold": {
+            "type": "max",
+            "max": 0.05
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "zn",
+          "parameter_label": "Seng (Zn)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.035,
+          "result_display": "0,035",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 0.05
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "cu",
+          "parameter_label": "Tembaga (Cu)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.016,
+          "result_display": "<0,016",
+          "below_detection_limit": true,
+          "threshold": {
+            "type": "max",
+            "max": 0.02
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "bod",
+          "parameter_label": "BOD",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 6.4,
+          "result_display": "6,4 ^",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 3
+          },
+          "compliant": false,
+          "source_flagged_exceedance": true,
+          "method": "SNI 6989.72:2009"
+        },
+        {
+          "parameter_id": "cod",
+          "parameter_label": "COD",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 16.58,
+          "result_display": "16,58",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 25
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.2:2009"
+        },
+        {
+          "parameter_id": "do",
+          "parameter_label": "Oksigen Terlarut (DO)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 4.5,
+          "result_display": "4,5 ^",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "min",
+            "min": 4
+          },
+          "compliant": true,
+          "source_flagged_exceedance": true,
+          "method": "Direct Reading",
+          "compliance_note": "DO baku mutu adalah minimum; nilai ≥ baku mutu menunjukkan kualitas oksigen baik. LHU memberi tanda '^' pada parameter ini meski compliant."
+        },
+        {
+          "parameter_id": "tn",
+          "parameter_label": "Total Nitrogen",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 3.284,
+          "result_display": "3,284",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 15
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SK Gub KDH Tk I Jabar No 6"
+        },
+        {
+          "parameter_id": "po4",
+          "parameter_label": "Orto Fosfat (PO₄³⁻)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.213,
+          "result_display": "0,213",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "IK 7.4.18 – Usepa Phosver 3 - Spektrofotometri"
+        },
+        {
+          "parameter_id": "minyak_lemak",
+          "parameter_label": "Minyak dan Lemak",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.18,
+          "result_display": "0,18",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 1
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.10:2011"
+        },
+        {
+          "parameter_id": "mpn_ecoli",
+          "parameter_label": "MPN E. coli",
+          "category": "biologi",
+          "unit": "JPT/100 ml",
+          "result": 15000000000,
+          "result_display": "15 × 10⁹",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 1000
+          },
+          "compliant": false,
+          "source_flagged_exceedance": true,
+          "method": "APHA 9221 E"
+        },
+        {
+          "parameter_id": "mpn_coliform",
+          "parameter_label": "MPN Coliform",
+          "category": "biologi",
+          "unit": "JPT/100 ml",
+          "result": 15000000000,
+          "result_display": "15 × 10⁹",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 5000
+          },
+          "compliant": false,
+          "source_flagged_exceedance": true,
+          "method": "APHA 9221 B"
+        }
+      ],
+      "summary": {
+        "total_parameters": 19,
+        "compliant_count": 10,
+        "non_compliant_count": 3,
+        "non_compliant_parameters": [
+          "bod",
+          "mpn_ecoli",
+          "mpn_coliform"
+        ],
+        "compliance_pct": 52.63
+      }
+    },
+    {
+      "report_no": "1100810/LHU/AP/2025",
+      "order_no": "6910/PJL/LE/IX/2025",
+      "sample_code": "2509434 AP S",
+      "sample_type": "air_permukaan",
+      "location_id": "badan-ekoriparian",
+      "location_label_raw": "Badan Air Ekoriparian",
+      "coordinates_dms": "S 06° 55' 52,3\" - E 107° 46' 27,0\"",
+      "regulation_id": "ppri-22-2021-vi-kelas-2",
+      "regulation_raw": "PPRI Nomor 22 Tahun 2021, Lampiran VI. Kelas 2",
+      "sampling_method": "SNI 6989.57-2008",
+      "sampling_date": "2025-09-11",
+      "received_date": "2025-09-11",
+      "testing_period": {
+        "start": "2025-09-11",
+        "end": "2025-10-03"
+      },
+      "report_date": "2025-10-08",
+      "ambient_temp_c": null,
+      "measurements": [
+        {
+          "parameter_id": "suhu",
+          "parameter_label": "Suhu",
+          "category": "fisika",
+          "unit": "°C",
+          "result": 27,
+          "result_display": "27",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "deviation",
+            "max_dev": 3,
+            "reference": "ambient"
+          },
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "SNI 06-6989.23-2005"
+        },
+        {
+          "parameter_id": "dhl",
+          "parameter_label": "Daya Hantar Listrik (DHL)",
+          "category": "fisika",
+          "unit": "µmhos/cm",
+          "result": 222,
+          "result_display": "222",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.1:2019"
+        },
+        {
+          "parameter_id": "tss",
+          "parameter_label": "Padatan Tersuspensi Total (TSS)",
+          "category": "fisika",
+          "unit": "mg/L",
+          "result": 16,
+          "result_display": "16",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 50
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.3:2019"
+        },
+        {
+          "parameter_id": "ph",
+          "parameter_label": "pH",
+          "category": "kimia",
+          "unit": "-",
+          "result": 8.12,
+          "result_display": "8,12",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "range",
+            "min": 6,
+            "max": 9
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.11:2019"
+        },
+        {
+          "parameter_id": "kesadahan",
+          "parameter_label": "Kesadahan (CaCO₃)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 92.7,
+          "result_display": "92,70",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "SNI 06-6989.12-2004"
+        },
+        {
+          "parameter_id": "klorida",
+          "parameter_label": "Klorida",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 3.404,
+          "result_display": "3,404",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 300
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.19-2009"
+        },
+        {
+          "parameter_id": "fe",
+          "parameter_label": "Besi (Fe)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.209,
+          "result_display": "0,209",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "mn",
+          "parameter_label": "Mangan (Mn)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.01,
+          "result_display": "<0,010",
+          "below_detection_limit": true,
+          "threshold": null,
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "ni",
+          "parameter_label": "Nikel (Ni)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.046,
+          "result_display": "0,046",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 0.05
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "zn",
+          "parameter_label": "Seng (Zn)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.03,
+          "result_display": "0,030",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 0.05
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "cu",
+          "parameter_label": "Tembaga (Cu)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.016,
+          "result_display": "<0,016",
+          "below_detection_limit": true,
+          "threshold": {
+            "type": "max",
+            "max": 0.02
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "bod",
+          "parameter_label": "BOD",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 7.5,
+          "result_display": "7,5 ^",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 3
+          },
+          "compliant": false,
+          "source_flagged_exceedance": true,
+          "method": "SNI 6989.72:2009"
+        },
+        {
+          "parameter_id": "cod",
+          "parameter_label": "COD",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 19.9,
+          "result_display": "19,90",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 25
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.2:2009"
+        },
+        {
+          "parameter_id": "do",
+          "parameter_label": "Oksigen Terlarut (DO)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 6.7,
+          "result_display": "6,7 ^",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "min",
+            "min": 4
+          },
+          "compliant": true,
+          "source_flagged_exceedance": true,
+          "method": "Direct Reading",
+          "compliance_note": "DO baku mutu adalah minimum; nilai ≥ baku mutu menunjukkan kualitas oksigen baik. LHU memberi tanda '^' pada parameter ini meski compliant."
+        },
+        {
+          "parameter_id": "tn",
+          "parameter_label": "Total Nitrogen",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 2.822,
+          "result_display": "2,822",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 15
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SK Gub KDH Tk I Jabar No 6"
+        },
+        {
+          "parameter_id": "po4",
+          "parameter_label": "Orto Fosfat (PO₄³⁻)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.123,
+          "result_display": "0,123",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "IK 7.4.18 – Usepa Phosver 3 - Spektrofotometri"
+        },
+        {
+          "parameter_id": "minyak_lemak",
+          "parameter_label": "Minyak dan Lemak",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.14,
+          "result_display": "0,14",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 1
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.10:2011"
+        },
+        {
+          "parameter_id": "mpn_ecoli",
+          "parameter_label": "MPN E. coli",
+          "category": "biologi",
+          "unit": "JPT/100 ml",
+          "result": 240000000000,
+          "result_display": "24 × 10¹⁰",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 1000
+          },
+          "compliant": false,
+          "source_flagged_exceedance": true,
+          "method": "APHA 9221 E"
+        },
+        {
+          "parameter_id": "mpn_coliform",
+          "parameter_label": "MPN Coliform",
+          "category": "biologi",
+          "unit": "JPT/100 ml",
+          "result": 240000000000,
+          "result_display": "24 × 10¹⁰",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 5000
+          },
+          "compliant": false,
+          "source_flagged_exceedance": true,
+          "method": "APHA 9221 B"
+        }
+      ],
+      "summary": {
+        "total_parameters": 19,
+        "compliant_count": 10,
+        "non_compliant_count": 3,
+        "non_compliant_parameters": [
+          "bod",
+          "mpn_ecoli",
+          "mpn_coliform"
+        ],
+        "compliance_pct": 52.63
+      }
+    },
+    {
+      "report_no": "1110810/LHU/AP/2025",
+      "order_no": "6910/PJL/LE/IX/2025",
+      "sample_code": "2509435 AP S",
+      "sample_type": "air_permukaan",
+      "location_id": "outlet-ekoriparian",
+      "location_label_raw": "Outlet Ekoriparian",
+      "coordinates_dms": "S 06° 55' 55,1\" - E 107° 46' 27,0\"",
+      "regulation_id": "ppri-22-2021-vi-kelas-2",
+      "regulation_raw": "PPRI Nomor 22 Tahun 2021, Lampiran VI. Kelas 2",
+      "sampling_method": "SNI 6989.57-2008",
+      "sampling_date": "2025-09-11",
+      "received_date": "2025-09-11",
+      "testing_period": {
+        "start": "2025-09-11",
+        "end": "2025-10-03"
+      },
+      "report_date": "2025-10-08",
+      "ambient_temp_c": null,
+      "measurements": [
+        {
+          "parameter_id": "suhu",
+          "parameter_label": "Suhu",
+          "category": "fisika",
+          "unit": "°C",
+          "result": 27,
+          "result_display": "27",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "deviation",
+            "max_dev": 3,
+            "reference": "ambient"
+          },
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "SNI 06-6989.23-2005"
+        },
+        {
+          "parameter_id": "dhl",
+          "parameter_label": "Daya Hantar Listrik (DHL)",
+          "category": "fisika",
+          "unit": "µmhos/cm",
+          "result": 223.5,
+          "result_display": "223,5",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.1:2019"
+        },
+        {
+          "parameter_id": "tss",
+          "parameter_label": "Padatan Tersuspensi Total (TSS)",
+          "category": "fisika",
+          "unit": "mg/L",
+          "result": 18,
+          "result_display": "18",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 50
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.3:2019"
+        },
+        {
+          "parameter_id": "ph",
+          "parameter_label": "pH",
+          "category": "kimia",
+          "unit": "-",
+          "result": 8.25,
+          "result_display": "8,25",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "range",
+            "min": 6,
+            "max": 9
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.11:2019"
+        },
+        {
+          "parameter_id": "kesadahan",
+          "parameter_label": "Kesadahan (CaCO₃)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 89,
+          "result_display": "89,00",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "SNI 06-6989.12-2004"
+        },
+        {
+          "parameter_id": "klorida",
+          "parameter_label": "Klorida",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 3.526,
+          "result_display": "3,526",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 300
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.19-2009"
+        },
+        {
+          "parameter_id": "fe",
+          "parameter_label": "Besi (Fe)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.333,
+          "result_display": "0,333",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "mn",
+          "parameter_label": "Mangan (Mn)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.026,
+          "result_display": "0,026",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "ni",
+          "parameter_label": "Nikel (Ni)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.035,
+          "result_display": "<0,035",
+          "below_detection_limit": true,
+          "threshold": {
+            "type": "max",
+            "max": 0.05
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "zn",
+          "parameter_label": "Seng (Zn)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.03,
+          "result_display": "<0,030",
+          "below_detection_limit": true,
+          "threshold": {
+            "type": "max",
+            "max": 0.05
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "cu",
+          "parameter_label": "Tembaga (Cu)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.016,
+          "result_display": "<0,016",
+          "below_detection_limit": true,
+          "threshold": {
+            "type": "max",
+            "max": 0.02
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "bod",
+          "parameter_label": "BOD",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 8.2,
+          "result_display": "8,2 ^",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 3
+          },
+          "compliant": false,
+          "source_flagged_exceedance": true,
+          "method": "SNI 6989.72:2009"
+        },
+        {
+          "parameter_id": "cod",
+          "parameter_label": "COD",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 16.58,
+          "result_display": "16,58",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 25
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.2:2009"
+        },
+        {
+          "parameter_id": "do",
+          "parameter_label": "Oksigen Terlarut (DO)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 6.4,
+          "result_display": "6,4 ^",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "min",
+            "min": 4
+          },
+          "compliant": true,
+          "source_flagged_exceedance": true,
+          "method": "Direct Reading",
+          "compliance_note": "DO baku mutu adalah minimum; nilai ≥ baku mutu menunjukkan kualitas oksigen baik. LHU memberi tanda '^' pada parameter ini meski compliant."
+        },
+        {
+          "parameter_id": "tn",
+          "parameter_label": "Total Nitrogen",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 3.027,
+          "result_display": "3,027",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 15
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SK Gub KDH Tk I Jabar No 6"
+        },
+        {
+          "parameter_id": "po4",
+          "parameter_label": "Orto Fosfat (PO₄³⁻)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.101,
+          "result_display": "0,101",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "IK 7.4.18 – Usepa Phosver 3 - Spektrofotometri"
+        },
+        {
+          "parameter_id": "minyak_lemak",
+          "parameter_label": "Minyak dan Lemak",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.16,
+          "result_display": "0,16",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 1
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.10:2011"
+        },
+        {
+          "parameter_id": "mpn_ecoli",
+          "parameter_label": "MPN E. coli",
+          "category": "biologi",
+          "unit": "JPT/100 ml",
+          "result": 240000000000,
+          "result_display": "24 × 10¹⁰",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 1000
+          },
+          "compliant": false,
+          "source_flagged_exceedance": true,
+          "method": "APHA 9221 E"
+        },
+        {
+          "parameter_id": "mpn_coliform",
+          "parameter_label": "MPN Coliform",
+          "category": "biologi",
+          "unit": "JPT/100 ml",
+          "result": 240000000000,
+          "result_display": "24 × 10¹⁰",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 5000
+          },
+          "compliant": false,
+          "source_flagged_exceedance": true,
+          "method": "APHA 9221 B"
+        }
+      ],
+      "summary": {
+        "total_parameters": 19,
+        "compliant_count": 10,
+        "non_compliant_count": 3,
+        "non_compliant_parameters": [
+          "bod",
+          "mpn_ecoli",
+          "mpn_coliform"
+        ],
+        "compliance_pct": 52.63
+      }
+    },
+    {
+      "report_no": "1120810/LHU/ALI/2025",
+      "order_no": "6910/PJL/LE/IX/2025",
+      "sample_code": "2509436 ALI S",
+      "sample_type": "air_limbah",
+      "location_id": "ipal-kimia",
+      "location_label_raw": "Outlet IPAL Prodi Kimia (Klinik)",
+      "coordinates_dms": "S 06° 55' 54,6\" - E 107° 46' 35,7\"",
+      "regulation_id": "permen-lh-5-2014-xliv",
+      "regulation_raw": "Peraturan Menteri Lingkungan Hidup Republik Indonesia No. 5 Tahun 2014 Lampiran XLIV",
+      "sampling_method": "SNI 6989.59-2008",
+      "sampling_date": "2025-09-12",
+      "received_date": "2025-09-12",
+      "testing_period": {
+        "start": "2025-09-12",
+        "end": "2025-10-03"
+      },
+      "report_date": "2025-10-08",
+      "ambient_temp_c": null,
+      "measurements": [
+        {
+          "parameter_id": "suhu",
+          "parameter_label": "Suhu",
+          "category": "fisika",
+          "unit": "°C",
+          "result": 25,
+          "result_display": "25",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 38
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 06-6989.23-2005"
+        },
+        {
+          "parameter_id": "tss",
+          "parameter_label": "Padatan Tersuspensi Total (TSS)",
+          "category": "fisika",
+          "unit": "mg/L",
+          "result": 13.5,
+          "result_display": "13,5",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 200
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.3:2019"
+        },
+        {
+          "parameter_id": "ph",
+          "parameter_label": "pH",
+          "category": "kimia",
+          "unit": "-",
+          "result": 8.18,
+          "result_display": "8,18",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "range",
+            "min": 6,
+            "max": 9
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.11:2019"
+        },
+        {
+          "parameter_id": "fe",
+          "parameter_label": "Besi (Fe)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.301,
+          "result_display": "0,301",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 5
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "mn",
+          "parameter_label": "Mangan (Mn)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.01,
+          "result_display": "0,01",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 2
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "zn",
+          "parameter_label": "Seng (Zn)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.082,
+          "result_display": "0,082",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 5
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "ni",
+          "parameter_label": "Nikel (Ni)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.048,
+          "result_display": "0,048",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 0.2
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "cu",
+          "parameter_label": "Tembaga (Cu)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.016,
+          "result_display": "<0,016",
+          "below_detection_limit": true,
+          "threshold": {
+            "type": "max",
+            "max": 2
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "cr_total",
+          "parameter_label": "Krom Total (Cr)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.01,
+          "result_display": "<0,01",
+          "below_detection_limit": true,
+          "threshold": {
+            "type": "max",
+            "max": 0.5
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "cd",
+          "parameter_label": "Kadmium (Cd)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.01,
+          "result_display": "<0,01",
+          "below_detection_limit": true,
+          "threshold": {
+            "type": "max",
+            "max": 0.05
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.16:2009"
+        },
+        {
+          "parameter_id": "pb",
+          "parameter_label": "Timbal (Pb)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.01,
+          "result_display": "<0,01",
+          "below_detection_limit": true,
+          "threshold": {
+            "type": "max",
+            "max": 0.1
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.8:2009"
+        },
+        {
+          "parameter_id": "bod",
+          "parameter_label": "BOD",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 15,
+          "result_display": "15",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 50
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.72:2009"
+        },
+        {
+          "parameter_id": "cod",
+          "parameter_label": "COD",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 66.33,
+          "result_display": "66,33",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 80
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.2:2009"
+        },
+        {
+          "parameter_id": "minyak_lemak",
+          "parameter_label": "Minyak dan Lemak",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.14,
+          "result_display": "0,14",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 10
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.10:2011"
+        },
+        {
+          "parameter_id": "do",
+          "parameter_label": "Oksigen Terlarut (DO)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.8,
+          "result_display": "0,8",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "Direct Reading"
+        },
+        {
+          "parameter_id": "mpn_ecoli",
+          "parameter_label": "MPN E. coli",
+          "category": "biologi",
+          "unit": "JPT/100 ml",
+          "result": 4600000000,
+          "result_display": "46 × 10⁸",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "APHA 9221 E"
+        },
+        {
+          "parameter_id": "mpn_coliform",
+          "parameter_label": "MPN Coliform",
+          "category": "biologi",
+          "unit": "JPT/100 ml",
+          "result": 4600000000,
+          "result_display": "46 × 10⁸",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 5000
+          },
+          "compliant": false,
+          "source_flagged_exceedance": true,
+          "method": "APHA 9221 B"
+        }
+      ],
+      "summary": {
+        "total_parameters": 17,
+        "compliant_count": 14,
+        "non_compliant_count": 1,
+        "non_compliant_parameters": [
+          "mpn_coliform"
+        ],
+        "compliance_pct": 82.35
+      }
+    },
+    {
+      "report_no": "1130810/LHU/ALI/2025",
+      "order_no": "6910/PJL/LE/IX/2025",
+      "sample_code": "2509437 ALI S",
+      "sample_type": "air_limbah",
+      "location_id": "ipal-rs",
+      "location_label_raw": "Outlet IPAL Rumah Sakit Universitas Padjadjaran",
+      "coordinates_dms": "S 06° 55' 52,2\" - E 107° 46' 21,5\"",
+      "regulation_id": "permen-lh-5-2014-xlvii",
+      "regulation_raw": "Peraturan Menteri Lingkungan Hidup Republik Indonesia No. 5 Tahun 2014 Lampiran XLVII",
+      "sampling_method": "SNI 6989.59-2008",
+      "sampling_date": "2025-09-12",
+      "received_date": "2025-09-12",
+      "testing_period": {
+        "start": "2025-09-12",
+        "end": "2025-10-03"
+      },
+      "report_date": "2025-10-08",
+      "ambient_temp_c": null,
+      "measurements": [
+        {
+          "parameter_id": "suhu",
+          "parameter_label": "Suhu",
+          "category": "fisika",
+          "unit": "°C",
+          "result": 28,
+          "result_display": "28",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 38
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 06-6989.23-2005",
+          "threshold_gol_2": {
+            "type": "max",
+            "max": 40
+          },
+          "compliant_gol_2": true
+        },
+        {
+          "parameter_id": "tss",
+          "parameter_label": "Padatan Tersuspensi Total (TSS)",
+          "category": "fisika",
+          "unit": "mg/L",
+          "result": 14,
+          "result_display": "14",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 200
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.3:2019",
+          "threshold_gol_2": {
+            "type": "max",
+            "max": 400
+          },
+          "compliant_gol_2": true
+        },
+        {
+          "parameter_id": "ph",
+          "parameter_label": "pH",
+          "category": "kimia",
+          "unit": "-",
+          "result": 7.21,
+          "result_display": "7,21",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "range",
+            "min": 6,
+            "max": 9
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.11:2019",
+          "threshold_gol_2": {
+            "type": "range",
+            "min": 6,
+            "max": 9
+          },
+          "compliant_gol_2": true
+        },
+        {
+          "parameter_id": "fe",
+          "parameter_label": "Besi (Fe)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.077,
+          "result_display": "0,077",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 5
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019",
+          "threshold_gol_2": {
+            "type": "max",
+            "max": 90
+          },
+          "compliant_gol_2": true
+        },
+        {
+          "parameter_id": "mn",
+          "parameter_label": "Mangan (Mn)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.099,
+          "result_display": "0,099",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 2
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019",
+          "threshold_gol_2": {
+            "type": "max",
+            "max": 5
+          },
+          "compliant_gol_2": true
+        },
+        {
+          "parameter_id": "zn",
+          "parameter_label": "Seng (Zn)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.06,
+          "result_display": "0,060",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 5
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019",
+          "threshold_gol_2": {
+            "type": "max",
+            "max": 10
+          },
+          "compliant_gol_2": true
+        },
+        {
+          "parameter_id": "ni",
+          "parameter_label": "Nikel (Ni)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.057,
+          "result_display": "0,057",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 0.2
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019",
+          "threshold_gol_2": {
+            "type": "max",
+            "max": 0.5
+          },
+          "compliant_gol_2": true
+        },
+        {
+          "parameter_id": "cu",
+          "parameter_label": "Tembaga (Cu)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.016,
+          "result_display": "<0,016",
+          "below_detection_limit": true,
+          "threshold": {
+            "type": "max",
+            "max": 2
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019",
+          "threshold_gol_2": {
+            "type": "max",
+            "max": 3
+          },
+          "compliant_gol_2": true
+        },
+        {
+          "parameter_id": "cr_total",
+          "parameter_label": "Krom Total (Cr)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.01,
+          "result_display": "<0,01",
+          "below_detection_limit": true,
+          "threshold": {
+            "type": "max",
+            "max": 0.5
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019",
+          "threshold_gol_2": {
+            "type": "max",
+            "max": 1
+          },
+          "compliant_gol_2": true
+        },
+        {
+          "parameter_id": "cd",
+          "parameter_label": "Kadmium (Cd)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.01,
+          "result_display": "<0,01",
+          "below_detection_limit": true,
+          "threshold": {
+            "type": "max",
+            "max": 0.05
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.16:2009",
+          "threshold_gol_2": {
+            "type": "max",
+            "max": 0.1
+          },
+          "compliant_gol_2": true
+        },
+        {
+          "parameter_id": "pb",
+          "parameter_label": "Timbal (Pb)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.01,
+          "result_display": "<0,01",
+          "below_detection_limit": true,
+          "threshold": {
+            "type": "max",
+            "max": 0.1
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.8:2009",
+          "threshold_gol_2": {
+            "type": "max",
+            "max": 1
+          },
+          "compliant_gol_2": true
+        },
+        {
+          "parameter_id": "bod",
+          "parameter_label": "BOD",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 10,
+          "result_display": "10",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 50
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.72:2009",
+          "threshold_gol_2": {
+            "type": "max",
+            "max": 150
+          },
+          "compliant_gol_2": true
+        },
+        {
+          "parameter_id": "cod",
+          "parameter_label": "COD",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 44.77,
+          "result_display": "44,77",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 100
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.2:2009",
+          "threshold_gol_2": {
+            "type": "max",
+            "max": 300
+          },
+          "compliant_gol_2": true
+        },
+        {
+          "parameter_id": "minyak_lemak",
+          "parameter_label": "Minyak dan Lemak",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.12,
+          "result_display": "0,12",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 10
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.10:2011",
+          "threshold_gol_2": {
+            "type": "max",
+            "max": 20
+          },
+          "compliant_gol_2": true
+        },
+        {
+          "parameter_id": "do",
+          "parameter_label": "Oksigen Terlarut (DO)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 1.3,
+          "result_display": "1,3",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "Direct Reading",
+          "threshold_gol_2": null,
+          "compliant_gol_2": null
+        },
+        {
+          "parameter_id": "mpn_ecoli",
+          "parameter_label": "MPN E. coli",
+          "category": "biologi",
+          "unit": "JPT/100 ml",
+          "result": 46000000,
+          "result_display": "46 × 10⁶",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 10000
+          },
+          "compliant": false,
+          "source_flagged_exceedance": true,
+          "method": "APHA 9221 E",
+          "threshold_gol_2": {
+            "type": "max",
+            "max": 10000
+          },
+          "compliant_gol_2": false
+        },
+        {
+          "parameter_id": "mpn_coliform",
+          "parameter_label": "MPN Coliform",
+          "category": "biologi",
+          "unit": "JPT/100 ml",
+          "result": 46000000,
+          "result_display": "46 × 10⁶",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 10000
+          },
+          "compliant": false,
+          "source_flagged_exceedance": true,
+          "method": "APHA 9221 B",
+          "threshold_gol_2": {
+            "type": "max",
+            "max": 10000
+          },
+          "compliant_gol_2": false
+        }
+      ],
+      "summary": {
+        "total_parameters": 17,
+        "compliant_count": 14,
+        "non_compliant_count": 2,
+        "non_compliant_parameters": [
+          "mpn_ecoli",
+          "mpn_coliform"
+        ],
+        "compliance_pct": 82.35
+      }
+    },
+    {
+      "report_no": "1140810/LHU/AT/2025",
+      "order_no": "6910/PJL/LE/IX/2025",
+      "sample_code": "2509438 AT S",
+      "sample_type": "air_sumur",
+      "location_id": "sumur-pantau",
+      "location_label_raw": "Sumur Pantau",
+      "coordinates_dms": "S 06° 55' 29,5\" - E 107° 46' 27,3\"",
+      "regulation_id": "permenkes-2-2023",
+      "regulation_raw": "Permenkes No. 2 Tahun 2023",
+      "sampling_method": "SNI 6989.58-2008",
+      "sampling_date": "2025-09-12",
+      "received_date": "2025-09-12",
+      "testing_period": {
+        "start": "2025-09-12",
+        "end": "2025-10-03"
+      },
+      "report_date": "2025-10-08",
+      "ambient_temp_c": null,
+      "measurements": [
+        {
+          "parameter_id": "suhu",
+          "parameter_label": "Suhu",
+          "category": "fisika",
+          "unit": "°C",
+          "result": 26,
+          "result_display": "26",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "deviation",
+            "max_dev": 3,
+            "reference": "ambient"
+          },
+          "compliant": null,
+          "source_flagged_exceedance": false,
+          "method": "SNI 06-6989.23-2005"
+        },
+        {
+          "parameter_id": "tds",
+          "parameter_label": "Padatan Terlarut Total (TDS)",
+          "category": "fisika",
+          "unit": "mg/L",
+          "result": 165,
+          "result_display": "165",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 300
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.27-2019"
+        },
+        {
+          "parameter_id": "kekeruhan",
+          "parameter_label": "Kekeruhan",
+          "category": "fisika",
+          "unit": "NTU",
+          "result": 28,
+          "result_display": "28 ^",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 3
+          },
+          "compliant": false,
+          "source_flagged_exceedance": true,
+          "method": "SNI 06-6989.25-2005"
+        },
+        {
+          "parameter_id": "warna",
+          "parameter_label": "Warna",
+          "category": "fisika",
+          "unit": "TCU",
+          "result": 13,
+          "result_display": "13 ^",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 10
+          },
+          "compliant": false,
+          "source_flagged_exceedance": true,
+          "method": "SNI 6989.80-2005"
+        },
+        {
+          "parameter_id": "bau",
+          "parameter_label": "Bau",
+          "category": "fisika",
+          "unit": "-",
+          "result": "Tidak Berbau",
+          "result_display": "Tidak Berbau",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "qualitative",
+            "expected": "Tidak Berbau"
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "Organoleptik"
+        },
+        {
+          "parameter_id": "ph",
+          "parameter_label": "pH",
+          "category": "kimia",
+          "unit": "-",
+          "result": 5.98,
+          "result_display": "5,98",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "range",
+            "min": 6.5,
+            "max": 8.5
+          },
+          "compliant": false,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.11:2019"
+        },
+        {
+          "parameter_id": "no3_n",
+          "parameter_label": "Nitrat sebagai N (NO₃-N)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 1.07,
+          "result_display": "1,07",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 20
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989.79-2011"
+        },
+        {
+          "parameter_id": "no2_n",
+          "parameter_label": "Nitrit sebagai N (NO₂-N)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.009,
+          "result_display": "0,009",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 3
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 06-6989.9-2004"
+        },
+        {
+          "parameter_id": "cr6",
+          "parameter_label": "Kromium valensi 6 (Cr⁶⁺)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.208,
+          "result_display": "0,208 ^",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 0.01
+          },
+          "compliant": false,
+          "source_flagged_exceedance": true,
+          "method": "SNI 6989-71:2009"
+        },
+        {
+          "parameter_id": "fe",
+          "parameter_label": "Besi (Fe)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.406,
+          "result_display": "0,406 ^",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 0.2
+          },
+          "compliant": false,
+          "source_flagged_exceedance": true,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "mn",
+          "parameter_label": "Mangan (Mn)",
+          "category": "kimia",
+          "unit": "mg/L",
+          "result": 0.057,
+          "result_display": "0,057",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 0.1
+          },
+          "compliant": true,
+          "source_flagged_exceedance": false,
+          "method": "SNI 6989-84:2019"
+        },
+        {
+          "parameter_id": "ecoli_cfu",
+          "parameter_label": "E. coli",
+          "category": "mikrobiologi",
+          "unit": "CFU/100 ml",
+          "result": 240000000,
+          "result_display": "24 × 10⁷",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 0
+          },
+          "compliant": false,
+          "source_flagged_exceedance": true,
+          "method": "APHA 9221 E"
+        },
+        {
+          "parameter_id": "coliform_cfu",
+          "parameter_label": "Total Coliform",
+          "category": "mikrobiologi",
+          "unit": "CFU/100 ml",
+          "result": 240000000,
+          "result_display": "24 × 10⁷",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 0
+          },
+          "compliant": false,
+          "source_flagged_exceedance": true,
+          "method": "APHA 9221 B"
+        }
+      ],
+      "summary": {
+        "total_parameters": 13,
+        "compliant_count": 5,
+        "non_compliant_count": 7,
+        "non_compliant_parameters": [
+          "kekeruhan",
+          "warna",
+          "ph",
+          "cr6",
+          "fe",
+          "ecoli_cfu",
+          "coliform_cfu"
+        ],
+        "compliance_pct": 38.46
+      }
+    }
+  ],
+  "aggregate_summary": {
+    "by_sample_type": {
+      "air_permukaan": {
+        "reports": 6,
+        "compliance_pct_avg": 50.88,
+        "common_exceedances": [
+          "bod",
+          "mpn_ecoli",
+          "mpn_coliform"
+        ]
+      },
+      "air_limbah": {
+        "reports": 2,
+        "compliance_pct_avg": 82.35,
+        "common_exceedances": [
+          "mpn_coliform",
+          "mpn_ecoli"
+        ]
+      },
+      "air_sumur": {
+        "reports": 1,
+        "compliance_pct_avg": 38.46,
+        "common_exceedances": [
+          "kekeruhan",
+          "warna",
+          "ph"
+        ]
+      }
+    }
+  }
+}

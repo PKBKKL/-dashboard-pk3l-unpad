@@ -1,0 +1,41 @@
+{
+  "version": "1.0",
+  "regulations": {
+    "ppri-22-2021-vi-kelas-2": {
+      "full_name": "Peraturan Pemerintah Republik Indonesia Nomor 22 Tahun 2021, Lampiran VI Kelas 2",
+      "short_name": "PPRI 22/2021 Kelas 2",
+      "scope": "Air baku untuk prasarana/sarana rekreasi air, pembudidayaan ikan air tawar, peternakan, dan pertanaman.",
+      "year": 2021,
+      "raw_label_in_source": "PPRI Nomor 22 Tahun 2021, Lampiran VI. Kelas 2"
+    },
+    "permen-lh-5-2014-xliv": {
+      "full_name": "Peraturan Menteri Lingkungan Hidup RI No. 5 Tahun 2014, Lampiran XLIV",
+      "short_name": "Permen LH 5/2014 XLIV",
+      "scope": "Baku mutu air limbah bagi usaha dan/atau kegiatan laboratorium klinik.",
+      "year": 2014,
+      "raw_label_in_source": "Peraturan Menteri Lingkungan Hidup Republik Indonesia No. 5 Tahun 2014 Lampiran XLIV"
+    },
+    "permen-lh-5-2014-xlvii": {
+      "full_name": "Peraturan Menteri Lingkungan Hidup RI No. 5 Tahun 2014, Lampiran XLVII",
+      "short_name": "Permen LH 5/2014 XLVII",
+      "scope": "Baku mutu air limbah bagi usaha dan/atau kegiatan rumah sakit.",
+      "year": 2014,
+      "has_class_split": true,
+      "classes": ["Gol. I", "Gol. II"],
+      "raw_label_in_source": "Peraturan Menteri Lingkungan Hidup Republik Indonesia No. 5 Tahun 2014 Lampiran XLVII"
+    },
+    "permenkes-2-2023": {
+      "full_name": "Peraturan Menteri Kesehatan RI Nomor 2 Tahun 2023",
+      "short_name": "Permenkes 2/2023",
+      "scope": "Standar baku mutu kesehatan lingkungan dan persyaratan kesehatan air untuk keperluan higiene sanitasi.",
+      "year": 2023,
+      "raw_label_in_source": "Permenkes No. 2 Tahun 2023"
+    },
+    "sk-gub-jabar-6": {
+      "full_name": "Surat Keputusan Gubernur Kepala Daerah Tingkat I Jawa Barat Nomor 6",
+      "short_name": "SK Gub Jabar 6",
+      "scope": "Baku mutu air permukaan tingkat provinsi Jawa Barat (acuan Total Nitrogen).",
+      "raw_label_in_source": "SK Gub KDH Tk I Jabar No 6"
+    }
+  }
+}
