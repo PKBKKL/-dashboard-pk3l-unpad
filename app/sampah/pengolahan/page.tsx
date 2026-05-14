@@ -46,7 +46,7 @@ export default async function PengolahanSampahPage() {
       <PageHeader
         title="Pengolahan Sampah"
         period={`${data.period.start} – ${data.period.end}`}
-        description="Pencatatan harian sampah yang masuk ke fasilitas pengolahan PK3L UNPAD dan dilolah menjadi Kompos, Bahan RDF, atau Bubur Maggot. Sampah residu yang tidak dapat diolah dipindahkan ke area Dumping. Halaman ini memperlihatkan komposisi sampah masuk, efektivitas pengolahan, dan distribusi hasil olahan."
+        description="Pencatatan harian sampah yang masuk ke fasilitas pengolahan PKBKKL UNPAD dan dilolah menjadi Kompos, Bahan RDF, atau Bubur Maggot. Sampah residu yang tidak dapat diolah dipindahkan ke area Dumping. Halaman ini memperlihatkan komposisi sampah masuk, efektivitas pengolahan, dan distribusi hasil olahan."
       />
 
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

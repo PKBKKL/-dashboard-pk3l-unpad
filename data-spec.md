@@ -133,7 +133,7 @@ Metadata global dashboard.
 {
   "dashboard": {
     "title": "Dashboard Pemantauan Lingkungan UNPAD",
-    "subtitle": "Pusat Keselamatan, Keamanan dan Ketertiban Lingkungan (PK3L)",
+    "subtitle": "Pusat Pengembangan Kampus Berkelanjutan serta Keselamatan dan Keamanan Lingkungan (PKBKKL)",
     "organization": "Universitas Padjadjaran",
     "owner_email": "k.susanto@geophys.unpad.ac.id",
     "url": "https://dashboard-pk3l.unpad.ac.id",

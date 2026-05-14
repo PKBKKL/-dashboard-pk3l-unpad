@@ -88,7 +88,7 @@
       description: "Halaman ini menjelaskan sumber, metodologi, dan catatan integritas seluruh data yang ditampilkan di dashboard.",
     });
 
-    $("#org-blurb").innerHTML = `Dashboard ini dikelola oleh <strong>${meta.dashboard.subtitle}</strong> (PK3L) di bawah <strong>${meta.dashboard.organization}</strong>. Data berasal dari catatan operasional internal PK3L dan laporan resmi pihak ketiga (Laboratorium Ekologi PULIK CESS UNPAD untuk uji air).`;
+    $("#org-blurb").innerHTML = `Dashboard ini dikelola oleh <strong>${meta.dashboard.subtitle}</strong> di bawah <strong>${meta.dashboard.organization}</strong>. Data berasal dari catatan operasional internal PKBKKL dan laporan resmi pihak ketiga (Laboratorium Ekologi PULIK CESS UNPAD untuk uji air).`;
     const emailLink = $("#owner-email");
     emailLink.href = `mailto:${meta.dashboard.owner_email}`;
     emailLink.textContent = meta.dashboard.owner_email;

@@ -39,8 +39,8 @@ export default async function TentangPage() {
       <section className="card card-pad space-y-3 text-sm text-ink-700 leading-relaxed">
         <h2 className="text-base font-semibold text-ink-900">Organisasi & Tanggung Jawab</h2>
         <p>
-          Dashboard ini dikelola oleh <strong>{meta.dashboard.subtitle}</strong> (PK3L) di bawah{" "}
-          <strong>{meta.dashboard.organization}</strong>. Data berasal dari catatan operasional internal PK3L
+          Dashboard ini dikelola oleh <strong>{meta.dashboard.subtitle}</strong> di bawah{" "}
+          <strong>{meta.dashboard.organization}</strong>. Data berasal dari catatan operasional internal PKBKKL
           dan dari laporan resmi pihak ketiga (Laboratorium Ekologi PULIK CESS UNPAD untuk uji air).
         </p>
         <p>

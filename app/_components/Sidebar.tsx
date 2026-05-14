@@ -28,7 +28,7 @@ export function Sidebar({ meta }: { meta: Meta }) {
   return (
     <aside className="hidden lg:flex fixed left-0 top-0 h-screen w-64 flex-col border-r border-ink-200 bg-white">
       <div className="px-5 py-6 border-b border-ink-200">
-        <div className="text-[11px] uppercase tracking-wide text-ink-400">PK3L UNPAD</div>
+        <div className="text-[11px] uppercase tracking-wide text-ink-400">PKBKKL UNPAD</div>
         <Link href="/" className="block mt-1 text-base font-semibold text-ink-900 leading-tight">
           Dashboard Pemantauan Lingkungan
         </Link>

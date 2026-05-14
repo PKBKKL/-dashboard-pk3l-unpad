@@ -2,7 +2,7 @@
   "name": "dashboard-pemantauan-lingkungan",
   "version": "1.0.0",
   "private": true,
-  "description": "Dashboard Pemantauan Lingkungan PK3L Universitas Padjadjaran",
+  "description": "Dashboard Pemantauan Lingkungan PKBKKL Universitas Padjadjaran",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

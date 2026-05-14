@@ -1,6 +1,6 @@
 # Dashboard Pemantauan Lingkungan UNPAD
 
-Dashboard berbasis web untuk Pusat Keselamatan, Keamanan dan Ketertiban Lingkungan (**PK3L**) Universitas Padjadjaran. Menampilkan lima domain pemantauan: pengolahan sampah, timbulan harian, kualitas air, insiden vegetasi, dan kecelakaan lalu lintas.
+Dashboard berbasis web untuk Pusat Pengembangan Kampus Berkelanjutan serta Keselamatan dan Keamanan Lingkungan (**PKBKKL**) Universitas Padjadjaran. Menampilkan lima domain pemantauan: pengolahan sampah, timbulan harian, kualitas air, insiden vegetasi, dan kecelakaan lalu lintas.
 
 ## Dua Mode yang Berjalan Paralel
 
@@ -166,4 +166,4 @@ Sudah aktif. Untuk re-deploy / manage: <https://share.streamlit.io/>
 
 ## Lisensi & Kontak
 
-Data milik PK3L Universitas Padjadjaran. Kontak: <k.susanto@geophys.unpad.ac.id>.
+Data milik PKBKKL Universitas Padjadjaran. Kontak: <k.susanto@geophys.unpad.ac.id>.

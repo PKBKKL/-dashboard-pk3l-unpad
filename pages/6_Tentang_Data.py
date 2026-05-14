@@ -36,8 +36,8 @@ page_header(
 st.markdown("### Organisasi & Kontak")
 st.markdown(
     f"""
-Dashboard ini dikelola oleh **{meta['dashboard']['subtitle']}** (PK3L) di bawah
-**{meta['dashboard']['organization']}**. Data berasal dari catatan operasional internal PK3L
+Dashboard ini dikelola oleh **{meta['dashboard']['subtitle']}** di bawah
+**{meta['dashboard']['organization']}**. Data berasal dari catatan operasional internal PKBKKL
 dan laporan resmi pihak ketiga (Laboratorium Ekologi PULIK CESS UNPAD untuk uji air).
 
 Kontak: {meta['dashboard']['owner_email']}

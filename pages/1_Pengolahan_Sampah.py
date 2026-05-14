@@ -26,7 +26,7 @@ page_header(
     "Pengolahan Sampah",
     period=f"{data['period']['start']} – {data['period']['end']}",
     description=(
-        "Pencatatan harian sampah yang masuk ke fasilitas pengolahan PK3L UNPAD dan diolah "
+        "Pencatatan harian sampah yang masuk ke fasilitas pengolahan PKBKKL UNPAD dan diolah "
         "menjadi <b>Kompos</b>, <b>Bahan RDF</b>, atau <b>Bubur Maggot</b>. Sampah residu "
         "yang tidak dapat diolah dipindahkan ke area <b>Dumping</b>. Halaman ini memperlihatkan "
         "komposisi sampah masuk, efektivitas pengolahan, dan distribusi hasil olahan."

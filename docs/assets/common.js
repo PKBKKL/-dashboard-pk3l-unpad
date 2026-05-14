@@ -115,7 +115,7 @@ export function renderSidebar(currentPage) {
   if (!sidebar) return;
   sidebar.innerHTML = `
     <div class="px-5 py-6 border-b border-slate-200">
-      <div class="text-[11px] uppercase tracking-wide text-slate-400">PK3L UNPAD</div>
+      <div class="text-[11px] uppercase tracking-wide text-slate-400">PKBKKL UNPAD</div>
       <a href="./index.html" class="block mt-1 text-base font-semibold text-slate-900 leading-tight">
         Dashboard Pemantauan Lingkungan
       </a>

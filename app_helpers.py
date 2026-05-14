@@ -153,10 +153,10 @@ def page_header(title: str, period: str | None = None, description: str | None =
 def configure_page(title: str) -> None:
     """Standard page configuration. Call as the first command in each page."""
     st.set_page_config(
-        page_title=f"{title} · PK3L UNPAD",
+        page_title=f"{title} · PKBKKL UNPAD",
         layout="wide",
         initial_sidebar_state="expanded",
         menu_items={
-            "About": "Dashboard Pemantauan Lingkungan PK3L Universitas Padjadjaran",
+            "About": "Dashboard Pemantauan Lingkungan PKBKKL Universitas Padjadjaran",
         },
     )

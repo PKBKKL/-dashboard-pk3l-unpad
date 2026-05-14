@@ -29,7 +29,7 @@ with st.sidebar:
 page_header(
     meta["dashboard"]["title"],
     description=(
-        "Ringkasan kinerja lingkungan Universitas Padjadjaran dari lima domain pengawasan PK3L: "
+        "Ringkasan kinerja lingkungan Universitas Padjadjaran dari lima domain pengawasan PKBKKL: "
         "pengolahan sampah, timbulan harian, kualitas air, insiden vegetasi, dan keselamatan lalu lintas kampus. "
         f"Data diperbarui terakhir {meta['dashboard']['last_updated']}."
     ),
@@ -101,7 +101,7 @@ st.markdown("### Penjelasan Singkat Tiap Domain")
 with st.expander("Pengolahan Sampah — komposisi & metode olahan", expanded=False):
     st.markdown(
         """
-Catatan harian dari fasilitas Tempat Pengelolaan Sampah PK3L UNPAD untuk dua bulan operasional
+Catatan harian dari fasilitas Tempat Pengelolaan Sampah PKBKKL UNPAD untuk dua bulan operasional
 (Desember 2025 dan Januari 2026). Sampah masuk dipilah menjadi tiga kategori (**Organik**,
 **Anorganik**, **Residu**) dan diolah dengan empat metode:
 

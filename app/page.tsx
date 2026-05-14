@@ -41,7 +41,7 @@ export default async function OverviewPage() {
     <div>
       <PageHeader
         title={meta.dashboard.title}
-        description={`Ringkasan kinerja lingkungan Universitas Padjadjaran dari lima domain pengawasan PK3L: pengolahan sampah, timbulan harian, kualitas air, insiden vegetasi, dan keselamatan lalu lintas kampus. Data diperbarui terakhir ${meta.dashboard.last_updated}.`}
+        description={`Ringkasan kinerja lingkungan Universitas Padjadjaran dari lima domain pengawasan PKBKKL: pengolahan sampah, timbulan harian, kualitas air, insiden vegetasi, dan keselamatan lalu lintas kampus. Data diperbarui terakhir ${meta.dashboard.last_updated}.`}
       />
 
       <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -110,7 +110,7 @@ export default async function OverviewPage() {
         <h2 className="text-base font-semibold text-ink-900 mb-3">Penjelasan Singkat Data</h2>
         <div className="card card-pad space-y-4 text-sm text-ink-700 leading-relaxed">
           <p>
-            <strong>Pengolahan Sampah.</strong> Catatan harian dari Tempat Pengelolaan Sampah PK3L UNPAD untuk dua
+            <strong>Pengolahan Sampah.</strong> Catatan harian dari Tempat Pengelolaan Sampah PKBKKL UNPAD untuk dua
             bulan operasional (Desember 2025 dan Januari 2026). Sampah masuk dipilah menjadi tiga kategori (Organik,
             Anorganik, Residu) dan diolah dengan empat metode: <em>Kompos</em> untuk organik, <em>Bahan RDF</em>{" "}
             (Refuse-Derived Fuel) untuk anorganik, <em>Bubur Maggot</em> sebagai metode baru sejak Januari 2026, dan{" "}
