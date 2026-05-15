@@ -95,7 +95,6 @@ const NAV = [
   { href: "./kualitas-air.html", label: "Kualitas Air", icon: "droplet" },
   { href: "./insiden-vegetasi.html", label: "Insiden Vegetasi", icon: "trees" },
   { href: "./kecelakaan-lalu-lintas.html", label: "Kecelakaan Lalu Lintas", icon: "car-front" },
-  { href: "./tentang.html", label: "Tentang Data", icon: "info" },
 ];
 
 // Minimal inline SVG icons (avoiding external lib for offline + speed)

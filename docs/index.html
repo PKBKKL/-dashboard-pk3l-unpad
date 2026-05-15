@@ -61,8 +61,6 @@
               <tr>
                 <th>Domain</th>
                 <th>Periode</th>
-                <th>Sumber Data</th>
-                <th class="num">Catatan</th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -125,23 +123,13 @@
     ]);
 
     // ─── Periode per Domain table ────────────────────────────────
-    const dsMap = {
-      pengolahan_sampah: pengolahan,
-      timbulan: timbulan,
-      water_quality: water,
-      tree_incidents: trees,
-      traffic_accidents: traffic,
-    };
     const tbody = $("#period-table tbody");
-    tbody.innerHTML = meta.datasets.map((d) => {
-      const ds = dsMap[d.id];
-      return `<tr>
+    tbody.innerHTML = meta.datasets.map((d) => `
+      <tr>
         <td><strong>${d.label}</strong></td>
         <td>${d.period_label}</td>
-        <td class="text-xs">${ds?.source_files?.[0] ?? "—"}</td>
-        <td class="num">${ds?.data_quality_flags?.length ?? 0}</td>
-      </tr>`;
-    }).join("");
+      </tr>
+    `).join("");
   </script>
 </body>
 </html>

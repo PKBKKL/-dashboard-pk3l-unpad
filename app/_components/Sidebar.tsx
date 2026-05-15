@@ -9,7 +9,6 @@ import {
   Droplet,
   Trees,
   CarFront,
-  Info,
   type LucideIcon,
 } from "lucide-react";
 import type { Meta } from "@/lib/types";
@@ -45,9 +44,6 @@ export function Sidebar({ meta }: { meta: Meta }) {
             </NavItem>
           );
         })}
-        <NavItem href="/tentang" icon={Info} active={pathname === "/tentang"}>
-          Tentang Data
-        </NavItem>
       </nav>
       <div className="mt-auto px-5 py-4 border-t border-ink-200 text-xs text-ink-400">
         {meta.dashboard.organization}

@@ -86,7 +86,6 @@ Buka <http://127.0.0.1:8000>.
 │   ├── kualitas-air.html
 │   ├── insiden-vegetasi.html
 │   ├── kecelakaan-lalu-lintas.html
-│   ├── tentang.html
 │   ├── assets/
 │   │   ├── style.css
 │   │   ├── common.js                         #   Data loader, format, sidebar
@@ -113,7 +112,6 @@ Sama untuk Streamlit dan HTML:
 | `/Kualitas_Air` | `/kualitas-air.html` | 9 LHU, status kepatuhan, peta titik sampling |
 | `/Insiden_Vegetasi` | `/insiden-vegetasi.html` | Heatmap lokasi × bulan, top lokasi |
 | `/Kecelakaan_Lalu_Lintas` | `/kecelakaan-lalu-lintas.html` | Distribusi bulanan 2025 & 2026, detail per lokasi |
-| `/Tentang_Data` | `/tentang.html` | Sumber, baku mutu, metodologi, data quality flags |
 
 ## Stack & Library
 
