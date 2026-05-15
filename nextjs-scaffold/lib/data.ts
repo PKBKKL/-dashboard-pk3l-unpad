@@ -14,7 +14,8 @@ import type {
   WaterQuality,
 } from "./types";
 
-const DATA_DIR = path.join(process.cwd(), "data");
+// Scaffold lives in nextjs-scaffold/; data canonical ada di repo_root/data.
+const DATA_DIR = path.resolve(process.cwd(), "..", "data");
 
 async function readJson<T>(rel: string): Promise<T> {
   const p = path.join(DATA_DIR, rel);
