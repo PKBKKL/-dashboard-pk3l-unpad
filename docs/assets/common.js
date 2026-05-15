@@ -114,8 +114,11 @@ export function renderSidebar(currentPage) {
   if (!sidebar) return;
   sidebar.innerHTML = `
     <a href="./index.html" class="sidebar-brand" style="text-decoration: none;">
-      <img class="logo-img" src="./assets/logo-pkbkkl.png" alt="PKBKKL"
-        onerror="this.onerror=null; this.src='./assets/logo-pkbkkl.svg'" />
+      <div class="logo-row">
+        <img class="logo-img" src="./assets/logo-pkbkkl.png" alt="PKBKKL"
+          onerror="this.onerror=null; this.src='./assets/logo-pkbkkl.svg'" />
+        <img class="logo-img logo-unpad" src="./assets/logo-unpad.webp" alt="UNPAD" />
+      </div>
       <div class="brand-text">
         <span class="org-mark">UNIVERSITAS PADJADJARAN</span>
         <span class="product-name">Dashboard Pemantauan Lingkungan</span>

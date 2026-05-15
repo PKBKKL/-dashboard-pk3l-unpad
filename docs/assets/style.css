@@ -72,11 +72,20 @@ body {
   border-bottom: 1px solid var(--brand-100);
   text-decoration: none;
 }
+.sidebar-brand .logo-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
 .sidebar-brand .logo-img {
-  height: 40px;
+  height: 44px;
   width: auto;
-  max-width: 200px;
+  max-width: 110px;
   object-fit: contain;
+}
+.sidebar-brand .logo-unpad {
+  height: 44px;
+  max-width: 44px;
 }
 .sidebar-brand .brand-text {
   display: flex;
