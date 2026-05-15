@@ -115,9 +115,9 @@ export function renderSidebar(currentPage) {
   sidebar.innerHTML = `
     <a href="./index.html" class="sidebar-brand" style="text-decoration: none;">
       <div class="logo-row">
-        <img class="logo-img" src="./assets/logo-pkbkkl.png" alt="PKBKKL"
-          onerror="this.onerror=null; this.src='./assets/logo-pkbkkl.svg'" />
         <img class="logo-img logo-unpad" src="./assets/logo-unpad.webp" alt="UNPAD" />
+        <img class="logo-img logo-pkbkkl" src="./assets/logo-pkbkkl.png" alt="PKBKKL"
+          onerror="this.onerror=null; this.src='./assets/logo-pkbkkl.svg'" />
       </div>
       <div class="brand-text">
         <span class="org-mark">UNIVERSITAS PADJADJARAN</span>
