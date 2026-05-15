@@ -5,9 +5,12 @@
 ###
 
 [build]
-  # Static site — tidak ada build step
-  publish = "docs"
-  command = ""
+  # Static site — tidak ada build step.
+  # base = "docs" supaya Netlify cd ke docs/ dulu → root package.json + next.config.mjs
+  # tidak terdeteksi sebagai framework Next.js (yang sebelumnya bikin deploy gagal).
+  base = "docs"
+  publish = "."
+  command = "echo 'Static site — no build needed'"
 
 [build.processing]
   skip_processing = false
