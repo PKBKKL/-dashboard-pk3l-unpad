@@ -1,0 +1,48 @@
+###
+# Netlify deployment config — Dashboard Pemantauan Lingkungan PKBKKL UNPAD
+# Site name yang dituju: dashboard-pkbkkl-2026
+# Final URL: https://dashboard-pkbkkl-2026.netlify.app
+###
+
+[build]
+  # Static site — tidak ada build step
+  publish = "docs"
+  command = ""
+
+[build.processing]
+  skip_processing = false
+
+[build.processing.html]
+  # URL bersih tanpa .html di address bar
+  # Contoh: /pengolahan-sampah.html otomatis jadi /pengolahan-sampah
+  pretty_urls = true
+
+[build.processing.css]
+  bundle = false
+  minify = false
+
+[build.processing.js]
+  bundle = false
+  minify = false
+
+[build.processing.images]
+  compress = false
+
+# Header keamanan dasar
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Cache aset statis lebih lama
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/data/*"
+  [headers.values]
+    Cache-Control = "public, max-age=300"
