@@ -40,14 +40,13 @@
         <div id="reports" class="space-y-6"></div>
       </section>
 
-      <section id="flags" class="mt-8"></section>
       <footer id="page-footer"></footer>
     </main>
   </div>
 
   <script type="module">
     import {
-      bootstrap, renderHeader, renderKpis, renderFlags, $,
+      bootstrap, renderHeader, renderKpis, $,
       loadDataset, loadShared, fmtPct, fmtThreshold,
     } from "./assets/common.js";
     import { groupedBar } from "./assets/charts.js";
@@ -201,8 +200,6 @@
       }).addTo(map)
         .bindPopup(`<strong>${s.label}</strong><br>${SAMPLE_LABEL[s.type] ?? s.type}<br>Kepatuhan: ${fmtPct(s.pct)}`);
     });
-
-    renderFlags(data.data_quality_flags);
   </script>
 </body>
 </html>

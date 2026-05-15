@@ -78,7 +78,7 @@
     renderHeader({
       title: "Pengolahan Sampah",
       period: `${data.period.start} – ${data.period.end}`,
-      description: "Pencatatan harian sampah yang masuk ke fasilitas pengolahan PKBKKL UNPAD dan diolah menjadi Kompos, Bahan RDF, atau Bubur Maggot. Sampah residu yang tidak dapat diolah dipindahkan ke area Dumping.",
+      description: "Pencatatan harian sampah yang masuk ke fasilitas pengolahan PKBKKL UNPAD dan diolah menjadi Kompos, Bahan RDF, atau Bubur Maggot.",
     });
 
     const totalIn = data.monthly_summary.reduce((a, m) => a + m.incoming_kg, 0);
@@ -141,7 +141,10 @@
       </tr>
     `).join("");
 
-    renderFlags(data.data_quality_flags);
+    const filteredFlags = (data.data_quality_flags ?? []).filter(
+      f => !(f.message ?? "").includes("M/D → D/M"),
+    );
+    renderFlags(filteredFlags);
   </script>
 </body>
 </html>

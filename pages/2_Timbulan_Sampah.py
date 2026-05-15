@@ -55,53 +55,65 @@ c4.metric(
 
 st.divider()
 
-# ─── Two charts ─────────────────────────────────────────────────────────
+# ─── Chart kategori ─────────────────────────────────────────────────────
+
+st.subheader("Timbulan Bulanan per Kategori")
+st.caption("Breakdown kategori hanya tersedia lengkap untuk April 2026.")
+rows = []
+for m in active:
+    rows.append({
+        "Bulan": MONTH_SHORT[int(m["month"].split("-")[1]) - 1],
+        "Organik (Daun + Ranting)": m["organik_kg"],
+        "Anorganik + Residu": m["anorganik_residu_kg"],
+    })
+df = pd.DataFrame(rows)
+fig = px.bar(
+    df, x="Bulan", y=["Organik (Daun + Ranting)", "Anorganik + Residu"],
+    color_discrete_map={
+        "Organik (Daun + Ranting)": palette["organik"],
+        "Anorganik + Residu": palette["anorganik"],
+    },
+    labels={"value": "kg", "variable": ""},
+    height=350,
+)
+fig.update_layout(margin=dict(t=10, b=10, l=10, r=10), legend_title=None, xaxis_title=None)
+st.plotly_chart(fig, width='stretch')
+
+st.divider()
+
+# ─── Total + rata-rata, dipisah ────────────────────────────────────────
+
+bulan_labels = [MONTH_SHORT[int(m["month"].split("-")[1]) - 1] for m in active]
+df_total = pd.DataFrame({"Bulan": bulan_labels,
+                         "Total (kg/bulan)": [m["total_kg"] or 0 for m in active]})
+df_avg = pd.DataFrame({"Bulan": bulan_labels,
+                       "Rata-rata (kg/hari aktif)": [m["avg_kg_per_active_day"] or 0 for m in active]})
 
 col_l, col_r = st.columns(2)
 
 with col_l:
-    st.subheader("Timbulan Bulanan per Kategori")
-    st.caption("Breakdown kategori hanya tersedia lengkap untuk April 2026.")
-    rows = []
-    for m in active:
-        rows.append({
-            "Bulan": MONTH_SHORT[int(m["month"].split("-")[1]) - 1],
-            "Organik (Daun + Ranting)": m["organik_kg"],
-            "Anorganik + Residu": m["anorganik_residu_kg"],
-        })
-    df = pd.DataFrame(rows)
-    fig = px.bar(
-        df, x="Bulan", y=["Organik (Daun + Ranting)", "Anorganik + Residu"],
-        color_discrete_map={
-            "Organik (Daun + Ranting)": palette["organik"],
-            "Anorganik + Residu": palette["anorganik"],
-        },
-        labels={"value": "kg", "variable": ""},
-        height=350,
+    st.subheader("Total Timbulan (kg/bulan)")
+    st.caption("Volume sampah yang masuk ke fasilitas pengolahan setiap bulan.")
+    fig_total = px.line(
+        df_total, x="Bulan", y="Total (kg/bulan)",
+        color_discrete_sequence=[palette["residu"]],
+        markers=True, height=350,
     )
-    fig.update_layout(margin=dict(t=10, b=10, l=10, r=10), legend_title=None, xaxis_title=None)
-    st.plotly_chart(fig, width='stretch')
+    fig_total.update_layout(margin=dict(t=10, b=10, l=10, r=10),
+                            xaxis_title=None, yaxis_title="kg/bulan")
+    st.plotly_chart(fig_total, width='stretch')
 
 with col_r:
-    st.subheader("Total vs Rata-rata Hari Aktif")
-    st.caption("Garis biru: rata-rata per hari aktif (lebih representatif daripada total bulanan).")
-    trend = pd.DataFrame([{
-        "Bulan": MONTH_SHORT[int(m["month"].split("-")[1]) - 1],
-        "Total (kg/bulan)": m["total_kg"] or 0,
-        "Rata-rata (kg/hari aktif)": m["avg_kg_per_active_day"] or 0,
-    } for m in active])
-    fig2 = px.line(
-        trend, x="Bulan", y=["Total (kg/bulan)", "Rata-rata (kg/hari aktif)"],
-        color_discrete_map={
-            "Total (kg/bulan)": palette["residu"],
-            "Rata-rata (kg/hari aktif)": palette["anorganik"],
-        },
-        markers=True,
-        height=350,
+    st.subheader("Rata-rata Hari Aktif (kg/hari aktif)")
+    st.caption("Lebih representatif karena menormalisasi jumlah hari operasi.")
+    fig_avg = px.line(
+        df_avg, x="Bulan", y="Rata-rata (kg/hari aktif)",
+        color_discrete_sequence=[palette["anorganik"]],
+        markers=True, height=350,
     )
-    fig2.update_layout(margin=dict(t=10, b=10, l=10, r=10), legend_title=None,
-                       xaxis_title=None, yaxis_title="kg")
-    st.plotly_chart(fig2, width='stretch')
+    fig_avg.update_layout(margin=dict(t=10, b=10, l=10, r=10),
+                          xaxis_title=None, yaxis_title="kg/hari aktif")
+    st.plotly_chart(fig_avg, width='stretch')
 
 st.divider()
 
@@ -119,18 +131,6 @@ table = [{
 } for m in data["monthly_summary"]]
 st.dataframe(pd.DataFrame(table), width='stretch', hide_index=True)
 
-# ─── Sumber kendaraan ──────────────────────────────────────────────────
-
-st.subheader("Sumber Kendaraan")
-veh = pd.DataFrame([{
-    "Kendaraan": v["label"],
-    "Operator": v["operator"],
-    "Tare (kg)": v.get("tare_kg"),
-    "Catatan": v.get("note", ""),
-} for v in data["vehicle_sources"]])
-veh["Tare (kg)"] = veh["Tare (kg)"].astype("Int64")
-st.dataframe(veh, width='stretch', hide_index=True)
-
 # ─── Detail harian ─────────────────────────────────────────────────────
 
 with st.expander("Lihat detail harian (interaktif)"):
@@ -147,4 +147,5 @@ with st.expander("Lihat detail harian (interaktif)"):
     fig_d.update_layout(margin=dict(t=10, b=10, l=10, r=10))
     st.plotly_chart(fig_d, width='stretch')
 
-render_flags(data["data_quality_flags"])
+info_flags = [f for f in (data.get("data_quality_flags") or []) if f.get("severity") == "info"]
+render_flags(info_flags)

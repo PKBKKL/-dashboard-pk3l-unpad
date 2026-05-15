@@ -13,7 +13,6 @@ from app_helpers import (
     load_dataset,
     load_shared,
     page_header,
-    render_flags,
 )
 
 configure_page("Insiden Vegetasi")
@@ -140,5 +139,3 @@ for l in sorted_locs[:10]:
         "Rincian": rincian,
     })
 st.dataframe(pd.DataFrame(rows), width='stretch', hide_index=True)
-
-render_flags(data["data_quality_flags"])

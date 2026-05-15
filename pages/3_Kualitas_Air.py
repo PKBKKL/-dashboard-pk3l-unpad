@@ -13,7 +13,6 @@ from app_helpers import (
     load_dataset,
     load_shared,
     page_header,
-    render_flags,
 )
 
 configure_page("Kualitas Air")
@@ -184,5 +183,3 @@ if map_rows:
     st.plotly_chart(fig_map, width='stretch')
 else:
     st.info("Tidak ada titik sampling untuk filter yang dipilih.")
-
-render_flags(data["data_quality_flags"])

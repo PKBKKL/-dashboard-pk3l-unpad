@@ -27,9 +27,8 @@ page_header(
     period=f"{data['period']['start']} – {data['period']['end']}",
     description=(
         "Pencatatan harian sampah yang masuk ke fasilitas pengolahan PKBKKL UNPAD dan diolah "
-        "menjadi <b>Kompos</b>, <b>Bahan RDF</b>, atau <b>Bubur Maggot</b>. Sampah residu "
-        "yang tidak dapat diolah dipindahkan ke area <b>Dumping</b>. Halaman ini memperlihatkan "
-        "komposisi sampah masuk, efektivitas pengolahan, dan distribusi hasil olahan."
+        "menjadi <b>Kompos</b>, <b>Bahan RDF</b>, atau <b>Bubur Maggot</b>. Halaman ini "
+        "memperlihatkan komposisi sampah masuk, efektivitas pengolahan, dan distribusi hasil olahan."
     ),
 )
 
@@ -172,4 +171,8 @@ with st.expander("Lihat detail harian"):
     fig_daily.update_layout(legend_title=None, margin=dict(t=10, b=10, l=10, r=10))
     st.plotly_chart(fig_daily, width='stretch')
 
-render_flags(data["data_quality_flags"])
+filtered_flags = [
+    f for f in (data.get("data_quality_flags") or [])
+    if "M/D → D/M" not in (f.get("message") or "")
+]
+render_flags(filtered_flags)

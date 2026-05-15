@@ -17,16 +17,22 @@
       <section id="page-header" class="mb-8"></section>
       <section id="kpis" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"></section>
 
-      <section class="grid gap-6 mt-8 lg:grid-cols-2">
+      <section class="card p-5 mt-8">
+        <h3 class="text-sm font-semibold text-slate-900 mb-1">Timbulan Bulanan per Kategori</h3>
+        <p class="text-xs text-slate-400 mb-3">Hanya April 2026 yang memiliki breakdown kategori lengkap; bulan lain hanya total.</p>
+        <div id="chart-kategori"></div>
+      </section>
+
+      <section class="grid gap-6 mt-6 lg:grid-cols-2">
         <div class="card p-5">
-          <h3 class="text-sm font-semibold text-slate-900 mb-1">Timbulan Bulanan per Kategori</h3>
-          <p class="text-xs text-slate-400 mb-3">Hanya April 2026 yang memiliki breakdown kategori lengkap; bulan lain hanya total.</p>
-          <div id="chart-kategori"></div>
+          <h3 class="text-sm font-semibold text-slate-900 mb-1">Total Timbulan (kg/bulan)</h3>
+          <p class="text-xs text-slate-400 mb-3">Volume sampah yang masuk ke fasilitas pengolahan setiap bulan.</p>
+          <div id="chart-total"></div>
         </div>
         <div class="card p-5">
-          <h3 class="text-sm font-semibold text-slate-900 mb-1">Total vs Rata-rata Hari Aktif</h3>
-          <p class="text-xs text-slate-400 mb-3">Rata-rata per hari aktif lebih representatif daripada total bulanan.</p>
-          <div id="chart-tren"></div>
+          <h3 class="text-sm font-semibold text-slate-900 mb-1">Rata-rata Hari Aktif (kg/hari aktif)</h3>
+          <p class="text-xs text-slate-400 mb-3">Lebih representatif daripada total bulanan karena menormalisasi jumlah hari operasi.</p>
+          <div id="chart-avg"></div>
         </div>
       </section>
 
@@ -49,13 +55,6 @@
             </thead>
             <tbody></tbody>
           </table>
-        </div>
-      </section>
-
-      <section class="mt-10">
-        <h2 class="text-base font-semibold text-slate-900 mb-3">Sumber Kendaraan</h2>
-        <div class="card p-5">
-          <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 text-sm" id="vehicle-list"></div>
         </div>
       </section>
 
@@ -104,11 +103,18 @@
       ],
     });
 
-    lineChart("chart-tren", {
+    lineChart("chart-total", {
       x: xLabels,
-      yLabel: "kg",
+      yLabel: "kg/bulan",
       series: [
         { label: "Total (kg/bulan)", color: p.residu, y: active.map(m => m.total_kg ?? 0) },
+      ],
+    });
+
+    lineChart("chart-avg", {
+      x: xLabels,
+      yLabel: "kg/hari aktif",
+      series: [
         { label: "Rata-rata (kg/hari aktif)", color: p.anorganik, y: active.map(m => m.avg_kg_per_active_day ?? 0) },
       ],
     });
@@ -125,17 +131,8 @@
       </tr>
     `).join("");
 
-    $("#vehicle-list").innerHTML = data.vehicle_sources.map(v => `
-      <div class="flex justify-between items-baseline border-b border-slate-100 pb-2">
-        <div>
-          <div class="font-medium text-slate-900">${v.label}</div>
-          <div class="text-xs text-slate-400">${v.operator}${v.note ? " · " + v.note : ""}</div>
-        </div>
-        ${v.tare_kg ? `<div class="text-xs text-slate-600 tabular-nums">tare ${fmtInt(v.tare_kg)} kg</div>` : ""}
-      </div>
-    `).join("");
-
-    renderFlags(data.data_quality_flags);
+    const infoFlags = (data.data_quality_flags ?? []).filter(f => f.severity === "info");
+    renderFlags(infoFlags);
   </script>
 </body>
 </html>

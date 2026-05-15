@@ -47,14 +47,13 @@
         </div>
       </section>
 
-      <section id="flags" class="mt-8"></section>
       <footer id="page-footer"></footer>
     </main>
   </div>
 
   <script type="module">
     import {
-      bootstrap, renderHeader, renderKpis, renderFlags, $, MONTH_SHORT,
+      bootstrap, renderHeader, renderKpis, $, MONTH_SHORT,
       loadDataset, loadShared, fmtInt,
     } from "./assets/common.js";
     import { stackedBar, heatmap } from "./assets/charts.js";
@@ -125,8 +124,6 @@
         <td class="text-xs text-slate-600">${rincian}</td>
       </tr>`;
     }).join("");
-
-    renderFlags(data.data_quality_flags);
   </script>
 </body>
 </html>
