@@ -226,14 +226,59 @@ export async function bootstrap(currentPage) {
   document.title = `${document.title.split(" · ")[0]} · Dashboard Pemantauan Lingkungan UNPAD`;
   renderSidebar(currentPage);
   renderFooter(meta);
+  setupMobileSidebar();
   return meta;
 }
 
 // ─── Mobile sidebar toggle ───────────────────────────────────────────
 
-window.addEventListener("DOMContentLoaded", () => {
+function setupMobileSidebar() {
+  const sidebar = $("#sidebar");
   const trigger = $("#sidebar-toggle");
-  if (trigger) {
-    trigger.addEventListener("click", () => $("#sidebar")?.classList.toggle("open"));
+  if (!sidebar || !trigger) return;
+
+  // Standardize hamburger icon (replace any inline text/svg in HTML files)
+  trigger.innerHTML = `<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/></svg>`;
+  trigger.setAttribute("aria-label", "Toggle menu");
+  trigger.setAttribute("aria-expanded", "false");
+
+  // Inject backdrop (1 per dokumen)
+  let backdrop = document.querySelector(".sidebar-backdrop");
+  if (!backdrop) {
+    backdrop = document.createElement("div");
+    backdrop.className = "sidebar-backdrop";
+    document.body.appendChild(backdrop);
   }
-});
+
+  const isMobile = () => window.matchMedia("(max-width: 1023px)").matches;
+  const open = () => {
+    sidebar.classList.add("open");
+    document.body.classList.add("sidebar-open");
+    trigger.setAttribute("aria-expanded", "true");
+  };
+  const close = () => {
+    sidebar.classList.remove("open");
+    document.body.classList.remove("sidebar-open");
+    trigger.setAttribute("aria-expanded", "false");
+  };
+
+  trigger.addEventListener("click", (e) => {
+    e.stopPropagation();
+    sidebar.classList.contains("open") ? close() : open();
+  });
+  backdrop.addEventListener("click", close);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && sidebar.classList.contains("open")) close();
+  });
+  // Tutup sidebar otomatis saat user klik nav-link di mobile
+  sidebar.querySelectorAll(".nav-link, .sidebar-brand").forEach((link) => {
+    link.addEventListener("click", () => {
+      if (isMobile()) setTimeout(close, 80);
+    });
+  });
+  // Auto-close kalau resize ke desktop saat sidebar terbuka
+  window.addEventListener("resize", () => {
+    if (!isMobile() && sidebar.classList.contains("open")) close();
+  });
+}
+
