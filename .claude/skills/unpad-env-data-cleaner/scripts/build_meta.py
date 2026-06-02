@@ -58,6 +58,14 @@ META = {
             "icon": "car-crash",
             "period_label": "Apr 2025 – Apr 2026",
             "primary_kpi": {"label": "Total Kecelakaan", "value_field": "total_cases"}
+        },
+        {
+            "id": "b3_waste",
+            "label": "Limbah B3",
+            "route": "/limbah-b3",
+            "icon": "flask",
+            "period_label": "Sep 2024 – 2026",
+            "primary_kpi": {"label": "Total Volume Limbah B3", "value_field": "total_volume_liter"}
         }
     ],
     "color_palette": {

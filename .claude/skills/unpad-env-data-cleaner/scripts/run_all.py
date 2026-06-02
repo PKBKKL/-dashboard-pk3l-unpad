@@ -23,6 +23,7 @@ PIPELINE = [
     "parse_water_quality",
     "parse_tree_incidents",
     "parse_traffic_accidents",
+    "parse_b3_waste",
 ]
 
 

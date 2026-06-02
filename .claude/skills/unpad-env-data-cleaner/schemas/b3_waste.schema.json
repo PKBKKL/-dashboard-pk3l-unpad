@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "b3_waste.schema.json",
+  "allOf": [{ "$ref": "_common.schema.json#/definitions/dataset_envelope" }],
+  "type": "object",
+  "required": ["dataset_id", "summary", "monthly_totals", "by_lembaga", "by_kode_limbah", "entries"],
+  "properties": {
+    "dataset_id": { "const": "b3_waste" },
+    "summary": {
+      "type": "object",
+      "required": ["total_entries", "total_volume_liter", "total_mass_kg", "unique_lembaga", "unique_kode_limbah", "months_with_data"],
+      "properties": {
+        "total_entries": { "type": "integer", "minimum": 0 },
+        "total_volume_liter": { "type": "number", "minimum": 0 },
+        "total_mass_kg": { "type": "number", "minimum": 0 },
+        "unique_lembaga": { "type": "integer", "minimum": 0 },
+        "unique_kode_limbah": { "type": "integer", "minimum": 0 },
+        "months_with_data": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "monthly_totals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["month", "label", "entries", "volume_liter", "mass_kg"],
+        "properties": {
+          "month": { "$ref": "_common.schema.json#/definitions/iso_month" },
+          "label": { "type": "string" },
+          "entries": { "type": "integer", "minimum": 0 },
+          "volume_liter": { "type": "number" },
+          "mass_kg": { "type": "number" },
+          "by_kategori": { "type": "object" }
+        }
+      }
+    },
+    "by_lembaga": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["lembaga", "entries", "volume_liter", "mass_kg"],
+        "properties": {
+          "lembaga": { "type": "string" },
+          "entries": { "type": "integer", "minimum": 0 },
+          "volume_liter": { "type": "number" },
+          "mass_kg": { "type": "number" }
+        }
+      }
+    },
+    "by_kode_limbah": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["kode", "entries", "volume_liter", "mass_kg"],
+        "properties": {
+          "kode": { "type": "string" },
+          "entries": { "type": "integer", "minimum": 0 },
+          "volume_liter": { "type": "number" },
+          "mass_kg": { "type": "number" },
+          "kategori": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["month", "lembaga", "limbah", "volume", "satuan", "kode_limbah", "kategori"],
+        "properties": {
+          "month": { "$ref": "_common.schema.json#/definitions/iso_month" },
+          "date": { "anyOf": [{ "$ref": "_common.schema.json#/definitions/iso_date" }, { "type": "null" }] },
+          "lembaga": { "type": "string" },
+          "limbah": { "type": "string" },
+          "volume": { "type": "number" },
+          "satuan": { "type": "string" },
+          "kode_limbah": { "type": "string" },
+          "kategori": { "type": "string" }
+        }
+      }
+    }
+  }
+}

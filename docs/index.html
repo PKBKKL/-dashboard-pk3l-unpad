@@ -50,6 +50,13 @@
             mencakup kecelakaan tunggal, tabrakan antar pengguna jalan, serta insiden yang melibatkan armada sepeda
             listrik Beam.
           </p>
+          <p>
+            <strong>Limbah B3.</strong> Catatan timbulan Limbah Bahan Berbahaya &amp; Beracun yang diserahkan
+            fakultas-fakultas (Farmasi, FMIPA, FTIP, Pertanian, dll.) ke TPS Limbah B3 PKBKKL sejak September 2024.
+            Setiap entri mencakup volume cair (Liter) atau massa padat (Kg), kode limbah sesuai PP 22/2021
+            (mis. A106D, A337-1, B104D), dan kategori fisik. Pengolahan akhir dilakukan oleh PT DAME ALAM SEJAHTERA
+            sebagai pihak ketiga berizin.
+          </p>
         </div>
       </section>
 
@@ -80,17 +87,18 @@
 
     const meta = await bootstrap("index.html");
 
-    const [pengolahan, timbulan, water, trees, traffic] = await Promise.all([
+    const [pengolahan, timbulan, water, trees, traffic, b3] = await Promise.all([
       loadDataset("pengolahan_sampah"),
       loadDataset("timbulan"),
       loadDataset("water_quality"),
       loadDataset("tree_incidents"),
       loadDataset("traffic_accidents"),
+      loadDataset("b3_waste"),
     ]);
 
     renderHeader({
       title: meta.dashboard.title,
-      description: `Ringkasan kinerja lingkungan Universitas Padjadjaran dari lima domain pengawasan PKBKKL: pengolahan sampah, timbulan harian, kualitas air, insiden vegetasi, dan keselamatan lalu lintas kampus. Data diperbarui terakhir ${meta.dashboard.last_updated}.`,
+      description: `Ringkasan kinerja lingkungan Universitas Padjadjaran dari enam domain pengawasan PKBKKL: pengolahan sampah, timbulan harian, kualitas air, insiden vegetasi, kecelakaan lalu lintas kampus, dan timbulan limbah B3. Data diperbarui terakhir ${meta.dashboard.last_updated}.`,
     });
 
     // ─── Compute KPIs ─────────────────────────────────────────────
@@ -119,7 +127,7 @@
       { label: "Kepatuhan Parameter Air", value: fmtPct(waterCompliancePct), trend: `${waterCompliant} dari ${waterTotal} parameter di ${water.reports.length} LHU`, icon: "droplet", accent: "blue", href: "./kualitas-air.html" },
       { label: "Total Insiden Pohon 2025", value: fmtInt(treesTotal), unit: "kejadian", trend: `${treesUnplanned} insiden tak terencana`, icon: "trees", accent: "brand", href: "./insiden-vegetasi.html" },
       { label: "Kecelakaan 2025", value: fmtInt(traffic2025), unit: "kasus", trend: `${fmtInt(traffic2026)} kasus YTD 2026`, icon: "car-front", accent: "red", href: "./kecelakaan-lalu-lintas.html" },
-      { label: "Kompos + RDF + Maggot", value: fmtInt(totalOutput), unit: "kg hasil olahan", trend: "Akumulasi Des 2025 – Jan 2026", icon: "recycle", accent: "brand" },
+      { label: "Limbah B3", value: `${fmtInt(b3.summary.total_volume_liter)} L`, unit: `+ ${fmtInt(b3.summary.total_mass_kg)} kg`, trend: `${b3.summary.total_entries} entri · ${b3.summary.unique_lembaga} fakultas · ${b3.summary.unique_kode_limbah} kode`, icon: "flask", accent: "amber", href: "./limbah-b3.html" },
     ]);
 
     // ─── Periode per Domain table ────────────────────────────────

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Limbah B3</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="./assets/style.css" />
+</head>
+<body>
+  <div class="min-h-screen flex">
+    <aside id="sidebar" class="hidden lg:flex fixed left-0 top-0 h-screen w-64 flex-col border-r border-slate-200 bg-white z-20"></aside>
+    <main class="flex-1 ml-0 lg:ml-64 px-6 py-6 lg:px-10 lg:py-8 max-w-[1400px]">
+      <button id="sidebar-toggle" class="lg:hidden mb-3 p-2 rounded border border-slate-200 bg-white">≡</button>
+
+      <section id="page-header" class="mb-8"></section>
+      <section id="kpis" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"></section>
+
+      <section class="grid gap-6 mt-8 lg:grid-cols-2">
+        <div class="card p-5">
+          <h3 class="text-sm font-semibold text-slate-900 mb-1">Tren Bulanan Volume Cair (Liter)</h3>
+          <p class="text-xs text-slate-400 mb-3">Volume kumulatif limbah B3 cair yang diserahkan ke TPS per bulan.</p>
+          <div id="chart-monthly-liter"></div>
+        </div>
+        <div class="card p-5">
+          <h3 class="text-sm font-semibold text-slate-900 mb-1">Tren Bulanan Massa Padat (Kg)</h3>
+          <p class="text-xs text-slate-400 mb-3">Total massa limbah B3 padat per bulan dari seluruh fakultas.</p>
+          <div id="chart-monthly-kg"></div>
+        </div>
+      </section>
+
+      <section class="grid gap-6 mt-6 lg:grid-cols-2">
+        <div class="card p-5">
+          <h3 class="text-sm font-semibold text-slate-900 mb-1">Kontribusi per Fakultas</h3>
+          <p class="text-xs text-slate-400 mb-3">Total volume (L) + massa (kg) per institusi penghasil. Diurutkan terbesar.</p>
+          <div id="chart-lembaga"></div>
+        </div>
+        <div class="card p-5">
+          <h3 class="text-sm font-semibold text-slate-900 mb-1">Top 10 Kode Limbah</h3>
+          <p class="text-xs text-slate-400 mb-3">Klasifikasi berdasarkan kode limbah B3 (PP 22/2021). Sisanya digabung "Lainnya".</p>
+          <div id="chart-kode"></div>
+        </div>
+      </section>
+
+      <section class="card overflow-hidden mt-8">
+        <header class="px-5 py-4 border-b border-slate-200 flex flex-wrap items-baseline justify-between gap-2">
+          <h3 class="text-sm font-semibold text-slate-900">Ringkasan Bulanan</h3>
+          <span class="text-xs text-slate-400">Volume = Liter (cair) · Massa = Kg (padat)</span>
+        </header>
+        <div class="overflow-x-auto">
+          <table class="data-table" id="monthly-table">
+            <thead>
+              <tr>
+                <th>Bulan</th>
+                <th class="num">Entri</th>
+                <th class="num">Volume Cair (L)</th>
+                <th class="num">Massa Padat (kg)</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card overflow-hidden mt-6">
+        <header class="px-5 py-4 border-b border-slate-200 flex flex-wrap items-baseline justify-between gap-2">
+          <h3 class="text-sm font-semibold text-slate-900">Daftar Entri Limbah B3</h3>
+          <input id="filter-input" type="search" placeholder="Filter (lembaga, limbah, kode...)" class="text-xs px-3 py-1.5 rounded border border-slate-200 bg-white w-64" />
+        </header>
+        <div class="overflow-x-auto" style="max-height: 600px;">
+          <table class="data-table" id="entries-table">
+            <thead class="sticky top-0 bg-white shadow-sm">
+              <tr>
+                <th>Bulan</th>
+                <th>Tanggal</th>
+                <th>Lembaga</th>
+                <th>Limbah</th>
+                <th class="num">Volume</th>
+                <th>Satuan</th>
+                <th>Kode</th>
+                <th>Kategori</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div class="px-5 py-2 border-t border-slate-200 text-xs text-slate-400">
+          Menampilkan <span id="entry-count">0</span> dari <span id="entry-total">0</span> entri.
+        </div>
+      </section>
+
+      <section id="flags" class="mt-8"></section>
+      <footer id="page-footer"></footer>
+    </main>
+  </div>
+
+  <script type="module">
+    import {
+      bootstrap, renderHeader, renderKpis, renderFlags, $, $$, MONTH_SHORT,
+      loadDataset, fmtInt, fmtNum,
+    } from "./assets/common.js";
+    import { lineChart, groupedBar, donutChart } from "./assets/charts.js";
+
+    const meta = await bootstrap("limbah-b3.html");
+    const data = await loadDataset("b3_waste");
+    const p = meta.color_palette;
+
+    renderHeader({
+      title: "Limbah B3 (Bahan Berbahaya & Beracun)",
+      period: `${data.period.start} – ${data.period.end}`,
+      description: "Catatan timbulan limbah B3 dari fakultas-fakultas UNPAD yang diserahkan ke TPS Limbah B3 PKBKKL. Data dikumpulkan per bulan dari Sep 2024, mencakup volume cair (Liter), massa padat (Kg), kode limbah sesuai PP 22/2021, dan kategori fisik. Pengolahan lebih lanjut dilakukan oleh PT DAME ALAM SEJAHTERA selaku pihak ketiga berizin.",
+    });
+
+    const s = data.summary;
+    renderKpis("#kpis", [
+      { label: "Total Volume Cair", value: fmtInt(s.total_volume_liter), unit: "Liter", trend: `${s.total_entries} entri, ${s.months_with_data} bulan`, icon: "flask", accent: "brand" },
+      { label: "Total Massa Padat", value: fmtInt(s.total_mass_kg), unit: "Kg", trend: `Lintas ${s.unique_lembaga} fakultas`, icon: "trash-2", accent: "blue" },
+      { label: "Fakultas Pelapor", value: String(s.unique_lembaga), trend: "Sumber penghasil aktif", icon: "trees", accent: "brand" },
+      { label: "Kode Limbah Unik", value: String(s.unique_kode_limbah), trend: "Klasifikasi PP 22/2021", icon: "info", accent: "amber" },
+    ]);
+
+    // ─── Tren bulanan ────────────────────────────────────────────────
+    const months = data.monthly_totals;
+    const xLabels = months.map(m => m.label.replace(/ 20(\d\d)/, " '$1"));
+    lineChart("chart-monthly-liter", {
+      x: xLabels,
+      yLabel: "Liter",
+      series: [
+        { label: "Volume Cair (Liter)", color: p.anorganik, y: months.map(m => m.volume_liter) },
+      ],
+    });
+    lineChart("chart-monthly-kg", {
+      x: xLabels,
+      yLabel: "Kg",
+      series: [
+        { label: "Massa Padat (Kg)", color: p.residu, y: months.map(m => m.mass_kg) },
+      ],
+    });
+
+    // ─── Per lembaga (grouped bar) ───────────────────────────────────
+    const lembagaList = data.by_lembaga.slice(0, 8);
+    groupedBar("chart-lembaga", {
+      x: lembagaList.map(l => l.lembaga.replace("Fakultas ", "F. ")),
+      yLabel: "Total",
+      series: [
+        { label: "Liter (cair)", color: p.anorganik, y: lembagaList.map(l => l.volume_liter) },
+        { label: "Kg (padat)", color: p.residu, y: lembagaList.map(l => l.mass_kg) },
+      ],
+    });
+
+    // ─── Per kode limbah (top 10 + Lainnya) ───────────────────────────
+    const kodeAll = data.by_kode_limbah;
+    const top10 = kodeAll.slice(0, 10);
+    const restSum = kodeAll.slice(10).reduce(
+      (a, k) => a + (k.volume_liter ?? 0) + (k.mass_kg ?? 0), 0,
+    );
+    const kodeLabels = top10.map(k => k.kode);
+    const kodeValues = top10.map(k => (k.volume_liter ?? 0) + (k.mass_kg ?? 0));
+    if (restSum > 0) {
+      kodeLabels.push(`Lainnya (${kodeAll.length - 10})`);
+      kodeValues.push(restSum);
+    }
+    const kodeColors = [
+      p.organik, p.anorganik, p.residu, p.kompos, p.rdf, p.maggot,
+      p.dumping, p.compliant, p.exceedance, p.below_detection, "#9333ea",
+    ];
+    donutChart("chart-kode", {
+      labels: kodeLabels,
+      values: kodeValues,
+      colors: kodeColors.slice(0, kodeLabels.length),
+    });
+
+    // ─── Monthly table ──────────────────────────────────────────────
+    $("#monthly-table tbody").innerHTML = months.map(m => `
+      <tr>
+        <td><strong>${m.label}</strong></td>
+        <td class="num">${fmtInt(m.entries)}</td>
+        <td class="num">${fmtNum(m.volume_liter)}</td>
+        <td class="num">${fmtNum(m.mass_kg)}</td>
+      </tr>
+    `).join("");
+
+    // ─── Entries table with client-side filter ───────────────────────
+    const entries = data.entries;
+    $("#entry-total").textContent = fmtInt(entries.length);
+
+    function renderEntries(filter = "") {
+      const q = filter.trim().toLowerCase();
+      const filtered = q
+        ? entries.filter(e =>
+            (e.lembaga || "").toLowerCase().includes(q) ||
+            (e.limbah || "").toLowerCase().includes(q) ||
+            (e.kode_limbah || "").toLowerCase().includes(q) ||
+            (e.kategori || "").toLowerCase().includes(q) ||
+            (e.satuan || "").toLowerCase().includes(q))
+        : entries;
+      const tbody = $("#entries-table tbody");
+      // Render up to 500 rows for perf; show count of total filtered
+      const rows = filtered.slice(0, 500);
+      tbody.innerHTML = rows.map(e => `
+        <tr>
+          <td class="text-xs text-slate-600">${e.month}</td>
+          <td class="text-xs text-slate-600">${e.date ?? "—"}</td>
+          <td>${e.lembaga.replace("Fakultas ", "F. ")}</td>
+          <td class="text-xs">${e.limbah}</td>
+          <td class="num">${fmtNum(e.volume)}</td>
+          <td class="text-xs">${e.satuan}</td>
+          <td class="text-xs font-mono">${e.kode_limbah || "—"}</td>
+          <td class="text-xs">${e.kategori || "—"}</td>
+        </tr>
+      `).join("");
+      $("#entry-count").textContent = filtered.length > 500
+        ? `500 dari ${fmtInt(filtered.length)} (filtered)`
+        : fmtInt(filtered.length);
+    }
+    renderEntries();
+    $("#filter-input").addEventListener("input", (e) => renderEntries(e.target.value));
+
+    renderFlags(data.data_quality_flags);
+  </script>
+</body>
+</html>

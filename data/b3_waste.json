@@ -1,0 +1,4489 @@
+{
+  "dataset_id": "b3_waste",
+  "version": "1.0",
+  "generated_at": "2026-05-14T10:00:00+07:00",
+  "source_files": [
+    "Logbook Limbah B3.xlsx"
+  ],
+  "period": {
+    "start": "2024-09-01",
+    "end": "2026-02-26"
+  },
+  "data_quality_flags": [
+    {
+      "severity": "info",
+      "message": "Sheet TPS storage logbook (Limbah Masuk/Keluar/Sisa) tidak diolah ke dataset ini: Logbook (Sep 24 - Jan 26)."
+    }
+  ],
+  "summary": {
+    "total_entries": 403,
+    "total_volume_liter": 6998.1,
+    "total_mass_kg": 6314.96,
+    "unique_lembaga": 6,
+    "unique_kode_limbah": 19,
+    "months_with_data": 12
+  },
+  "monthly_totals": [
+    {
+      "month": "2024-09",
+      "label": "September 2024",
+      "entries": 23,
+      "volume_liter": 165.9,
+      "mass_kg": 30,
+      "by_kategori": {
+        "cair": {
+          "volume_liter": 165.9,
+          "mass_kg": 5
+        },
+        "padat": {
+          "volume_liter": 0,
+          "mass_kg": 25
+        }
+      }
+    },
+    {
+      "month": "2024-11",
+      "label": "November 2024",
+      "entries": 85,
+      "volume_liter": 658.4,
+      "mass_kg": 265,
+      "by_kategori": {
+        "cair": {
+          "volume_liter": 632.4,
+          "mass_kg": 0
+        },
+        "padat": {
+          "volume_liter": 26,
+          "mass_kg": 265
+        }
+      }
+    },
+    {
+      "month": "2024-12",
+      "label": "Desember 2024",
+      "entries": 9,
+      "volume_liter": 0,
+      "mass_kg": 1336,
+      "by_kategori": {
+        "cair": {
+          "volume_liter": 0,
+          "mass_kg": 116
+        },
+        "padat": {
+          "volume_liter": 0,
+          "mass_kg": 1220
+        }
+      }
+    },
+    {
+      "month": "2025-02",
+      "label": "Februari 2025",
+      "entries": 41,
+      "volume_liter": 0,
+      "mass_kg": 3945.91,
+      "by_kategori": {
+        "cair": {
+          "volume_liter": 0,
+          "mass_kg": 2205.2
+        },
+        "padat": {
+          "volume_liter": 0,
+          "mass_kg": 1740.71
+        }
+      }
+    },
+    {
+      "month": "2025-05",
+      "label": "Mei 2025",
+      "entries": 17,
+      "volume_liter": 229.5,
+      "mass_kg": 111,
+      "by_kategori": {
+        "cair": {
+          "volume_liter": 229.5,
+          "mass_kg": 0
+        },
+        "padat": {
+          "volume_liter": 0,
+          "mass_kg": 111
+        }
+      }
+    },
+    {
+      "month": "2025-06",
+      "label": "Juni 2025",
+      "entries": 5,
+      "volume_liter": 11,
+      "mass_kg": 5,
+      "by_kategori": {
+        "cair": {
+          "volume_liter": 6,
+          "mass_kg": 5
+        },
+        "padat": {
+          "volume_liter": 5,
+          "mass_kg": 0
+        }
+      }
+    },
+    {
+      "month": "2025-08",
+      "label": "Agustus 2025",
+      "entries": 16,
+      "volume_liter": 1033,
+      "mass_kg": 71,
+      "by_kategori": {
+        "cair": {
+          "volume_liter": 1033,
+          "mass_kg": 0
+        },
+        "padat": {
+          "volume_liter": 0,
+          "mass_kg": 71
+        }
+      }
+    },
+    {
+      "month": "2025-09",
+      "label": "September 2025",
+      "entries": 26,
+      "volume_liter": 459.1,
+      "mass_kg": 117.2,
+      "by_kategori": {
+        "padat": {
+          "volume_liter": 0,
+          "mass_kg": 117.2
+        },
+        "cair": {
+          "volume_liter": 459.1,
+          "mass_kg": 0
+        }
+      }
+    },
+    {
+      "month": "2025-10",
+      "label": "Oktober 2025",
+      "entries": 15,
+      "volume_liter": 623,
+      "mass_kg": 20,
+      "by_kategori": {
+        "cair": {
+          "volume_liter": 623,
+          "mass_kg": 0
+        },
+        "padat": {
+          "volume_liter": 0,
+          "mass_kg": 20
+        }
+      }
+    },
+    {
+      "month": "2025-12",
+      "label": "Desember 2025",
+      "entries": 6,
+      "volume_liter": 565,
+      "mass_kg": 19,
+      "by_kategori": {
+        "padat": {
+          "volume_liter": 0,
+          "mass_kg": 19
+        },
+        "cair": {
+          "volume_liter": 565,
+          "mass_kg": 0
+        }
+      }
+    },
+    {
+      "month": "2026-01",
+      "label": "Januari 2026",
+      "entries": 41,
+      "volume_liter": 1882,
+      "mass_kg": 232,
+      "by_kategori": {
+        "cair": {
+          "volume_liter": 1882,
+          "mass_kg": 3
+        },
+        "padat": {
+          "volume_liter": 0,
+          "mass_kg": 229
+        }
+      }
+    },
+    {
+      "month": "2026-02",
+      "label": "Februari 2026",
+      "entries": 119,
+      "volume_liter": 1371.2,
+      "mass_kg": 162.85,
+      "by_kategori": {
+        "cair": {
+          "volume_liter": 1343.2,
+          "mass_kg": 10
+        },
+        "padat": {
+          "volume_liter": 28,
+          "mass_kg": 152.85
+        }
+      }
+    }
+  ],
+  "by_lembaga": [
+    {
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "entries": 80,
+      "volume_liter": 3024,
+      "mass_kg": 5202.1
+    },
+    {
+      "lembaga": "Fakultas Farmasi",
+      "entries": 122,
+      "volume_liter": 1996.2,
+      "mass_kg": 449.4
+    },
+    {
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "entries": 144,
+      "volume_liter": 779.8,
+      "mass_kg": 242.75
+    },
+    {
+      "lembaga": "Fakultas Pertanian",
+      "entries": 44,
+      "volume_liter": 622.1,
+      "mass_kg": 296.7
+    },
+    {
+      "lembaga": "Pusat Unggulan Ilmu Lingkungan",
+      "entries": 11,
+      "volume_liter": 576,
+      "mass_kg": 24
+    },
+    {
+      "lembaga": "Fakultas Kedokteran",
+      "entries": 2,
+      "volume_liter": 0,
+      "mass_kg": 100
+    }
+  ],
+  "by_kode_limbah": [
+    {
+      "kode": "A106D",
+      "entries": 147,
+      "volume_liter": 2962.5,
+      "mass_kg": 4257.87,
+      "kategori": [
+        "Cair",
+        "Padat"
+      ]
+    },
+    {
+      "kode": "B104D",
+      "entries": 59,
+      "volume_liter": 53,
+      "mass_kg": 863.25,
+      "kategori": [
+        "Cair",
+        "Padat"
+      ]
+    },
+    {
+      "kode": "B105D",
+      "entries": 22,
+      "volume_liter": 794.8,
+      "mass_kg": 29,
+      "kategori": [
+        "Cair",
+        "Padat"
+      ]
+    },
+    {
+      "kode": "A103C",
+      "entries": 21,
+      "volume_liter": 685.7,
+      "mass_kg": 12,
+      "kategori": [
+        "Cair",
+        "Padat"
+      ]
+    },
+    {
+      "kode": "A107D",
+      "entries": 16,
+      "volume_liter": 572,
+      "mass_kg": 0,
+      "kategori": [
+        "Cair"
+      ]
+    },
+    {
+      "kode": "A108C",
+      "entries": 21,
+      "volume_liter": 454.5,
+      "mass_kg": 94.7,
+      "kategori": [
+        "Cair",
+        "Padat"
+      ]
+    },
+    {
+      "kode": "A337-1",
+      "entries": 40,
+      "volume_liter": 211,
+      "mass_kg": 305.4,
+      "kategori": [
+        "Cair",
+        "Padat"
+      ]
+    },
+    {
+      "kode": "B107D",
+      "entries": 3,
+      "volume_liter": 0,
+      "mass_kg": 505,
+      "kategori": [
+        "Padat"
+      ]
+    },
+    {
+      "kode": "A109D",
+      "entries": 23,
+      "volume_liter": 332.2,
+      "mass_kg": 71.09,
+      "kategori": [
+        "Cair",
+        "Padat"
+      ]
+    },
+    {
+      "kode": "A108D",
+      "entries": 12,
+      "volume_liter": 320,
+      "mass_kg": 58,
+      "kategori": [
+        "Cair",
+        "Padat"
+      ]
+    },
+    {
+      "kode": "A101A",
+      "entries": 9,
+      "volume_liter": 346.4,
+      "mass_kg": 0,
+      "kategori": [
+        "Cair",
+        "Padat"
+      ]
+    },
+    {
+      "kode": "A337-2",
+      "entries": 10,
+      "volume_liter": 165,
+      "mass_kg": 19,
+      "kategori": [
+        "Cair",
+        "Padat"
+      ]
+    },
+    {
+      "kode": "B337-1",
+      "entries": 4,
+      "volume_liter": 65,
+      "mass_kg": 5,
+      "kategori": [
+        "Cair",
+        "Padat"
+      ]
+    },
+    {
+      "kode": "A337-4",
+      "entries": 4,
+      "volume_liter": 30,
+      "mass_kg": 25,
+      "kategori": [
+        "Cair",
+        "Padat"
+      ]
+    },
+    {
+      "kode": "A338-1",
+      "entries": 6,
+      "volume_liter": 0,
+      "mass_kg": 47.63,
+      "kategori": [
+        "Cair",
+        "Padat"
+      ]
+    },
+    {
+      "kode": "A101D",
+      "entries": 3,
+      "volume_liter": 0,
+      "mass_kg": 21,
+      "kategori": [
+        "Cair",
+        "Padat"
+      ]
+    },
+    {
+      "kode": "A110C",
+      "entries": 1,
+      "volume_liter": 5,
+      "mass_kg": 0,
+      "kategori": [
+        "Cair"
+      ]
+    },
+    {
+      "kode": "A102B",
+      "entries": 1,
+      "volume_liter": 1,
+      "mass_kg": 0,
+      "kategori": [
+        "Cair"
+      ]
+    },
+    {
+      "kode": "A105D",
+      "entries": 1,
+      "volume_liter": 0,
+      "mass_kg": 1,
+      "kategori": [
+        "Cair"
+      ]
+    }
+  ],
+  "entries": [
+    {
+      "month": "2024-09",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah campuran pelarut organik",
+      "volume": 49,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-09",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah campuran asam",
+      "volume": 37,
+      "satuan": "Liter",
+      "kode_limbah": "A109D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-09",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah etanol",
+      "volume": 7.5,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-09",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah campuran basa",
+      "volume": 3,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-09",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah NaOH",
+      "volume": 0.2,
+      "satuan": "Liter",
+      "kode_limbah": "A108C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-09",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah ekstrak kulit manggis",
+      "volume": 2,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-09",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah kertas",
+      "volume": 1,
+      "satuan": "Kg",
+      "kode_limbah": "A108D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-09",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah kertas",
+      "volume": 1,
+      "satuan": "Kg",
+      "kode_limbah": "A108D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-09",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "limbah kardus dan kertas",
+      "volume": 1,
+      "satuan": "Kg",
+      "kode_limbah": "A108D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-09",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah botol plastik bekas",
+      "volume": 1.5,
+      "satuan": "Buah",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-09",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah Botol Vial Kaca",
+      "volume": 5,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-09",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah karet bulb",
+      "volume": 2,
+      "satuan": "Kg",
+      "kode_limbah": "A108D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-09",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah kosmetik farmasetika",
+      "volume": 20,
+      "satuan": "Liter",
+      "kode_limbah": "A337-2",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-09",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah kering plastik mikrobiologi",
+      "volume": 2,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-09",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah cair biologi sel",
+      "volume": 5,
+      "satuan": "Liter",
+      "kode_limbah": "A337-1",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-09",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah infeksius biologi sel",
+      "volume": 5,
+      "satuan": "Kg",
+      "kode_limbah": "A337-1",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-09",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah botol sirup obat bekas",
+      "volume": 3,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-09",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah cair sediaan obat steril",
+      "volume": 5,
+      "satuan": "Liter",
+      "kode_limbah": "A337-2",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-09",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Obat Kadaluarsa",
+      "volume": 3,
+      "satuan": "Kg",
+      "kode_limbah": "A337-2",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-09",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Lampu TL",
+      "volume": 5,
+      "satuan": "Kg",
+      "kode_limbah": "B107D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-09",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Bilangan Peroksida : Na2S2O3.5H20.5H2O K2Cr2O7 Amilum KI KI jenuh asam asetat galsial klorofom H2SO4",
+      "volume": 29,
+      "satuan": "Liter",
+      "kode_limbah": "A109D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-09",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Fenolik Asam galat Follin Ciocalteus Na2CO3",
+      "volume": 3,
+      "satuan": "Liter",
+      "kode_limbah": "A109D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-09",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Fenolik Asam galat Follin Ciocalteus Na2CO3 Aseton",
+      "volume": 7.2,
+      "satuan": "Liter",
+      "kode_limbah": "A109D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "asam klorida dan asam sulfat",
+      "volume": 4,
+      "satuan": "Liter",
+      "kode_limbah": "A109D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Campuran pelarut organik (metanol, etanol, asetonitril)",
+      "volume": 52,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah pelarut NaOH",
+      "volume": 4,
+      "satuan": "Liter",
+      "kode_limbah": "A108C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah Campuran pelarut asam (asam asetat anhidrat, asam format, asam klorida)",
+      "volume": 7,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah sisa bahan baku farmasi",
+      "volume": 15,
+      "satuan": "Kg",
+      "kode_limbah": "A337-2",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah botol bekas obat 60ml (1 kardus)",
+      "volume": 5,
+      "satuan": "Kg",
+      "kode_limbah": "B337-1",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah alat pecah belah (2 kardus)",
+      "volume": 2,
+      "satuan": "Kg",
+      "kode_limbah": "A337-1",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah campuran asam",
+      "volume": 50,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah cair biosel",
+      "volume": 20,
+      "satuan": "Liter",
+      "kode_limbah": "A337-1",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah bahan disposible biosel (5 trashbag)",
+      "volume": 5,
+      "satuan": "Kg",
+      "kode_limbah": "A337-1",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah cair mikrobiologi",
+      "volume": 20,
+      "satuan": "Liter",
+      "kode_limbah": "A337-1",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah cair sediaan steril obat",
+      "volume": 80,
+      "satuan": "Liter",
+      "kode_limbah": "A337-2",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah bekas botol pelarut bahan kimia (3dus)",
+      "volume": 5,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Bilangan Peroksida Na2S2O3.5H20.5H2O K2Cr2O7 Amilum KI KI jenuh asam asetat galsial klorofom H2SO4",
+      "volume": 30,
+      "satuan": "Liter",
+      "kode_limbah": "A109D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Fenolik Metanol Heksan Aseton Asam galat Follin Ciocalteus Na2CO3 Asam galat",
+      "volume": 17,
+      "satuan": "Liter",
+      "kode_limbah": "A109D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah KMnO4 KMnO4",
+      "volume": 2,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Total Oksalat dan Oksalat Terlarut HCl Indikator metil merah NH4OH CaCl2 H2SO4 KMnO4 HCl Amonia CaCl2",
+      "volume": 12.5,
+      "satuan": "Liter",
+      "kode_limbah": "A109D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Hemiselulosa, Selulosa, Lignin H2SO4 1N H2SO4 72%",
+      "volume": 4,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Vitamin C Na2S2O3.5H20.5H2O K2Cr2O7 H2SO4 Amilum KI I2",
+      "volume": 5.7,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah TBA (TioBarbituric Acid) Asam Asetat HCL TBA",
+      "volume": 6.5,
+      "satuan": "Liter",
+      "kode_limbah": "A109D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Antioksidan Metanol DPPH Aseton",
+      "volume": 20,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Glukomanan Buffer fomic NaOH DNS H2SO4",
+      "volume": 3,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah protein pelarut (lowry) BSA NaOH Na2CO3 Na-k-fartrat Cuso4 Follin Ciocalteus",
+      "volume": 5,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah HCN AgNo3 NH4scn FAS HNO3",
+      "volume": 9,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah uji kolestrol Aseton H2SO4 klorofom Asam asetat anhidrat",
+      "volume": 0.4,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah diastase number Larutan stok iod I2 amylum Nacl Buffer asetat",
+      "volume": 3,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah uji enzim amilase Enzim emilasi amylum CH3COOH I2 KI Buffer asetat",
+      "volume": 0,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Hexan",
+      "volume": 4.5,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Hidrolisis lemak Aquadest HCL",
+      "volume": 9,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah aqua regia HNO3 pekat HCL Pekat",
+      "volume": 0.5,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Amilosa KI I2 STD.Amilosa NaOH AS.Asetat glasial Etanol",
+      "volume": 22.7,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Protein K2SO4 HGO H2SO4 HCL NaOH Na2S2O3.5H20 H3BO3 Ind.Campuran (metyl merah dan biru)",
+      "volume": 13,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Hidroxy Metil Furfural (HMF) K4Fp (CN).3H2O Zn(CH3COO)2.2H2O Na2S2O5",
+      "volume": 1.8,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Asam lemak bebas (FFA) Etanol netral NaOH ind.phenoptalein Asam oksalat",
+      "volume": 14,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah antosianin Buffer ph 1 KCL Buffer ph 4,5 CH3COONa HCl pekat",
+      "volume": 2.5,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah bilangan penyabunan HCL KOH",
+      "volume": 1.5,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah bilangan iodida klorofom Na2S2O3.5H20 Amylum KI Reagen Wijs",
+      "volume": 0.4,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah uji antiinflamasi Tris HCL NaOH BSA",
+      "volume": 4,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah pelarut organik Metanol klorofom",
+      "volume": 1,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Kadar Garam (argentometri) AgNO3 Nacl K2CrO4",
+      "volume": 0.4,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah pati total HCL Luff schrool KI amylum indikator phenolphytalein H2SO4 NaOH Na2S2O3.5H20",
+      "volume": 7,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah esktrasi kafein kafein kopi CaCo3 klorofom",
+      "volume": 12.5,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah kadar laktosa Phenol NaOH ZnSO4 Ba(OH)2 asam pikrat telles mix",
+      "volume": 5,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Albumin& heksan NaOH CuSO4 Natrium Kalium Tartarat Na2CO3 NaOH heksan klorofom",
+      "volume": 1,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah serat kasar H2SO4 K2SO4 Alkohol NaOH",
+      "volume": 13.5,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah flovonoid Metanol Quercetin HCL CH3COOK Aseton",
+      "volume": 9,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah preparasi uji fe HNO3 methyl asetat",
+      "volume": 0.3,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah total gula HCL KI Na2HPO4 larutan luff schrool H2SO4 NaOH Na2S2O3.5H20 pb asetat Methyl jingga KI",
+      "volume": 81.6,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah total pati HCL NaOH H2SO4 luff schrool KI Na2S2O3.5H20 Amylum Phenoptalein",
+      "volume": 22.1,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Etanol Limbah Kelarutan dalam Etanol Etanol AgNO3 NaCl HNO3",
+      "volume": 14.2,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Bilangan asam (Angka Asam) Alkohol netral NaOH KOH Idikator PP",
+      "volume": 2.2,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Oksalat HCl Indikator metil merah NH4OH CaCl2 H2SO4 KMnO4",
+      "volume": 5,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Alkhohol 70% Etanol 70%",
+      "volume": 0.5,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Spirtus",
+      "volume": 0.4,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Filtrat Filtrat",
+      "volume": 1,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Natrium Benzoat NaCl Jenuh Dietil Eter Etanol Pa HCL",
+      "volume": 1,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Bilangan Ester Indikator PP KOH dlm Alkhohol HCL",
+      "volume": 0.5,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Formalin H3PO4 Asam kromatopat H2SO4",
+      "volume": 0.5,
+      "satuan": "Liter",
+      "kode_limbah": "A109D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Lipstik etanol DPPH",
+      "volume": 0.2,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Rhodamin B Metanol n-Butanol Asam Asetat Glacial Rhodamin B",
+      "volume": 1,
+      "satuan": "Liter",
+      "kode_limbah": "A109D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Isopropil Alkhohol Isopropil Alkhohol",
+      "volume": 0.5,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah NaOH NaOH",
+      "volume": 4,
+      "satuan": "Liter",
+      "kode_limbah": "A108C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah HCl HCl",
+      "volume": 5,
+      "satuan": "Liter",
+      "kode_limbah": "A110C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah gula Kualitatif (Seliwanof, Barfoed, Fehling) Seliwanof Barfoed Fehling",
+      "volume": 6,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Titrasi Kompleksometri Na2EDTA EBT MgCl NH4Cl NH4OH (buffer pH 10)",
+      "volume": 1,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Aseton Aseton",
+      "volume": 1,
+      "satuan": "Liter",
+      "kode_limbah": "A102B",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Titrasi Redoks KMnO4 H2C2O4 FeSO4 CuSO4 Amylum KI Na2S2O3.5H20 K2Cr2O7",
+      "volume": 5,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah antioksidan ABTS Potassium persulfate (K2S2O8) acetic acid buffer solution with pH 4.5 ABTS",
+      "volume": 1,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah botol n-hexana",
+      "volume": 8,
+      "satuan": "Liter",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah botol Methanol",
+      "volume": 7,
+      "satuan": "Liter",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Botol Ethanol",
+      "volume": 2,
+      "satuan": "Liter",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Botol Asam Clorida",
+      "volume": 2,
+      "satuan": "Liter",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Botol Chlorofom",
+      "volume": 1,
+      "satuan": "Liter",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Botol Aseton",
+      "volume": 1,
+      "satuan": "Liter",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Botol Asetonitrile",
+      "volume": 1,
+      "satuan": "Liter",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Botol H2SO4",
+      "volume": 2,
+      "satuan": "Liter",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Botol Iso-oktan",
+      "volume": 1,
+      "satuan": "Liter",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Kemasan Sodium carbonat",
+      "volume": 4,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Kemasan Potassium iodide",
+      "volume": 1,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Kemasan Citric acid monohyrade",
+      "volume": 1,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Kemasan Ascorbic Acid",
+      "volume": 1,
+      "satuan": "Liter",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Kemasan Natrium Hyroxide",
+      "volume": 1,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Kemasan Sodium acetat trihydrate",
+      "volume": 1,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Kaca",
+      "volume": 25,
+      "satuan": "Kg",
+      "kode_limbah": "A337-1",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-11",
+      "date": null,
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Kemasan Botol Penelitian",
+      "volume": 200,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-12",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Beracun, berbahaya bagi lingkungan, Dalam botol kemasan variasi volume (Â± 30 botol)",
+      "volume": 29,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-12",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah cair asam, Dalam botol kemasan variasi volume (Â± 30 botol",
+      "volume": 45,
+      "satuan": "Kg",
+      "kode_limbah": "A109D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-12",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah cair komplek, Dalam botol kemasan variasi volume (Â± 50 botol)",
+      "volume": 42,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2024-12",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah padat bahan kimia campuran, 1. Variasi bahan kimia. Satu bahan kimia satu wadah. 2. Dalam kemasan variasi bobot 25 g - 1 kg",
+      "volume": 500,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-12",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Botol kaca & plastik pelarut kecil (10-100 mL), Bekas pelarut & reagen, 250 pcs",
+      "volume": 50,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-12",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Botol kaca & plastik pelarut sedang (100-250 mL), Bekas pelarut & reagen. 100pcs",
+      "volume": 50,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-12",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Botol kaca & plastik pelarut besar (500-2000 mL), 100 pcs, Bekas pelarut & reagen.",
+      "volume": 100,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-12",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah kaca",
+      "volume": 20,
+      "satuan": "Kg",
+      "kode_limbah": "A337-1",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2024-12",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Bekas Penangas air, timbangan, heating manttle, Hotplate, pengaduk, tabung gas, tabung kromatografi, monitor, printer",
+      "volume": 500,
+      "satuan": "Kg",
+      "kode_limbah": "B107D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah Campuran Pelarut organik",
+      "volume": 45,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah campuran asam dan basa",
+      "volume": 48,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah Etanol",
+      "volume": 6,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah larutan amonium tiosianat",
+      "volume": 1,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah cair campuran biologi sel",
+      "volume": 30,
+      "satuan": "Kg",
+      "kode_limbah": "A337-1",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah cair campuran mikrobiologi",
+      "volume": 40,
+      "satuan": "Kg",
+      "kode_limbah": "A337-1",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah cair campuran pelarut organik (lab bahan alam)",
+      "volume": 40,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah cair bahan kimia kosmetik (Lab farmasetika)",
+      "volume": 20,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah cair bahan kimia campuran (lab farmasetika steril)",
+      "volume": 20,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah tabung setrifugasi, syringe, dan syringe filter",
+      "volume": 0.3,
+      "satuan": "Kg",
+      "kode_limbah": "A337-1",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah alat gelas pecah belah",
+      "volume": 6,
+      "satuan": "Kg",
+      "kode_limbah": "A337-1",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Cair kompleks aneka larutan dan pereaksi",
+      "volume": 1418,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "1. Variasi bahan kimia. Satu bahan kimia satu wadah. 2. Dalam kemasan variasi bobot 25 g - 1 kg",
+      "volume": 1601,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah campuran anorganik",
+      "volume": 60,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah campuran organik",
+      "volume": 55,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "kaca kemasan asam sulfat dan folin",
+      "volume": 0.003,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "pecahan alat gelas",
+      "volume": 5,
+      "satuan": "Kg",
+      "kode_limbah": "A337-1",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "silika",
+      "volume": 1,
+      "satuan": "Kg",
+      "kode_limbah": "A108D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah cair asam",
+      "volume": 70,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah cair basa",
+      "volume": 90,
+      "satuan": "Kg",
+      "kode_limbah": "A108C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah cair komplek",
+      "volume": 88,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Alat gelas pecah belah",
+      "volume": 20,
+      "satuan": "Kg",
+      "kode_limbah": "A337-1",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah padatan bahan kadaluarsa maupun sampel-sampel penelitian",
+      "volume": 12,
+      "satuan": "Kg",
+      "kode_limbah": "A338-1",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah cairan organik non halogen",
+      "volume": 25,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah cairan organik halogen",
+      "volume": 50,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah logam berat (mengandung Cr, Cu, Arsen)",
+      "volume": 40,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "KOH yang sudah cair dan kadaluarsa",
+      "volume": 0.1,
+      "satuan": "Kg",
+      "kode_limbah": "A338-1",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Acetamide kadaluarsa dan rusak",
+      "volume": 2,
+      "satuan": "Kg",
+      "kode_limbah": "A338-1",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Chlorampenicol Kapsul, Chlorampenicol powder, Tertacycline powder",
+      "volume": 0.5,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Natrium Karbonat (Na2CO3) Cupric Sulfate (CuSO4) Di-natrium hydrogen phosphate dodecahydrate (Na2HPO4.12H2O) Calcium Chloride (CaCl2) Asam giberelat",
+      "volume": 3.095,
+      "satuan": "Kg",
+      "kode_limbah": "A109D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Natrium nitrat (NaNO3)",
+      "volume": 0.574,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Kalium hidroksida (KOH), Natrium hidroksida (NaOH), Copper (I) Chloride (CuCl)",
+      "volume": 1.7,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Berbagai macam pestisida bentuk padat, Ammonium oksalat ((NH4)2C2O4), Silika gel biru",
+      "volume": 5.535,
+      "satuan": "Kg",
+      "kode_limbah": "A338-1",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Kalium dihidrogen fosfat (KH2PO4), Magnesium sulfat heptahydrate (MgSO4.7H2O), Nutrient broth, Nutrient agar, Yeast extract, Bacto agar, Trinatrium sitrat dihidrat, D(+)-Glucose, Sucrose, Potassium phosphate dibasic (K2HPO4), Potassium phosphate monobasic (KH2PO4), Sorbitol, Amylum solubile, Czapek solution agar, Malt extract agar, Dextrose monohydrate, Maltose, Whiton super 1000 (CaCO3), Sodium sulfite (Na2SO3.7H2O), Potassium chloride (KCl), Potato dextrose agar",
+      "volume": 16,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Kalium dihidrogen fosfat (KH2PO4), Magnesium sulfat heptahydrate (MgSO4.7H2O), Nutrient broth, Nutrient agar, Yeast extract, Bacto agar, Trinatrium sitrat dihidrat, D(+)-Glucose, Sucrose, Potassium phosphate dibasic (K2HPO4), Potassium phosphate monobasic (KH2PO4), Sorbitol, Amylum solubile, Czapek solution agar, Malt extract agar, Dextrose monohydrate, Maltose, Whiton super 1000 (CaCO3), Sodium sulfite (Na2SO3.7H2O), Potassium chloride (KCl), Potato dextrose agar",
+      "volume": 16,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Berbagai macam pestisida bentuk cair, Formaldehyde solution, Phenol crystal, Xylol",
+      "volume": 20,
+      "satuan": "Kg",
+      "kode_limbah": "A338-1",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Methanol pro analyst, Alkohol 70%, Isopropyl Alcohol, Acetone, Methanol teknis, Ethanol teknis, Carbol fuchsin teknis",
+      "volume": 16,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Sodium hypochlorite (NaOCl), Asam sulfat (H2SO4), Asam klorida (HCl), Asam laktat (C3H6O3)",
+      "volume": 20,
+      "satuan": "Kg",
+      "kode_limbah": "A109D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Iodium tincture",
+      "volume": 0.1,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Asam oleat, Asam asetat, Trietanolamin, Glycerin",
+      "volume": 3,
+      "satuan": "Kg",
+      "kode_limbah": "A109D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-02",
+      "date": null,
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Botol kaca bekas pestisida, Botol kaca bekas B3, Botol kaca bekas penelitian mahasiswa, Botol plastik bekas B3, Botol plastik bekas penelitian mahasiswa, Botol plastik bekas bahan kimia kadaluarsa",
+      "volume": 50,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-05",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah Laboratorium biologi sel",
+      "volume": 25,
+      "satuan": "Liter",
+      "kode_limbah": "A337-1",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-05",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah padat laboratorium biologi sel",
+      "volume": 6,
+      "satuan": "Kg",
+      "kode_limbah": "A337-1",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-05",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah laboratorium mikrobiologi",
+      "volume": 20,
+      "satuan": "Liter",
+      "kode_limbah": "A337-1",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-05",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah antibiotik",
+      "volume": 15,
+      "satuan": "Liter",
+      "kode_limbah": "A337-2",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-05",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah laboratorium fitokimia",
+      "volume": 30,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-05",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah campuran asam laboratorium kimia medisinal",
+      "volume": 42,
+      "satuan": "Liter",
+      "kode_limbah": "A109D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-05",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah campuran pelarut organik lab penelitian kimia farmasi",
+      "volume": 19,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-05",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah padatan kaca",
+      "volume": 1,
+      "satuan": "Kg",
+      "kode_limbah": "A337-1",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-05",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah cair sediaan kosmetika",
+      "volume": 20,
+      "satuan": "Liter",
+      "kode_limbah": "A337-2",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-05",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah cair sediaan kosmetika",
+      "volume": 20,
+      "satuan": "Liter",
+      "kode_limbah": "A337-2",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-05",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "limbah syringe non infeksius",
+      "volume": 1,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-05",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah alat pecah belah lab steril",
+      "volume": 3,
+      "satuan": "Kg",
+      "kode_limbah": "A337-1",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-05",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah campuran laboratorium farmasi steril",
+      "volume": 20,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-05",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah campuran pelarut organik lab kosmetik",
+      "volume": 18,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-05",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah campuran asam lab kosmetik",
+      "volume": 0.5,
+      "satuan": "Liter",
+      "kode_limbah": "A109D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-05",
+      "date": null,
+      "lembaga": "Fakultas Kedokteran",
+      "limbah": "Limbah benda tajam (jarum suntik), Limbah gelas (obyek glass)",
+      "volume": 50,
+      "satuan": "Kg",
+      "kode_limbah": "A337-1",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-05",
+      "date": null,
+      "lembaga": "Fakultas Kedokteran",
+      "limbah": "Limbah plastik bekas formalin",
+      "volume": 50,
+      "satuan": "Kg",
+      "kode_limbah": "A108D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-06",
+      "date": null,
+      "lembaga": "Pusat Unggulan Ilmu Lingkungan",
+      "limbah": "Limbah B3",
+      "volume": 5,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-06",
+      "date": null,
+      "lembaga": "Pusat Unggulan Ilmu Lingkungan",
+      "limbah": "Limbah cair dari sumber bekas reagen laboratorium kimia",
+      "volume": 5,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-06",
+      "date": null,
+      "lembaga": "Pusat Unggulan Ilmu Lingkungan",
+      "limbah": "Limbah B3 sumber bekas reagen laboratorium",
+      "volume": 1,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-06",
+      "date": null,
+      "lembaga": "Pusat Unggulan Ilmu Lingkungan",
+      "limbah": "Limbah padat dari sumber pecahan alat-alat lab",
+      "volume": 3,
+      "satuan": "Liter",
+      "kode_limbah": "A337-1",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-06",
+      "date": null,
+      "lembaga": "Pusat Unggulan Ilmu Lingkungan",
+      "limbah": "Limbah pecahan alat-alat laboratorium kimia",
+      "volume": 2,
+      "satuan": "Liter",
+      "kode_limbah": "A337-1",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-08",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Larutan asam anorganik seperti HCl, Asam sulfat, Asam klorida",
+      "volume": 95,
+      "satuan": "Liter",
+      "kode_limbah": "A109D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-08",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Larutan basa seperti NaOH, KOH, ammonia dalam pelarut air",
+      "volume": 120,
+      "satuan": "Liter",
+      "kode_limbah": "A108C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-08",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Cairan mengandung cairan komplek seperti metilen biru dan komplek logam berat dengan ligan organik lainnya dalam pelarut air",
+      "volume": 88,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-08",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah alat-alat gelas pecah belah bekas chemicals",
+      "volume": 37,
+      "satuan": "Kg",
+      "kode_limbah": "A337-1",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-08",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "botol-botol bekas chemiclas, tips pipet dan sarung tangan non infeksius, juga beberapa yang kadaluarsa",
+      "volume": 32,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-08",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah cairan atau pelarut organik non halogen seperti etanol,metanol,heksan",
+      "volume": 345,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-08",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah pelarut organik halogen: kloroform, metilen klorida",
+      "volume": 45,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-08",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah cairan logam berat seperti Krom, Arsen, Tembaga, Timbal",
+      "volume": 115,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-08",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Darah dalam kemasan tube, sampling darah dari ebberapa mahasiswa yang digunakan untuk cek jenis golongan darah , gula dan cek darah lainnya",
+      "volume": 5,
+      "satuan": "Liter",
+      "kode_limbah": "A337-1",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-08",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "HCl, H2SO4, HNO3, H2C2O4",
+      "volume": 20,
+      "satuan": "Liter",
+      "kode_limbah": "A109D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-08",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "NaOH, Fenolftalein, H2C2O4",
+      "volume": 25,
+      "satuan": "Liter",
+      "kode_limbah": "A108C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-08",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "waste salt : Na2C2O4, BaCl2, Na2CO3, K2CrO4, Na2SO3, Pb(NO3)2, Zn mossy",
+      "volume": 120,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-08",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "organic waste : etanol, metanol, xylene, sikloheksana, aseton, butanol,",
+      "volume": 35,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-08",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Inorganic waste : as. borat, dll",
+      "volume": 20,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-08",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "botol-botol bekas bahan kimia",
+      "volume": 1,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-08",
+      "date": null,
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Contaminated waste (sarung tangan nitrile, latex)",
+      "volume": 1,
+      "satuan": "Kg",
+      "kode_limbah": "A108D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-09",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah padat laboratorium mikrobiologi",
+      "volume": 4,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-09",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah cair laboratorium mikrobiologi",
+      "volume": 20,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-09",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah cair laboratorium farmasetika",
+      "volume": 20,
+      "satuan": "Liter",
+      "kode_limbah": "B337-1",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-09",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah padat laboratorium farmasetika",
+      "volume": 40,
+      "satuan": "Liter",
+      "kode_limbah": "B337-1",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-09",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah gelas botol kaca",
+      "volume": 2,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-09",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah cair laboratorium kimia medisinal",
+      "volume": 20,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-09",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah cair laboratorium steril",
+      "volume": 140,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-09",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah bahan kimia kadaluarsa",
+      "volume": 8,
+      "satuan": "Kg",
+      "kode_limbah": "A338-1",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-09",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah cair laboratorium teknologi farmasi",
+      "volume": 20,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-09",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah cair laboratorium bahan alam",
+      "volume": 80,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-09",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah cair laboratorium kultur",
+      "volume": 20,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-09",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah cair laboratorium analisis dasar fisikokimia",
+      "volume": 40,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-09",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah kemasan dus",
+      "volume": 10,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-09",
+      "date": null,
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Chlorampenicol Kapsul, Chlorampenicol powder, Tertacycline powder",
+      "volume": 0.5,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-09",
+      "date": null,
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Natrium Karbonat (Na2CO3) Cupric Sulfate (CuSO4) Di-natrium hydrogen phosphate dodecahydrate (Na2HPO4.12H2O) Calcium Chloride (CaCl2) Asam giberelat",
+      "volume": 3.1,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-09",
+      "date": null,
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Natrium nitrat (NaNO3)",
+      "volume": 0.6,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-09",
+      "date": null,
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Kalium hidroksida (KOH), Natrium hidroksida (NaOH), Copper (I) Chloride (CuCl)",
+      "volume": 1.7,
+      "satuan": "Kg",
+      "kode_limbah": "A108C",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-09",
+      "date": null,
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Berbagai macam pestisida bentuk padat, Ammonium oksalat ((NH4)2C2O4), Silika gel biru",
+      "volume": 5.3,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-09",
+      "date": null,
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Kalium dihidrogen fosfat (KH2PO4), Magnesium sulfat heptahydrate (MgSO4.7H2O), Nutrient broth, Nutrient agar, Yeast extract, Bacto agar, Trinatrium sitrat dihidrat, D(+)-Glucose, Sucrose, Potassium phosphate dibasic (K2HPO4), Potassium phosphate monobasic (KH2PO4), Sorbitol, Amylum solubile, Czapek solution agar, Malt extract agar, Dextrose monohydrate, Maltose, Whiton super 1000 (CaCO3), Sodium sulfite (Na2SO3.7H2O), Potassium chloride (KCl), Potato dextrose agar",
+      "volume": 16,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-09",
+      "date": null,
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Kalium dihidrogen fosfat (KH2PO4), Magnesium sulfat heptahydrate (MgSO4.7H2O), Nutrient broth, Nutrient agar, Yeast extract, Bacto agar, Trinatrium sitrat dihidrat, D(+)-Glucose, Sucrose, Potassium phosphate dibasic (K2HPO4), Potassium phosphate monobasic (KH2PO4), Sorbitol, Amylum solubile, Czapek solution agar, Malt extract agar, Dextrose monohydrate, Maltose, Whiton super 1000 (CaCO3), Sodium sulfite (Na2SO3.7H2O), Potassium chloride (KCl), Potato dextrose agar",
+      "volume": 16,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-09",
+      "date": null,
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Berbagai macam pestisida bentuk cair, Formaldehyde solution, Phenol crystal, Xylol",
+      "volume": 20,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-09",
+      "date": null,
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Methanol pro analyst, Alkohol 70%, Isopropyl Alcohol, Acetone, Methanol teknis, Ethanol teknis, Carbol fuchsin teknis",
+      "volume": 16,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-09",
+      "date": null,
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Sodium hypochlorite (NaOCl), Asam sulfat (H2SO4), Asam klorida (HCl), Asam laktat (C3H6O3)",
+      "volume": 20,
+      "satuan": "Liter",
+      "kode_limbah": "A109D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-09",
+      "date": null,
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Iodium tincture",
+      "volume": 0.1,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-09",
+      "date": null,
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Asam oleat, Asam asetat, Trietanolamin, Glycerin",
+      "volume": 3,
+      "satuan": "Liter",
+      "kode_limbah": "A109D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-09",
+      "date": null,
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Botol kaca bekas pestisida, Botol kaca bekas B3, Botol kaca bekas penelitian mahasiswa, Botol plastik bekas B3, Botol plastik bekas penelitian mahasiswa, Botol plastik bekas bahan kimia kadaluarsa",
+      "volume": 50,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-10",
+      "date": null,
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Mengandung EMS ethyl methane sulfonate",
+      "volume": 450,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-10",
+      "date": null,
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "campuran bahan asam hcl, H2so4`",
+      "volume": 3,
+      "satuan": "Liter",
+      "kode_limbah": "A109D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-10",
+      "date": null,
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Agarose",
+      "volume": 5,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-10",
+      "date": null,
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "terdapat chloroform",
+      "volume": 10,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-10",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah campuran pelarut organik",
+      "volume": 72,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-10",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah campuran asam",
+      "volume": 40,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-10",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah padatan (botol kaca bekas air for injeksi dan alat gelas lab yang pecah)",
+      "volume": 10,
+      "satuan": "Kg",
+      "kode_limbah": "A337-1",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-10",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah cair etanol kosmetik",
+      "volume": 5,
+      "satuan": "Liter",
+      "kode_limbah": "B337-1",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-10",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah destruksi media (lab formulasi)",
+      "volume": 2,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-10",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah syringe dan filter syringe",
+      "volume": 1,
+      "satuan": "Kg",
+      "kode_limbah": "A337-1",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-10",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah kering lab mikrobiologi",
+      "volume": 2,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-10",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah praktikum laboratorium teknologi farmasi",
+      "volume": 20,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-10",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah biologi sel",
+      "volume": 20,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-10",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah padat biologi sel",
+      "volume": 2,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-10",
+      "date": null,
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah campuran asam",
+      "volume": 1,
+      "satuan": "Liter",
+      "kode_limbah": "A109D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-12",
+      "date": null,
+      "lembaga": "Pusat Unggulan Ilmu Lingkungan",
+      "limbah": "Limbah lampu",
+      "volume": 0.003,
+      "satuan": "Kg",
+      "kode_limbah": "B107D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-12",
+      "date": null,
+      "lembaga": "Pusat Unggulan Ilmu Lingkungan",
+      "limbah": "Limbah pecahan gelas",
+      "volume": 19,
+      "satuan": "Kg",
+      "kode_limbah": "A337-1",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2025-12",
+      "date": null,
+      "lembaga": "Pusat Unggulan Ilmu Lingkungan",
+      "limbah": "Limbah organik",
+      "volume": 6,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-12",
+      "date": null,
+      "lembaga": "Pusat Unggulan Ilmu Lingkungan",
+      "limbah": "Limbah logam",
+      "volume": 3,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-12",
+      "date": null,
+      "lembaga": "Pusat Unggulan Ilmu Lingkungan",
+      "limbah": "Limbah anorganik",
+      "volume": 6,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2025-12",
+      "date": null,
+      "lembaga": "Pusat Unggulan Ilmu Lingkungan",
+      "limbah": "Limbah pabrik tekstil (piloting lab)",
+      "volume": 550,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-04",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah campuran pelarut organik (meoh, ACN) (Laboratorium analisis dasar fisikokimia)",
+      "volume": 97,
+      "satuan": "Liter",
+      "kode_limbah": "B105D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-04",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah cair mikrobiologi",
+      "volume": 20,
+      "satuan": "Liter",
+      "kode_limbah": "A337-1",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-04",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah plastik mikrobiologi",
+      "volume": 2,
+      "satuan": "Kg",
+      "kode_limbah": "A337-1",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-04",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah cair bekas praktikum farmasetika dasar",
+      "volume": 20,
+      "satuan": "Liter",
+      "kode_limbah": "A107D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-04",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah padat gelas, botol kaca",
+      "volume": 2,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-04",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah cair campuran bekas praktikum laboratorium teknologi farmasi",
+      "volume": 20,
+      "satuan": "Liter",
+      "kode_limbah": "A107D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-04",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah cair lab farmakognosi",
+      "volume": 80,
+      "satuan": "Liter",
+      "kode_limbah": "A107D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-04",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah cair campuran laboratorium biofarmasi",
+      "volume": 55,
+      "satuan": "Liter",
+      "kode_limbah": "A107D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-04",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah cair campuran kosmetik",
+      "volume": 5,
+      "satuan": "Liter",
+      "kode_limbah": "A107D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-04",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah kaca pecah belah dan syringe",
+      "volume": 3,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-04",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah cair campuran asam dan bahan kimia lain laboratorium kimia medisinal",
+      "volume": 40,
+      "satuan": "Liter",
+      "kode_limbah": "A107D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-04",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah merkury",
+      "volume": 1,
+      "satuan": "Kg",
+      "kode_limbah": "A105D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-04",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah padat bahan kimia Besi sulfat kadaluarsa",
+      "volume": 1,
+      "satuan": "Kg",
+      "kode_limbah": "A101D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-04",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah syringe",
+      "volume": 1,
+      "satuan": "Kg",
+      "kode_limbah": "A337-1",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-04",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah biokimia klinis",
+      "volume": 15,
+      "satuan": "Liter",
+      "kode_limbah": "A337-1",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-12",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Cairan asam-asam anorganik dalam air",
+      "volume": 220,
+      "satuan": "Liter",
+      "kode_limbah": "A103C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-12",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "LImbah basa-basa anorganik dalam air (NaOH, KOH, ammonia dalam pelarut air)",
+      "volume": 200,
+      "satuan": "Liter",
+      "kode_limbah": "A108C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-12",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah cairan komplek dengan pelarut ai, sisa reaksi titrasi komplek, cairan komplek warna anorganik",
+      "volume": 70,
+      "satuan": "Liter",
+      "kode_limbah": "A108D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-12",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Alat-alat gelas laboratorium yang pecah, dan tidak bisa diperbaiki (labu, beaker, erlenmeyer,botol kaaca dll)",
+      "volume": 54,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-12",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah padatan (sampel dan bahan expired)",
+      "volume": 10,
+      "satuan": "Kg",
+      "kode_limbah": "A101D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-12",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah cairan organik non halogen (campuran etanol, metanol, heksan,aseton)",
+      "volume": 250,
+      "satuan": "Liter",
+      "kode_limbah": "B105D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-12",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah cairan organik halogen (campuran yang mengandung kloforom, iodine)",
+      "volume": 155,
+      "satuan": "Liter",
+      "kode_limbah": "A101A",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-12",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah heavy metal (Logam2 berat dalam pelarut air, Cu, Fe, Mn, As, Pb)",
+      "volume": 130,
+      "satuan": "Liter",
+      "kode_limbah": "A108D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-12",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Darah dalam tube sentrifugasi, hasil sampling praktek kadar gula darah",
+      "volume": 5,
+      "satuan": "Liter",
+      "kode_limbah": "A337-1",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-12",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Campuran minyak-alkohol",
+      "volume": 80,
+      "satuan": "Liter",
+      "kode_limbah": "B105D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-12",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah minyak padat bekas-bekas sampel",
+      "volume": 24,
+      "satuan": "Kg",
+      "kode_limbah": "B105D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-12",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah antibiotik seperti cairan amoxicillin",
+      "volume": 5,
+      "satuan": "Liter",
+      "kode_limbah": "A337-2",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-23",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah campuran anorganik",
+      "volume": 60,
+      "satuan": "Liter",
+      "kode_limbah": "A107D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-23",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah campuran organic",
+      "volume": 35,
+      "satuan": "Liter",
+      "kode_limbah": "A107D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-23",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Botol Bekas asam sulfat dan pereaksi",
+      "volume": 12,
+      "satuan": "Kg",
+      "kode_limbah": "A103C",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-23",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Silika rusak",
+      "volume": 1,
+      "satuan": "Kg",
+      "kode_limbah": "A108D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-23",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Pecahan kaca alat kimia",
+      "volume": 12,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-26",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "NaOH, NH4OH, H2SO4",
+      "volume": 20,
+      "satuan": "Liter",
+      "kode_limbah": "A103C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-26",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "amonia,FeCl3, H2SO4, dll",
+      "volume": 60,
+      "satuan": "Liter",
+      "kode_limbah": "A103C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-26",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "HCl, HNO3, H2SO4, CH3COOH, H2C2O3, dll",
+      "volume": 60,
+      "satuan": "Liter",
+      "kode_limbah": "A103C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-26",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Etanol, metanol, xylene, aceton, etil asetat, sikloheksan, dll",
+      "volume": 40,
+      "satuan": "Liter",
+      "kode_limbah": "B105D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-26",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "H2SO4, NaCl, CaCO3, FeCl3, Zn mosy, HCl, K2Cr2O7, K2CrO4, dll",
+      "volume": 120,
+      "satuan": "Liter",
+      "kode_limbah": "A103C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-26",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "tiosulfat, dll",
+      "volume": 20,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-26",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "botol coklat bekas reagen kimia",
+      "volume": 100,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-26",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "asam okslat, champor",
+      "volume": 4,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-01",
+      "date": "2026-01-26",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "botol bekas akuabides",
+      "volume": 5,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-09",
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Cyclohexane, Acetid Asam Glasial, Acid Acetid Glasial, Chloroform, Asetonum, HCl, Sodium hydrogen phosphate, Methanol",
+      "volume": 60,
+      "satuan": "Liter",
+      "kode_limbah": "A101A",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-09",
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Natrium hidroksida",
+      "volume": 1,
+      "satuan": "Kg",
+      "kode_limbah": "A108C",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-09",
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Sukrosa, Glucose monohydrate, Gelatin linier, Yeast Extract, Nutrien Broth, Nutrien Agar, Methylparaben, CaChloride",
+      "volume": 5,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-09",
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Formalin, pestisida, NH3, Pengawet jaringan, Gliserin lokal, Gliserin PH",
+      "volume": 10,
+      "satuan": "Liter",
+      "kode_limbah": "A337-4",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-09",
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Alcohol, Buffer solution",
+      "volume": 3,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-09",
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Botol kaca, kaca preparat, jerigen plastik, toples kaca",
+      "volume": 10,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-09",
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Minyak atsiri, larutan pengawet hama",
+      "volume": 2,
+      "satuan": "Liter",
+      "kode_limbah": "B105D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-09",
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Serbuk kunyit",
+      "volume": 3,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-10",
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Pestisida",
+      "volume": 15,
+      "satuan": "Kg",
+      "kode_limbah": "A337-4",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-10",
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Pestisida",
+      "volume": 10,
+      "satuan": "Kg",
+      "kode_limbah": "A337-4",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-10",
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Pestisida",
+      "volume": 20,
+      "satuan": "Liter",
+      "kode_limbah": "A337-4",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-10",
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "n-Hexan, Eter",
+      "volume": 2,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-10",
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "KOH, NaOH",
+      "volume": 2,
+      "satuan": "Kg",
+      "kode_limbah": "A108C",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-10",
+      "lembaga": "Fakultas Pertanian",
+      "limbah": "Asam Asetat (cuka dapur), glycerin, molase",
+      "volume": 3,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "TCA K2CO3 H3BO3 HCl Ind.Campuran (metyl merah dan biru)",
+      "volume": 28.5,
+      "satuan": "Liter",
+      "kode_limbah": "A101A",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "HCL KI Na2HPO4 larutan luff schrool H2SO4 NaOH Na2S2O3.5H20 pb asetat Methyl jingga KI",
+      "volume": 101.7,
+      "satuan": "Liter",
+      "kode_limbah": "A103C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "K2SO4 HgO H2SO4 HCL NaOH Na2S2O3.5H20 H3BO3 Ind.Campuran (metyl merah dan biru)",
+      "volume": 31,
+      "satuan": "Liter",
+      "kode_limbah": "A107D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Heksan",
+      "volume": 3,
+      "satuan": "Liter",
+      "kode_limbah": "B105D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "H3PO4 Asam kromatopat H2SO4",
+      "volume": 1,
+      "satuan": "Liter",
+      "kode_limbah": "A103C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Asam galat Follin Ciocalteus Na2CO3 Aseton",
+      "volume": 11.65,
+      "satuan": "Liter",
+      "kode_limbah": "B105D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Metanol Quercetin AlCl3 CH3COOK Aseton",
+      "volume": 2.1,
+      "satuan": "Liter",
+      "kode_limbah": "B105D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Metanol DPPH",
+      "volume": 2.55,
+      "satuan": "Liter",
+      "kode_limbah": "B105D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Ninhidrin Aseton Asam Asetat-Glasial Natrium Asetat",
+      "volume": 0.2,
+      "satuan": "Liter",
+      "kode_limbah": "B105D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Natrium Sitrat Na2CO3 CuSO4",
+      "volume": 50,
+      "satuan": "Mili Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Cu(CH3COO)2 CH3COOH",
+      "volume": 50,
+      "satuan": "Mili Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "HCL resorsinol",
+      "volume": 30,
+      "satuan": "Mili Liter",
+      "kode_limbah": "A103C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Campuran KI-I2 Standar Amilosa NaOH asam asetat glacial Etanol",
+      "volume": 4.3,
+      "satuan": "Liter",
+      "kode_limbah": "B105D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "klorofom Na2S2O3.5H20 Amylum KI Reagen Wijs",
+      "volume": 0.4,
+      "satuan": "Liter",
+      "kode_limbah": "A101A",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Alkohol netral NaOH KOH Indikator PP",
+      "volume": 2,
+      "satuan": "Liter",
+      "kode_limbah": "A108C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Albumin NaOH Na2CO3 Na-K-Tartarat CUSO4 Folin Ciocalteu Reagent",
+      "volume": 11.3,
+      "satuan": "Liter",
+      "kode_limbah": "A108C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "NaOH CH3COOH NaHCO3 Albumin",
+      "volume": 100,
+      "satuan": "Mili Liter",
+      "kode_limbah": "A108C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "NaOH Indikator PP Pati Etanol",
+      "volume": 1,
+      "satuan": "Liter",
+      "kode_limbah": "A108C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "NaOH Indikator PP Pati",
+      "volume": 5.5,
+      "satuan": "Liter",
+      "kode_limbah": "A108C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Etanol",
+      "volume": 1,
+      "satuan": "Liter",
+      "kode_limbah": "B105D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Klorofom Etanol Asam Asetat Glasial Amilum Na2S2O3.5H2O",
+      "volume": 4,
+      "satuan": "Liter",
+      "kode_limbah": "A101A",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Ammonium molibdat Asam Oksalat C6H8O6 Vit C stdr H2SO4",
+      "volume": 200,
+      "satuan": "Mili Liter",
+      "kode_limbah": "A103C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "CuSO4 NaOH buffer asetat Ninhidrin",
+      "volume": 1,
+      "satuan": "Liter",
+      "kode_limbah": "A108C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "NaOH CuSO4",
+      "volume": 5,
+      "satuan": "Mili Liter",
+      "kode_limbah": "A108C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "AgNO3 KCl K2CrO4",
+      "volume": 3.5,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Na2C2O4 H2SO4 KMnO4 FeSO4 Na2C2O4",
+      "volume": 1,
+      "satuan": "Liter",
+      "kode_limbah": "A103C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Na2S2O3.5H2O K2CR2O7 KI CuSO4",
+      "volume": 1,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Aquades",
+      "volume": 3,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "NaH2PO4 Na2HPO4 Na2CO3 Asam Pikrat KCN",
+      "volume": 9,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "DNS NaOH Na-K-tartarat Fenol Na-metabisulfit HCl NaOH indikator PP",
+      "volume": 1,
+      "satuan": "Liter",
+      "kode_limbah": "A103C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Asam Asetat Glasial I2 KI Amilum",
+      "volume": 4,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "EDTA EBT buffer Ph CaCl2 NaOH",
+      "volume": 2.5,
+      "satuan": "Liter",
+      "kode_limbah": "A108C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "HCl",
+      "volume": 4,
+      "satuan": "Liter",
+      "kode_limbah": "A103C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "FeSO4",
+      "volume": 100,
+      "satuan": "Mili Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "HCl",
+      "volume": 3,
+      "satuan": "Liter",
+      "kode_limbah": "A103C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Tricloro ACID TCA Tiobarbituric Acid Klorofom Asam asetat glacial",
+      "volume": 3.5,
+      "satuan": "Liter",
+      "kode_limbah": "A101A",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Alginat Fikosianin Spirulina DI Water",
+      "volume": 1.5,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Antioksidan FRAP (buffer asetat dari sodium asetat trihidrat dan asam asetat glasial) HCl TPTZ FeCl3.6H2O FeSO4.7H2O",
+      "volume": 1,
+      "satuan": "Liter",
+      "kode_limbah": "A103C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "HCl Indikator metil merah NH4OH CaCl2 H2SO4 KMnO4",
+      "volume": 5,
+      "satuan": "Liter",
+      "kode_limbah": "A103C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "HCL NaOH H2SO4 luff schrool KI Na2S2O3.5H20 Amylum Phenoptalein",
+      "volume": 15,
+      "satuan": "Liter",
+      "kode_limbah": "A103C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Na2CO3 jenuh Reagen Folin-Denis Asam Tanat",
+      "volume": 1,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Larutan Carez 1 : K4Fe (CN)6 3H2O Larutan Carrez II : Zn (CH3COO)2 2H2O Natrium bisulfit (NaHSO3)",
+      "volume": 2,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Larutan stok iod I2 amylum Nacl Buffer asetat",
+      "volume": 4,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Aseton H2SO4 klorofom Asam asetat anhidrat",
+      "volume": 50,
+      "satuan": "Mili Liter",
+      "kode_limbah": "A101A",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Etanol netral NaOH ind.phenoptalein Asam oksalat",
+      "volume": 1,
+      "satuan": "Liter",
+      "kode_limbah": "A108C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Phenol NaOH ZnSO4 Ba(OH)2 asam pikrat telles mix",
+      "volume": 2,
+      "satuan": "Liter",
+      "kode_limbah": "A108C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "I2 Amilum Na2S2O3.5H20",
+      "volume": 3,
+      "satuan": "Liter",
+      "kode_limbah": "A106D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "buffer KCl pH 1,0 buffer Natrium Asetat pH 4,5 HCl Asam Tartarat",
+      "volume": 1,
+      "satuan": "Liter",
+      "kode_limbah": "A103C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Asam sulfat Kalium dikromat Etanol",
+      "volume": 1,
+      "satuan": "Liter",
+      "kode_limbah": "A103C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Heksan Aseton",
+      "volume": 1,
+      "satuan": "Liter",
+      "kode_limbah": "B105D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Etanol",
+      "volume": 3,
+      "satuan": "Liter",
+      "kode_limbah": "B105D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Minyak sawit merah Griserol monostear whey protein solate sodium aginat bees wax carnaubax",
+      "volume": 2,
+      "satuan": "Liter",
+      "kode_limbah": "B105D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Potasssium Sodium Tartrate Tetrahydrate",
+      "volume": 0.5,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah kemasan sodium thiosulfate pentahydrate",
+      "volume": 1,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah kemasan Copper ( II ) sulfate pentahydrate",
+      "volume": 1,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah kemasan Natriumchlorid",
+      "volume": 2,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah kemasan potassium iodide",
+      "volume": 2,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah botol Etanol",
+      "volume": 5,
+      "satuan": "Liter",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah botol Asam Clorida (HCL)",
+      "volume": 1,
+      "satuan": "Liter",
+      "kode_limbah": "A103C",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah botol heksan",
+      "volume": 10,
+      "satuan": "Liter",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah botol Metanol",
+      "volume": 5,
+      "satuan": "Liter",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah botol Toluen",
+      "volume": 3,
+      "satuan": "Liter",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah botol 2-Propanol",
+      "volume": 2,
+      "satuan": "Liter",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah botol Aseton",
+      "volume": 2,
+      "satuan": "Liter",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah botol TCA",
+      "volume": 0,
+      "satuan": "Kg",
+      "kode_limbah": "A101A",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah kemasan sodium carbonate",
+      "volume": 1,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Kemasan Pb-Aseta Trihidrat",
+      "volume": 0.25,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Kemasan Asam sitrat monohidrat",
+      "volume": 1,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-05",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Kaca",
+      "volume": 1,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-26",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah campuran pelarut organik",
+      "volume": 55,
+      "satuan": "Liter",
+      "kode_limbah": "B105D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-26",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah padat botol kaca bekas water for injection",
+      "volume": 15,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-26",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah campuran asam dan pelarut bahan kimia lainnya",
+      "volume": 25,
+      "satuan": "Liter",
+      "kode_limbah": "A107D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-26",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah dus bekas produk farmasi",
+      "volume": 10,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-26",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah campuran pelarut organik (lab bahan alam)",
+      "volume": 60,
+      "satuan": "Liter",
+      "kode_limbah": "B105D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-26",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah bekas botol kaca (lab farmasetika)",
+      "volume": 20,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-26",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah cair mikrobiologi",
+      "volume": 20,
+      "satuan": "Liter",
+      "kode_limbah": "A337-1",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-26",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah kering mikrobiologi",
+      "volume": 10,
+      "satuan": "Kg",
+      "kode_limbah": "A337-1",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-26",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah cair campuran (Lab teknologi farmasi)",
+      "volume": 40,
+      "satuan": "Liter",
+      "kode_limbah": "A107D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-02",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Asam anorganik, HCl, H2SO4, Asam asetat dalam air",
+      "volume": 70,
+      "satuan": "Liter",
+      "kode_limbah": "A103C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-02",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Cairan NaOH, KOH, Ammonia dalam air",
+      "volume": 75,
+      "satuan": "Liter",
+      "kode_limbah": "A108C",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-02",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah cairan komplek sperti Metilen Biru, Komplek Mangan dan Komplek Crom-DPC",
+      "volume": 30,
+      "satuan": "Liter",
+      "kode_limbah": "A108D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-02",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Pecahan alat gelas, kemasan bahan kimia",
+      "volume": 20,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-02",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah bahan kimia kadaluarsa, sampel-sampel penelitian",
+      "volume": 10,
+      "satuan": "Kg",
+      "kode_limbah": "A101D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-02",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah cairan organik non halogen: campuran etanol, metanol, aseton, heksan",
+      "volume": 50,
+      "satuan": "Liter",
+      "kode_limbah": "B105D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-02",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah cairan organik halogen: campuran mengandung kloroform, iod, klor",
+      "volume": 95,
+      "satuan": "Liter",
+      "kode_limbah": "A101A",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-02",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah heavy metal: Cairan mengandung Kromium, Tembaga, Arsen",
+      "volume": 90,
+      "satuan": "Liter",
+      "kode_limbah": "A108D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-02",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah infeksius: sampel darah sampel praktikum kadar gula dan kolesterol",
+      "volume": 1,
+      "satuan": "Liter",
+      "kode_limbah": "A337-1",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-02",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah campuran minyak-alkohol",
+      "volume": 50,
+      "satuan": "Liter",
+      "kode_limbah": "B105D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-02",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah padatan (minyak padat)",
+      "volume": 5,
+      "satuan": "Kg",
+      "kode_limbah": "B105D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-02",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah antibiotik: sampel-sampel obat",
+      "volume": 1,
+      "satuan": "Kg",
+      "kode_limbah": "A337-2",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-26",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah campuran pelarut organik (Lab Penelitian AFKM)",
+      "volume": 80,
+      "satuan": "Liter",
+      "kode_limbah": "B105D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-26",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah cair laboratorium mikrobiologi",
+      "volume": 20,
+      "satuan": "Liter",
+      "kode_limbah": "A337-1",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-26",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah padat kemasan bekas laboratorium mikrobiologi",
+      "volume": 2,
+      "satuan": "Kg",
+      "kode_limbah": "A337-1",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-26",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah campuran laboratorium teknologi farmasi",
+      "volume": 20,
+      "satuan": "Liter",
+      "kode_limbah": "A107D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-26",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah kemasan bekas laboratorium teknologi farmasi",
+      "volume": 2,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-26",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah campuran laboratorium farmasetika",
+      "volume": 15,
+      "satuan": "Liter",
+      "kode_limbah": "A107D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-26",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah padat gelas kaca bekas laboratorium farmasetika",
+      "volume": 5,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-26",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah campuran laboratorium biologi sel",
+      "volume": 30,
+      "satuan": "Liter",
+      "kode_limbah": "A337-1",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-26",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah padat bekas laboratorium biologi sel",
+      "volume": 5,
+      "satuan": "Kg",
+      "kode_limbah": "A337-1",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-26",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah campuran laboratorium fitokimia",
+      "volume": 20,
+      "satuan": "Liter",
+      "kode_limbah": "A107D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-26",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah padat syringe laboratorium farmakologi",
+      "volume": 0.1,
+      "satuan": "Kg",
+      "kode_limbah": "A337-1",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-26",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah padat kaca laboratorium fitokimia",
+      "volume": 1,
+      "satuan": "Kg",
+      "kode_limbah": "B104D",
+      "kategori": "Padat"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-26",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "LImbah campuran laboratorium biofarmasetika/steril",
+      "volume": 15,
+      "satuan": "Liter",
+      "kode_limbah": "A107D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-26",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah campuran laboratorium kimia medisinal",
+      "volume": 91,
+      "satuan": "Liter",
+      "kode_limbah": "A107D",
+      "kategori": "Cair"
+    },
+    {
+      "month": "2026-02",
+      "date": "2026-02-26",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah reagen kimia (amonium tiosianat, glukosa, kalium tiosianat)",
+      "volume": 1,
+      "satuan": "Kg",
+      "kode_limbah": "A106D",
+      "kategori": "Padat"
+    }
+  ]
+}
