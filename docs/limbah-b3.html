@@ -30,6 +30,30 @@
         </div>
       </section>
 
+      <section class="card p-5 mt-6">
+        <div class="flex flex-wrap items-baseline justify-between gap-2 mb-1">
+          <h3 class="text-sm font-semibold text-slate-900">Tren per Semester</h3>
+          <span class="text-xs text-slate-400">Semester 1 = Jan–Jun · Semester 2 = Jul–Des</span>
+        </div>
+        <p class="text-xs text-slate-400 mb-3">Akumulasi volume cair (L) + massa padat (kg) per semester. Berguna untuk perbandingan tahunan periode genap vs ganjil.</p>
+        <div id="chart-semester"></div>
+        <div class="overflow-x-auto mt-4">
+          <table class="data-table" id="semester-table">
+            <thead>
+              <tr>
+                <th>Semester</th>
+                <th>Periode</th>
+                <th class="num">Bulan Aktif</th>
+                <th class="num">Entri</th>
+                <th class="num">Volume Cair (L)</th>
+                <th class="num">Massa Padat (kg)</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
       <section class="grid gap-6 mt-6 lg:grid-cols-2">
         <div class="card p-5">
           <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
@@ -179,6 +203,52 @@
         { label: "Massa Padat (Kg)", color: p.residu, y: months.map(m => m.mass_kg) },
       ],
     });
+
+    // ─── Tren per Semester (S1: Jan-Jun, S2: Jul-Des) ────────────────
+    // Agregat dari entries → key "YYYY-S1" / "YYYY-S2"
+    const semesterAgg = {};
+    const semesterMonths = {};  // semKey → Set of months
+    for (const e of data.entries) {
+      const [y, mm] = e.month.split("-");
+      const mNum = parseInt(mm, 10);
+      const semNum = mNum <= 6 ? 1 : 2;
+      const key = `${y}-S${semNum}`;
+      if (!semesterAgg[key]) semesterAgg[key] = { liter: 0, kg: 0, entries: 0 };
+      if (!semesterMonths[key]) semesterMonths[key] = new Set();
+      semesterMonths[key].add(e.month);
+      semesterAgg[key].entries += 1;
+      const sat = (e.satuan || "").toLowerCase();
+      if (sat.startsWith("liter") || sat === "l") semesterAgg[key].liter += e.volume;
+      else if (sat === "kg" || sat === "kilogram") semesterAgg[key].kg += e.volume;
+    }
+    const semKeys = Object.keys(semesterAgg).sort();
+    const semLabels = semKeys.map(k => {
+      const [y, sN] = k.split("-S");
+      return `${y} S${sN}`;
+    });
+    const semPeriode = (k) => {
+      const [, sN] = k.split("-S");
+      return sN === "1" ? "Jan – Jun" : "Jul – Des";
+    };
+    groupedBar("chart-semester", {
+      x: semLabels,
+      yLabel: "Volume",
+      height: 320,
+      series: [
+        { label: "Liter (cair)", color: p.anorganik, y: semKeys.map(k => Math.round(semesterAgg[k].liter * 100) / 100) },
+        { label: "Kg (padat)", color: p.residu, y: semKeys.map(k => Math.round(semesterAgg[k].kg * 100) / 100) },
+      ],
+    });
+    $("#semester-table tbody").innerHTML = semKeys.map(k => `
+      <tr>
+        <td><strong>${k.replace("-", " ")}</strong></td>
+        <td class="text-slate-600">${semPeriode(k)}</td>
+        <td class="num">${semesterMonths[k].size}</td>
+        <td class="num">${fmtInt(semesterAgg[k].entries)}</td>
+        <td class="num">${fmtNum(semesterAgg[k].liter)}</td>
+        <td class="num">${fmtNum(semesterAgg[k].kg)}</td>
+      </tr>
+    `).join("");
 
     // ─── Histori per fakultas (interactive dropdown) ─────────────────
     // Build per-lembaga monthly aggregation from entries
