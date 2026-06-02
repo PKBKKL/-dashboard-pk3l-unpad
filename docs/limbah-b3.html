@@ -31,12 +31,13 @@
       </section>
 
       <section class="card p-5 mt-6">
-        <div class="flex flex-wrap items-baseline justify-between gap-2 mb-1">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
           <h3 class="text-sm font-semibold text-slate-900">Tren per Semester</h3>
-          <span class="text-xs text-slate-400">Semester 1 = Jan–Jun · Semester 2 = Jul–Des</span>
+          <select id="semester-select" class="text-xs px-3 py-1.5 rounded border border-slate-200 bg-white focus:border-green-500 focus:outline-none"></select>
         </div>
-        <p class="text-xs text-slate-400 mb-3">Akumulasi volume cair (L) + massa padat (kg) per semester. Berguna untuk perbandingan tahunan periode genap vs ganjil.</p>
+        <p class="text-xs text-slate-400 mb-3">Pilih semester untuk lihat breakdown bulan-bulan di dalamnya. Default: tampil semua semester sebagai perbandingan agregat. <span class="text-slate-500">Semester 1 = Jan–Jun · Semester 2 = Jul–Des.</span></p>
         <div id="chart-semester"></div>
+        <div id="semester-summary" class="mt-3 grid grid-cols-3 gap-2 text-center text-xs"></div>
         <div class="overflow-x-auto mt-4">
           <table class="data-table" id="semester-table">
             <thead>
@@ -230,15 +231,77 @@
       const [, sN] = k.split("-S");
       return sN === "1" ? "Jan – Jun" : "Jul – Des";
     };
-    groupedBar("chart-semester", {
-      x: semLabels,
-      yLabel: "Volume",
-      height: 320,
-      series: [
-        { label: "Liter (cair)", color: p.anorganik, y: semKeys.map(k => Math.round(semesterAgg[k].liter * 100) / 100) },
-        { label: "Kg (padat)", color: p.residu, y: semKeys.map(k => Math.round(semesterAgg[k].kg * 100) / 100) },
-      ],
-    });
+    // Helper: format ISO month "2024-09" → "Sep '24"
+    const fmtMonthShort = (m) => {
+      const [y, mm] = m.split("-");
+      return `${MONTH_SHORT[parseInt(mm, 10) - 1]} '${y.slice(2)}`;
+    };
+
+    // Populate dropdown
+    const selSem = $("#semester-select");
+    selSem.innerHTML = `<option value="__all__">— Semua Semester (Perbandingan) —</option>` +
+      semKeys.map(k => `<option value="${k}">${k.replace("-", " ")} · ${semPeriode(k)}</option>`).join("");
+
+    function renderSemesterChart(selected) {
+      let xs, liters, kgs, totalLiter = 0, totalKg = 0, totalEntries = 0;
+      if (selected === "__all__") {
+        // Default: 4 semester sebagai perbandingan
+        xs = semLabels;
+        liters = semKeys.map(k => Math.round(semesterAgg[k].liter * 100) / 100);
+        kgs = semKeys.map(k => Math.round(semesterAgg[k].kg * 100) / 100);
+        for (const k of semKeys) {
+          totalLiter += semesterAgg[k].liter;
+          totalKg += semesterAgg[k].kg;
+          totalEntries += semesterAgg[k].entries;
+        }
+      } else {
+        // Pilih satu semester → drill-down ke bulan-bulan dalamnya
+        const monthsInSem = [...semesterMonths[selected]].sort();
+        xs = monthsInSem.map(fmtMonthShort);
+        // Aggregate per bulan dari entries
+        const perMonth = {};
+        for (const m of monthsInSem) perMonth[m] = { liter: 0, kg: 0, entries: 0 };
+        for (const e of data.entries) {
+          if (!perMonth[e.month]) continue;
+          const sat = (e.satuan || "").toLowerCase();
+          perMonth[e.month].entries += 1;
+          if (sat.startsWith("liter") || sat === "l") perMonth[e.month].liter += e.volume;
+          else if (sat === "kg" || sat === "kilogram") perMonth[e.month].kg += e.volume;
+        }
+        liters = monthsInSem.map(m => Math.round(perMonth[m].liter * 100) / 100);
+        kgs = monthsInSem.map(m => Math.round(perMonth[m].kg * 100) / 100);
+        totalLiter = semesterAgg[selected].liter;
+        totalKg = semesterAgg[selected].kg;
+        totalEntries = semesterAgg[selected].entries;
+      }
+      groupedBar("chart-semester", {
+        x: xs,
+        yLabel: "Volume",
+        height: 320,
+        series: [
+          { label: "Liter (cair)", color: p.anorganik, y: liters },
+          { label: "Kg (padat)", color: p.residu, y: kgs },
+        ],
+      });
+      $("#semester-summary").innerHTML = `
+        <div class="p-2 rounded bg-blue-50">
+          <div class="text-[10px] uppercase tracking-wide text-blue-700 font-semibold">Total Cair</div>
+          <div class="text-base font-bold text-blue-900 tabular-nums">${fmtNum(totalLiter)} L</div>
+        </div>
+        <div class="p-2 rounded bg-slate-100">
+          <div class="text-[10px] uppercase tracking-wide text-slate-600 font-semibold">Total Padat</div>
+          <div class="text-base font-bold text-slate-900 tabular-nums">${fmtNum(totalKg)} kg</div>
+        </div>
+        <div class="p-2 rounded bg-green-50">
+          <div class="text-[10px] uppercase tracking-wide text-green-700 font-semibold">Jumlah Entri</div>
+          <div class="text-base font-bold text-green-900 tabular-nums">${fmtInt(totalEntries)}</div>
+        </div>
+      `;
+    }
+    selSem.addEventListener("change", (e) => renderSemesterChart(e.target.value));
+    renderSemesterChart("__all__");
+
+    // Tabel tetap tampil semua semester (referensi presisi)
     $("#semester-table tbody").innerHTML = semKeys.map(k => `
       <tr>
         <td><strong>${k.replace("-", " ")}</strong></td>
