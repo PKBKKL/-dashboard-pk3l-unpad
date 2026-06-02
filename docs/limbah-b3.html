@@ -41,9 +41,13 @@
           <div id="lembaga-summary" class="mt-3 grid grid-cols-3 gap-2 text-center text-xs"></div>
         </div>
         <div class="card p-5">
-          <h3 class="text-sm font-semibold text-slate-900 mb-1">Volume per Kode Limbah</h3>
-          <p class="text-xs text-slate-400 mb-3">Volume cair (Liter) + massa padat (Kg) aktual per kode limbah B3 (PP 22/2021), diurutkan terbesar.</p>
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+            <h3 class="text-sm font-semibold text-slate-900">Histori Bulanan per Kode Limbah</h3>
+            <select id="kode-select" class="text-xs px-3 py-1.5 rounded border border-slate-200 bg-white focus:border-green-500 focus:outline-none"></select>
+          </div>
+          <p class="text-xs text-slate-400 mb-3">Pilih kode limbah B3 (PP 22/2021) dari dropdown untuk lihat tren bulanan-nya. Default: semua kode digabung.</p>
           <div id="chart-kode"></div>
+          <div id="kode-summary" class="mt-3 grid grid-cols-3 gap-2 text-center text-xs"></div>
         </div>
       </section>
 
@@ -260,17 +264,86 @@
     sel.addEventListener("change", (e) => renderLembagaChart(e.target.value));
     renderLembagaChart("__all__");
 
-    // ─── Per kode limbah (grouped bar: Liter + Kg per kode) ──────────
+    // ─── Histori per kode limbah (interactive dropdown) ──────────────
     const kodeAll = data.by_kode_limbah;
-    const kodeTop = kodeAll.slice(0, 12);  // top 12 supaya cukup ringkas
-    groupedBar("chart-kode", {
-      x: kodeTop.map(k => k.kode),
-      yLabel: "Volume",
-      series: [
-        { label: "Liter (cair)", color: p.anorganik, y: kodeTop.map(k => k.volume_liter) },
-        { label: "Kg (padat)", color: p.residu, y: kodeTop.map(k => k.mass_kg) },
-      ],
-    });
+    // Build per-kode monthly aggregation from entries
+    const kodeMonths = {};  // { kode: { "YYYY-MM": { liter, kg, entries } } }
+    for (const e of data.entries) {
+      const sat = (e.satuan || "").toLowerCase();
+      const k = e.kode_limbah || "—";
+      const m = e.month;
+      if (!kodeMonths[k]) kodeMonths[k] = {};
+      if (!kodeMonths[k][m]) kodeMonths[k][m] = { liter: 0, kg: 0, entries: 0 };
+      kodeMonths[k][m].entries += 1;
+      if (sat.startsWith("liter") || sat === "l") {
+        kodeMonths[k][m].liter += e.volume;
+      } else if (sat === "kg" || sat === "kilogram") {
+        kodeMonths[k][m].kg += e.volume;
+      }
+    }
+    const allKodes = kodeAll.map(k => k.kode);  // sudah sorted by total desc
+
+    // Populate dropdown
+    const selKode = $("#kode-select");
+    selKode.innerHTML = `<option value="__all__">— Semua Kode (Gabungan) —</option>` +
+      allKodes.map(k => {
+        const meta = kodeAll.find(x => x.kode === k);
+        const kategoriHint = meta ? (meta.kategori ?? []).join("/") : "";
+        return `<option value="${k}">${k}${kategoriHint ? " · " + kategoriHint : ""}</option>`;
+      }).join("");
+
+    function renderKodeChart(selected) {
+      let liters, kgs, totalLiter = 0, totalKg = 0, totalEntries = 0;
+      if (selected === "__all__") {
+        liters = sortedMonths.map(m => {
+          let s = 0;
+          for (const k of allKodes) s += (kodeMonths[k]?.[m]?.liter ?? 0);
+          return Math.round(s * 100) / 100;
+        });
+        kgs = sortedMonths.map(m => {
+          let s = 0;
+          for (const k of allKodes) s += (kodeMonths[k]?.[m]?.kg ?? 0);
+          return Math.round(s * 100) / 100;
+        });
+        totalLiter = liters.reduce((a, b) => a + b, 0);
+        totalKg = kgs.reduce((a, b) => a + b, 0);
+        totalEntries = data.entries.length;
+      } else {
+        const months = kodeMonths[selected] ?? {};
+        liters = sortedMonths.map(m => Math.round((months[m]?.liter ?? 0) * 100) / 100);
+        kgs = sortedMonths.map(m => Math.round((months[m]?.kg ?? 0) * 100) / 100);
+        for (const m of sortedMonths) {
+          totalLiter += months[m]?.liter ?? 0;
+          totalKg += months[m]?.kg ?? 0;
+          totalEntries += months[m]?.entries ?? 0;
+        }
+      }
+      groupedBar("chart-kode", {
+        x: monthLabels,
+        yLabel: "Volume",
+        height: 300,
+        series: [
+          { label: "Liter (cair)", color: p.anorganik, y: liters },
+          { label: "Kg (padat)", color: p.residu, y: kgs },
+        ],
+      });
+      $("#kode-summary").innerHTML = `
+        <div class="p-2 rounded bg-blue-50">
+          <div class="text-[10px] uppercase tracking-wide text-blue-700 font-semibold">Total Cair</div>
+          <div class="text-base font-bold text-blue-900 tabular-nums">${fmtNum(totalLiter)} L</div>
+        </div>
+        <div class="p-2 rounded bg-slate-100">
+          <div class="text-[10px] uppercase tracking-wide text-slate-600 font-semibold">Total Padat</div>
+          <div class="text-base font-bold text-slate-900 tabular-nums">${fmtNum(totalKg)} kg</div>
+        </div>
+        <div class="p-2 rounded bg-green-50">
+          <div class="text-[10px] uppercase tracking-wide text-green-700 font-semibold">Jumlah Entri</div>
+          <div class="text-base font-bold text-green-900 tabular-nums">${fmtInt(totalEntries)}</div>
+        </div>
+      `;
+    }
+    selKode.addEventListener("change", (e) => renderKodeChart(e.target.value));
+    renderKodeChart("__all__");
 
     // ─── Monthly table ──────────────────────────────────────────────
     $("#monthly-table tbody").innerHTML = months.map(m => `
