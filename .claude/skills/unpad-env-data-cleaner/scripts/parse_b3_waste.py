@@ -31,6 +31,19 @@ from _utils import (
 SOURCE_XLSX = "Logbook Limbah B3.xlsx"
 DATASET_ID = "b3_waste"
 
+# Normalisasi nama lembaga — alias resmi yang dipakai institusi sumber
+LEMBAGA_ALIAS = {
+    "pusat unggulan ilmu lingkungan": "CESS",
+    "puil": "CESS",
+}
+
+
+def normalize_lembaga(name: str) -> str:
+    if not name:
+        return name
+    key = name.strip().lower()
+    return LEMBAGA_ALIAS.get(key, name.strip())
+
 MONTHS_ID = [
     "Januari", "Februari", "Maret", "April", "Mei", "Juni",
     "Juli", "Agustus", "September", "Oktober", "November", "Desember",
@@ -109,7 +122,7 @@ def parse_monthly_sheet(ws, month_iso: str) -> list[dict]:
         entries.append({
             "month": month_iso,
             "date": None,
-            "lembaga": str(lembaga).strip(),
+            "lembaga": normalize_lembaga(str(lembaga)),
             "limbah": str(limbah).strip(),
             "volume": round_to(float(volume), 3),
             "satuan": (str(satuan).strip() if satuan else ""),
@@ -158,7 +171,7 @@ def parse_2026_sheet(ws) -> list[dict]:
         entries.append({
             "month": month_iso,
             "date": iso_date,
-            "lembaga": str(lembaga).strip(),
+            "lembaga": normalize_lembaga(str(lembaga)),
             "limbah": str(ws.cell(row=r, column=col_limbah).value or "").strip(),
             "volume": round_to(float(volume), 3),
             "satuan": str(ws.cell(row=r, column=col_satuan).value or "").strip(),

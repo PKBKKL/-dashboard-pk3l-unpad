@@ -255,7 +255,7 @@
       "mass_kg": 296.7
     },
     {
-      "lembaga": "Pusat Unggulan Ilmu Lingkungan",
+      "lembaga": "CESS",
       "entries": 11,
       "volume_liter": 576,
       "mass_kg": 24
@@ -2208,7 +2208,7 @@
     {
       "month": "2025-06",
       "date": null,
-      "lembaga": "Pusat Unggulan Ilmu Lingkungan",
+      "lembaga": "CESS",
       "limbah": "Limbah B3",
       "volume": 5,
       "satuan": "Liter",
@@ -2218,7 +2218,7 @@
     {
       "month": "2025-06",
       "date": null,
-      "lembaga": "Pusat Unggulan Ilmu Lingkungan",
+      "lembaga": "CESS",
       "limbah": "Limbah cair dari sumber bekas reagen laboratorium kimia",
       "volume": 5,
       "satuan": "Kg",
@@ -2228,7 +2228,7 @@
     {
       "month": "2025-06",
       "date": null,
-      "lembaga": "Pusat Unggulan Ilmu Lingkungan",
+      "lembaga": "CESS",
       "limbah": "Limbah B3 sumber bekas reagen laboratorium",
       "volume": 1,
       "satuan": "Liter",
@@ -2238,7 +2238,7 @@
     {
       "month": "2025-06",
       "date": null,
-      "lembaga": "Pusat Unggulan Ilmu Lingkungan",
+      "lembaga": "CESS",
       "limbah": "Limbah padat dari sumber pecahan alat-alat lab",
       "volume": 3,
       "satuan": "Liter",
@@ -2248,7 +2248,7 @@
     {
       "month": "2025-06",
       "date": null,
-      "lembaga": "Pusat Unggulan Ilmu Lingkungan",
+      "lembaga": "CESS",
       "limbah": "Limbah pecahan alat-alat laboratorium kimia",
       "volume": 2,
       "satuan": "Liter",
@@ -2828,7 +2828,7 @@
     {
       "month": "2025-12",
       "date": null,
-      "lembaga": "Pusat Unggulan Ilmu Lingkungan",
+      "lembaga": "CESS",
       "limbah": "Limbah lampu",
       "volume": 0.003,
       "satuan": "Kg",
@@ -2838,7 +2838,7 @@
     {
       "month": "2025-12",
       "date": null,
-      "lembaga": "Pusat Unggulan Ilmu Lingkungan",
+      "lembaga": "CESS",
       "limbah": "Limbah pecahan gelas",
       "volume": 19,
       "satuan": "Kg",
@@ -2848,7 +2848,7 @@
     {
       "month": "2025-12",
       "date": null,
-      "lembaga": "Pusat Unggulan Ilmu Lingkungan",
+      "lembaga": "CESS",
       "limbah": "Limbah organik",
       "volume": 6,
       "satuan": "Liter",
@@ -2858,7 +2858,7 @@
     {
       "month": "2025-12",
       "date": null,
-      "lembaga": "Pusat Unggulan Ilmu Lingkungan",
+      "lembaga": "CESS",
       "limbah": "Limbah logam",
       "volume": 3,
       "satuan": "Liter",
@@ -2868,7 +2868,7 @@
     {
       "month": "2025-12",
       "date": null,
-      "lembaga": "Pusat Unggulan Ilmu Lingkungan",
+      "lembaga": "CESS",
       "limbah": "Limbah anorganik",
       "volume": 6,
       "satuan": "Liter",
@@ -2878,7 +2878,7 @@
     {
       "month": "2025-12",
       "date": null,
-      "lembaga": "Pusat Unggulan Ilmu Lingkungan",
+      "lembaga": "CESS",
       "limbah": "Limbah pabrik tekstil (piloting lab)",
       "volume": 550,
       "satuan": "Liter",
