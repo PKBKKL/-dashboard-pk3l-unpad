@@ -32,9 +32,13 @@
 
       <section class="grid gap-6 mt-6 lg:grid-cols-2">
         <div class="card p-5">
-          <h3 class="text-sm font-semibold text-slate-900 mb-1">Kontribusi per Fakultas</h3>
-          <p class="text-xs text-slate-400 mb-3">Total volume (L) + massa (kg) per institusi penghasil. Diurutkan terbesar.</p>
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-1">
+            <h3 class="text-sm font-semibold text-slate-900">Histori Bulanan per Fakultas</h3>
+            <select id="lembaga-select" class="text-xs px-3 py-1.5 rounded border border-slate-200 bg-white focus:border-green-500 focus:outline-none"></select>
+          </div>
+          <p class="text-xs text-slate-400 mb-3">Pilih fakultas dari dropdown untuk lihat tren bulanan volume cair (L) + massa padat (kg). Default: total seluruh fakultas.</p>
           <div id="chart-lembaga"></div>
+          <div id="lembaga-summary" class="mt-3 grid grid-cols-3 gap-2 text-center text-xs"></div>
         </div>
         <div class="card p-5">
           <h3 class="text-sm font-semibold text-slate-900 mb-1">Volume per Kode Limbah</h3>
@@ -172,16 +176,89 @@
       ],
     });
 
-    // ─── Per lembaga (grouped bar) ───────────────────────────────────
-    const lembagaList = data.by_lembaga.slice(0, 8);
-    groupedBar("chart-lembaga", {
-      x: lembagaList.map(l => l.lembaga.replace("Fakultas ", "F. ")),
-      yLabel: "Total",
-      series: [
-        { label: "Liter (cair)", color: p.anorganik, y: lembagaList.map(l => l.volume_liter) },
-        { label: "Kg (padat)", color: p.residu, y: lembagaList.map(l => l.mass_kg) },
-      ],
+    // ─── Histori per fakultas (interactive dropdown) ─────────────────
+    // Build per-lembaga monthly aggregation from entries
+    const lembagaMonths = {};  // { lembaga: { "YYYY-MM": { liter, kg, entries } } }
+    const monthSet = new Set();
+    for (const e of data.entries) {
+      const sat = (e.satuan || "").toLowerCase();
+      const l = e.lembaga;
+      const m = e.month;
+      monthSet.add(m);
+      if (!lembagaMonths[l]) lembagaMonths[l] = {};
+      if (!lembagaMonths[l][m]) lembagaMonths[l][m] = { liter: 0, kg: 0, entries: 0 };
+      lembagaMonths[l][m].entries += 1;
+      if (sat.startsWith("liter") || sat === "l") {
+        lembagaMonths[l][m].liter += e.volume;
+      } else if (sat === "kg" || sat === "kilogram") {
+        lembagaMonths[l][m].kg += e.volume;
+      }
+    }
+    const sortedMonths = [...monthSet].sort();
+    const monthLabels = sortedMonths.map(m => {
+      const [y, mm] = m.split("-");
+      return `${MONTH_SHORT[parseInt(mm, 10) - 1]} '${y.slice(2)}`;
     });
+    const allLembaga = data.by_lembaga.map(l => l.lembaga);
+
+    // Populate dropdown — sorted by total contribution desc
+    const sel = $("#lembaga-select");
+    sel.innerHTML = `<option value="__all__">— Semua Fakultas (Gabungan) —</option>` +
+      allLembaga.map(l => `<option value="${l.replace(/"/g, "&quot;")}">${l}</option>`).join("");
+
+    function renderLembagaChart(selected) {
+      let liters, kgs, totalLiter = 0, totalKg = 0, totalEntries = 0;
+      if (selected === "__all__") {
+        liters = sortedMonths.map(m => {
+          let s = 0;
+          for (const l of allLembaga) s += (lembagaMonths[l]?.[m]?.liter ?? 0);
+          return Math.round(s * 100) / 100;
+        });
+        kgs = sortedMonths.map(m => {
+          let s = 0;
+          for (const l of allLembaga) s += (lembagaMonths[l]?.[m]?.kg ?? 0);
+          return Math.round(s * 100) / 100;
+        });
+        totalLiter = liters.reduce((a, b) => a + b, 0);
+        totalKg = kgs.reduce((a, b) => a + b, 0);
+        totalEntries = data.entries.length;
+      } else {
+        const months = lembagaMonths[selected] ?? {};
+        liters = sortedMonths.map(m => Math.round((months[m]?.liter ?? 0) * 100) / 100);
+        kgs = sortedMonths.map(m => Math.round((months[m]?.kg ?? 0) * 100) / 100);
+        for (const m of sortedMonths) {
+          totalLiter += months[m]?.liter ?? 0;
+          totalKg += months[m]?.kg ?? 0;
+          totalEntries += months[m]?.entries ?? 0;
+        }
+      }
+      groupedBar("chart-lembaga", {
+        x: monthLabels,
+        yLabel: "Volume",
+        height: 300,
+        series: [
+          { label: "Liter (cair)", color: p.anorganik, y: liters },
+          { label: "Kg (padat)", color: p.residu, y: kgs },
+        ],
+      });
+      // Summary cards
+      $("#lembaga-summary").innerHTML = `
+        <div class="p-2 rounded bg-blue-50">
+          <div class="text-[10px] uppercase tracking-wide text-blue-700 font-semibold">Total Cair</div>
+          <div class="text-base font-bold text-blue-900 tabular-nums">${fmtNum(totalLiter)} L</div>
+        </div>
+        <div class="p-2 rounded bg-slate-100">
+          <div class="text-[10px] uppercase tracking-wide text-slate-600 font-semibold">Total Padat</div>
+          <div class="text-base font-bold text-slate-900 tabular-nums">${fmtNum(totalKg)} kg</div>
+        </div>
+        <div class="p-2 rounded bg-green-50">
+          <div class="text-[10px] uppercase tracking-wide text-green-700 font-semibold">Jumlah Entri</div>
+          <div class="text-base font-bold text-green-900 tabular-nums">${fmtInt(totalEntries)}</div>
+        </div>
+      `;
+    }
+    sel.addEventListener("change", (e) => renderLembagaChart(e.target.value));
+    renderLembagaChart("__all__");
 
     // ─── Per kode limbah (grouped bar: Liter + Kg per kode) ──────────
     const kodeAll = data.by_kode_limbah;
