@@ -119,6 +119,27 @@ export function heatmap(containerId, { x, y, z, height = 360, colorscale = "Gree
   );
 }
 
+export function treemap(containerId, { labels, parents, values, text, customColors, height = 380 }) {
+  const trace = {
+    type: "treemap",
+    labels,
+    parents: parents ?? labels.map(() => ""),
+    values,
+    text: text ?? labels.map((_, i) => ""),
+    textinfo: "label+text+value",
+    hovertemplate: "<b>%{label}</b><br>%{text}<br>%{value} (%{percentRoot:.1%})<extra></extra>",
+    marker: customColors ? { colors: customColors } : { colorscale: [[0, "#dcfce7"], [0.5, "#65a30d"], [1, "#14532d"]] },
+    pathbar: { visible: false },
+    tiling: { packing: "squarify" },
+  };
+  Plotly.newPlot(
+    containerId,
+    [trace],
+    mergeLayout({ height, margin: { t: 10, b: 10, l: 10, r: 10 } }),
+    PLOTLY_CONFIG,
+  );
+}
+
 export function dailyBar(containerId, { x, y, color, name, height = 280 }) {
   const trace = {
     x,

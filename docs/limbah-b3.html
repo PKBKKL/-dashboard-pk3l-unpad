@@ -63,24 +63,37 @@
         </div>
       </section>
 
-      <section class="card overflow-hidden mt-6">
-        <header class="px-5 py-4 border-b border-slate-200 flex flex-wrap items-baseline justify-between gap-2">
-          <h3 class="text-sm font-semibold text-slate-900">Detail per Kode Limbah</h3>
-          <span class="text-xs text-slate-400">Sesuai PP 22/2021 · diurutkan dari kontribusi terbesar</span>
-        </header>
-        <div class="overflow-x-auto">
-          <table class="data-table" id="kode-table">
-            <thead>
-              <tr>
-                <th>Kode Limbah</th>
-                <th>Kategori</th>
-                <th class="num">Jumlah Entri</th>
-                <th class="num">Volume Cair (L)</th>
-                <th class="num">Massa Padat (kg)</th>
-              </tr>
-            </thead>
-            <tbody></tbody>
-          </table>
+      <section class="mt-10">
+        <h2 class="text-base font-semibold text-slate-900 mb-3">Infografis Detail per Kode Limbah</h2>
+        <p class="text-xs text-slate-500 mb-4">Klasifikasi B3 sesuai PP 22/2021. Ukuran kotak treemap sebanding dengan kontribusi total (Liter cair + Kg padat).</p>
+
+        <div class="card p-5 mb-4">
+          <h3 class="text-sm font-semibold text-slate-900 mb-1">Treemap: Proporsi Kontribusi 19 Kode Limbah</h3>
+          <p class="text-xs text-slate-400 mb-3">Kotak terbesar = kontribusi terbesar terhadap total timbulan B3.</p>
+          <div id="treemap-kode"></div>
+        </div>
+
+        <div id="kode-cards" class="grid gap-3 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 mb-4"></div>
+
+        <div class="card overflow-hidden">
+          <header class="px-5 py-4 border-b border-slate-200 flex flex-wrap items-baseline justify-between gap-2">
+            <h3 class="text-sm font-semibold text-slate-900">Tabel Detail per Kode Limbah</h3>
+            <span class="text-xs text-slate-400">Diurutkan dari kontribusi terbesar</span>
+          </header>
+          <div class="overflow-x-auto">
+            <table class="data-table" id="kode-table">
+              <thead>
+                <tr>
+                  <th>Kode Limbah</th>
+                  <th>Kategori</th>
+                  <th class="num">Jumlah Entri</th>
+                  <th class="num">Volume Cair (L)</th>
+                  <th class="num">Massa Padat (kg)</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
         </div>
       </section>
 
@@ -121,7 +134,7 @@
       bootstrap, renderHeader, renderKpis, renderFlags, $, $$, MONTH_SHORT,
       loadDataset, fmtInt, fmtNum,
     } from "./assets/common.js";
-    import { lineChart, groupedBar } from "./assets/charts.js";
+    import { lineChart, groupedBar, treemap } from "./assets/charts.js";
 
     const meta = await bootstrap("limbah-b3.html");
     const data = await loadDataset("b3_waste");
@@ -192,11 +205,57 @@
       </tr>
     `).join("");
 
-    // ─── Kode-limbah detail table ───────────────────────────────────
-    $("#kode-table tbody").innerHTML = kodeAll.map(k => `
+    // ─── Infografis kode limbah: Treemap + Cards + Table ────────────
+
+    // Treemap data: each kode → size by total contribution
+    const kodeWithTotal = kodeAll.map(k => ({
+      ...k,
+      total: (k.volume_liter ?? 0) + (k.mass_kg ?? 0),
+      kategori_str: (k.kategori ?? []).join(", ") || "—",
+    }));
+    // Color palette per kategori (Cair vs Padat vs Mixed)
+    const kodeColorByKategori = (kategoriStr) => {
+      if (kategoriStr === "Cair") return p.anorganik;
+      if (kategoriStr === "Padat") return p.residu;
+      if (kategoriStr.includes("Cair") && kategoriStr.includes("Padat")) return p.maggot;
+      return p.below_detection;
+    };
+    treemap("treemap-kode", {
+      labels: kodeWithTotal.map(k => k.kode),
+      values: kodeWithTotal.map(k => k.total),
+      text: kodeWithTotal.map(k =>
+        `${k.kategori_str} · ${fmtInt(k.entries)} entri<br>${fmtNum(k.volume_liter)} L cair · ${fmtNum(k.mass_kg)} kg padat`
+      ),
+      customColors: kodeWithTotal.map(k => kodeColorByKategori(k.kategori_str)),
+      height: 460,
+    });
+
+    // Top 4 kode highlight cards — ringkasan visual
+    const kodeIcon = (kategoriStr) => {
+      if (kategoriStr === "Cair") return "💧";
+      if (kategoriStr === "Padat") return "🧪";
+      return "♻️";
+    };
+    const top4 = kodeWithTotal.slice(0, 4);
+    $("#kode-cards").innerHTML = top4.map((k, i) => `
+      <div class="card p-4 relative overflow-hidden">
+        <div class="absolute right-3 top-3 text-2xl opacity-30">${kodeIcon(k.kategori_str)}</div>
+        <div class="text-[10px] uppercase tracking-wide text-slate-400 font-semibold">Peringkat #${i + 1}</div>
+        <div class="mt-1 text-xl font-bold text-slate-900 font-mono">${k.kode}</div>
+        <div class="text-[11px] text-slate-500 mt-0.5">${k.kategori_str}</div>
+        <div class="mt-3 space-y-0.5 text-xs">
+          <div class="flex justify-between"><span class="text-slate-500">Volume cair</span><span class="font-semibold text-slate-900 tabular-nums">${fmtNum(k.volume_liter)} L</span></div>
+          <div class="flex justify-between"><span class="text-slate-500">Massa padat</span><span class="font-semibold text-slate-900 tabular-nums">${fmtNum(k.mass_kg)} kg</span></div>
+          <div class="flex justify-between border-t border-slate-100 mt-1 pt-1"><span class="text-slate-500">Jumlah entri</span><span class="font-semibold text-slate-900 tabular-nums">${fmtInt(k.entries)}</span></div>
+        </div>
+      </div>
+    `).join("");
+
+    // Full table — semua 19 kode dengan angka presisi
+    $("#kode-table tbody").innerHTML = kodeWithTotal.map(k => `
       <tr>
         <td><strong class="font-mono">${k.kode}</strong></td>
-        <td class="text-xs text-slate-600">${(k.kategori ?? []).join(", ") || "—"}</td>
+        <td class="text-xs text-slate-600">${k.kategori_str}</td>
         <td class="num">${fmtInt(k.entries)}</td>
         <td class="num">${fmtNum(k.volume_liter)}</td>
         <td class="num">${fmtNum(k.mass_kg)}</td>
