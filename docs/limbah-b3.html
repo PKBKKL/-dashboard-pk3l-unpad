@@ -37,8 +37,8 @@
           <div id="chart-lembaga"></div>
         </div>
         <div class="card p-5">
-          <h3 class="text-sm font-semibold text-slate-900 mb-1">Top 10 Kode Limbah</h3>
-          <p class="text-xs text-slate-400 mb-3">Klasifikasi berdasarkan kode limbah B3 (PP 22/2021). Sisanya digabung "Lainnya".</p>
+          <h3 class="text-sm font-semibold text-slate-900 mb-1">Volume per Kode Limbah</h3>
+          <p class="text-xs text-slate-400 mb-3">Volume cair (Liter) + massa padat (Kg) aktual per kode limbah B3 (PP 22/2021), diurutkan terbesar.</p>
           <div id="chart-kode"></div>
         </div>
       </section>
@@ -54,6 +54,27 @@
               <tr>
                 <th>Bulan</th>
                 <th class="num">Entri</th>
+                <th class="num">Volume Cair (L)</th>
+                <th class="num">Massa Padat (kg)</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card overflow-hidden mt-6">
+        <header class="px-5 py-4 border-b border-slate-200 flex flex-wrap items-baseline justify-between gap-2">
+          <h3 class="text-sm font-semibold text-slate-900">Detail per Kode Limbah</h3>
+          <span class="text-xs text-slate-400">Sesuai PP 22/2021 · diurutkan dari kontribusi terbesar</span>
+        </header>
+        <div class="overflow-x-auto">
+          <table class="data-table" id="kode-table">
+            <thead>
+              <tr>
+                <th>Kode Limbah</th>
+                <th>Kategori</th>
+                <th class="num">Jumlah Entri</th>
                 <th class="num">Volume Cair (L)</th>
                 <th class="num">Massa Padat (kg)</th>
               </tr>
@@ -100,7 +121,7 @@
       bootstrap, renderHeader, renderKpis, renderFlags, $, $$, MONTH_SHORT,
       loadDataset, fmtInt, fmtNum,
     } from "./assets/common.js";
-    import { lineChart, groupedBar, donutChart } from "./assets/charts.js";
+    import { lineChart, groupedBar } from "./assets/charts.js";
 
     const meta = await bootstrap("limbah-b3.html");
     const data = await loadDataset("b3_waste");
@@ -149,26 +170,16 @@
       ],
     });
 
-    // ─── Per kode limbah (top 10 + Lainnya) ───────────────────────────
+    // ─── Per kode limbah (grouped bar: Liter + Kg per kode) ──────────
     const kodeAll = data.by_kode_limbah;
-    const top10 = kodeAll.slice(0, 10);
-    const restSum = kodeAll.slice(10).reduce(
-      (a, k) => a + (k.volume_liter ?? 0) + (k.mass_kg ?? 0), 0,
-    );
-    const kodeLabels = top10.map(k => k.kode);
-    const kodeValues = top10.map(k => (k.volume_liter ?? 0) + (k.mass_kg ?? 0));
-    if (restSum > 0) {
-      kodeLabels.push(`Lainnya (${kodeAll.length - 10})`);
-      kodeValues.push(restSum);
-    }
-    const kodeColors = [
-      p.organik, p.anorganik, p.residu, p.kompos, p.rdf, p.maggot,
-      p.dumping, p.compliant, p.exceedance, p.below_detection, "#9333ea",
-    ];
-    donutChart("chart-kode", {
-      labels: kodeLabels,
-      values: kodeValues,
-      colors: kodeColors.slice(0, kodeLabels.length),
+    const kodeTop = kodeAll.slice(0, 12);  // top 12 supaya cukup ringkas
+    groupedBar("chart-kode", {
+      x: kodeTop.map(k => k.kode),
+      yLabel: "Volume",
+      series: [
+        { label: "Liter (cair)", color: p.anorganik, y: kodeTop.map(k => k.volume_liter) },
+        { label: "Kg (padat)", color: p.residu, y: kodeTop.map(k => k.mass_kg) },
+      ],
     });
 
     // ─── Monthly table ──────────────────────────────────────────────
@@ -178,6 +189,17 @@
         <td class="num">${fmtInt(m.entries)}</td>
         <td class="num">${fmtNum(m.volume_liter)}</td>
         <td class="num">${fmtNum(m.mass_kg)}</td>
+      </tr>
+    `).join("");
+
+    // ─── Kode-limbah detail table ───────────────────────────────────
+    $("#kode-table tbody").innerHTML = kodeAll.map(k => `
+      <tr>
+        <td><strong class="font-mono">${k.kode}</strong></td>
+        <td class="text-xs text-slate-600">${(k.kategori ?? []).join(", ") || "—"}</td>
+        <td class="num">${fmtInt(k.entries)}</td>
+        <td class="num">${fmtNum(k.volume_liter)}</td>
+        <td class="num">${fmtNum(k.mass_kg)}</td>
       </tr>
     `).join("");
 
