@@ -8,13 +8,19 @@ const PLOTLY_CONFIG = {
 };
 
 const LAYOUT_BASE = {
-  margin: { t: 10, b: 40, l: 50, r: 10 },
+  margin: { t: 10, b: 70, l: 50, r: 10 },
   font: { family: "Inter, system-ui, sans-serif", size: 12, color: "#475569" },
   paper_bgcolor: "transparent",
   plot_bgcolor: "transparent",
-  xaxis: { gridcolor: "#e2e8f0", linecolor: "#cbd5e1" },
-  yaxis: { gridcolor: "#e2e8f0", linecolor: "#cbd5e1" },
-  legend: { font: { size: 11 } },
+  xaxis: {
+    gridcolor: "#e2e8f0",
+    linecolor: "#cbd5e1",
+    automargin: true,        // auto-extend margin supaya label tidak terpotong
+    tickangle: -35,          // tilt label supaya tidak overlap saat banyak
+    tickfont: { size: 11 },
+  },
+  yaxis: { gridcolor: "#e2e8f0", linecolor: "#cbd5e1", automargin: true },
+  legend: { font: { size: 11 }, orientation: "h", x: 0, y: -0.25 },
   hoverlabel: { bgcolor: "white", bordercolor: "#e2e8f0", font: { size: 12, color: "#0f172a" } },
 };
 

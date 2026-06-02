@@ -189,7 +189,11 @@
 
     // ─── Tren bulanan ────────────────────────────────────────────────
     const months = data.monthly_totals;
-    const xLabels = months.map(m => m.label.replace(/ 20(\d\d)/, " '$1"));
+    // Compact label: "September 2024" → "Sep '24" supaya tidak terlalu lebar
+    const xLabels = months.map(m => {
+      const [y, mm] = m.month.split("-");
+      return `${MONTH_SHORT[parseInt(mm, 10) - 1]} '${y.slice(2)}`;
+    });
     lineChart("chart-monthly-liter", {
       x: xLabels,
       yLabel: "Liter",
