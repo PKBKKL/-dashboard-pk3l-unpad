@@ -1,6 +1,24 @@
 // Shared helpers for all dashboard pages.
 // Loaded as ES module: <script type="module" src="./assets/common.js"></script>
 
+import {
+  initAnimations,
+  injectKpiSkeleton,
+  parseDisplayNumber,
+} from "./animations.js";
+
+// Re-export so pages can import skeleton/animation helpers from common.js too.
+export {
+  initAnimations,
+  injectKpiSkeleton,
+  injectChartSkeleton,
+  clearSkeleton,
+  countUpEl,
+  setupCountUp,
+  setupScrollReveal,
+  parseDisplayNumber,
+} from "./animations.js";
+
 // ─── Data loading ─────────────────────────────────────────────────────
 
 const DATA_BASE = "./data";
@@ -144,6 +162,8 @@ export function renderSidebar(currentPage) {
 export function renderHeader({ title, period, description }) {
   const header = $("#page-header");
   if (!header) return;
+  header.classList.add("reveal");
+  header.style.setProperty("--reveal-delay", "0ms");
   header.innerHTML = `
     <div class="flex flex-wrap items-baseline gap-3">
       <h1 class="text-2xl font-semibold">${title}</h1>
@@ -151,6 +171,7 @@ export function renderHeader({ title, period, description }) {
     </div>
     ${description ? `<p class="mt-2 text-slate-600 leading-relaxed max-w-3xl">${description}</p>` : ""}
   `;
+  initAnimations(header.parentElement || document);
 }
 
 // ─── KPI cards ────────────────────────────────────────────────────────
@@ -165,24 +186,52 @@ export function renderKpis(containerSel, cards) {
     red: "bg-red-50 text-red-700",
     slate: "bg-slate-100 text-slate-700",
   };
+  container.classList.add("reveal");
   container.innerHTML = cards
-    .map((c) => {
+    .map((c, i) => {
       const accent = accentMap[c.accent ?? "brand"];
+      // Build animated value: extract leading id-ID number + any trailing
+      // suffix ("%", " kg", " L", etc.) so the number animates while the
+      // suffix stays put. Falls back to static text when no leading number.
+      let rawValue = c.rawValue;
+      let suffix = "";
+      let decimals = c.decimals;
+      if (rawValue == null && typeof c.value === "string") {
+        const m = c.value.trim().match(/^(-?\d[\d.,]*)(.*)$/);
+        if (m) {
+          rawValue = parseDisplayNumber(m[1]);
+          suffix = m[2] || "";
+          if (decimals == null) {
+            // Infer decimals from the id-ID decimal separator (",")
+            decimals = m[1].includes(",")
+              ? m[1].split(",")[1].length
+              : 0;
+          }
+        }
+      }
+      let valueHtml;
+      if (rawValue != null && Number.isFinite(rawValue)) {
+        const safeSuffix = suffix.replace(/"/g, "&quot;");
+        valueHtml = `<span data-countup="${rawValue}" data-countup-decimals="${decimals ?? 0}" data-countup-suffix="${safeSuffix}">${c.value}</span>`;
+      } else {
+        valueHtml = String(c.value);
+      }
       const inner = `
-        <div class="card p-5 h-full flex flex-col fade-in">
+        <div class="card card-stagger p-5 h-full flex flex-col" style="--i:${i}">
           <div class="flex items-start justify-between">
             <div class="text-xs font-medium uppercase tracking-wide text-slate-400">${c.label}</div>
             ${c.icon ? `<div class="rounded-lg p-2 ${accent}"><span class="w-4 h-4 inline-flex">${ICONS[c.icon] ?? ""}</span></div>` : ""}
           </div>
           <div class="mt-3 flex items-baseline gap-1.5">
-            <div class="text-2xl font-semibold text-slate-900 tabular-nums">${c.value}</div>
+            <div class="text-2xl font-semibold text-slate-900 tabular-nums">${valueHtml}</div>
             ${c.unit ? `<div class="text-sm text-slate-400">${c.unit}</div>` : ""}
           </div>
           ${c.trend ? `<div class="mt-2 text-xs text-slate-600">${c.trend}</div>` : ""}
         </div>`;
-      return c.href ? `<a href="${c.href}" class="block hover:scale-[1.005] transition-transform">${inner}</a>` : inner;
+      return c.href ? `<a href="${c.href}" class="block">${inner}</a>` : inner;
     })
     .join("");
+  initAnimations(container.parentElement || document);
 }
 
 // ─── Data quality flags ───────────────────────────────────────────────
@@ -224,11 +273,31 @@ export function renderFooter(meta) {
 // ─── Page bootstrap (called by each page) ────────────────────────────
 
 export async function bootstrap(currentPage) {
+  // Inject skeleton placeholders BEFORE awaiting data so users see motion immediately.
+  const kpisEl = $("#kpis");
+  if (kpisEl && !kpisEl.children.length) {
+    // Match the grid columns used across pages (~3 on lg, 2 on sm)
+    injectKpiSkeleton(kpisEl, 6);
+  }
+
   const meta = await loadMeta();
   document.title = `${document.title.split(" · ")[0]} · Dashboard Pemantauan Lingkungan UNPAD`;
   renderSidebar(currentPage);
   renderFooter(meta);
   setupMobileSidebar();
+
+  // Apply a gentle stagger to the first few sections on the page; CSS
+  // already hides every <main> > <section> by default until reveal-visible
+  // is added by the IntersectionObserver in initAnimations().
+  document.querySelectorAll("main > section").forEach((section, i) => {
+    if (section.classList.contains("no-reveal")) return;
+    if (i < 4 && !section.style.getPropertyValue("--reveal-delay")) {
+      section.style.setProperty("--reveal-delay", `${i * 70}ms`);
+    }
+  });
+
+  // Kick off observers; will re-run idempotently after each render*() call.
+  initAnimations(document);
   return meta;
 }
 
