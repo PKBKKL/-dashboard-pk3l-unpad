@@ -164,14 +164,14 @@
       "month": "2026-05",
       "label": "Mei 2026",
       "total_kg": 81414.0,
-      "organik_kg": 0,
-      "anorganik_residu_kg": 0,
-      "sod_kg": 0,
+      "organik_kg": 7694.0,
+      "anorganik_residu_kg": 70650.0,
+      "sod_kg": 3070.0,
       "avg_kg_per_calendar_day": 2626.26,
       "days_active": 8,
       "days_in_month": 31,
       "avg_kg_per_active_day": 10176.75,
-      "category_breakdown_available": false,
+      "category_breakdown_available": true,
       "unpad_kg": 80864.0,
       "ipdn_kg": 550.0,
       "ipdn_active_days": 1
@@ -1243,310 +1243,434 @@
     {
       "date": "2026-05-01",
       "day_of_week": "Jumat",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "total_kg": 0,
+      "unpad_kg": 0,
+      "ipdn_kg": 0,
+      "by_category_kg": {
+        "organik": 0,
+        "anorganik_residu": 0,
+        "sod": 0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-05-02",
       "day_of_week": "Sabtu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "total_kg": 0,
+      "unpad_kg": 0,
+      "ipdn_kg": 0,
+      "by_category_kg": {
+        "organik": 0,
+        "anorganik_residu": 0,
+        "sod": 0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-05-03",
       "day_of_week": "Minggu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "total_kg": 0,
+      "unpad_kg": 0,
+      "ipdn_kg": 0,
+      "by_category_kg": {
+        "organik": 0,
+        "anorganik_residu": 0,
+        "sod": 0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-05-04",
       "day_of_week": "Senin",
-      "total_kg": 13210.0,
-      "unpad_kg": 13210.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "total_kg": 13210,
+      "unpad_kg": 13210,
+      "ipdn_kg": 0,
+      "by_category_kg": {
+        "organik": 500,
+        "anorganik_residu": 12020,
+        "sod": 690
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-05-05",
       "day_of_week": "Selasa",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "total_kg": 0,
+      "unpad_kg": 0,
+      "ipdn_kg": 0,
+      "by_category_kg": {
+        "organik": 0,
+        "anorganik_residu": 0,
+        "sod": 0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-05-06",
       "day_of_week": "Rabu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "total_kg": 0,
+      "unpad_kg": 0,
+      "ipdn_kg": 0,
+      "by_category_kg": {
+        "organik": 0,
+        "anorganik_residu": 0,
+        "sod": 0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-05-07",
       "day_of_week": "Kamis",
-      "total_kg": 4450.0,
-      "unpad_kg": 4450.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "total_kg": 4450,
+      "unpad_kg": 4450,
+      "ipdn_kg": 0,
+      "by_category_kg": {
+        "organik": 0,
+        "anorganik_residu": 4450,
+        "sod": 0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-05-08",
       "day_of_week": "Jumat",
-      "total_kg": 7670.0,
-      "unpad_kg": 7120.0,
-      "ipdn_kg": 550.0,
-      "by_category_kg": null,
+      "total_kg": 7670,
+      "unpad_kg": 7120,
+      "ipdn_kg": 550,
+      "by_category_kg": {
+        "organik": 0,
+        "anorganik_residu": 7670,
+        "sod": 0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-05-09",
       "day_of_week": "Sabtu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "total_kg": 0,
+      "unpad_kg": 0,
+      "ipdn_kg": 0,
+      "by_category_kg": {
+        "organik": 0,
+        "anorganik_residu": 0,
+        "sod": 0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-05-10",
       "day_of_week": "Minggu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "total_kg": 0,
+      "unpad_kg": 0,
+      "ipdn_kg": 0,
+      "by_category_kg": {
+        "organik": 0,
+        "anorganik_residu": 0,
+        "sod": 0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-05-11",
       "day_of_week": "Senin",
-      "total_kg": 10620.0,
-      "unpad_kg": 10620.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "total_kg": 10620,
+      "unpad_kg": 10620,
+      "ipdn_kg": 0,
+      "by_category_kg": {
+        "organik": 0,
+        "anorganik_residu": 9880,
+        "sod": 740
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-05-12",
       "day_of_week": "Selasa",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "total_kg": 0,
+      "unpad_kg": 0,
+      "ipdn_kg": 0,
+      "by_category_kg": {
+        "organik": 0,
+        "anorganik_residu": 0,
+        "sod": 0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-05-13",
       "day_of_week": "Rabu",
-      "total_kg": 8010.0,
-      "unpad_kg": 8010.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "total_kg": 8010,
+      "unpad_kg": 8010,
+      "ipdn_kg": 0,
+      "by_category_kg": {
+        "organik": 0,
+        "anorganik_residu": 7150,
+        "sod": 860
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-05-14",
       "day_of_week": "Kamis",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "total_kg": 0,
+      "unpad_kg": 0,
+      "ipdn_kg": 0,
+      "by_category_kg": {
+        "organik": 0,
+        "anorganik_residu": 0,
+        "sod": 0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-05-15",
       "day_of_week": "Jumat",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "total_kg": 0,
+      "unpad_kg": 0,
+      "ipdn_kg": 0,
+      "by_category_kg": {
+        "organik": 0,
+        "anorganik_residu": 0,
+        "sod": 0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-05-16",
       "day_of_week": "Sabtu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "total_kg": 0,
+      "unpad_kg": 0,
+      "ipdn_kg": 0,
+      "by_category_kg": {
+        "organik": 0,
+        "anorganik_residu": 0,
+        "sod": 0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-05-17",
       "day_of_week": "Minggu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "total_kg": 0,
+      "unpad_kg": 0,
+      "ipdn_kg": 0,
+      "by_category_kg": {
+        "organik": 0,
+        "anorganik_residu": 0,
+        "sod": 0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-05-18",
       "day_of_week": "Senin",
-      "total_kg": 19704.0,
-      "unpad_kg": 19704.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "total_kg": 19704,
+      "unpad_kg": 19704,
+      "ipdn_kg": 0,
+      "by_category_kg": {
+        "organik": 6844,
+        "anorganik_residu": 12080,
+        "sod": 780
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-05-19",
       "day_of_week": "Selasa",
-      "total_kg": 9250.0,
-      "unpad_kg": 9250.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "total_kg": 9250,
+      "unpad_kg": 9250,
+      "ipdn_kg": 0,
+      "by_category_kg": {
+        "organik": 350,
+        "anorganik_residu": 8900,
+        "sod": 0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-05-20",
       "day_of_week": "Rabu",
-      "total_kg": 8500.0,
-      "unpad_kg": 8500.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "total_kg": 8500,
+      "unpad_kg": 8500,
+      "ipdn_kg": 0,
+      "by_category_kg": {
+        "organik": 0,
+        "anorganik_residu": 8500,
+        "sod": 0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-05-21",
       "day_of_week": "Kamis",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "total_kg": 0,
+      "unpad_kg": 0,
+      "ipdn_kg": 0,
+      "by_category_kg": {
+        "organik": 0,
+        "anorganik_residu": 0,
+        "sod": 0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-05-22",
       "day_of_week": "Jumat",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "total_kg": 0,
+      "unpad_kg": 0,
+      "ipdn_kg": 0,
+      "by_category_kg": {
+        "organik": 0,
+        "anorganik_residu": 0,
+        "sod": 0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-05-23",
       "day_of_week": "Sabtu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "total_kg": 0,
+      "unpad_kg": 0,
+      "ipdn_kg": 0,
+      "by_category_kg": {
+        "organik": 0,
+        "anorganik_residu": 0,
+        "sod": 0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-05-24",
       "day_of_week": "Minggu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "total_kg": 0,
+      "unpad_kg": 0,
+      "ipdn_kg": 0,
+      "by_category_kg": {
+        "organik": 0,
+        "anorganik_residu": 0,
+        "sod": 0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-05-25",
       "day_of_week": "Senin",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "total_kg": 0,
+      "unpad_kg": 0,
+      "ipdn_kg": 0,
+      "by_category_kg": {
+        "organik": 0,
+        "anorganik_residu": 0,
+        "sod": 0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-05-26",
       "day_of_week": "Selasa",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "total_kg": 0,
+      "unpad_kg": 0,
+      "ipdn_kg": 0,
+      "by_category_kg": {
+        "organik": 0,
+        "anorganik_residu": 0,
+        "sod": 0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-05-27",
       "day_of_week": "Rabu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "total_kg": 0,
+      "unpad_kg": 0,
+      "ipdn_kg": 0,
+      "by_category_kg": {
+        "organik": 0,
+        "anorganik_residu": 0,
+        "sod": 0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-05-28",
       "day_of_week": "Kamis",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "total_kg": 0,
+      "unpad_kg": 0,
+      "ipdn_kg": 0,
+      "by_category_kg": {
+        "organik": 0,
+        "anorganik_residu": 0,
+        "sod": 0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-05-29",
       "day_of_week": "Jumat",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "total_kg": 0,
+      "unpad_kg": 0,
+      "ipdn_kg": 0,
+      "by_category_kg": {
+        "organik": 0,
+        "anorganik_residu": 0,
+        "sod": 0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-05-30",
       "day_of_week": "Sabtu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "total_kg": 0,
+      "unpad_kg": 0,
+      "ipdn_kg": 0,
+      "by_category_kg": {
+        "organik": 0,
+        "anorganik_residu": 0,
+        "sod": 0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-05-31",
       "day_of_week": "Minggu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "total_kg": 0,
+      "unpad_kg": 0,
+      "ipdn_kg": 0,
+      "by_category_kg": {
+        "organik": 0,
+        "anorganik_residu": 0,
+        "sod": 0
+      },
       "note": null,
       "quality_flag": null
     },

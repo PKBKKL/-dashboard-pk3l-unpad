@@ -19,7 +19,7 @@
 
       <section class="card p-5 mt-8">
         <h3 class="text-sm font-semibold text-slate-900 mb-1">Timbulan Bulanan per Kategori</h3>
-        <p class="text-xs text-slate-400 mb-3">Hanya April 2026 yang memiliki breakdown kategori lengkap; bulan lain hanya total.</p>
+        <p class="text-xs text-slate-400 mb-3">Breakdown kategori (Organik · Anorganik+Residu · SOD) tersedia untuk April &amp; Mei 2026. Bulan lain masih total agregat.</p>
         <div id="chart-kategori"></div>
       </section>
 
@@ -52,6 +52,7 @@
                 <th class="num">IPDN</th>
                 <th class="num">Organik</th>
                 <th class="num">Anorganik+Residu</th>
+                <th class="num">SOD</th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -143,6 +144,7 @@
       series: [
         { label: "Organik (Daun + Ranting)", color: p.organik, y: active.map(m => m.organik_kg) },
         { label: "Anorganik + Residu", color: p.anorganik, y: active.map(m => m.anorganik_residu_kg) },
+        { label: "SOD", color: p.residu, y: active.map(m => m.sod_kg ?? 0) },
       ],
     });
 
@@ -172,6 +174,7 @@
         <td class="num">${m.ipdn_kg ? fmtKg(m.ipdn_kg) : '<span class="text-slate-400">—</span>'}</td>
         <td class="num">${fmtKg(m.organik_kg)}</td>
         <td class="num">${fmtKg(m.anorganik_residu_kg)}</td>
+        <td class="num">${m.sod_kg ? fmtKg(m.sod_kg) : '<span class="text-slate-400">—</span>'}</td>
       </tr>
     `).join("");
 
