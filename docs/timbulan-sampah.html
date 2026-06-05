@@ -30,8 +30,8 @@
           <div id="chart-total"></div>
         </div>
         <div class="card p-5">
-          <h3 class="text-sm font-semibold text-slate-900 mb-1">Rata-rata Hari Aktif (kg/hari aktif)</h3>
-          <p class="text-xs text-slate-400 mb-3">Lebih representatif daripada total bulanan karena menormalisasi jumlah hari operasi.</p>
+          <h3 class="text-sm font-semibold text-slate-900 mb-1">Rata-rata per Hari</h3>
+          <p class="text-xs text-slate-400 mb-3">2 metrik: <strong>per hari aktif</strong> (intensitas operasional) vs <strong>per hari kalender</strong> (cocok dengan Overview Excel).</p>
           <div id="chart-avg"></div>
         </div>
       </section>
@@ -158,9 +158,10 @@
 
     lineChart("chart-avg", {
       x: xLabels,
-      yLabel: "kg/hari aktif",
+      yLabel: "kg/hari",
       series: [
-        { label: "Rata-rata (kg/hari aktif)", color: p.anorganik, y: active.map(m => m.avg_kg_per_active_day ?? 0) },
+        { label: "per Hari Aktif", color: p.anorganik, y: active.map(m => m.avg_kg_per_active_day ?? 0) },
+        { label: "per Hari Kalender", color: p.organik, y: active.map(m => m.avg_kg_per_calendar_day ?? 0) },
       ],
     });
 
