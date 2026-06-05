@@ -16,7 +16,7 @@ META = {
         "owner_email": "k.susanto@geophys.unpad.ac.id",
         "url": "https://dashboard-pk3l.unpad.ac.id",
         "version": "1.0",
-        "last_updated": "2026-05-14"
+        "last_updated": "2026-06-05"
     },
     "datasets": [
         {
@@ -32,7 +32,7 @@ META = {
             "label": "Timbulan Sampah",
             "route": "/sampah/timbulan",
             "icon": "trash",
-            "period_label": "Jan – Apr 2026",
+            "period_label": "Jan – Mei 2026",
             "primary_kpi": {"label": "Total Timbulan YTD", "value_field": "total_kg"}
         },
         {
