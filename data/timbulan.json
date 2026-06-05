@@ -156,9 +156,9 @@
       "days_in_month": 30,
       "avg_kg_per_active_day": 6027.2,
       "category_breakdown_available": false,
-      "unpad_kg": 30114.0,
-      "ipdn_kg": 90430.0,
-      "ipdn_active_days": 14
+      "unpad_kg": 120544,
+      "ipdn_kg": 0,
+      "ipdn_active_days": 0
     },
     {
       "month": "2026-05",
@@ -944,8 +944,8 @@
       "date": "2026-04-01",
       "day_of_week": "Rabu",
       "total_kg": 5890.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 5890.0,
+      "unpad_kg": 5890.0,
+      "ipdn_kg": 0,
       "by_category_kg": null,
       "note": null,
       "quality_flag": null
@@ -954,8 +954,8 @@
       "date": "2026-04-02",
       "day_of_week": "Kamis",
       "total_kg": 6570.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 6570.0,
+      "unpad_kg": 6570.0,
+      "ipdn_kg": 0,
       "by_category_kg": null,
       "note": null,
       "quality_flag": null
@@ -965,7 +965,7 @@
       "day_of_week": "Jumat",
       "total_kg": 0.0,
       "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
+      "ipdn_kg": 0,
       "by_category_kg": null,
       "note": null,
       "quality_flag": null
@@ -975,7 +975,7 @@
       "day_of_week": "Sabtu",
       "total_kg": 0.0,
       "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
+      "ipdn_kg": 0,
       "by_category_kg": null,
       "note": null,
       "quality_flag": null
@@ -985,7 +985,7 @@
       "day_of_week": "Minggu",
       "total_kg": 0.0,
       "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
+      "ipdn_kg": 0,
       "by_category_kg": null,
       "note": null,
       "quality_flag": null
@@ -994,8 +994,8 @@
       "date": "2026-04-06",
       "day_of_week": "Senin",
       "total_kg": 5762.0,
-      "unpad_kg": 82.0,
-      "ipdn_kg": 5680.0,
+      "unpad_kg": 5762.0,
+      "ipdn_kg": 0,
       "by_category_kg": null,
       "note": null,
       "quality_flag": null
@@ -1004,8 +1004,8 @@
       "date": "2026-04-07",
       "day_of_week": "Selasa",
       "total_kg": 8620.0,
-      "unpad_kg": 1690.0,
-      "ipdn_kg": 6930.0,
+      "unpad_kg": 8620.0,
+      "ipdn_kg": 0,
       "by_category_kg": null,
       "note": null,
       "quality_flag": null
@@ -1014,8 +1014,8 @@
       "date": "2026-04-08",
       "day_of_week": "Rabu",
       "total_kg": 5942.0,
-      "unpad_kg": 342.0,
-      "ipdn_kg": 5600.0,
+      "unpad_kg": 5942.0,
+      "ipdn_kg": 0,
       "by_category_kg": null,
       "note": null,
       "quality_flag": null
@@ -1025,7 +1025,7 @@
       "day_of_week": "Kamis",
       "total_kg": 6152.0,
       "unpad_kg": 6152.0,
-      "ipdn_kg": 0.0,
+      "ipdn_kg": 0,
       "by_category_kg": null,
       "note": null,
       "quality_flag": null
@@ -1035,7 +1035,7 @@
       "day_of_week": "Jumat",
       "total_kg": 2630.0,
       "unpad_kg": 2630.0,
-      "ipdn_kg": 0.0,
+      "ipdn_kg": 0,
       "by_category_kg": null,
       "note": null,
       "quality_flag": null
@@ -1045,7 +1045,7 @@
       "day_of_week": "Sabtu",
       "total_kg": 0.0,
       "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
+      "ipdn_kg": 0,
       "by_category_kg": null,
       "note": null,
       "quality_flag": null
@@ -1055,7 +1055,7 @@
       "day_of_week": "Minggu",
       "total_kg": 0.0,
       "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
+      "ipdn_kg": 0,
       "by_category_kg": null,
       "note": null,
       "quality_flag": null
@@ -1065,7 +1065,7 @@
       "day_of_week": "Senin",
       "total_kg": 9160.0,
       "unpad_kg": 9160.0,
-      "ipdn_kg": 0.0,
+      "ipdn_kg": 0,
       "by_category_kg": null,
       "note": null,
       "quality_flag": null
@@ -1075,7 +1075,7 @@
       "day_of_week": "Selasa",
       "total_kg": 6560.0,
       "unpad_kg": 6560.0,
-      "ipdn_kg": 0.0,
+      "ipdn_kg": 0,
       "by_category_kg": null,
       "note": null,
       "quality_flag": null
@@ -1085,7 +1085,7 @@
       "day_of_week": "Rabu",
       "total_kg": 5720.0,
       "unpad_kg": 5720.0,
-      "ipdn_kg": 0.0,
+      "ipdn_kg": 0,
       "by_category_kg": null,
       "note": null,
       "quality_flag": null
@@ -1094,8 +1094,8 @@
       "date": "2026-04-16",
       "day_of_week": "Kamis",
       "total_kg": 3962.0,
-      "unpad_kg": 152.0,
-      "ipdn_kg": 3810.0,
+      "unpad_kg": 3962.0,
+      "ipdn_kg": 0,
       "by_category_kg": null,
       "note": null,
       "quality_flag": null
@@ -1104,8 +1104,8 @@
       "date": "2026-04-17",
       "day_of_week": "Jumat",
       "total_kg": 3270.0,
-      "unpad_kg": 100.0,
-      "ipdn_kg": 3170.0,
+      "unpad_kg": 3270.0,
+      "ipdn_kg": 0,
       "by_category_kg": null,
       "note": null,
       "quality_flag": null
@@ -1115,7 +1115,7 @@
       "day_of_week": "Sabtu",
       "total_kg": 0.0,
       "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
+      "ipdn_kg": 0,
       "by_category_kg": null,
       "note": null,
       "quality_flag": null
@@ -1125,7 +1125,7 @@
       "day_of_week": "Minggu",
       "total_kg": 0.0,
       "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
+      "ipdn_kg": 0,
       "by_category_kg": null,
       "note": null,
       "quality_flag": null
@@ -1134,8 +1134,8 @@
       "date": "2026-04-20",
       "day_of_week": "Senin",
       "total_kg": 8740.0,
-      "unpad_kg": 2570.0,
-      "ipdn_kg": 6170.0,
+      "unpad_kg": 8740.0,
+      "ipdn_kg": 0,
       "by_category_kg": null,
       "note": null,
       "quality_flag": null
@@ -1144,8 +1144,8 @@
       "date": "2026-04-21",
       "day_of_week": "Selasa",
       "total_kg": 5810.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 5810.0,
+      "unpad_kg": 5810.0,
+      "ipdn_kg": 0,
       "by_category_kg": null,
       "note": null,
       "quality_flag": null
@@ -1154,8 +1154,8 @@
       "date": "2026-04-22",
       "day_of_week": "Rabu",
       "total_kg": 7334.0,
-      "unpad_kg": 654.0,
-      "ipdn_kg": 6680.0,
+      "unpad_kg": 7334.0,
+      "ipdn_kg": 0,
       "by_category_kg": null,
       "note": null,
       "quality_flag": null
@@ -1165,7 +1165,7 @@
       "day_of_week": "Kamis",
       "total_kg": 5830.0,
       "unpad_kg": 5830.0,
-      "ipdn_kg": 0.0,
+      "ipdn_kg": 0,
       "by_category_kg": null,
       "note": null,
       "quality_flag": null
@@ -1174,8 +1174,8 @@
       "date": "2026-04-24",
       "day_of_week": "Jumat",
       "total_kg": 4740.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 4740.0,
+      "unpad_kg": 4740.0,
+      "ipdn_kg": 0,
       "by_category_kg": null,
       "note": null,
       "quality_flag": null
@@ -1185,7 +1185,7 @@
       "day_of_week": "Sabtu",
       "total_kg": 0.0,
       "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
+      "ipdn_kg": 0,
       "by_category_kg": null,
       "note": null,
       "quality_flag": null
@@ -1195,7 +1195,7 @@
       "day_of_week": "Minggu",
       "total_kg": 0.0,
       "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
+      "ipdn_kg": 0,
       "by_category_kg": null,
       "note": null,
       "quality_flag": null
@@ -1205,7 +1205,7 @@
       "day_of_week": "Senin",
       "total_kg": 0.0,
       "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
+      "ipdn_kg": 0,
       "by_category_kg": null,
       "note": null,
       "quality_flag": null
@@ -1214,8 +1214,8 @@
       "date": "2026-04-28",
       "day_of_week": "Selasa",
       "total_kg": 4592.0,
-      "unpad_kg": -5108.0,
-      "ipdn_kg": 9700.0,
+      "unpad_kg": 4592.0,
+      "ipdn_kg": 0,
       "by_category_kg": null,
       "note": null,
       "quality_flag": null
@@ -1224,8 +1224,8 @@
       "date": "2026-04-29",
       "day_of_week": "Rabu",
       "total_kg": 5790.0,
-      "unpad_kg": -6420.0,
-      "ipdn_kg": 12210.0,
+      "unpad_kg": 5790.0,
+      "ipdn_kg": 0,
       "by_category_kg": null,
       "note": null,
       "quality_flag": null
@@ -1234,8 +1234,8 @@
       "date": "2026-04-30",
       "day_of_week": "Kamis",
       "total_kg": 7470.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 7470.0,
+      "unpad_kg": 7470.0,
+      "ipdn_kg": 0,
       "by_category_kg": null,
       "note": null,
       "quality_flag": null
