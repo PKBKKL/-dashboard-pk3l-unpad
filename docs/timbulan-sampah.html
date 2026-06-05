@@ -48,13 +48,56 @@
                 <th class="num">Total</th>
                 <th class="num">Hari Aktif</th>
                 <th class="num">Avg/Hari Aktif</th>
+                <th class="num">UNPAD</th>
+                <th class="num">IPDN</th>
                 <th class="num">Organik</th>
                 <th class="num">Anorganik+Residu</th>
-                <th>Kategori?</th>
               </tr>
             </thead>
             <tbody></tbody>
           </table>
+        </div>
+      </section>
+
+      <section class="mt-10">
+        <h2 class="text-base font-semibold text-slate-900 mb-3">Infografis Kontribusi IPDN</h2>
+        <p class="text-xs text-slate-500 mb-4">Selain UNPAD, fasilitas TPS PKBKKL juga menerima sampah dari kampus <strong>IPDN (Institut Pemerintahan Dalam Negeri)</strong> yang berlokasi bersebelahan di Jatinangor. Bagian ini memisahkan kontribusi keduanya supaya beban TPS dapat dimonitor per asal sumber.</p>
+
+        <div id="ipdn-kpis" class="grid gap-3 grid-cols-2 lg:grid-cols-4 mb-4"></div>
+
+        <div class="grid gap-6 lg:grid-cols-3">
+          <div class="card p-5 lg:col-span-2">
+            <h3 class="text-sm font-semibold text-slate-900 mb-1">Perbandingan UNPAD vs IPDN per Bulan</h3>
+            <p class="text-xs text-slate-400 mb-3">Stacked bar — kontribusi UNPAD (hijau) dan IPDN (kuning) terhadap total timbulan tiap bulan.</p>
+            <div id="chart-source"></div>
+          </div>
+          <div class="card p-5">
+            <h3 class="text-sm font-semibold text-slate-900 mb-1">Proporsi UNPAD vs IPDN (Total)</h3>
+            <p class="text-xs text-slate-400 mb-3">Komposisi akumulatif sejak Januari 2026.</p>
+            <div id="chart-source-donut"></div>
+          </div>
+        </div>
+
+        <div class="card overflow-hidden mt-6">
+          <header class="px-5 py-4 border-b border-slate-200 flex flex-wrap items-baseline justify-between gap-2">
+            <h3 class="text-sm font-semibold text-slate-900">Detail Hari dengan Kontribusi IPDN</h3>
+            <span class="text-xs text-slate-400">Hanya hari dengan IPDN &gt; 0</span>
+          </header>
+          <div class="overflow-x-auto">
+            <table class="data-table" id="ipdn-daily-table">
+              <thead>
+                <tr>
+                  <th>Tanggal</th>
+                  <th>Hari</th>
+                  <th class="num">Total (kg)</th>
+                  <th class="num">UNPAD (kg)</th>
+                  <th class="num">IPDN (kg)</th>
+                  <th class="num">% IPDN</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
         </div>
       </section>
 
@@ -68,7 +111,7 @@
       bootstrap, renderHeader, renderKpis, renderFlags, $, MONTH_SHORT,
       loadDataset, fmtInt, fmtKg, fmtMonth, fmtNum,
     } from "./assets/common.js";
-    import { stackedBar, lineChart } from "./assets/charts.js";
+    import { stackedBar, lineChart, donutChart } from "./assets/charts.js";
 
     const meta = await bootstrap("timbulan-sampah.html");
     const data = await loadDataset("timbulan");
@@ -125,11 +168,91 @@
         <td class="num">${fmtKg(m.total_kg)}</td>
         <td class="num">${m.days_active}</td>
         <td class="num">${fmtNum(m.avg_kg_per_active_day)}</td>
+        <td class="num">${fmtKg(m.unpad_kg)}</td>
+        <td class="num">${m.ipdn_kg ? fmtKg(m.ipdn_kg) : '<span class="text-slate-400">—</span>'}</td>
         <td class="num">${fmtKg(m.organik_kg)}</td>
         <td class="num">${fmtKg(m.anorganik_residu_kg)}</td>
-        <td class="text-xs">${m.category_breakdown_available ? '<span class="text-green-700">tersedia</span>' : '<span class="text-slate-400">total saja</span>'}</td>
       </tr>
     `).join("");
+
+    // ─── Infografis IPDN ──────────────────────────────────────────────
+    const totalUnpad = data.monthly_summary.reduce((a, m) => a + (m.unpad_kg ?? 0), 0);
+    const totalIpdn = data.monthly_summary.reduce((a, m) => a + (m.ipdn_kg ?? 0), 0);
+    const totalCombined = totalUnpad + totalIpdn;
+    const ipdnMonths = data.monthly_summary.filter(m => (m.ipdn_kg ?? 0) > 0);
+    const ipdnActiveDays = data.monthly_summary.reduce((a, m) => a + (m.ipdn_active_days ?? 0), 0);
+    const ipdnPct = totalCombined > 0 ? (totalIpdn / totalCombined) * 100 : 0;
+    const peakIpdnMonth = [...data.monthly_summary]
+      .filter(m => (m.ipdn_kg ?? 0) > 0)
+      .sort((a, b) => (b.ipdn_kg ?? 0) - (a.ipdn_kg ?? 0))[0];
+
+    $("#ipdn-kpis").innerHTML = `
+      <div class="card p-4">
+        <div class="text-[10px] uppercase tracking-wide text-slate-400 font-semibold">Total IPDN YTD</div>
+        <div class="mt-1.5 flex items-baseline gap-1.5">
+          <div class="text-xl font-bold text-amber-700 tabular-nums">${fmtInt(totalIpdn)}</div>
+          <div class="text-xs text-slate-400">kg</div>
+        </div>
+        <div class="text-[11px] text-slate-500 mt-1">${ipdnMonths.length} bulan aktif · ${ipdnActiveDays} hari</div>
+      </div>
+      <div class="card p-4">
+        <div class="text-[10px] uppercase tracking-wide text-slate-400 font-semibold">Total UNPAD YTD</div>
+        <div class="mt-1.5 flex items-baseline gap-1.5">
+          <div class="text-xl font-bold text-green-700 tabular-nums">${fmtInt(totalUnpad)}</div>
+          <div class="text-xs text-slate-400">kg</div>
+        </div>
+        <div class="text-[11px] text-slate-500 mt-1">Sumber utama TPS</div>
+      </div>
+      <div class="card p-4">
+        <div class="text-[10px] uppercase tracking-wide text-slate-400 font-semibold">Persentase IPDN</div>
+        <div class="mt-1.5 flex items-baseline gap-1.5">
+          <div class="text-xl font-bold text-slate-900 tabular-nums">${ipdnPct.toFixed(1)}%</div>
+          <div class="text-xs text-slate-400">dari total</div>
+        </div>
+        <div class="text-[11px] text-slate-500 mt-1">Beban tambahan dari IPDN</div>
+      </div>
+      <div class="card p-4">
+        <div class="text-[10px] uppercase tracking-wide text-slate-400 font-semibold">Bulan Puncak IPDN</div>
+        <div class="mt-1.5 flex items-baseline gap-1.5">
+          <div class="text-xl font-bold text-amber-700 tabular-nums">${peakIpdnMonth ? fmtMonth(peakIpdnMonth.month).split(" ")[0] : "—"}</div>
+        </div>
+        <div class="text-[11px] text-slate-500 mt-1">${peakIpdnMonth ? `${fmtInt(peakIpdnMonth.ipdn_kg)} kg · ${peakIpdnMonth.ipdn_active_days} hari` : "Belum ada data"}</div>
+      </div>
+    `;
+
+    // Stacked bar UNPAD vs IPDN per bulan
+    stackedBar("chart-source", {
+      x: active.map(m => MONTH_SHORT[parseInt(m.month.split("-")[1], 10) - 1]),
+      yLabel: "kg",
+      series: [
+        { label: "UNPAD", color: p.compliant || "#16a34a", y: active.map(m => m.unpad_kg ?? 0) },
+        { label: "IPDN", color: "#f59e0b", y: active.map(m => m.ipdn_kg ?? 0) },
+      ],
+    });
+
+    // Donut total proportion
+    donutChart("chart-source-donut", {
+      labels: ["UNPAD", "IPDN"],
+      values: [totalUnpad, totalIpdn],
+      colors: [p.compliant || "#16a34a", "#f59e0b"],
+      height: 280,
+    });
+
+    // Daily table — hanya hari yang ada IPDN
+    const ipdnDays = (data.daily_entries ?? []).filter(e => (e.ipdn_kg ?? 0) > 0);
+    $("#ipdn-daily-table tbody").innerHTML = ipdnDays.length === 0
+      ? `<tr><td colspan="6" class="text-center text-slate-400 text-xs py-4">Belum ada hari dengan kontribusi IPDN tercatat</td></tr>`
+      : ipdnDays.map(e => {
+          const pct = e.total_kg > 0 ? (e.ipdn_kg / e.total_kg) * 100 : 0;
+          return `<tr>
+            <td><strong>${e.date}</strong></td>
+            <td class="text-xs">${e.day_of_week}</td>
+            <td class="num">${fmtKg(e.total_kg)}</td>
+            <td class="num">${fmtKg(e.unpad_kg)}</td>
+            <td class="num text-amber-700 font-medium">${fmtKg(e.ipdn_kg)}</td>
+            <td class="num text-xs">${pct.toFixed(1)}%</td>
+          </tr>`;
+        }).join("");
 
     const infoFlags = (data.data_quality_flags ?? []).filter(f => f.severity === "info");
     renderFlags(infoFlags);
