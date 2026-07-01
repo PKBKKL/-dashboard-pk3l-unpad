@@ -12,19 +12,23 @@
   "data_quality_flags": [
     {
       "severity": "info",
-      "message": "Januari 2026 hanya tercatat 6 hari kerja (26-31 Jan). Rata-rata per hari aktif jauh lebih representatif daripada rata-rata per hari kalender."
-    },
-    {
-      "severity": "warning",
-      "message": "April 2026 tanggal 27 ditandai 'DIPERTANYAKAN' di sumber, dikecualikan dari kalkulasi rata-rata aktif."
-    },
-    {
-      "severity": "warning",
-      "message": "Februari (100.542 kg) dan April (120.544 kg) jauh di atas Maret (43.160 kg). Perlu konfirmasi apakah ini lonjakan riil atau bias pencatatan."
+      "message": "Kategori mengikuti sumber kendaraan: Sampah Organik dan Anorganik (Truk Tim Angsa), Limbah Sisa Makanan (SOD), Sampah Lingkungan (Pick Up / Pak Ratian daun & ranting), dan Sampah Aset (Viar + Mobil Traga untuk meja + kursi bekas)."
     },
     {
       "severity": "info",
-      "message": "Pemisahan kategori Organik vs Anorganik+Residu baru rapi mulai April 2026; bulan sebelumnya hanya total."
+      "message": "Januari 2026 hanya tercatat 5 hari kerja (26-30 Januari). Rata-rata per hari aktif lebih representatif daripada per hari kalender."
+    },
+    {
+      "severity": "warning",
+      "message": "April 2026 tanggal 28-29 memiliki cell biru pada kolom 13-14 (13.170 kg) yang tidak dihitung sebagai timbulan sampah (kemungkinan double-entry atau data yang dianulir)."
+    },
+    {
+      "severity": "info",
+      "message": "Juni 2026 Daun & Ranting (2.630 kg) awalnya terlewat di formula Total Excel; sudah dikoreksi ke kategori Sampah Lingkungan."
+    },
+    {
+      "severity": "info",
+      "message": "Februari 2026 Viar (467 kg) + Mobil Traga (290 kg) dikategorikan sebagai Sampah Aset — timbulan meja + kursi bekas yang tidak masuk siklus operasional harian."
     }
   ],
   "unit_default": "kg",
@@ -80,34 +84,44 @@
   },
   "categories": [
     {
-      "id": "organik",
-      "label": "Organik (Daun + Ranting)",
-      "color_key": "organik"
+      "id": "organik_anorganik",
+      "label": "Sampah Organik dan Anorganik",
+      "color_key": "organik_anorganik",
+      "source": "Truk Tim Angsa"
     },
     {
-      "id": "anorganik_residu",
-      "label": "Anorganik + Residu",
-      "color_key": "anorganik"
+      "id": "sisa_makanan",
+      "label": "Limbah Sisa Makanan",
+      "color_key": "sisa_makanan",
+      "source": "SOD RS + Cator UNPAD (SOD)"
     },
     {
-      "id": "sod",
-      "label": "SOD (Sampah Olahan/RS)",
-      "color_key": "residu"
+      "id": "lingkungan",
+      "label": "Sampah Lingkungan (Pohon & Ranting)",
+      "color_key": "lingkungan",
+      "source": "Pick Up / Pak Ratian / Daun & Ranting"
+    },
+    {
+      "id": "aset",
+      "label": "Sampah Aset (Meja + Kursi)",
+      "color_key": "aset",
+      "source": "Viar + Mobil Traga (aset tak terpakai)"
     }
   ],
   "monthly_summary": [
     {
       "month": "2026-01",
       "label": "Januari 2026",
-      "total_kg": 15170,
-      "organik_kg": 5916.3,
-      "anorganik_residu_kg": 9253.7,
-      "sod_kg": 0,
+      "total_kg": 15170.0,
+      "organik_anorganik_kg": 15170.0,
+      "sisa_makanan_kg": 0.0,
+      "lingkungan_kg": 0.0,
+      "aset_kg": 0.0,
       "avg_kg_per_calendar_day": 489.35,
       "days_active": 5,
       "days_in_month": 31,
-      "avg_kg_per_active_day": 3034,
-      "category_breakdown_available": false,
+      "avg_kg_per_active_day": 3034.0,
+      "category_breakdown_available": true,
       "unpad_kg": 15170.0,
       "ipdn_kg": 0.0,
       "ipdn_active_days": 0
@@ -115,58 +129,62 @@
     {
       "month": "2026-02",
       "label": "Februari 2026",
-      "total_kg": 100542.0,
-      "organik_kg": 39211.38,
-      "anorganik_residu_kg": 61330.62,
-      "sod_kg": 0.0,
-      "avg_kg_per_calendar_day": 3590.79,
+      "total_kg": 101299.0,
+      "organik_anorganik_kg": 95499.0,
+      "sisa_makanan_kg": 0.0,
+      "lingkungan_kg": 5043.0,
+      "aset_kg": 757.0,
+      "avg_kg_per_calendar_day": 3617.82,
       "days_active": 17,
       "days_in_month": 28,
-      "avg_kg_per_active_day": 5914.24,
-      "category_breakdown_available": false,
-      "unpad_kg": 100542.0,
+      "avg_kg_per_active_day": 5958.76,
+      "category_breakdown_available": true,
+      "unpad_kg": 101299.0,
       "ipdn_kg": 0.0,
       "ipdn_active_days": 0
     },
     {
       "month": "2026-03",
       "label": "Maret 2026",
-      "total_kg": 43160,
-      "organik_kg": 16832.4,
-      "anorganik_residu_kg": 26327.6,
-      "sod_kg": 0,
-      "avg_kg_per_calendar_day": 1392.26,
-      "days_active": 11,
+      "total_kg": 50189.0,
+      "organik_anorganik_kg": 43160.0,
+      "sisa_makanan_kg": 7004.0,
+      "lingkungan_kg": 25.0,
+      "aset_kg": 0.0,
+      "avg_kg_per_calendar_day": 1619.0,
+      "days_active": 12,
       "days_in_month": 31,
-      "avg_kg_per_active_day": 3923.64,
-      "category_breakdown_available": false,
-      "unpad_kg": 43160.0,
+      "avg_kg_per_active_day": 4182.42,
+      "category_breakdown_available": true,
+      "unpad_kg": 50189.0,
       "ipdn_kg": 0.0,
       "ipdn_active_days": 0
     },
     {
       "month": "2026-04",
       "label": "April 2026",
-      "total_kg": 120544,
-      "organik_kg": 47012.16,
-      "anorganik_residu_kg": 73531.84,
-      "sod_kg": 0,
-      "avg_kg_per_calendar_day": 4018.13,
+      "total_kg": 123574.0,
+      "organik_anorganik_kg": 119060.0,
+      "sisa_makanan_kg": 3030.0,
+      "lingkungan_kg": 1484.0,
+      "aset_kg": 0.0,
+      "avg_kg_per_calendar_day": 4119.13,
       "days_active": 20,
       "days_in_month": 30,
-      "avg_kg_per_active_day": 6027.2,
-      "category_breakdown_available": false,
-      "unpad_kg": 120544,
-      "ipdn_kg": 0,
+      "avg_kg_per_active_day": 6178.7,
+      "category_breakdown_available": true,
+      "unpad_kg": 123574.0,
+      "ipdn_kg": 0.0,
       "ipdn_active_days": 0
     },
     {
       "month": "2026-05",
       "label": "Mei 2026",
       "total_kg": 115216.0,
-      "organik_kg": 7426.0,
-      "anorganik_residu_kg": 104170.0,
-      "sod_kg": 3070.0,
+      "organik_anorganik_kg": 104170.0,
+      "sisa_makanan_kg": 3070.0,
+      "lingkungan_kg": 7426.0,
+      "aset_kg": 0.0,
       "avg_kg_per_calendar_day": 3716.65,
       "days_active": 14,
       "days_in_month": 31,
@@ -179,16 +197,17 @@
     {
       "month": "2026-06",
       "label": "Juni 2026",
-      "total_kg": 90740.0,
-      "organik_kg": 2630.0,
-      "anorganik_residu_kg": 83390.0,
-      "sod_kg": 4720.0,
-      "avg_kg_per_calendar_day": 3024.67,
+      "total_kg": 93370.0,
+      "organik_anorganik_kg": 86020.0,
+      "sisa_makanan_kg": 4720.0,
+      "lingkungan_kg": 2630.0,
+      "aset_kg": 0.0,
+      "avg_kg_per_calendar_day": 3112.33,
       "days_active": 16,
       "days_in_month": 30,
-      "avg_kg_per_active_day": 5671.25,
+      "avg_kg_per_active_day": 5835.62,
       "category_breakdown_available": true,
-      "unpad_kg": 90740.0,
+      "unpad_kg": 93370.0,
       "ipdn_kg": 0.0,
       "ipdn_active_days": 0
     },
@@ -196,10 +215,11 @@
       "month": "2026-07",
       "label": "Juli 2026",
       "total_kg": null,
-      "organik_kg": 0,
-      "anorganik_residu_kg": 0,
-      "sod_kg": 0,
-      "avg_kg_per_calendar_day": 0,
+      "organik_anorganik_kg": 0,
+      "sisa_makanan_kg": 0,
+      "lingkungan_kg": 0,
+      "aset_kg": 0,
+      "avg_kg_per_calendar_day": null,
       "days_active": 0,
       "days_in_month": 31,
       "avg_kg_per_active_day": null,
@@ -212,10 +232,11 @@
       "month": "2026-08",
       "label": "Agustus 2026",
       "total_kg": null,
-      "organik_kg": 0,
-      "anorganik_residu_kg": 0,
-      "sod_kg": 0,
-      "avg_kg_per_calendar_day": 0,
+      "organik_anorganik_kg": 0,
+      "sisa_makanan_kg": 0,
+      "lingkungan_kg": 0,
+      "aset_kg": 0,
+      "avg_kg_per_calendar_day": null,
       "days_active": 0,
       "days_in_month": 31,
       "avg_kg_per_active_day": null,
@@ -228,10 +249,11 @@
       "month": "2026-09",
       "label": "September 2026",
       "total_kg": null,
-      "organik_kg": 0,
-      "anorganik_residu_kg": 0,
-      "sod_kg": 0,
-      "avg_kg_per_calendar_day": 0,
+      "organik_anorganik_kg": 0,
+      "sisa_makanan_kg": 0,
+      "lingkungan_kg": 0,
+      "aset_kg": 0,
+      "avg_kg_per_calendar_day": null,
       "days_active": 0,
       "days_in_month": 30,
       "avg_kg_per_active_day": null,
@@ -244,10 +266,11 @@
       "month": "2026-10",
       "label": "Oktober 2026",
       "total_kg": null,
-      "organik_kg": 0,
-      "anorganik_residu_kg": 0,
-      "sod_kg": 0,
-      "avg_kg_per_calendar_day": 0,
+      "organik_anorganik_kg": 0,
+      "sisa_makanan_kg": 0,
+      "lingkungan_kg": 0,
+      "aset_kg": 0,
+      "avg_kg_per_calendar_day": null,
       "days_active": 0,
       "days_in_month": 31,
       "avg_kg_per_active_day": null,
@@ -260,10 +283,11 @@
       "month": "2026-11",
       "label": "November 2026",
       "total_kg": null,
-      "organik_kg": 0,
-      "anorganik_residu_kg": 0,
-      "sod_kg": 0,
-      "avg_kg_per_calendar_day": 0,
+      "organik_anorganik_kg": 0,
+      "sisa_makanan_kg": 0,
+      "lingkungan_kg": 0,
+      "aset_kg": 0,
+      "avg_kg_per_calendar_day": null,
       "days_active": 0,
       "days_in_month": 30,
       "avg_kg_per_active_day": null,
@@ -276,10 +300,11 @@
       "month": "2026-12",
       "label": "Desember 2026",
       "total_kg": null,
-      "organik_kg": 0,
-      "anorganik_residu_kg": 0,
-      "sod_kg": 0,
-      "avg_kg_per_calendar_day": 0,
+      "organik_anorganik_kg": 0,
+      "sisa_makanan_kg": 0,
+      "lingkungan_kg": 0,
+      "aset_kg": 0,
+      "avg_kg_per_calendar_day": null,
       "days_active": 0,
       "days_in_month": 31,
       "avg_kg_per_active_day": null,
@@ -296,7 +321,12 @@
       "total_kg": 3170.0,
       "unpad_kg": 3170.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 3170.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -306,7 +336,12 @@
       "total_kg": 3740.0,
       "unpad_kg": 3740.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 3740.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -316,7 +351,12 @@
       "total_kg": 3470.0,
       "unpad_kg": 3470.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 3470.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -326,7 +366,12 @@
       "total_kg": 2980.0,
       "unpad_kg": 2980.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 2980.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -336,27 +381,12 @@
       "total_kg": 1810.0,
       "unpad_kg": 1810.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-01-31",
-      "day_of_week": "Sabtu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-02-01",
-      "day_of_week": "Minggu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 1810.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -366,7 +396,12 @@
       "total_kg": 7660.0,
       "unpad_kg": 7660.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 7660.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -376,7 +411,12 @@
       "total_kg": 5610.0,
       "unpad_kg": 5610.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 5610.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -386,7 +426,12 @@
       "total_kg": 5906.0,
       "unpad_kg": 5906.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 4199.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 1707.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -396,37 +441,27 @@
       "total_kg": 5682.0,
       "unpad_kg": 5682.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 4500.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 1182.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-02-06",
       "day_of_week": "Jumat",
-      "total_kg": 6060.0,
-      "unpad_kg": 6060.0,
+      "total_kg": 6527.0,
+      "unpad_kg": 6527.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-02-07",
-      "day_of_week": "Sabtu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-02-08",
-      "day_of_week": "Minggu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 6060.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 467.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -436,7 +471,12 @@
       "total_kg": 7700.0,
       "unpad_kg": 7700.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 7700.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -446,7 +486,12 @@
       "total_kg": 7166.0,
       "unpad_kg": 7166.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 6300.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 866.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -456,17 +501,27 @@
       "total_kg": 8648.0,
       "unpad_kg": 8648.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 7360.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 1288.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-02-12",
       "day_of_week": "Kamis",
-      "total_kg": 8190.0,
-      "unpad_kg": 8190.0,
+      "total_kg": 8480.0,
+      "unpad_kg": 8480.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 8190.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 290.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -476,47 +531,12 @@
       "total_kg": 3130.0,
       "unpad_kg": 3130.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-02-14",
-      "day_of_week": "Sabtu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-02-15",
-      "day_of_week": "Minggu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-02-16",
-      "day_of_week": "Senin",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-02-17",
-      "day_of_week": "Selasa",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 3130.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -526,7 +546,12 @@
       "total_kg": 8650.0,
       "unpad_kg": 8650.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 8650.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -536,7 +561,12 @@
       "total_kg": 4990.0,
       "unpad_kg": 4990.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 4990.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -546,27 +576,12 @@
       "total_kg": 2870.0,
       "unpad_kg": 2870.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-02-21",
-      "day_of_week": "Sabtu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-02-22",
-      "day_of_week": "Minggu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 2870.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -576,7 +591,12 @@
       "total_kg": 7590.0,
       "unpad_kg": 7590.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 7590.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -586,17 +606,12 @@
       "total_kg": 3300.0,
       "unpad_kg": 3300.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-02-25",
-      "day_of_week": "Rabu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 3300.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -606,7 +621,12 @@
       "total_kg": 4760.0,
       "unpad_kg": 4760.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 4760.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -616,27 +636,12 @@
       "total_kg": 2630.0,
       "unpad_kg": 2630.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-02-28",
-      "day_of_week": "Sabtu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-03-01",
-      "day_of_week": "Minggu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 2630.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -646,7 +651,12 @@
       "total_kg": 5870.0,
       "unpad_kg": 5870.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 5870.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -656,7 +666,12 @@
       "total_kg": 1040.0,
       "unpad_kg": 1040.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 1040.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -666,7 +681,12 @@
       "total_kg": 5280.0,
       "unpad_kg": 5280.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 5280.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -676,37 +696,27 @@
       "total_kg": 2490.0,
       "unpad_kg": 2490.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 2490.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-03-06",
       "day_of_week": "Jumat",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
+      "total_kg": 7004.0,
+      "unpad_kg": 7004.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-03-07",
-      "day_of_week": "Sabtu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-03-08",
-      "day_of_week": "Minggu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 0.0,
+        "sisa_makanan": 7004.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -716,7 +726,12 @@
       "total_kg": 6900.0,
       "unpad_kg": 6900.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 6900.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -726,7 +741,12 @@
       "total_kg": 4020.0,
       "unpad_kg": 4020.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 4020.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -736,7 +756,12 @@
       "total_kg": 1040.0,
       "unpad_kg": 1040.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 1040.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -746,7 +771,12 @@
       "total_kg": 2580.0,
       "unpad_kg": 2580.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 2580.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -756,177 +786,27 @@
       "total_kg": 1620.0,
       "unpad_kg": 1620.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-03-14",
-      "day_of_week": "Sabtu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-03-15",
-      "day_of_week": "Minggu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-03-16",
-      "day_of_week": "Senin",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-03-17",
-      "day_of_week": "Selasa",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-03-18",
-      "day_of_week": "Rabu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-03-19",
-      "day_of_week": "Kamis",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-03-20",
-      "day_of_week": "Jumat",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-03-21",
-      "day_of_week": "Sabtu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-03-22",
-      "day_of_week": "Minggu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-03-23",
-      "day_of_week": "Senin",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-03-24",
-      "day_of_week": "Selasa",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-03-25",
-      "day_of_week": "Rabu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-03-26",
-      "day_of_week": "Kamis",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-03-27",
-      "day_of_week": "Jumat",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-03-28",
-      "day_of_week": "Sabtu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-03-29",
-      "day_of_week": "Minggu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 1620.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-03-30",
       "day_of_week": "Senin",
-      "total_kg": 6820.0,
-      "unpad_kg": 6820.0,
+      "total_kg": 6845.0,
+      "unpad_kg": 6845.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 6820.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 25.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -936,17 +816,27 @@
       "total_kg": 5500.0,
       "unpad_kg": 5500.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 5500.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-04-01",
       "day_of_week": "Rabu",
-      "total_kg": 5890.0,
-      "unpad_kg": 5890.0,
-      "ipdn_kg": 0,
-      "by_category_kg": null,
+      "total_kg": 6890.0,
+      "unpad_kg": 6890.0,
+      "ipdn_kg": 0.0,
+      "by_category_kg": {
+        "organik_anorganik": 5890.0,
+        "sisa_makanan": 1000.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -955,38 +845,13 @@
       "day_of_week": "Kamis",
       "total_kg": 6570.0,
       "unpad_kg": 6570.0,
-      "ipdn_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-04-03",
-      "day_of_week": "Jumat",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-04-04",
-      "day_of_week": "Sabtu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-04-05",
-      "day_of_week": "Minggu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0,
-      "by_category_kg": null,
+      "ipdn_kg": 0.0,
+      "by_category_kg": {
+        "organik_anorganik": 6570.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -995,8 +860,13 @@
       "day_of_week": "Senin",
       "total_kg": 5762.0,
       "unpad_kg": 5762.0,
-      "ipdn_kg": 0,
-      "by_category_kg": null,
+      "ipdn_kg": 0.0,
+      "by_category_kg": {
+        "organik_anorganik": 5680.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 82.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -1005,8 +875,13 @@
       "day_of_week": "Selasa",
       "total_kg": 8620.0,
       "unpad_kg": 8620.0,
-      "ipdn_kg": 0,
-      "by_category_kg": null,
+      "ipdn_kg": 0.0,
+      "by_category_kg": {
+        "organik_anorganik": 8620.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -1015,8 +890,13 @@
       "day_of_week": "Rabu",
       "total_kg": 5942.0,
       "unpad_kg": 5942.0,
-      "ipdn_kg": 0,
-      "by_category_kg": null,
+      "ipdn_kg": 0.0,
+      "by_category_kg": {
+        "organik_anorganik": 5600.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 342.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -1025,8 +905,13 @@
       "day_of_week": "Kamis",
       "total_kg": 6152.0,
       "unpad_kg": 6152.0,
-      "ipdn_kg": 0,
-      "by_category_kg": null,
+      "ipdn_kg": 0.0,
+      "by_category_kg": {
+        "organik_anorganik": 5970.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 182.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -1035,28 +920,13 @@
       "day_of_week": "Jumat",
       "total_kg": 2630.0,
       "unpad_kg": 2630.0,
-      "ipdn_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-04-11",
-      "day_of_week": "Sabtu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-04-12",
-      "day_of_week": "Minggu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0,
-      "by_category_kg": null,
+      "ipdn_kg": 0.0,
+      "by_category_kg": {
+        "organik_anorganik": 2630.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -1065,8 +935,13 @@
       "day_of_week": "Senin",
       "total_kg": 9160.0,
       "unpad_kg": 9160.0,
-      "ipdn_kg": 0,
-      "by_category_kg": null,
+      "ipdn_kg": 0.0,
+      "by_category_kg": {
+        "organik_anorganik": 9160.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -1075,8 +950,13 @@
       "day_of_week": "Selasa",
       "total_kg": 6560.0,
       "unpad_kg": 6560.0,
-      "ipdn_kg": 0,
-      "by_category_kg": null,
+      "ipdn_kg": 0.0,
+      "by_category_kg": {
+        "organik_anorganik": 6560.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -1085,8 +965,13 @@
       "day_of_week": "Rabu",
       "total_kg": 5720.0,
       "unpad_kg": 5720.0,
-      "ipdn_kg": 0,
-      "by_category_kg": null,
+      "ipdn_kg": 0.0,
+      "by_category_kg": {
+        "organik_anorganik": 5720.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -1095,38 +980,28 @@
       "day_of_week": "Kamis",
       "total_kg": 3962.0,
       "unpad_kg": 3962.0,
-      "ipdn_kg": 0,
-      "by_category_kg": null,
+      "ipdn_kg": 0.0,
+      "by_category_kg": {
+        "organik_anorganik": 3810.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 152.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-04-17",
       "day_of_week": "Jumat",
-      "total_kg": 3270.0,
-      "unpad_kg": 3270.0,
-      "ipdn_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-04-18",
-      "day_of_week": "Sabtu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-04-19",
-      "day_of_week": "Minggu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0,
-      "by_category_kg": null,
+      "total_kg": 4340.0,
+      "unpad_kg": 4340.0,
+      "ipdn_kg": 0.0,
+      "by_category_kg": {
+        "organik_anorganik": 3270.0,
+        "sisa_makanan": 1070.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -1135,8 +1010,13 @@
       "day_of_week": "Senin",
       "total_kg": 8740.0,
       "unpad_kg": 8740.0,
-      "ipdn_kg": 0,
-      "by_category_kg": null,
+      "ipdn_kg": 0.0,
+      "by_category_kg": {
+        "organik_anorganik": 8740.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -1145,8 +1025,13 @@
       "day_of_week": "Selasa",
       "total_kg": 5810.0,
       "unpad_kg": 5810.0,
-      "ipdn_kg": 0,
-      "by_category_kg": null,
+      "ipdn_kg": 0.0,
+      "by_category_kg": {
+        "organik_anorganik": 5810.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -1155,8 +1040,13 @@
       "day_of_week": "Rabu",
       "total_kg": 7334.0,
       "unpad_kg": 7334.0,
-      "ipdn_kg": 0,
-      "by_category_kg": null,
+      "ipdn_kg": 0.0,
+      "by_category_kg": {
+        "organik_anorganik": 6680.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 654.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -1165,8 +1055,13 @@
       "day_of_week": "Kamis",
       "total_kg": 5830.0,
       "unpad_kg": 5830.0,
-      "ipdn_kg": 0,
-      "by_category_kg": null,
+      "ipdn_kg": 0.0,
+      "by_category_kg": {
+        "organik_anorganik": 5830.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -1175,38 +1070,13 @@
       "day_of_week": "Jumat",
       "total_kg": 4740.0,
       "unpad_kg": 4740.0,
-      "ipdn_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-04-25",
-      "day_of_week": "Sabtu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-04-26",
-      "day_of_week": "Minggu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-04-27",
-      "day_of_week": "Senin",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0,
-      "by_category_kg": null,
+      "ipdn_kg": 0.0,
+      "by_category_kg": {
+        "organik_anorganik": 4740.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -1215,8 +1085,13 @@
       "day_of_week": "Selasa",
       "total_kg": 4592.0,
       "unpad_kg": 4592.0,
-      "ipdn_kg": 0,
-      "by_category_kg": null,
+      "ipdn_kg": 0.0,
+      "by_category_kg": {
+        "organik_anorganik": 4520.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 72.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -1225,48 +1100,28 @@
       "day_of_week": "Rabu",
       "total_kg": 5790.0,
       "unpad_kg": 5790.0,
-      "ipdn_kg": 0,
-      "by_category_kg": null,
+      "ipdn_kg": 0.0,
+      "by_category_kg": {
+        "organik_anorganik": 5790.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-04-30",
       "day_of_week": "Kamis",
-      "total_kg": 7470.0,
-      "unpad_kg": 7470.0,
-      "ipdn_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-05-01",
-      "day_of_week": "Jumat",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
+      "total_kg": 8430.0,
+      "unpad_kg": 8430.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-05-02",
-      "day_of_week": "Sabtu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-05-03",
-      "day_of_week": "Minggu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 7470.0,
+        "sisa_makanan": 960.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -1277,30 +1132,11 @@
       "unpad_kg": 12872.0,
       "ipdn_kg": 0.0,
       "by_category_kg": {
-        "organik": 162.0,
-        "anorganik_residu": 12020.0,
-        "sod": 690.0
+        "organik_anorganik": 12020.0,
+        "sisa_makanan": 690.0,
+        "lingkungan": 162.0,
+        "aset": 0.0
       },
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-05-05",
-      "day_of_week": "Selasa",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-05-06",
-      "day_of_week": "Rabu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
       "note": null,
       "quality_flag": null
     },
@@ -1310,7 +1146,12 @@
       "total_kg": 4450.0,
       "unpad_kg": 4450.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 4450.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -1320,27 +1161,12 @@
       "total_kg": 7670.0,
       "unpad_kg": 7120.0,
       "ipdn_kg": 550.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-05-09",
-      "day_of_week": "Sabtu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-05-10",
-      "day_of_week": "Minggu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 7120.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -1351,9 +1177,10 @@
       "unpad_kg": 10620.0,
       "ipdn_kg": 0.0,
       "by_category_kg": {
-        "organik": 0.0,
-        "anorganik_residu": 9880.0,
-        "sod": 740.0
+        "organik_anorganik": 9880.0,
+        "sisa_makanan": 740.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
       },
       "note": null,
       "quality_flag": null
@@ -1364,7 +1191,12 @@
       "total_kg": 6020.0,
       "unpad_kg": 6020.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 6020.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -1375,50 +1207,11 @@
       "unpad_kg": 8010.0,
       "ipdn_kg": 0.0,
       "by_category_kg": {
-        "organik": 0.0,
-        "anorganik_residu": 7150.0,
-        "sod": 860.0
+        "organik_anorganik": 7150.0,
+        "sisa_makanan": 860.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
       },
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-05-14",
-      "day_of_week": "Kamis",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-05-15",
-      "day_of_week": "Jumat",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-05-16",
-      "day_of_week": "Sabtu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-05-17",
-      "day_of_week": "Minggu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
       "note": null,
       "quality_flag": null
     },
@@ -1429,9 +1222,10 @@
       "unpad_kg": 19704.0,
       "ipdn_kg": 0.0,
       "by_category_kg": {
-        "organik": 6844.0,
-        "anorganik_residu": 12080.0,
-        "sod": 780.0
+        "organik_anorganik": 12080.0,
+        "sisa_makanan": 780.0,
+        "lingkungan": 6844.0,
+        "aset": 0.0
       },
       "note": null,
       "quality_flag": null
@@ -1443,9 +1237,10 @@
       "unpad_kg": 9250.0,
       "ipdn_kg": 0.0,
       "by_category_kg": {
-        "organik": 350.0,
-        "anorganik_residu": 8900.0,
-        "sod": 0.0
+        "organik_anorganik": 8900.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 350.0,
+        "aset": 0.0
       },
       "note": null,
       "quality_flag": null
@@ -1456,7 +1251,12 @@
       "total_kg": 8500.0,
       "unpad_kg": 8500.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 8500.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -1466,7 +1266,12 @@
       "total_kg": 7460.0,
       "unpad_kg": 7460.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 7460.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -1476,27 +1281,12 @@
       "total_kg": 4380.0,
       "unpad_kg": 4380.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-05-23",
-      "day_of_week": "Sabtu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-05-24",
-      "day_of_week": "Minggu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 4380.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -1507,9 +1297,10 @@
       "unpad_kg": 4340.0,
       "ipdn_kg": 0.0,
       "by_category_kg": {
-        "organik": 70.0,
-        "anorganik_residu": 4270.0,
-        "sod": 0.0
+        "organik_anorganik": 4270.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 70.0,
+        "aset": 0.0
       },
       "note": null,
       "quality_flag": null
@@ -1520,27 +1311,12 @@
       "total_kg": 5410.0,
       "unpad_kg": 5410.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-05-27",
-      "day_of_week": "Rabu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-05-28",
-      "day_of_week": "Kamis",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 5410.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -1550,74 +1326,41 @@
       "total_kg": 6530.0,
       "unpad_kg": 6530.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-05-30",
-      "day_of_week": "Sabtu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-05-31",
-      "day_of_week": "Minggu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-06-01",
-      "day_of_week": "Senin",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 6530.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-06-02",
       "day_of_week": "Selasa",
-      "total_kg": 8420.0,
-      "unpad_kg": 8420.0,
+      "total_kg": 9432.0,
+      "unpad_kg": 9432.0,
       "ipdn_kg": 0.0,
       "by_category_kg": {
-        "organik": 1012.0,
-        "anorganik_residu": 6418.0,
-        "sod": 990.0
+        "organik_anorganik": 7430.0,
+        "sisa_makanan": 990.0,
+        "lingkungan": 1012.0,
+        "aset": 0.0
       },
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-06-03",
-      "day_of_week": "Rabu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-06-04",
       "day_of_week": "Kamis",
-      "total_kg": 7910.0,
-      "unpad_kg": 7910.0,
+      "total_kg": 8564.0,
+      "unpad_kg": 8564.0,
       "ipdn_kg": 0.0,
       "by_category_kg": {
-        "organik": 654.0,
-        "anorganik_residu": 6376.0,
-        "sod": 880.0
+        "organik_anorganik": 7030.0,
+        "sisa_makanan": 880.0,
+        "lingkungan": 654.0,
+        "aset": 0.0
       },
       "note": null,
       "quality_flag": null
@@ -1628,27 +1371,12 @@
       "total_kg": 5230.0,
       "unpad_kg": 5230.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-06-06",
-      "day_of_week": "Sabtu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-06-07",
-      "day_of_week": "Minggu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 5230.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -1658,20 +1386,26 @@
       "total_kg": 8270.0,
       "unpad_kg": 8270.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 8270.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-06-09",
       "day_of_week": "Selasa",
-      "total_kg": 4840.0,
-      "unpad_kg": 4840.0,
+      "total_kg": 5422.0,
+      "unpad_kg": 5422.0,
       "ipdn_kg": 0.0,
       "by_category_kg": {
-        "organik": 582.0,
-        "anorganik_residu": 3228.0,
-        "sod": 1030.0
+        "organik_anorganik": 3810.0,
+        "sisa_makanan": 1030.0,
+        "lingkungan": 582.0,
+        "aset": 0.0
       },
       "note": null,
       "quality_flag": null
@@ -1683,9 +1417,10 @@
       "unpad_kg": 6530.0,
       "ipdn_kg": 0.0,
       "by_category_kg": {
-        "organik": 0.0,
-        "anorganik_residu": 5760.0,
-        "sod": 770.0
+        "organik_anorganik": 5760.0,
+        "sisa_makanan": 770.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
       },
       "note": null,
       "quality_flag": null
@@ -1696,7 +1431,12 @@
       "total_kg": 2550.0,
       "unpad_kg": 2550.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 2550.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -1706,27 +1446,12 @@
       "total_kg": 2190.0,
       "unpad_kg": 2190.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-06-13",
-      "day_of_week": "Sabtu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-06-14",
-      "day_of_week": "Minggu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 2190.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -1736,17 +1461,12 @@
       "total_kg": 9850.0,
       "unpad_kg": 9850.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-06-16",
-      "day_of_week": "Selasa",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 9850.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -1756,47 +1476,12 @@
       "total_kg": 6470.0,
       "unpad_kg": 6470.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-06-18",
-      "day_of_week": "Kamis",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-06-19",
-      "day_of_week": "Jumat",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-06-20",
-      "day_of_week": "Sabtu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-06-21",
-      "day_of_week": "Minggu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 6470.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -1806,20 +1491,26 @@
       "total_kg": 4860.0,
       "unpad_kg": 4860.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 4860.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
     {
       "date": "2026-06-23",
       "day_of_week": "Selasa",
-      "total_kg": 4350.0,
-      "unpad_kg": 4350.0,
+      "total_kg": 4732.0,
+      "unpad_kg": 4732.0,
       "ipdn_kg": 0.0,
       "by_category_kg": {
-        "organik": 382.0,
-        "anorganik_residu": 3968.0,
-        "sod": 0.0
+        "organik_anorganik": 4350.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 382.0,
+        "aset": 0.0
       },
       "note": null,
       "quality_flag": null
@@ -1830,7 +1521,12 @@
       "total_kg": 4950.0,
       "unpad_kg": 4950.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 4950.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -1840,37 +1536,12 @@
       "total_kg": 2650.0,
       "unpad_kg": 2650.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-06-26",
-      "day_of_week": "Jumat",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-06-27",
-      "day_of_week": "Sabtu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-06-28",
-      "day_of_week": "Minggu",
-      "total_kg": 0.0,
-      "unpad_kg": 0.0,
-      "ipdn_kg": 0.0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 2650.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     },
@@ -1881,9 +1552,10 @@
       "unpad_kg": 7490.0,
       "ipdn_kg": 0.0,
       "by_category_kg": {
-        "organik": 0.0,
-        "anorganik_residu": 6440.0,
-        "sod": 1050.0
+        "organik_anorganik": 6440.0,
+        "sisa_makanan": 1050.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
       },
       "note": null,
       "quality_flag": null
@@ -1894,1479 +1566,12 @@
       "total_kg": 4180.0,
       "unpad_kg": 4180.0,
       "ipdn_kg": 0.0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-07-01",
-      "day_of_week": "Rabu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-07-02",
-      "day_of_week": "Kamis",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-07-03",
-      "day_of_week": "Jumat",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-07-04",
-      "day_of_week": "Sabtu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-07-05",
-      "day_of_week": "Minggu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-07-06",
-      "day_of_week": "Senin",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-07-07",
-      "day_of_week": "Selasa",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-07-08",
-      "day_of_week": "Rabu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-07-09",
-      "day_of_week": "Kamis",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-07-10",
-      "day_of_week": "Jumat",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-07-11",
-      "day_of_week": "Sabtu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-07-12",
-      "day_of_week": "Minggu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-07-13",
-      "day_of_week": "Senin",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-07-14",
-      "day_of_week": "Selasa",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-07-15",
-      "day_of_week": "Rabu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-07-16",
-      "day_of_week": "Kamis",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-07-17",
-      "day_of_week": "Jumat",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-07-18",
-      "day_of_week": "Sabtu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-07-19",
-      "day_of_week": "Minggu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-07-20",
-      "day_of_week": "Senin",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-07-21",
-      "day_of_week": "Selasa",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-07-22",
-      "day_of_week": "Rabu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-07-23",
-      "day_of_week": "Kamis",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-07-24",
-      "day_of_week": "Jumat",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-07-25",
-      "day_of_week": "Sabtu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-07-26",
-      "day_of_week": "Minggu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-07-27",
-      "day_of_week": "Senin",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-07-28",
-      "day_of_week": "Selasa",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-07-29",
-      "day_of_week": "Rabu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-07-30",
-      "day_of_week": "Kamis",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-07-31",
-      "day_of_week": "Jumat",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-08-01",
-      "day_of_week": "Sabtu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-08-02",
-      "day_of_week": "Minggu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-08-03",
-      "day_of_week": "Senin",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-08-04",
-      "day_of_week": "Selasa",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-08-05",
-      "day_of_week": "Rabu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-08-06",
-      "day_of_week": "Kamis",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-08-07",
-      "day_of_week": "Jumat",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-08-08",
-      "day_of_week": "Sabtu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-08-09",
-      "day_of_week": "Minggu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-08-10",
-      "day_of_week": "Senin",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-08-11",
-      "day_of_week": "Selasa",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-08-12",
-      "day_of_week": "Rabu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-08-13",
-      "day_of_week": "Kamis",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-08-14",
-      "day_of_week": "Jumat",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-08-15",
-      "day_of_week": "Sabtu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-08-16",
-      "day_of_week": "Minggu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-08-17",
-      "day_of_week": "Senin",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-08-18",
-      "day_of_week": "Selasa",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-08-19",
-      "day_of_week": "Rabu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-08-20",
-      "day_of_week": "Kamis",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-08-21",
-      "day_of_week": "Jumat",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-08-22",
-      "day_of_week": "Sabtu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-08-23",
-      "day_of_week": "Minggu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-08-24",
-      "day_of_week": "Senin",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-08-25",
-      "day_of_week": "Selasa",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-08-26",
-      "day_of_week": "Rabu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-08-27",
-      "day_of_week": "Kamis",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-08-28",
-      "day_of_week": "Jumat",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-08-29",
-      "day_of_week": "Sabtu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-08-30",
-      "day_of_week": "Minggu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-08-31",
-      "day_of_week": "Senin",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-09-01",
-      "day_of_week": "Selasa",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-09-02",
-      "day_of_week": "Rabu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-09-03",
-      "day_of_week": "Kamis",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-09-04",
-      "day_of_week": "Jumat",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-09-05",
-      "day_of_week": "Sabtu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-09-06",
-      "day_of_week": "Minggu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-09-07",
-      "day_of_week": "Senin",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-09-08",
-      "day_of_week": "Selasa",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-09-09",
-      "day_of_week": "Rabu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-09-10",
-      "day_of_week": "Kamis",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-09-11",
-      "day_of_week": "Jumat",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-09-12",
-      "day_of_week": "Sabtu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-09-13",
-      "day_of_week": "Minggu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-09-14",
-      "day_of_week": "Senin",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-09-15",
-      "day_of_week": "Selasa",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-09-16",
-      "day_of_week": "Rabu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-09-17",
-      "day_of_week": "Kamis",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-09-18",
-      "day_of_week": "Jumat",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-09-19",
-      "day_of_week": "Sabtu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-09-20",
-      "day_of_week": "Minggu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-09-21",
-      "day_of_week": "Senin",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-09-22",
-      "day_of_week": "Selasa",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-09-23",
-      "day_of_week": "Rabu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-09-24",
-      "day_of_week": "Kamis",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-09-25",
-      "day_of_week": "Jumat",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-09-26",
-      "day_of_week": "Sabtu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-09-27",
-      "day_of_week": "Minggu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-09-28",
-      "day_of_week": "Senin",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-09-29",
-      "day_of_week": "Selasa",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-09-30",
-      "day_of_week": "Rabu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-10-01",
-      "day_of_week": "Kamis",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-10-02",
-      "day_of_week": "Jumat",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-10-03",
-      "day_of_week": "Sabtu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-10-04",
-      "day_of_week": "Minggu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-10-05",
-      "day_of_week": "Senin",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-10-06",
-      "day_of_week": "Selasa",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-10-07",
-      "day_of_week": "Rabu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-10-08",
-      "day_of_week": "Kamis",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-10-09",
-      "day_of_week": "Jumat",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-10-10",
-      "day_of_week": "Sabtu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-10-11",
-      "day_of_week": "Minggu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-10-12",
-      "day_of_week": "Senin",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-10-13",
-      "day_of_week": "Selasa",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-10-14",
-      "day_of_week": "Rabu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-10-15",
-      "day_of_week": "Kamis",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-10-16",
-      "day_of_week": "Jumat",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-10-17",
-      "day_of_week": "Sabtu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-10-18",
-      "day_of_week": "Minggu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-10-19",
-      "day_of_week": "Senin",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-10-20",
-      "day_of_week": "Selasa",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-10-21",
-      "day_of_week": "Rabu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-10-22",
-      "day_of_week": "Kamis",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-10-23",
-      "day_of_week": "Jumat",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-10-24",
-      "day_of_week": "Sabtu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-10-25",
-      "day_of_week": "Minggu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-10-26",
-      "day_of_week": "Senin",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-10-27",
-      "day_of_week": "Selasa",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-10-28",
-      "day_of_week": "Rabu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-10-29",
-      "day_of_week": "Kamis",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-10-30",
-      "day_of_week": "Jumat",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-10-31",
-      "day_of_week": "Sabtu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-11-01",
-      "day_of_week": "Minggu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-11-02",
-      "day_of_week": "Senin",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-11-03",
-      "day_of_week": "Selasa",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-11-04",
-      "day_of_week": "Rabu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-11-05",
-      "day_of_week": "Kamis",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-11-06",
-      "day_of_week": "Jumat",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-11-07",
-      "day_of_week": "Sabtu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-11-08",
-      "day_of_week": "Minggu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-11-09",
-      "day_of_week": "Senin",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-11-10",
-      "day_of_week": "Selasa",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-11-11",
-      "day_of_week": "Rabu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-11-12",
-      "day_of_week": "Kamis",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-11-13",
-      "day_of_week": "Jumat",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-11-14",
-      "day_of_week": "Sabtu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-11-15",
-      "day_of_week": "Minggu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-11-16",
-      "day_of_week": "Senin",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-11-17",
-      "day_of_week": "Selasa",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-11-18",
-      "day_of_week": "Rabu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-11-19",
-      "day_of_week": "Kamis",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-11-20",
-      "day_of_week": "Jumat",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-11-21",
-      "day_of_week": "Sabtu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-11-22",
-      "day_of_week": "Minggu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-11-23",
-      "day_of_week": "Senin",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-11-24",
-      "day_of_week": "Selasa",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-11-25",
-      "day_of_week": "Rabu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-11-26",
-      "day_of_week": "Kamis",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-11-27",
-      "day_of_week": "Jumat",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-11-28",
-      "day_of_week": "Sabtu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-11-29",
-      "day_of_week": "Minggu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-11-30",
-      "day_of_week": "Senin",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-12-01",
-      "day_of_week": "Selasa",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-12-02",
-      "day_of_week": "Rabu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-12-03",
-      "day_of_week": "Kamis",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-12-04",
-      "day_of_week": "Jumat",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-12-05",
-      "day_of_week": "Sabtu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-12-06",
-      "day_of_week": "Minggu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-12-07",
-      "day_of_week": "Senin",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-12-08",
-      "day_of_week": "Selasa",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-12-09",
-      "day_of_week": "Rabu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-12-10",
-      "day_of_week": "Kamis",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-12-11",
-      "day_of_week": "Jumat",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-12-12",
-      "day_of_week": "Sabtu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-12-13",
-      "day_of_week": "Minggu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-12-14",
-      "day_of_week": "Senin",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-12-15",
-      "day_of_week": "Selasa",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-12-16",
-      "day_of_week": "Rabu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-12-17",
-      "day_of_week": "Kamis",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-12-18",
-      "day_of_week": "Jumat",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-12-19",
-      "day_of_week": "Sabtu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-12-20",
-      "day_of_week": "Minggu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-12-21",
-      "day_of_week": "Senin",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-12-22",
-      "day_of_week": "Selasa",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-12-23",
-      "day_of_week": "Rabu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-12-24",
-      "day_of_week": "Kamis",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-12-25",
-      "day_of_week": "Jumat",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-12-26",
-      "day_of_week": "Sabtu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-12-27",
-      "day_of_week": "Minggu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-12-28",
-      "day_of_week": "Senin",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-12-29",
-      "day_of_week": "Selasa",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-12-30",
-      "day_of_week": "Rabu",
-      "total_kg": 0,
-      "by_category_kg": null,
-      "note": null,
-      "quality_flag": null
-    },
-    {
-      "date": "2026-12-31",
-      "day_of_week": "Kamis",
-      "total_kg": 0,
-      "by_category_kg": null,
+      "by_category_kg": {
+        "organik_anorganik": 4180.0,
+        "sisa_makanan": 0.0,
+        "lingkungan": 0.0,
+        "aset": 0.0
+      },
       "note": null,
       "quality_flag": null
     }

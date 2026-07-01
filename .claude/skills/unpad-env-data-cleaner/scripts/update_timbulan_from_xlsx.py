@@ -1,9 +1,37 @@
-"""Targeted update: rebuild Feb (revised), Mei (extended), Juni (new) sections
-of data/timbulan.json from the Excel workbook.
+"""Rebuild data/timbulan.json with the 4-category vehicle-based schema.
 
-Preserves the existing structure and only touches monthly_summary + daily_entries
-for the affected months. Recomputes avg_kg_per_active_day and
-avg_kg_per_calendar_day for those months.
+Reads the Excel workbook directly and applies the confirmed business rules:
+
+1. Sampah Organik dan Anorganik = Tim Angsa columns
+   - Januari:  cols 2-9
+   - Februari: cols 2-9
+   - Maret:    cols 2-9
+   - April:    cols 2-14 (13 slots) MINUS blue cells at tgl 28-29 (FF00FFFF fill)
+   - May:      cols 2-9
+   - Juni:     cols 2-9
+
+2. Limbah Sisa Makanan = SOD
+   - Maret:  cols 12-13 (SOD RS Pick Up)
+   - April:  cols 17-18 (SOD RS) + cols 21-23 (Cator SOD)
+   - May:    col 15
+   - Juni:   cols 15-17
+
+3. Sampah Lingkungan = Pick Up / Pak Ratian / Daun & Ranting
+   - Februari: cols 13-17 (Pick Up UNPAD)
+   - Maret:    cols 10-11 (Pick Up)
+   - April:    cols 19-20 (Pick Up Seresah)
+   - May:      cols 12-14 (Daun & Ranting)
+   - Juni:     cols 12-14 (Daun & Ranting) - INCLUDED even though Excel Total omits
+
+4. Sampah Aset = Viar + Mobil Traga (Feb only)
+   - Februari: col 12 (Viar) + col 18 (Mobil Traga) - INCLUDED as Aset
+
+5. IPDN separate operator
+   - Januari-April: various cols, all zero
+   - May: cols 10-11 (only 8 May = 550 kg)
+   - Juni: cols 10-11 (zero)
+
+Total per bulan = organik_anorganik + sisa_makanan + lingkungan + aset (UNPAD side) + ipdn.
 """
 from __future__ import annotations
 
@@ -20,6 +48,98 @@ JSON_PATH = ROOT / "data" / "timbulan.json"
 DOCS_JSON_PATH = ROOT / "docs" / "data" / "timbulan.json"
 
 DAY_ID = ["Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu", "Minggu"]
+BLUE_FILL = "FF00FFFF"
+
+# Per-sheet layout. 0-indexed column positions in the row tuple.
+LAYOUTS = {
+    "Januari": {
+        "iso": "2026-01", "label": "Januari 2026", "days_in_month": 31,
+        "tim_angsa": list(range(2, 10)),
+        "sod":       [],
+        "lingkungan":[],
+        "aset":      [],
+        "ipdn":      [10, 11],
+        # April is the only sheet with blue-cell handling
+        "blue_days": [],
+        "blue_cols": [],
+    },
+    "Februari": {
+        "iso": "2026-02", "label": "Februari 2026", "days_in_month": 28,
+        "tim_angsa": list(range(2, 10)),
+        "sod":       [],
+        "lingkungan":[13, 14, 15, 16, 17],
+        "aset":      [12, 18],  # Viar + Mobil Traga
+        "ipdn":      [10, 11],
+        "blue_days": [], "blue_cols": [],
+    },
+    "Maret": {
+        "iso": "2026-03", "label": "Maret 2026", "days_in_month": 31,
+        "tim_angsa": list(range(2, 10)),
+        "sod":       [12, 13],
+        "lingkungan":[10, 11],
+        "aset":      [],
+        "ipdn":      [],
+        "blue_days": [], "blue_cols": [],
+    },
+    "April": {
+        "iso": "2026-04", "label": "April 2026", "days_in_month": 30,
+        "tim_angsa": list(range(2, 15)),  # cols 2-14 = Tim Angsa (13 slots)
+        "sod":       [17, 18, 21, 22, 23],
+        "lingkungan":[19, 20],
+        "aset":      [],
+        "ipdn":      [15, 16],
+        "blue_days": [28, 29],
+        "blue_cols": [13, 14],  # cells to exclude on those days
+    },
+    "May": {
+        "iso": "2026-05", "label": "Mei 2026", "days_in_month": 31,
+        "tim_angsa": list(range(2, 10)),
+        "sod":       [15],
+        "lingkungan":[12, 13, 14],
+        "aset":      [],
+        "ipdn":      [10, 11],
+        "blue_days": [], "blue_cols": [],
+    },
+    "Juni": {
+        "iso": "2026-06", "label": "Juni 2026", "days_in_month": 30,
+        "tim_angsa": list(range(2, 10)),
+        "sod":       [15, 16, 17],
+        "lingkungan":[12, 13, 14],  # forced INCLUDE (Excel formula bug)
+        "aset":      [],
+        "ipdn":      [10, 11],
+        "blue_days": [], "blue_cols": [],
+    },
+    "Juli": {
+        "iso": "2026-07", "label": "Juli 2026", "days_in_month": 31,
+        "tim_angsa": [], "sod": [], "lingkungan": [], "aset": [], "ipdn": [],
+        "blue_days": [], "blue_cols": [],
+    },
+    "Agustus": {
+        "iso": "2026-08", "label": "Agustus 2026", "days_in_month": 31,
+        "tim_angsa": [], "sod": [], "lingkungan": [], "aset": [], "ipdn": [],
+        "blue_days": [], "blue_cols": [],
+    },
+    "September": {
+        "iso": "2026-09", "label": "September 2026", "days_in_month": 30,
+        "tim_angsa": [], "sod": [], "lingkungan": [], "aset": [], "ipdn": [],
+        "blue_days": [], "blue_cols": [],
+    },
+    "Oktober": {
+        "iso": "2026-10", "label": "Oktober 2026", "days_in_month": 31,
+        "tim_angsa": [], "sod": [], "lingkungan": [], "aset": [], "ipdn": [],
+        "blue_days": [], "blue_cols": [],
+    },
+    "November": {
+        "iso": "2026-11", "label": "November 2026", "days_in_month": 30,
+        "tim_angsa": [], "sod": [], "lingkungan": [], "aset": [], "ipdn": [],
+        "blue_days": [], "blue_cols": [],
+    },
+    "Desember": {
+        "iso": "2026-12", "label": "Desember 2026", "days_in_month": 31,
+        "tim_angsa": [], "sod": [], "lingkungan": [], "aset": [], "ipdn": [],
+        "blue_days": [], "blue_cols": [],
+    },
+}
 
 
 def hari_id(d: dt.date) -> str:
@@ -36,18 +156,24 @@ def sum_row(row, indexes) -> float:
     return tot
 
 
-def extract_month(wb, sheet_name: str, iso_prefix: str, layout: dict) -> list[dict]:
-    """Return list of daily entries for one month sheet.
+def is_blue(ws_raw, row_idx: int, col_idx: int) -> bool:
+    cell = ws_raw.cell(row_idx, col_idx + 1)  # openpyxl is 1-indexed
+    fill = cell.fill
+    if fill.fill_type != "solid":
+        return False
+    fg = fill.fgColor.rgb if fill.fgColor else None
+    return fg == BLUE_FILL
 
-    `layout` keys:
-      total_unpad: int  (col index of Total UNPAD)
-      total_ipdn:  int | None
-      organik:     tuple[int, ...] | None  (cols to sum for organik/daun+ranting)
-      sod:         tuple[int, ...] | None  (cols to sum for SOD)
-    """
+
+def extract_month(wb, wb_raw, sheet_name: str, cfg: dict) -> list[dict]:
+    if sheet_name not in wb.sheetnames:
+        return []
     ws = wb[sheet_name]
+    ws_raw = wb_raw[sheet_name]
+    iso_prefix = cfg["iso"]
     entries: list[dict] = []
-    for row in ws.iter_rows(min_row=3, max_row=ws.max_row, values_only=True):
+    for row_idx in range(3, ws.max_row + 1):
+        row = tuple(ws.cell(row_idx, c + 1).value for c in range(ws.max_column))
         tgl = row[1]
         if not isinstance(tgl, dt.datetime):
             continue
@@ -55,75 +181,69 @@ def extract_month(wb, sheet_name: str, iso_prefix: str, layout: dict) -> list[di
         if not iso.startswith(iso_prefix):
             continue
 
-        total_unpad = row[layout["total_unpad"]] if layout["total_unpad"] < len(row) else None
-        total_unpad = float(total_unpad) if isinstance(total_unpad, (int, float)) else 0.0
+        # Tim Angsa: sum then subtract blue-marked cells for flagged days
+        tim_angsa = sum_row(row, cfg["tim_angsa"])
+        if tgl.day in cfg["blue_days"]:
+            for c in cfg["blue_cols"]:
+                if c < len(row) and isinstance(row[c], (int, float)):
+                    if is_blue(ws_raw, row_idx, c):
+                        tim_angsa -= row[c]
 
-        total_ipdn = 0.0
-        if layout.get("total_ipdn") is not None:
-            v = row[layout["total_ipdn"]] if layout["total_ipdn"] < len(row) else None
-            if isinstance(v, (int, float)):
-                total_ipdn = float(v)
+        sod = sum_row(row, cfg["sod"])
+        lingkungan = sum_row(row, cfg["lingkungan"])
+        aset = sum_row(row, cfg["aset"])
+        ipdn = sum_row(row, cfg["ipdn"])
 
-        organik = sum_row(row, layout["organik"]) if layout.get("organik") else 0.0
-        sod = sum_row(row, layout["sod"]) if layout.get("sod") else 0.0
+        unpad_total = tim_angsa + sod + lingkungan + aset
+        grand_total = unpad_total + ipdn
 
-        entry = {
+        if grand_total == 0:
+            continue
+
+        entries.append({
             "date": iso,
             "day_of_week": hari_id(tgl.date()),
-            "total_kg": round(total_unpad + total_ipdn, 3),
-            "unpad_kg": round(total_unpad, 3),
-            "ipdn_kg": round(total_ipdn, 3),
-            "by_category_kg": None,
+            "total_kg": round(grand_total, 3),
+            "unpad_kg": round(unpad_total, 3),
+            "ipdn_kg":  round(ipdn, 3),
+            "by_category_kg": {
+                "organik_anorganik": round(tim_angsa, 3),
+                "sisa_makanan":      round(sod, 3),
+                "lingkungan":        round(lingkungan, 3),
+                "aset":              round(aset, 3),
+            },
             "note": None,
             "quality_flag": None,
-        }
-        if organik or sod:
-            anorganik = max(0.0, total_unpad - organik - sod)
-            entry["by_category_kg"] = {
-                "organik": round(organik, 3),
-                "anorganik_residu": round(anorganik, 3),
-                "sod": round(sod, 3),
-            }
-        entries.append(entry)
+        })
     return entries
 
 
-def days_in_month(iso_prefix: str) -> int:
-    y, m = map(int, iso_prefix.split("-"))
-    if m == 12:
-        return (dt.date(y + 1, 1, 1) - dt.date(y, 12, 1)).days
-    return (dt.date(y, m + 1, 1) - dt.date(y, m, 1)).days
-
-
-def rebuild_month_summary(month_iso: str, label: str, entries: list[dict],
-                          category_available_prev: bool) -> dict:
-    active = [e for e in entries if e["total_kg"] and e["total_kg"] > 0
+def build_month_summary(cfg: dict, entries: list[dict]) -> dict:
+    iso = cfg["iso"]
+    active = [e for e in entries if e["total_kg"] > 0
               and e["quality_flag"] != "excluded_from_average"]
     days_active = len(active)
-    dim = days_in_month(month_iso)
-    unpad_kg = round(sum(e["unpad_kg"] for e in entries), 3)
-    ipdn_kg = round(sum(e["ipdn_kg"] for e in entries), 3)
-    total_kg = round(unpad_kg + ipdn_kg, 3)
+    dim = cfg["days_in_month"]
 
-    organik = round(sum((e["by_category_kg"] or {}).get("organik", 0)
-                        for e in entries), 3)
-    sod = round(sum((e["by_category_kg"] or {}).get("sod", 0)
-                    for e in entries), 3)
-    has_cat = any(e["by_category_kg"] for e in entries) or category_available_prev
-    # Anorganik+residu = total UNPAD minus organik minus SOD (covers days
-    # that had no explicit category split — all their waste is anorganik+residu).
-    anorganik = round(max(0.0, unpad_kg - organik - sod), 3) if has_cat else 0
-
-    ipdn_active_days = sum(1 for e in entries if e["ipdn_kg"] and e["ipdn_kg"] > 0)
+    tim_angsa = round(sum(e["by_category_kg"]["organik_anorganik"] for e in entries), 3)
+    sod       = round(sum(e["by_category_kg"]["sisa_makanan"]      for e in entries), 3)
+    lingkungan= round(sum(e["by_category_kg"]["lingkungan"]        for e in entries), 3)
+    aset      = round(sum(e["by_category_kg"]["aset"]              for e in entries), 3)
+    unpad_kg  = round(sum(e["unpad_kg"] for e in entries), 3)
+    ipdn_kg   = round(sum(e["ipdn_kg"] for e in entries), 3)
+    total_kg  = round(unpad_kg + ipdn_kg, 3)
+    ipdn_active_days = sum(1 for e in entries if e["ipdn_kg"] > 0)
+    has_cat = bool(tim_angsa or sod or lingkungan or aset)
 
     return {
-        "month": month_iso,
-        "label": label,
-        "total_kg": total_kg,
-        "organik_kg": organik if has_cat else 0,
-        "anorganik_residu_kg": anorganik if has_cat else 0,
-        "sod_kg": sod if has_cat else 0,
-        "avg_kg_per_calendar_day": round(total_kg / dim, 2) if dim else None,
+        "month": iso,
+        "label": cfg["label"],
+        "total_kg": total_kg if total_kg else None,
+        "organik_anorganik_kg": tim_angsa,
+        "sisa_makanan_kg":      sod,
+        "lingkungan_kg":        lingkungan,
+        "aset_kg":              aset,
+        "avg_kg_per_calendar_day": round(total_kg / dim, 2) if dim and total_kg else None,
         "days_active": days_active,
         "days_in_month": dim,
         "avg_kg_per_active_day": round(total_kg / days_active, 2) if days_active else None,
@@ -136,103 +256,104 @@ def rebuild_month_summary(month_iso: str, label: str, entries: list[dict],
 
 def main() -> int:
     wb = openpyxl.load_workbook(XLSX, data_only=True)
+    wb_raw = openpyxl.load_workbook(XLSX)
+
+    # Load existing JSON to preserve top-level fields (unit, vehicle_sources, etc.)
     with JSON_PATH.open("r", encoding="utf-8") as f:
         data = json.load(f)
 
-    # Layouts per sheet (0-indexed cols, verified from headers dump)
-    layouts = {
-        "Februari": {
-            "sheet": "Februari", "iso": "2026-02", "label": "Februari 2026",
-            "layout": {"total_unpad": 20, "total_ipdn": None,
-                       "organik": None, "sod": None},
-            "prev_cat": True,   # keep old organik/anorganik/sod computed values? see below
-        },
-        "May": {
-            "sheet": "May", "iso": "2026-05", "label": "Mei 2026",
-            "layout": {"total_unpad": 16, "total_ipdn": 17,
-                       "organik": (12, 13, 14), "sod": (15,)},
-            "prev_cat": True,
-        },
-        "Juni": {
-            "sheet": "Juni", "iso": "2026-06", "label": "Juni 2026",
-            "layout": {"total_unpad": 18, "total_ipdn": 19,
-                       "organik": (12, 13, 14), "sod": (15, 16, 17)},
-            "prev_cat": False,
-        },
-    }
+    # Build daily + monthly from scratch
+    daily: list[dict] = []
+    monthly: list[dict] = []
+    for sheet_name, cfg in LAYOUTS.items():
+        entries = extract_month(wb, wb_raw, sheet_name, cfg)
+        daily.extend(entries)
+        monthly.append(build_month_summary(cfg, entries))
 
-    # Extract fresh entries
-    fresh_by_iso = {}
-    fresh_summary = {}
-    for key, cfg in layouts.items():
-        entries = extract_month(wb, cfg["sheet"], cfg["iso"], cfg["layout"])
-        fresh_by_iso[cfg["iso"]] = entries
-        summ = rebuild_month_summary(cfg["iso"], cfg["label"], entries,
-                                     cfg["prev_cat"])
-        fresh_summary[cfg["iso"]] = summ
+    daily.sort(key=lambda e: e["date"])
 
-    # For Februari the sheet doesn't expose organik/anorganik per-day.
-    # Preserve the previously-stored monthly organik/anorganik ratio and rescale
-    # to match the new total (keeps chart continuity, only adjusts by delta).
-    old_feb = next(m for m in data["monthly_summary"] if m["month"] == "2026-02")
-    new_feb = fresh_summary["2026-02"]
-    if old_feb["total_kg"] and new_feb["total_kg"]:
-        ratio = new_feb["total_kg"] / old_feb["total_kg"]
-        new_feb["organik_kg"] = round(old_feb.get("organik_kg", 0) * ratio, 2)
-        new_feb["anorganik_residu_kg"] = round(
-            old_feb.get("anorganik_residu_kg", 0) * ratio, 2)
-        new_feb["sod_kg"] = round(old_feb.get("sod_kg", 0) * ratio, 2)
-        new_feb["category_breakdown_available"] = old_feb.get(
-            "category_breakdown_available", False)
+    # Update categories metadata (used by dashboard for legends & palette lookup)
+    data["categories"] = [
+        {"id": "organik_anorganik", "label": "Sampah Organik dan Anorganik",
+         "color_key": "organik_anorganik",
+         "source": "Truk Tim Angsa"},
+        {"id": "sisa_makanan", "label": "Limbah Sisa Makanan",
+         "color_key": "sisa_makanan",
+         "source": "SOD RS + Cator UNPAD (SOD)"},
+        {"id": "lingkungan", "label": "Sampah Lingkungan (Pohon & Ranting)",
+         "color_key": "lingkungan",
+         "source": "Pick Up / Pak Ratian / Daun & Ranting"},
+        {"id": "aset", "label": "Sampah Aset (Meja + Kursi)",
+         "color_key": "aset",
+         "source": "Viar + Mobil Traga (aset tak terpakai)"},
+    ]
 
-    # Merge into JSON
-    # 1) monthly_summary: replace matching iso entries in-place
-    for i, m in enumerate(data["monthly_summary"]):
-        if m["month"] in fresh_summary:
-            data["monthly_summary"][i] = fresh_summary[m["month"]]
+    data["daily_entries"] = daily
+    data["monthly_summary"] = monthly
 
-    # 2) daily_entries: drop Feb/Mei/Juni entries, then insert fresh
-    keep = [e for e in data["daily_entries"] if e["date"][:7] not in fresh_by_iso]
-    for iso, entries in fresh_by_iso.items():
-        keep.extend(entries)
-    keep.sort(key=lambda e: e["date"])
-    data["daily_entries"] = keep
-
-    # 3) Update period.end to the last active date
-    active_dates = [e["date"] for e in data["daily_entries"] if e["total_kg"]]
+    # Update period.end to the last active date
+    active_dates = [e["date"] for e in daily if e["total_kg"]]
     if active_dates:
         data["period"]["end"] = max(active_dates)
 
-    # 4) Refresh generated_at
     data["generated_at"] = dt.date.today().isoformat()
 
-    # 5) Update the "Februari & April jauh di atas Maret" flag message
-    for f in data.get("data_quality_flags", []):
-        if "Februari (99.644 kg)" in f.get("message", ""):
-            f["message"] = (
-                f["message"]
-                .replace("Februari (99.644 kg)", "Februari (100.542 kg)")
-            )
+    # Refresh data quality flags for the new scheme
+    data["data_quality_flags"] = [
+        {"severity": "info",
+         "message": "Kategori mengikuti sumber kendaraan: Sampah Organik dan Anorganik (Truk Tim Angsa), Limbah Sisa Makanan (SOD), Sampah Lingkungan (Pick Up / Pak Ratian daun & ranting), dan Sampah Aset (Viar + Mobil Traga untuk meja + kursi bekas)."},
+        {"severity": "info",
+         "message": "Januari 2026 hanya tercatat 5 hari kerja (26-30 Januari). Rata-rata per hari aktif lebih representatif daripada per hari kalender."},
+        {"severity": "warning",
+         "message": "April 2026 tanggal 28-29 memiliki cell biru pada kolom 13-14 (13.170 kg) yang tidak dihitung sebagai timbulan sampah (kemungkinan double-entry atau data yang dianulir)."},
+        {"severity": "info",
+         "message": "Juni 2026 Daun & Ranting (2.630 kg) awalnya terlewat di formula Total Excel; sudah dikoreksi ke kategori Sampah Lingkungan."},
+        {"severity": "info",
+         "message": "Februari 2026 Viar (467 kg) + Mobil Traga (290 kg) dikategorikan sebagai Sampah Aset — timbulan meja + kursi bekas yang tidak masuk siklus operasional harian."},
+    ]
 
-    # 6) Write back
+    # Write both copies
     with JSON_PATH.open("w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
     with DOCS_JSON_PATH.open("w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
     # Report
-    print(f"[update_timbulan] wrote {JSON_PATH} + {DOCS_JSON_PATH}")
-    ytd_total = 0
-    ytd_active = 0
-    for m in data["monthly_summary"]:
-        if m["total_kg"]:
-            ytd_total += m["total_kg"]
-            ytd_active += m["days_active"]
-            print(f"  {m['label']:15s} | total={m['total_kg']:>10.0f} | "
-                  f"days_active={m['days_active']:>2} | "
-                  f"avg_active={m['avg_kg_per_active_day']}")
-    print(f"  {'TOTAL YTD':15s} | total={ytd_total:>10.0f} | "
-          f"days_active={ytd_active}")
+    print(f"[timbulan] wrote {JSON_PATH} + {DOCS_JSON_PATH}")
+    print()
+    print(f"{'Bulan':10s} | {'Org+Anorg':>10s} | {'SisaMkn':>8s} | {'Lingk':>7s} | {'Aset':>6s} | {'UNPAD':>8s} | {'IPDN':>5s} | {'Total':>8s} | {'HariAkt':>7s}")
+    print("-" * 110)
+    ytd = {k: 0 for k in ["ta", "sm", "lg", "as", "unpad", "ipdn", "total", "days"]}
+    for m in monthly:
+        if not m["total_kg"]:
+            continue
+        print(f"{m['label']:10s} | "
+              f"{m['organik_anorganik_kg']:>10.0f} | "
+              f"{m['sisa_makanan_kg']:>8.0f} | "
+              f"{m['lingkungan_kg']:>7.0f} | "
+              f"{m['aset_kg']:>6.0f} | "
+              f"{m['unpad_kg']:>8.0f} | "
+              f"{m['ipdn_kg']:>5.0f} | "
+              f"{m['total_kg']:>8.0f} | "
+              f"{m['days_active']:>7d}")
+        ytd["ta"] += m["organik_anorganik_kg"]
+        ytd["sm"] += m["sisa_makanan_kg"]
+        ytd["lg"] += m["lingkungan_kg"]
+        ytd["as"] += m["aset_kg"]
+        ytd["unpad"] += m["unpad_kg"]
+        ytd["ipdn"] += m["ipdn_kg"]
+        ytd["total"] += m["total_kg"]
+        ytd["days"] += m["days_active"]
+    print("-" * 110)
+    print(f"{'YTD':10s} | "
+          f"{ytd['ta']:>10.0f} | "
+          f"{ytd['sm']:>8.0f} | "
+          f"{ytd['lg']:>7.0f} | "
+          f"{ytd['as']:>6.0f} | "
+          f"{ytd['unpad']:>8.0f} | "
+          f"{ytd['ipdn']:>5.0f} | "
+          f"{ytd['total']:>8.0f} | "
+          f"{ytd['days']:>7d}")
 
     return 0
 

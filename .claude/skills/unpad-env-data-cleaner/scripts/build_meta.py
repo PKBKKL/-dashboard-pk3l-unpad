@@ -80,7 +80,11 @@ META = {
         "exceedance": "#dc2626",
         "below_detection": "#94a3b8",
         "leaf": "#7ec43b",
-        "forest": "#14532d"
+        "forest": "#14532d",
+        "organik_anorganik": "#64748b",
+        "sisa_makanan": "#166534",
+        "lingkungan": "#84cc16",
+        "aset": "#a16207"
     }
 }
 

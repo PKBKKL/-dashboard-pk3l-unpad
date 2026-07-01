@@ -19,8 +19,9 @@
 
       <section class="card p-5 mt-8">
         <h3 class="text-sm font-semibold text-slate-900 mb-1">Timbulan Bulanan per Kategori</h3>
-        <p class="text-xs text-slate-400 mb-3">Breakdown kategori (Organik · Anorganik+Residu · SOD) tersedia untuk April &amp; Mei 2026. Bulan lain masih total agregat.</p>
+        <p class="text-xs text-slate-400 mb-3">Breakdown kategori berdasarkan sumber kendaraan: <strong>Sampah Organik dan Anorganik</strong> (Truk Tim Angsa), <strong>Limbah Sisa Makanan</strong> (SOD), <strong>Sampah Lingkungan</strong> (Pick Up / Pak Ratian daun &amp; ranting), <strong>Sampah Aset</strong> (Viar + Mobil Traga untuk meja &amp; kursi bekas).</p>
         <div id="chart-kategori"></div>
+        <div id="kategori-summary" class="grid grid-cols-2 lg:grid-cols-4 gap-3 mt-4"></div>
       </section>
 
       <section class="grid gap-6 mt-6 lg:grid-cols-2">
@@ -50,9 +51,10 @@
                 <th class="num">Avg/Hari Aktif</th>
                 <th class="num">UNPAD</th>
                 <th class="num">IPDN</th>
-                <th class="num">Organik</th>
-                <th class="num">Anorganik+Residu</th>
-                <th class="num">SOD</th>
+                <th class="num">Organik &amp; Anorganik</th>
+                <th class="num">Sisa Makanan</th>
+                <th class="num">Lingkungan</th>
+                <th class="num">Aset</th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -121,7 +123,7 @@
     renderHeader({
       title: "Timbulan Sampah",
       period: `${data.period.start} – ${data.period.end}`,
-      description: "Jumlah sampah yang masuk ke pengelolaan UNPAD dari tujuh sumber kendaraan. Pemisahan kategori Organik vs Anorganik+Residu dilakukan konsisten sejak April 2026.",
+      description: "Jumlah sampah yang masuk ke pengelolaan UNPAD dari berbagai sumber kendaraan, dikategorikan menjadi Sampah Organik dan Anorganik (Truk Tim Angsa), Limbah Sisa Makanan (SOD), Sampah Lingkungan (Pick Up / Pak Ratian - daun & ranting), dan Sampah Aset (Viar + Mobil Traga - meja & kursi bekas). Kontribusi IPDN dipisahkan sebagai operator tamu.",
     });
 
     const active = data.monthly_summary.filter(m => m.total_kg && m.total_kg > 0);
@@ -137,14 +139,45 @@
       { label: "Bulan Puncak", value: peak ? fmtMonth(peak.month).split(" ")[0] : "—", unit: peak ? `${fmtInt(peak.total_kg)} kg` : null, accent: "amber" },
     ]);
 
+    // Category totals for YTD summary
+    const totalOrgAnorg   = data.monthly_summary.reduce((a, m) => a + (m.organik_anorganik_kg ?? 0), 0);
+    const totalSisaMakan  = data.monthly_summary.reduce((a, m) => a + (m.sisa_makanan_kg      ?? 0), 0);
+    const totalLingkungan = data.monthly_summary.reduce((a, m) => a + (m.lingkungan_kg        ?? 0), 0);
+    const totalAset       = data.monthly_summary.reduce((a, m) => a + (m.aset_kg              ?? 0), 0);
+    const totalKategori = totalOrgAnorg + totalSisaMakan + totalLingkungan + totalAset;
+    const pctOrgAnorg   = totalKategori ? (totalOrgAnorg   / totalKategori * 100) : 0;
+    const pctSisaMakan  = totalKategori ? (totalSisaMakan  / totalKategori * 100) : 0;
+    const pctLingkungan = totalKategori ? (totalLingkungan / totalKategori * 100) : 0;
+    const pctAset       = totalKategori ? (totalAset       / totalKategori * 100) : 0;
+
+    $("#kategori-summary").innerHTML = [
+      { label: "Sampah Organik dan Anorganik", val: totalOrgAnorg,   pct: pctOrgAnorg,   color: p.organik_anorganik ?? "#64748b", source: "Truk Tim Angsa" },
+      { label: "Limbah Sisa Makanan",          val: totalSisaMakan,  pct: pctSisaMakan,  color: p.sisa_makanan      ?? "#166534", source: "SOD RS + Cator UNPAD" },
+      { label: "Sampah Lingkungan",            val: totalLingkungan, pct: pctLingkungan, color: p.lingkungan        ?? "#84cc16", source: "Pick Up / Pak Ratian" },
+      { label: "Sampah Aset",                  val: totalAset,       pct: pctAset,       color: p.aset              ?? "#a16207", source: "Viar + Mobil Traga" },
+    ].map(k => `
+      <div class="rounded-lg border border-slate-200 p-3 bg-white">
+        <div class="flex items-center gap-2 mb-1">
+          <span class="inline-block w-2.5 h-2.5 rounded-full" style="background:${k.color}"></span>
+          <span class="text-[11px] font-semibold uppercase tracking-wide text-slate-500">${k.label}</span>
+        </div>
+        <div class="flex items-baseline gap-1.5">
+          <div class="text-lg font-bold text-slate-900 tabular-nums">${fmtInt(k.val)}</div>
+          <div class="text-[11px] text-slate-400">kg · ${k.pct.toFixed(1)}%</div>
+        </div>
+        <div class="text-[10px] text-slate-400 mt-0.5">${k.source}</div>
+      </div>
+    `).join("");
+
     const xLabels = active.map(m => MONTH_SHORT[parseInt(m.month.split("-")[1], 10) - 1]);
     stackedBar("chart-kategori", {
       x: xLabels,
       yLabel: "kg",
       series: [
-        { label: "Organik (Daun + Ranting)", color: p.organik, y: active.map(m => m.organik_kg) },
-        { label: "Anorganik + Residu", color: p.anorganik, y: active.map(m => m.anorganik_residu_kg) },
-        { label: "SOD", color: p.residu, y: active.map(m => m.sod_kg ?? 0) },
+        { label: "Sampah Organik dan Anorganik", color: p.organik_anorganik ?? "#64748b", y: active.map(m => m.organik_anorganik_kg ?? 0) },
+        { label: "Limbah Sisa Makanan",         color: p.sisa_makanan      ?? "#166534", y: active.map(m => m.sisa_makanan_kg      ?? 0) },
+        { label: "Sampah Lingkungan (Pohon & Ranting)", color: p.lingkungan ?? "#84cc16", y: active.map(m => m.lingkungan_kg      ?? 0) },
+        { label: "Sampah Aset (Meja + Kursi)",  color: p.aset              ?? "#a16207", y: active.map(m => m.aset_kg              ?? 0) },
       ],
     });
 
@@ -173,9 +206,10 @@
         <td class="num">${fmtNum(m.avg_kg_per_active_day)}</td>
         <td class="num">${fmtKg(m.unpad_kg)}</td>
         <td class="num">${m.ipdn_kg ? fmtKg(m.ipdn_kg) : '<span class="text-slate-400">—</span>'}</td>
-        <td class="num">${fmtKg(m.organik_kg)}</td>
-        <td class="num">${fmtKg(m.anorganik_residu_kg)}</td>
-        <td class="num">${m.sod_kg ? fmtKg(m.sod_kg) : '<span class="text-slate-400">—</span>'}</td>
+        <td class="num">${m.organik_anorganik_kg ? fmtKg(m.organik_anorganik_kg) : '<span class="text-slate-400">—</span>'}</td>
+        <td class="num">${m.sisa_makanan_kg      ? fmtKg(m.sisa_makanan_kg)      : '<span class="text-slate-400">—</span>'}</td>
+        <td class="num">${m.lingkungan_kg        ? fmtKg(m.lingkungan_kg)        : '<span class="text-slate-400">—</span>'}</td>
+        <td class="num">${m.aset_kg              ? fmtKg(m.aset_kg)              : '<span class="text-slate-400">—</span>'}</td>
       </tr>
     `).join("");
 
