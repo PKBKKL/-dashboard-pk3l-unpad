@@ -12,23 +12,11 @@
   "data_quality_flags": [
     {
       "severity": "info",
-      "message": "Kategori mengikuti sumber kendaraan: Sampah Organik dan Anorganik (Truk Tim Angsa), Limbah Sisa Makanan (SOD), Sampah Lingkungan (Pick Up / Pak Ratian daun & ranting), dan Sampah Aset (Viar + Mobil Traga untuk meja + kursi bekas)."
-    },
-    {
-      "severity": "info",
       "message": "Januari 2026 hanya tercatat 5 hari kerja (26-30 Januari). Rata-rata per hari aktif lebih representatif daripada per hari kalender."
     },
     {
       "severity": "warning",
       "message": "April 2026 tanggal 28-29 memiliki cell biru pada kolom 13-14 (13.170 kg) yang tidak dihitung sebagai timbulan sampah (kemungkinan double-entry atau data yang dianulir)."
-    },
-    {
-      "severity": "info",
-      "message": "Juni 2026 Daun & Ranting (2.630 kg) awalnya terlewat di formula Total Excel; sudah dikoreksi ke kategori Sampah Lingkungan."
-    },
-    {
-      "severity": "info",
-      "message": "Februari 2026 Viar (467 kg) + Mobil Traga (290 kg) dikategorikan sebagai Sampah Aset — timbulan meja + kursi bekas yang tidak masuk siklus operasional harian."
     }
   ],
   "unit_default": "kg",
