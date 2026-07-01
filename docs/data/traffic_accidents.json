@@ -1,13 +1,13 @@
 {
   "dataset_id": "traffic_accidents",
   "version": "1.0",
-  "generated_at": "2026-05-14T10:00:00+07:00",
+  "generated_at": "2026-07-01",
   "source_files": [
     "Kecelakaan Lalu Lintas.md"
   ],
   "period": {
     "start": "2025-04-01",
-    "end": "2026-04-30"
+    "end": "2026-06-30"
   },
   "data_quality_flags": [
     {
@@ -140,11 +140,29 @@
             "tabrak_4roda_beam": 1
           },
           "total": 1
+        },
+        {
+          "month": "2026-05",
+          "by_type": {
+            "tunggal_motor": 1,
+            "tabrak_2roda_4roda": 1,
+            "pejalan_kaki": 1
+          },
+          "total": 3
+        },
+        {
+          "month": "2026-06",
+          "by_type": {
+            "tunggal_motor": 1,
+            "tunggal_mobil": 1,
+            "tabrak_2roda": 1
+          },
+          "total": 3
         }
       ],
-      "total_yearly_computed": 4,
-      "total_yearly_reported": 4,
-      "ytd_through_month": "2026-04"
+      "total_yearly_computed": 10,
+      "total_yearly_reported": 10,
+      "ytd_through_month": "2026-06"
     }
   ],
   "incidents_detail_2026": [
@@ -162,7 +180,8 @@
       "type": "tabrak_2roda",
       "location_id": "tugu-makalangan",
       "location_label_raw": "Tugu makalangan",
-      "count": 1
+      "count": 1,
+      "note": "Antar roda dua"
     },
     {
       "no": 3,
@@ -170,7 +189,8 @@
       "type": "tunggal_motor",
       "location_id": "fkg",
       "location_label_raw": "FKG",
-      "count": 1
+      "count": 1,
+      "note": "Tunggal motor"
     },
     {
       "no": 4,
