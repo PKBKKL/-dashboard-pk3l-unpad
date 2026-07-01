@@ -15,7 +15,7 @@
       <button id="sidebar-toggle" class="lg:hidden mb-3 p-2 rounded border border-slate-200 bg-white">≡</button>
 
       <section id="page-header" class="mb-8"></section>
-      <section id="kpis" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"></section>
+      <section id="kpis" class="grid gap-4 sm:grid-cols-2"></section>
 
       <section class="mt-8">
         <div class="flex items-baseline justify-between mb-3 flex-wrap gap-2">
@@ -85,15 +85,9 @@
     const y2025 = data.yearly.find(y => y.year === 2025);
     const y2026 = data.yearly.find(y => y.year === 2026);
 
-    const beamCount = (y) => (y?.monthly ?? []).reduce((a, m) =>
-      a + (m.by_type.beam ?? 0) + (m.by_type.tabrak_2roda_beam ?? 0) + (m.by_type.tabrak_4roda_beam ?? 0), 0);
-    const pedCount = (y) => (y?.monthly ?? []).reduce((a, m) => a + (m.by_type.pejalan_kaki ?? 0), 0);
-
     renderKpis("#kpis", [
       { label: "Total 2025", value: fmtInt(y2025?.total_yearly_computed ?? 0), unit: "kasus", icon: "car-front", accent: "red" },
       { label: "YTD 2026", value: fmtInt(y2026?.total_yearly_computed ?? 0), unit: "kasus", accent: "amber" },
-      { label: "Melibatkan Beam", value: fmtInt(beamCount(y2025) + beamCount(y2026)), accent: "slate" },
-      { label: "Pejalan Kaki", value: fmtInt(pedCount(y2025) + pedCount(y2026)) },
     ]);
 
     const PALETTE_CYCLE = [p.exceedance, p.maggot, p.anorganik, p.organik, p.rdf, p.residu, p.dumping, p.kompos];
