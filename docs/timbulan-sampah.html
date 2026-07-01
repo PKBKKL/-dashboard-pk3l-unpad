@@ -151,10 +151,10 @@
     const pctAset       = totalKategori ? (totalAset       / totalKategori * 100) : 0;
 
     $("#kategori-summary").innerHTML = [
-      { label: "Sampah Organik dan Anorganik", val: totalOrgAnorg,   pct: pctOrgAnorg,   color: p.organik_anorganik ?? "#64748b", source: "Truk Tim Angsa" },
-      { label: "Limbah Sisa Makanan",          val: totalSisaMakan,  pct: pctSisaMakan,  color: p.sisa_makanan      ?? "#166534", source: "SOD RS + Cator UNPAD" },
-      { label: "Sampah Lingkungan",            val: totalLingkungan, pct: pctLingkungan, color: p.lingkungan        ?? "#84cc16", source: "Pick Up / Pak Ratian" },
-      { label: "Sampah Aset",                  val: totalAset,       pct: pctAset,       color: p.aset              ?? "#a16207", source: "Viar + Mobil Traga" },
+      { label: "Sampah Organik dan Anorganik", val: totalOrgAnorg,   pct: pctOrgAnorg,   color: p.organik_anorganik ?? "#64748b" },
+      { label: "Limbah Sisa Makanan",          val: totalSisaMakan,  pct: pctSisaMakan,  color: p.sisa_makanan      ?? "#166534" },
+      { label: "Sampah Lingkungan",            val: totalLingkungan, pct: pctLingkungan, color: p.lingkungan        ?? "#84cc16" },
+      { label: "Sampah Aset",                  val: totalAset,       pct: pctAset,       color: p.aset              ?? "#a16207" },
     ].map(k => `
       <div class="rounded-lg border border-slate-200 p-3 bg-white">
         <div class="flex items-center gap-2 mb-1">
@@ -165,7 +165,6 @@
           <div class="text-lg font-bold text-slate-900 tabular-nums">${fmtInt(k.val)}</div>
           <div class="text-[11px] text-slate-400">kg · ${k.pct.toFixed(1)}%</div>
         </div>
-        <div class="text-[10px] text-slate-400 mt-0.5">${k.source}</div>
       </div>
     `).join("");
 
