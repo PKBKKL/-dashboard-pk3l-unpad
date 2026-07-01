@@ -27,7 +27,10 @@ const _cache = new Map();
 export async function loadJson(relPath) {
   if (_cache.has(relPath)) return _cache.get(relPath);
   const url = `${DATA_BASE}/${relPath}`;
-  const res = await fetch(url);
+  // cache: 'no-cache' forces a conditional GET (If-None-Match / If-Modified-Since)
+  // so users always see fresh data after we deploy new JSON, while still getting
+  // fast 304 Not Modified responses when nothing changed.
+  const res = await fetch(url, { cache: "no-cache" });
   if (!res.ok) throw new Error(`Failed to load ${url}: ${res.status}`);
   const json = await res.json();
   _cache.set(relPath, json);
