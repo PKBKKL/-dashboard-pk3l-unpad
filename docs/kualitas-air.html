@@ -19,23 +19,53 @@
       <section id="page-header" class="mb-8"></section>
       <section id="kpis" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"></section>
 
+      <!-- ─── PETA STATUS MUTU AIR (INDEKS PENCEMARAN) ─── -->
       <section class="card p-5 mt-8">
-        <h3 class="text-sm font-semibold text-slate-900 mb-1">Kepatuhan per Titik Sampling</h3>
-        <p class="text-xs text-slate-400 mb-3">
-          Hijau = parameter patuh terhadap baku mutu. Merah = di atas baku mutu.
-          Parameter tanpa baku mutu eksplisit (Kesadahan, DHL, PO₄) tidak dihitung.
-        </p>
-        <div id="chart-compliance"></div>
+        <div class="flex flex-wrap items-start justify-between gap-3 mb-1">
+          <div>
+            <h3 class="text-sm font-semibold text-slate-900">Peta Status Mutu Air — Indeks Pencemaran (IP)</h3>
+            <p class="text-xs text-slate-400 mt-0.5">
+              Warna titik = status mutu air (KepMenLH 115/2003). Klik titik untuk melihat detail status &amp; IP.
+            </p>
+          </div>
+          <div id="year-toggle" class="flex gap-1.5"></div>
+        </div>
+        <div id="map" style="height: 460px; border-radius: 8px;"></div>
+        <div id="map-legend" class="flex flex-wrap gap-x-5 gap-y-1.5 mt-3 text-xs text-slate-600"></div>
       </section>
 
+      <!-- ─── MATRIKS STATUS PER TITIK & TAHUN ─── -->
       <section class="card p-5 mt-6">
-        <h3 class="text-sm font-semibold text-slate-900 mb-1">Peta Titik Sampling</h3>
-        <p class="text-xs text-slate-400 mb-3">Warna marker menunjukkan persentase kepatuhan parameter.</p>
-        <div id="map" style="height: 420px; border-radius: 8px;"></div>
+        <h3 class="text-sm font-semibold text-slate-900 mb-1">Matriks Status per Titik &amp; Tahun</h3>
+        <p class="text-xs text-slate-400 mb-3">Nilai = Indeks Pencemaran (IP). Warna sel = status. Sel kosong = tidak diuji tahun itu.</p>
+        <div id="matrix" class="overflow-x-auto"></div>
       </section>
 
+      <!-- ─── TREN KONSENTRASI PARAMETER ─── -->
+      <section class="card p-5 mt-6">
+        <h3 class="text-sm font-semibold text-slate-900 mb-1">Tren Konsentrasi Parameter (per Titik · per Tahun)</h3>
+        <p class="text-xs text-slate-400 mb-3">
+          Pilih jenis air &amp; parameter. Tiap garis = satu titik sampling. Garis putus-putus merah = baku mutu (bila ada).
+          Parameter mikrobiologi otomatis skala logaritmik.
+        </p>
+        <div class="flex flex-wrap gap-3 mb-4">
+          <label class="text-xs text-slate-600">
+            <span class="block mb-1 font-medium">Jenis Air</span>
+            <select id="trend-type" class="border border-slate-300 rounded-md px-3 py-1.5 text-sm bg-white min-w-[150px]"></select>
+          </label>
+          <label class="text-xs text-slate-600">
+            <span class="block mb-1 font-medium">Parameter</span>
+            <select id="trend-param" class="border border-slate-300 rounded-md px-3 py-1.5 text-sm bg-white min-w-[200px]"></select>
+          </label>
+        </div>
+        <div id="trend-chart"></div>
+        <p id="trend-note" class="text-xs text-slate-400 mt-2"></p>
+      </section>
+
+      <!-- ─── DETAIL LAPORAN PER LHU (Okt 2025) ─── -->
       <section class="mt-10">
-        <h2 class="text-base font-semibold text-slate-900 mb-3">Filter Jenis Sampel</h2>
+        <h2 class="text-base font-semibold text-slate-900 mb-1">Detail Parameter per LHU</h2>
+        <p class="text-xs text-slate-400 mb-4">Rincian hasil uji &amp; kepatuhan tiap parameter (sertifikat Oktober 2025).</p>
         <div id="filter" class="flex flex-wrap gap-2 mb-6"></div>
         <div id="reports" class="space-y-6"></div>
       </section>
@@ -52,78 +82,251 @@
     import { groupedBar } from "./assets/charts.js";
 
     const meta = await bootstrap("kualitas-air.html");
-    const [data, locsData, regsData] = await Promise.all([
+    const [ip, data, locsData, regsData] = await Promise.all([
+      loadDataset("water_quality_ip"),
       loadDataset("water_quality"),
       loadShared("locations"),
       loadShared("regulations"),
     ]);
-    const p = meta.color_palette;
     const locations = locsData.locations;
     const regulations = regsData.regulations;
 
-    const SAMPLE_LABEL = {
-      air_permukaan: "Air Permukaan",
-      air_limbah: "Air Limbah",
-      air_sumur: "Air Sumur",
-    };
+    const STCOLOR = Object.fromEntries(ip.status_scale.map(s => [s.key, s.color]));
+    const CATLABEL = { fisika: "Fisika", kimia: "Kimia", biologi: "Biologi" };
+    const CATORDER = { fisika: 0, kimia: 1, biologi: 2 };
+    const LINE_COLORS = ["#2563eb","#16a34a","#f97316","#db2777","#7c3aed","#0891b2","#ca8a04","#dc2626"];
 
     renderHeader({
       title: "Kualitas Air",
-      period: `Sampling ${data.period.start} – ${data.period.end}`,
-      description: `Sembilan Laporan Hasil Uji (LHU) dari <b>${data.issuing_lab.name}</b> (akreditasi ${data.issuing_lab.accreditation}). Status kepatuhan dihitung berdasarkan baku mutu masing-masing matriks. Parameter '^' yang bersifat minimum (mis. DO) sudah dikoreksi arahnya.`,
+      period: "IP 2024 · 2025 · 2026",
+      description: `Status mutu air <b>${ip.points.length} titik sampling</b> UNPAD Jatinangor dihitung dengan <b>Metoda Indeks Pencemaran</b> (KepMenLH No. 115/2003) untuk tahun 2024–2026. Baku mutu mengikuti laporan uji (air permukaan PP 22/2021 Kelas 2; air limbah Permen LH 5/2014; air tanah &amp; minum Permenkes 2/2023).`,
     });
 
-    const totalParams = data.reports.reduce((a, r) => a + r.summary.total_parameters, 0);
-    const totalCompliant = data.reports.reduce((a, r) => a + r.summary.compliant_count, 0);
-    const totalNon = data.reports.reduce((a, r) => a + r.summary.non_compliant_count, 0);
-    const compliancePct = (totalCompliant / Math.max(1, totalParams)) * 100;
-
+    // ─── KPI: distribusi status dari data TERBARU tiap titik ────────────
+    const latest = ip.points.map(p => {
+      const yrs = ip.years.filter(y => p.years[String(y)]);
+      const y = yrs[yrs.length - 1];
+      return p.years[String(y)].status_key;
+    });
+    const count = k => latest.filter(s => s === k).length;
     renderKpis("#kpis", [
-      { label: "Jumlah LHU", value: String(data.reports.length), icon: "droplet" },
-      { label: "Parameter Patuh", value: String(totalCompliant), trend: `dari ${totalParams}`, accent: "brand" },
-      { label: "Parameter Tidak Patuh", value: String(totalNon), accent: "red" },
-      { label: "Rasio Kepatuhan", value: fmtPct(compliancePct), accent: "blue" },
+      { label: "Titik Sampling", value: String(ip.points.length), icon: "droplet", trend: "2024–2026" },
+      { label: "Cemar Berat", value: String(count("berat")), accent: "red", trend: "status terbaru tiap titik" },
+      { label: "Cemar Sedang", value: String(count("sedang")), accent: "amber" },
+      { label: "Cemar Ringan", value: String(count("ringan")), accent: "blue" },
     ]);
 
-    // Chart compliance per LHU
-    groupedBar("chart-compliance", {
-      x: data.reports.map(r => r.location_label_raw),
-      yLabel: "parameter",
-      series: [
-        { label: "Patuh", color: p.compliant, y: data.reports.map(r => r.summary.compliant_count) },
-        { label: "Tidak Patuh", color: p.exceedance, y: data.reports.map(r => r.summary.non_compliant_count) },
-      ],
-    });
+    // ─── PETA ───────────────────────────────────────────────────────────
+    const map = L.map("map").setView([-6.921, 107.773], 14);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      maxZoom: 19,
+    }).addTo(map);
+    const allPts = [];
+    ip.points.forEach(p => ip.years.forEach(y => {
+      const yy = p.years[String(y)];
+      if (yy) allPts.push([yy.lat, yy.lon]);
+    }));
+    if (allPts.length) map.fitBounds(allPts, { padding: [40, 40] });
 
-    // Filter pills
+    const markerLayer = L.layerGroup().addTo(map);
+    let currentYear = ip.years[ip.years.length - 1]; // default: tahun terbaru
+
+    function renderMap(year) {
+      markerLayer.clearLayers();
+      let n = 0;
+      ip.points.forEach(p => {
+        const yy = p.years[String(year)];
+        if (!yy) return;
+        n++;
+        const color = STCOLOR[yy.status_key] ?? "#64748b";
+        const exceedN = yy.measurements.filter(m => m.exceed === true).length;
+        L.circleMarker([yy.lat, yy.lon], {
+          radius: 9, fillColor: color, color: "#ffffff", weight: 2, fillOpacity: 0.92,
+        }).addTo(markerLayer).bindPopup(`
+          <div style="min-width:210px;font-size:12px;line-height:1.5">
+            <div style="font-weight:600;color:#0f172a">${p.name}</div>
+            <div style="color:#64748b">${ip.type_label[p.type]} · ${yy.matrix}</div>
+            <div style="margin-top:4px;color:#475569">Tahun ${year} · ${ip.sampling_month[String(year)]}</div>
+            <div style="color:#475569">Baku mutu: ${yy.baku_mutu}</div>
+            <div style="margin-top:6px;padding:5px 8px;border-radius:6px;background:${color}1a">
+              <span style="font-weight:700;color:#0f172a">IP = ${String(yy.ip).replace(".", ",")}</span>
+              &nbsp;→&nbsp;<span style="font-weight:700;color:${color}">${yy.status}</span>
+            </div>
+            <div style="margin-top:4px;color:#475569">Pemicu utama: <b>${yy.dominant}</b></div>
+            <div style="color:#475569">${exceedN} parameter di atas baku mutu</div>
+            ${yy.micro_fail ? '<div style="color:#dc2626;margin-top:3px">⚠ Mikrobiologi TMS (coliform &gt; baku mutu 0)</div>' : ""}
+          </div>`);
+      });
+      return n;
+    }
+
+    function renderYearToggle() {
+      $("#year-toggle").innerHTML = ip.years.map(y => `
+        <button data-year="${y}" class="yr-btn px-3 py-1.5 rounded-md text-xs font-medium border ${
+          y === currentYear ? "bg-green-600 border-green-600 text-white" : "bg-white border-slate-300 text-slate-600"
+        }">${y}</button>`).join("");
+      document.querySelectorAll(".yr-btn").forEach(b => b.onclick = () => {
+        currentYear = +b.dataset.year;
+        renderYearToggle();
+        renderMap(currentYear);
+      });
+    }
+    $("#map-legend").innerHTML = ip.status_scale.map(s => `
+      <span class="inline-flex items-center gap-1.5">
+        <span style="width:11px;height:11px;border-radius:50%;background:${s.color};display:inline-block;border:2px solid #fff;box-shadow:0 0 0 1px ${s.color}"></span>
+        ${s.label} <span class="text-slate-400">(${s.range})</span>
+      </span>`).join("");
+    renderYearToggle();
+    renderMap(currentYear);
+    setTimeout(() => map.invalidateSize(), 200);
+
+    // ─── MATRIKS STATUS ─────────────────────────────────────────────────
+    (function renderMatrix() {
+      const typeOrder = ["permukaan", "limbah", "tanah", "minum"];
+      let rows = "";
+      typeOrder.forEach(t => {
+        const pts = ip.points.filter(p => p.type === t);
+        if (!pts.length) return;
+        rows += `<tr><td colspan="${ip.years.length + 1}" style="background:#f1f5f9;font-weight:600;color:#334155;padding:6px 10px">${ip.type_label[t]}</td></tr>`;
+        pts.forEach(p => {
+          let cells = "";
+          ip.years.forEach(y => {
+            const yy = p.years[String(y)];
+            if (!yy) { cells += `<td style="text-align:center;color:#cbd5e1">—</td>`; return; }
+            const c = STCOLOR[yy.status_key];
+            cells += `<td style="text-align:center;padding:5px">
+              <span style="display:inline-block;min-width:52px;padding:3px 8px;border-radius:6px;background:${c}1f;color:${c};font-weight:600"
+                title="${yy.status}${yy.micro_fail ? " · Mikrobiologi TMS" : ""}">${String(yy.ip).replace(".", ",")}</span></td>`;
+          });
+          rows += `<tr><td style="padding:5px 10px;color:#0f172a">${p.name}</td>${cells}</tr>`;
+        });
+      });
+      $("#matrix").innerHTML = `
+        <table class="data-table" style="min-width:480px">
+          <thead><tr><th>Titik</th>${ip.years.map(y => `<th class="num" style="text-align:center">${y}</th>`).join("")}</tr></thead>
+          <tbody>${rows}</tbody>
+        </table>`;
+    })();
+
+    // ─── TREN KONSENTRASI ───────────────────────────────────────────────
+    const typeSel = $("#trend-type"), paramSel = $("#trend-param");
+    const typesPresent = [...new Set(ip.points.map(p => p.type))];
+    typeSel.innerHTML = typesPresent.map(t => `<option value="${t}">${ip.type_label[t]}</option>`).join("");
+
+    const mode = arr => {
+      if (!arr.length) return null;
+      const c = new Map(); let best = arr[0], bc = 0;
+      for (const v of arr) { const n = (c.get(v) ?? 0) + 1; c.set(v, n); if (n > bc) { bc = n; best = v; } }
+      return best;
+    };
+    function paramsForType(type) {
+      const label = ip.type_label[type];
+      const m = new Map();
+      ip.points.filter(p => p.type === type).forEach(p =>
+        Object.values(p.years).forEach(y => {
+          if (y.matrix !== label) return;           // hanya parameter dari matriks yang sesuai
+          y.measurements.forEach(mm => m.set(mm.param, mm));
+        }));
+      return [...m.values()].sort((a, b) =>
+        (CATORDER[a.category] - CATORDER[b.category]) || a.label.localeCompare(b.label));
+    }
+    function fillParams(type) {
+      const ps = paramsForType(type);
+      let html = "", lastCat = null;
+      ps.forEach(mm => {
+        if (mm.category !== lastCat) {
+          if (lastCat !== null) html += `</optgroup>`;
+          html += `<optgroup label="${CATLABEL[mm.category] ?? mm.category}">`;
+          lastCat = mm.category;
+        }
+        html += `<option value="${mm.param}">${mm.label}</option>`;
+      });
+      if (lastCat !== null) html += `</optgroup>`;
+      paramSel.innerHTML = html;
+      // default parameter: BOD kalau ada, kalau tidak parameter pertama
+      const prefer = ps.find(p => p.param === "BOD") ?? ps[0];
+      if (prefer) paramSel.value = prefer.param;
+    }
+
+    function renderTrend() {
+      const type = typeSel.value, param = paramSel.value;
+      const pmeta = ip.parameters[param] ?? {};
+      const pts = ip.points.filter(p => p.type === type);
+      const typeLabel = ip.type_label[type];
+      const thrVals = [];
+      const traces = [];
+      pts.forEach((p, i) => {
+        const y = ip.years.map(yr => {
+          const yy = p.years[String(yr)];
+          if (!yy) return null;
+          const mm = yy.measurements.find(m => m.param === param);
+          // ambang hanya dari entri yang matriksnya cocok (hindari mis. limbah menimpa permukaan)
+          if (mm && mm.threshold_value != null && yy.matrix === typeLabel) thrVals.push(mm.threshold_value);
+          return mm ? mm.value : null;
+        });
+        if (y.every(v => v === null)) return;
+        traces.push({
+          x: ip.years, y, name: p.name, type: "scatter", mode: "lines+markers",
+          line: { color: LINE_COLORS[i % LINE_COLORS.length], width: 2 },
+          marker: { size: 7 }, connectgaps: false,
+          hovertemplate: `<b>${p.name}</b><br>%{x}: %{y} ${pmeta.unit ?? ""}<extra></extra>`,
+        });
+      });
+      const thr = mode(thrVals);
+      const isLog = pmeta.category === "biologi";
+      const shapes = thr != null ? [{
+        type: "line", xref: "paper", x0: 0, x1: 1, y0: thr, y1: thr,
+        line: { color: "#dc2626", width: 1.5, dash: "dash" },
+      }] : [];
+      const annotations = thr != null ? [{
+        xref: "paper", x: 1, y: isLog ? Math.log10(thr) : thr, xanchor: "right",
+        text: `Baku mutu: ${String(thr).replace(".", ",")}`, showarrow: false, yshift: 9,
+        font: { size: 10, color: "#dc2626" },
+      }] : [];
+      Plotly.newPlot("trend-chart", traces, {
+        height: 380,
+        margin: { t: 12, b: 45, l: 60, r: 12 },
+        font: { family: "Inter, system-ui, sans-serif", size: 12, color: "#475569" },
+        paper_bgcolor: "transparent", plot_bgcolor: "transparent",
+        xaxis: { tickmode: "array", tickvals: ip.years, gridcolor: "#e2e8f0", linecolor: "#cbd5e1", dtick: 1 },
+        yaxis: { title: pmeta.unit ?? "", type: isLog ? "log" : "linear", gridcolor: "#e2e8f0", linecolor: "#cbd5e1", automargin: true, rangemode: "tozero" },
+        legend: { font: { size: 11 }, orientation: "h", x: 0, y: -0.18 },
+        hoverlabel: { bgcolor: "white", bordercolor: "#e2e8f0", font: { size: 12, color: "#0f172a" } },
+        shapes, annotations,
+      }, { responsive: true, displayModeBar: false, locale: "id" });
+      $("#trend-note").textContent =
+        `Parameter: ${pmeta.label ?? param} (${pmeta.unit ?? "-"}) · ${CATLABEL[pmeta.category] ?? ""}` +
+        (isLog ? " · sumbu-Y skala log" : "") +
+        (thr != null ? "" : " · parameter ini tidak memiliki baku mutu berupa nilai maksimum tunggal.");
+    }
+    typeSel.onchange = () => { fillParams(typeSel.value); renderTrend(); };
+    paramSel.onchange = renderTrend;
+    fillParams(typeSel.value);
+    renderTrend();
+
+    // ─── DETAIL LAPORAN PER LHU (data 2025) ─────────────────────────────
+    const SAMPLE_LABEL = { air_permukaan: "Air Permukaan", air_limbah: "Air Limbah", air_sumur: "Air Sumur" };
     const sampleTypes = [...new Set(data.reports.map(r => r.sample_type))].sort();
     const selected = new Set(sampleTypes);
+
     function renderFilter() {
       $("#filter").innerHTML = sampleTypes.map(s => `
         <button data-type="${s}" class="filter-pill px-3 py-1.5 rounded-full text-xs border ${selected.has(s) ? "bg-green-100 border-green-300 text-green-800" : "bg-white border-slate-200 text-slate-600"}">
           ${SAMPLE_LABEL[s] ?? s}
-        </button>
-      `).join("");
-      document.querySelectorAll(".filter-pill").forEach(btn => {
-        btn.onclick = () => {
-          const t = btn.dataset.type;
-          selected.has(t) ? selected.delete(t) : selected.add(t);
-          renderFilter();
-          renderReports();
-        };
+        </button>`).join("");
+      document.querySelectorAll(".filter-pill").forEach(btn => btn.onclick = () => {
+        const t = btn.dataset.type;
+        selected.has(t) ? selected.delete(t) : selected.add(t);
+        renderFilter(); renderReports();
       });
     }
-
     function statusPill(m) {
       if (m.compliant === null) return `<span class="pill pill-none">— tanpa baku mutu</span>`;
-      if (m.compliant) {
-        return m.source_flagged_exceedance
-          ? `<span class="pill pill-warning">Patuh (lab ^)</span>`
-          : `<span class="pill pill-compliant">Patuh</span>`;
-      }
+      if (m.compliant) return m.source_flagged_exceedance
+        ? `<span class="pill pill-warning">Patuh (lab ^)</span>` : `<span class="pill pill-compliant">Patuh</span>`;
       return `<span class="pill pill-exceedance">Di atas baku mutu</span>`;
     }
-
     function renderReports() {
       const filtered = data.reports.filter(r => selected.has(r.sample_type));
       $("#reports").innerHTML = filtered.map(r => {
@@ -137,8 +340,7 @@
             <td class="text-xs text-slate-500">${m.unit ?? ""}</td>
             <td class="num text-xs">${fmtThreshold(m.threshold)}</td>
             <td>${statusPill(m)}</td>
-          </tr>
-        `).join("");
+          </tr>`).join("");
         return `
           <article class="card overflow-hidden">
             <header class="px-5 py-4 border-b border-slate-200 flex flex-wrap items-baseline justify-between gap-2">
@@ -168,38 +370,11 @@
                 <tbody>${rows}</tbody>
               </table>
             </div>
-          </article>
-        `;
+          </article>`;
       }).join("");
     }
-
     renderFilter();
     renderReports();
-
-    // ─── Map ─────────────────────────────────────────────────────
-    const samplePoints = data.reports
-      .map(r => {
-        const loc = locations[r.location_id];
-        if (!loc?.lat) return null;
-        return { ...loc, label: r.location_label_raw, type: r.sample_type, pct: r.summary.compliance_pct ?? 0 };
-      })
-      .filter(Boolean);
-    const map = L.map("map").setView([-6.926, 107.773], 14);
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      maxZoom: 19,
-    }).addTo(map);
-    samplePoints.forEach(s => {
-      const color = s.pct >= 80 ? "#16a34a" : s.pct >= 50 ? "#f59e0b" : "#dc2626";
-      L.circleMarker([s.lat, s.lon], {
-        radius: 8,
-        fillColor: color,
-        color: "white",
-        weight: 2,
-        fillOpacity: 0.9,
-      }).addTo(map)
-        .bindPopup(`<strong>${s.label}</strong><br>${SAMPLE_LABEL[s.type] ?? s.type}<br>Kepatuhan: ${fmtPct(s.pct)}`);
-    });
   </script>
 </body>
 </html>
