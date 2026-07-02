@@ -40,3 +40,6 @@ __pycache__/
 
 # skill scratch
 .claude/skills/*/output/
+
+# claude local settings (personal permissions — keep out of repo)
+.claude/settings.local.json
