@@ -36,7 +36,7 @@
       "label": "Kualitas Air",
       "route": "/air",
       "icon": "droplet",
-      "period_label": "IP 2024 – 2026",
+      "period_label": "2024 – 2026",
       "primary_kpi": {
         "label": "Persentase Parameter Patuh",
         "value_field": "compliance_pct"

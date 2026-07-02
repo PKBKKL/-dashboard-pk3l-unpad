@@ -23,9 +23,9 @@
       <section class="card p-5 mt-8">
         <div class="flex flex-wrap items-start justify-between gap-3 mb-1">
           <div>
-            <h3 class="text-sm font-semibold text-slate-900">Peta Status Mutu Air — Indeks Pencemaran (IP)</h3>
+            <h3 class="text-sm font-semibold text-slate-900">Peta Status Kualitas Air</h3>
             <p class="text-xs text-slate-400 mt-0.5">
-              Warna titik = status mutu air (KepMenLH 115/2003). Klik titik untuk melihat detail status &amp; IP.
+              Warna titik = status kualitas air (metode Indeks Pencemaran, KepMenLH 115/2003). Klik titik untuk detail.
             </p>
           </div>
           <div id="year-toggle" class="flex gap-1.5"></div>
@@ -36,8 +36,8 @@
 
       <!-- ─── MATRIKS STATUS PER TITIK & TAHUN ─── -->
       <section class="card p-5 mt-6">
-        <h3 class="text-sm font-semibold text-slate-900 mb-1">Matriks Status per Titik &amp; Tahun</h3>
-        <p class="text-xs text-slate-400 mb-3">Nilai = Indeks Pencemaran (IP). Warna sel = status. Sel kosong = tidak diuji tahun itu.</p>
+        <h3 class="text-sm font-semibold text-slate-900 mb-1">Matriks Status Kualitas Air per Titik &amp; Tahun</h3>
+        <p class="text-xs text-slate-400 mb-3">Angka = nilai indeks pencemaran (makin besar makin tercemar). Warna sel = status kualitas air. Sel kosong = tidak diuji tahun itu.</p>
         <div id="matrix" class="overflow-x-auto"></div>
       </section>
 
@@ -81,8 +81,8 @@
 
     renderHeader({
       title: "Kualitas Air",
-      period: "IP 2024 · 2025 · 2026",
-      description: `Status mutu air <b>${ip.points.length} titik sampling</b> UNPAD Jatinangor dihitung dengan <b>Metoda Indeks Pencemaran</b> (KepMenLH No. 115/2003) untuk tahun 2024–2026. Baku mutu mengikuti laporan uji (air permukaan PP 22/2021 Kelas 2; air limbah Permen LH 5/2014; air tanah &amp; minum Permenkes 2/2023).`,
+      period: "Status Kualitas Air 2024–2026",
+      description: `Status kualitas air <b>${ip.points.length} titik sampling</b> UNPAD Jatinangor tahun 2024–2026, dinilai dengan <b>Metoda Indeks Pencemaran</b> (KepMenLH No. 115/2003). Baku mutu mengikuti laporan uji (air permukaan PP 22/2021 Kelas 2; air limbah Permen LH 5/2014; air tanah &amp; minum Permenkes 2/2023).`,
     });
 
     // ─── KPI: distribusi status dari data TERBARU tiap titik ────────────
@@ -133,8 +133,8 @@
             <div style="margin-top:4px;color:#475569">Tahun ${year} · ${ip.sampling_month[String(year)]}</div>
             <div style="color:#475569">Baku mutu: ${yy.baku_mutu}</div>
             <div style="margin-top:6px;padding:5px 8px;border-radius:6px;background:${color}1a">
-              <span style="font-weight:700;color:#0f172a">IP = ${String(yy.ip).replace(".", ",")}</span>
-              &nbsp;→&nbsp;<span style="font-weight:700;color:${color}">${yy.status}</span>
+              <span style="font-weight:700;color:${color}">${yy.status}</span>
+              <span style="color:#475569">&nbsp;·&nbsp;indeks ${String(yy.ip).replace(".", ",")}</span>
             </div>
             <div style="margin-top:4px;color:#475569">Pemicu utama: <b>${yy.dominant}</b></div>
             <div style="color:#475569">${exceedN} parameter di atas baku mutu</div>
