@@ -1,0 +1,5 @@
+tahun,no,bulan,jenis,lokasi_id,lokasi_label,jumlah,catatan,sumber,dicatat_pada
+2026,1,2026-01,tunggal_mobil,faperta,Pertanian,1,,data/traffic_accidents.json (semai),2026-07-10
+2026,2,2026-01,tabrak_2roda,tugu-makalangan,Tugu makalangan,1,Antar roda dua,data/traffic_accidents.json (semai),2026-07-10
+2026,3,2026-01,tunggal_motor,fkg,FKG,1,Tunggal motor,data/traffic_accidents.json (semai),2026-07-10
+2026,4,2026-01,tabrak_4roda_beam,feb,FEB,1,Beam dan Mobil,data/traffic_accidents.json (semai),2026-07-10

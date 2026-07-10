@@ -1,9 +1,9 @@
 {
   "dataset_id": "timbulan",
-  "version": "1.0",
-  "generated_at": "2026-07-01",
+  "version": "1.4",
+  "generated_at": "2026-07-10",
   "source_files": [
-    "Total Timbulan Sampah 2026  (Bulanan).md"
+    "_ledger/timbulan.csv"
   ],
   "period": {
     "start": "2026-01-26",

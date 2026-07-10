@@ -1,4 +1,14 @@
-"""Rebuild data/traffic_accidents.json from Kecelakaan Lalu Lintas.xlsx.
+"""PENSIUN — JANGAN DIPAKAI. Lihat parse_traffic_accidents_xlsx.py.
+
+Skrip ini menulis LANGSUNG ke data/ dan docs/data/, melewati staging, validate,
+dan pengaman anti-regresi di run_all.py. Ia juga membaca JSON lama untuk
+"mempertahankan field", sehingga kebasian sumber tersembunyi. Tahun pun
+di-hardcode ke [2025, 2026].
+
+Disimpan hanya sebagai rujukan sejarah. main() menolak jalan.
+
+──────────────────────────────────────────────────────────────────────────
+Rebuild data/traffic_accidents.json from Kecelakaan Lalu Lintas.xlsx.
 
 Reads two sheets ("2025" and "2026") and:
 - Main table: rows 4-11, monthly counts per jenis kecelakaan
@@ -162,6 +172,15 @@ def _match_type_id(jenis_raw: str) -> str | None:
 
 
 def main() -> int:
+    if "--i-know-this-is-retired" not in sys.argv:
+        print(
+            "[update_traffic_from_xlsx] SKRIP INI SUDAH PENSIUN dan menolak jalan.\n"
+            "  Ia menulis langsung ke data/ dan docs/data/, melewati staging + anti-regresi.\n"
+            "  Pakai:  python run_all.py --out data   (memakai parse_traffic_accidents_xlsx.py)",
+            file=sys.stderr,
+        )
+        return 1
+
     wb = openpyxl.load_workbook(XLSX, data_only=True)
     with JSON_PATH.open("r", encoding="utf-8") as f:
         data = json.load(f)

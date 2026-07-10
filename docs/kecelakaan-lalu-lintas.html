@@ -20,7 +20,7 @@
       <section class="mt-8">
         <div class="flex items-baseline justify-between mb-3 flex-wrap gap-2">
           <h3 class="text-sm font-semibold text-slate-900">Rekap per Jenis Kecelakaan</h3>
-          <span class="text-xs text-slate-400">Akumulasi 2025 + 2026 · diurut berdasarkan frekuensi</span>
+          <span id="jenis-caption" class="text-xs text-slate-400"></span>
         </div>
         <div id="jenis-cards" class="grid gap-3 grid-cols-2 md:grid-cols-3 lg:grid-cols-4"></div>
       </section>
@@ -36,8 +36,8 @@
 
       <section class="card overflow-hidden mt-8">
         <header class="px-5 py-4 border-b border-slate-200">
-          <h3 class="text-sm font-semibold text-slate-900">Detail Kasus 2026 Berdasarkan Lokasi</h3>
-          <p class="text-xs text-slate-400 mt-1">Rincian kasus 2026 lengkap dengan lokasi kejadian di kampus. Sumber: sheet "Berdasarkan Lokasi" pada Excel Kecelakaan Lalu Lintas.</p>
+          <h3 id="detail-title" class="text-sm font-semibold text-slate-900">Detail Kasus Berdasarkan Lokasi</h3>
+          <p class="text-xs text-slate-400 mt-1">Rincian kasus lengkap dengan lokasi kejadian di kampus. Sumber: sheet "Berdasarkan Lokasi" pada Excel Kecelakaan Lalu Lintas.</p>
         </header>
         <div class="overflow-x-auto">
           <table class="data-table" id="detail-table">
@@ -79,29 +79,34 @@
     renderHeader({
       title: "Kecelakaan Lalu Lintas",
       period: `${data.period.start} – ${data.period.end}`,
-      description: "Pencatatan kecelakaan di kawasan kampus UNPAD oleh Kantor Lingkungan. Mencakup kecelakaan tunggal, tabrakan antar pengguna jalan, serta insiden yang melibatkan armada sepeda listrik Beam. Data 2026 masih parsial.",
+      description: "Pencatatan kecelakaan di kawasan kampus UNPAD oleh Kantor Lingkungan. Mencakup kecelakaan tunggal, tabrakan antar pengguna jalan, serta insiden yang melibatkan armada sepeda listrik Beam. Tahun berjalan masih parsial.",
     });
 
-    const y2025 = data.yearly.find(y => y.year === 2025);
-    const y2026 = data.yearly.find(y => y.year === 2026);
+    // Tahun tidak dihafal: ambil apa adanya dari data, urut menaik.
+    const YEARS = data.yearly.map(y => y.year).sort((a, b) => a - b);
+    const LATEST = YEARS[YEARS.length - 1];
+    const byYear = Object.fromEntries(data.yearly.map(y => [y.year, y]));
 
-    renderKpis("#kpis", [
-      { label: "Total 2025", value: fmtInt(y2025?.total_yearly_computed ?? 0), unit: "kasus", icon: "car-front", accent: "red" },
-      { label: "YTD 2026", value: fmtInt(y2026?.total_yearly_computed ?? 0), unit: "kasus", accent: "amber" },
-    ]);
+    renderKpis("#kpis", YEARS.map((yr, i) => ({
+      label: yr === LATEST && YEARS.length > 1 ? `YTD ${yr}` : `Total ${yr}`,
+      value: fmtInt(byYear[yr]?.total_yearly_computed ?? 0),
+      unit: "kasus",
+      icon: i === 0 ? "car-front" : undefined,
+      accent: yr === LATEST ? "amber" : "red",
+    })));
 
     const PALETTE_CYCLE = [p.exceedance, p.maggot, p.anorganik, p.organik, p.rdf, p.residu, p.dumping, p.kompos];
 
     // ─── Mini-cards per Jenis Kecelakaan ──────────────────────────────
+    const blankYears = () => Object.fromEntries(YEARS.map(y => [y, 0]));
     const typeTotals = {};
-    data.vehicle_types.forEach(v => { typeTotals[v.id] = { total: 0, y2025: 0, y2026: 0 }; });
+    data.vehicle_types.forEach(v => { typeTotals[v.id] = { total: 0, perYear: blankYears() }; });
     for (const yr of data.yearly) {
       for (const m of yr.monthly) {
         for (const [tid, count] of Object.entries(m.by_type)) {
-          if (!typeTotals[tid]) typeTotals[tid] = { total: 0, y2025: 0, y2026: 0 };
+          if (!typeTotals[tid]) typeTotals[tid] = { total: 0, perYear: blankYears() };
           typeTotals[tid].total += count;
-          if (yr.year === 2025) typeTotals[tid].y2025 += count;
-          if (yr.year === 2026) typeTotals[tid].y2026 += count;
+          typeTotals[tid].perYear[yr.year] = (typeTotals[tid].perYear[yr.year] ?? 0) + count;
         }
       }
     }
@@ -124,18 +129,19 @@
               <div class="text-[10px] text-slate-400">kasus · ${pct}%</div>
             </div>
             <div class="text-[10px] text-slate-500 mt-1 flex gap-2">
-              <span>2025: <span class="font-medium text-slate-700 tabular-nums">${v.y2025}</span></span>
-              <span class="text-slate-300">|</span>
-              <span>2026: <span class="font-medium text-slate-700 tabular-nums">${v.y2026}</span></span>
+              ${YEARS.map((yr, i) => `
+                ${i ? `<span class="text-slate-300">|</span>` : ""}
+                <span>${yr}: <span class="font-medium text-slate-700 tabular-nums">${v.perYear[yr] ?? 0}</span></span>
+              `).join("")}
             </div>
           </div>
         </div>`;
     }).join("");
 
-    let currentYear = 2025;
+    let currentYear = YEARS[0];
 
     function renderTabs() {
-      $("#year-tabs").innerHTML = [2025, 2026].map(y => `
+      $("#year-tabs").innerHTML = YEARS.map(y => `
         <button data-year="${y}" class="px-3 py-1.5 rounded-md border ${currentYear === y ? "bg-green-100 border-green-300 text-green-800 font-medium" : "border-slate-200 text-slate-600 bg-white"}">${y}</button>
       `).join("");
       document.querySelectorAll("[data-year]").forEach(btn => {
@@ -154,18 +160,34 @@
         }),
       }));
       stackedBar("chart-monthly", { x: MONTH_SHORT, yLabel: "Jumlah Kasus", series });
-      $("#year-caption").textContent = currentYear === 2025
-        ? "September 2025 adalah puncak dengan 16 kasus."
-        : `Data 2026 masih parsial (YTD: ${y?.total_yearly_computed ?? 0} kasus).`;
+
+      const peak = (y?.monthly ?? []).reduce((a, m) => (!a || m.total > a.total ? m : a), null);
+      if (currentYear === LATEST && YEARS.length > 1) {
+        $("#year-caption").textContent =
+          `Data ${currentYear} masih parsial (YTD: ${y?.total_yearly_computed ?? 0} kasus).`;
+      } else if (peak) {
+        $("#year-caption").textContent =
+          `${fmtMonth(peak.month)} adalah puncak dengan ${peak.total} kasus.`;
+      } else {
+        $("#year-caption").textContent = `Belum ada kasus tercatat pada ${currentYear}.`;
+      }
     }
+
+    $("#jenis-caption").textContent = `Akumulasi ${YEARS.join(" + ")} · diurut berdasarkan frekuensi`;
 
     renderTabs();
     renderChart();
 
-    const incidents = data.incidents_detail_2026 ?? [];
+    // spec 1.1 memakai `incidents_detail`; JSON lama (1.0) memakai `incidents_detail_2026`.
+    const incidents = data.incidents_detail ?? data.incidents_detail_2026 ?? [];
+    const detailYears = [...new Set(incidents.map(it => it.year ?? Number(String(it.month).slice(0, 4))))].sort();
+    $("#detail-title").textContent = detailYears.length
+      ? `Detail Kasus ${detailYears.join(" & ")} Berdasarkan Lokasi`
+      : "Detail Kasus Berdasarkan Lokasi";
+
     if (incidents.length === 0) {
       $("#detail-table tbody").innerHTML = `
-        <tr><td colspan="6" class="text-center text-slate-400 text-xs py-6">Belum ada detail lokasi yang tercatat di Excel untuk 2026.</td></tr>`;
+        <tr><td colspan="6" class="text-center text-slate-400 text-xs py-6">Belum ada detail lokasi yang tercatat di Excel.</td></tr>`;
     } else {
       $("#detail-table tbody").innerHTML = incidents.map(it => `
         <tr>

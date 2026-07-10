@@ -1,0 +1,8 @@
+id,label,operator,tare_kg,note
+truk-tim-angsa,Truk UNPAD (Tim Angsa),UNPAD,,
+truk-ipdn,Truk IPDN,IPDN,,
+pickup-unpad,Pick Up UNPAD,UNPAD,1288,
+viar,Viar,UNPAD,263,
+cator-unpad,Cator UNPAD,UNPAD,,
+mobil-traga,Mobil Traga,UNPAD,1720,Aset yang tidak terpakai
+sod-rs,SOD Rumah Sakit,RS UNPAD,,

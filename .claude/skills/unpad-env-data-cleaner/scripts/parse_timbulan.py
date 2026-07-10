@@ -1,4 +1,20 @@
-"""Parse Total Timbulan Sampah 2026 (Bulanan).md → timbulan.json.
+"""PENSIUN — JANGAN DIPAKAI. Lihat parse_timbulan_master.py.
+
+Skrip ini membaca 'Total Timbulan Sampah 2026  (Bulanan).md', yang isinya
+tertinggal jauh dari dashboard: hanya Januari–April, dengan angka lama
+(Feb 99.644 vs 101.299 di dashboard) dan SKEMA BERBEDA (3 kategori
+organik/anorganik_residu/sod, bukan 4 kategori organik_anorganik/sisa_makanan/
+lingkungan/aset yang dipakai dashboard).
+
+Menjalankannya akan memundurkan timbulan.json dari 498.818 kg (84 hari,
+Jan–Jun) menjadi ~278.518 kg, menghapus Mei & Juni, dan merusak struktur
+yang dibaca halaman HTML. Karena itu ia dikeluarkan dari PIPELINE di run_all.py
+dan dikunci di main(). Sumber resmi sekarang: 'Timbulan Sampah 2026 (MASTER).xlsx'.
+
+Disimpan hanya sebagai rujukan sejarah parsing MD.
+
+──────────────────────────────────────────────────────────────────────────
+Parse Total Timbulan Sampah 2026 (Bulanan).md → timbulan.json.
 
 Reads:
   - Section "Overview" (monthly totals)
@@ -163,10 +179,24 @@ def parse_monthly_section(md_text: str, aliases: list[str], month_iso: str) -> l
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description=f"Build {DATASET_ID}.json")
+    ap = argparse.ArgumentParser(description=f"[PENSIUN] Build {DATASET_ID}.json dari MD lama")
     ap.add_argument("--source", default=None, help=f"Path to {SOURCE_MD}")
     ap.add_argument("--out", default=None)
+    ap.add_argument("--i-know-this-is-retired", action="store_true",
+                    help="Wajib. Tanpa ini skrip menolak jalan.")
     args = ap.parse_args()
+
+    if not args.i_know_this_is_retired:
+        print(
+            "[parse_timbulan] SKRIP INI SUDAH PENSIUN dan menolak jalan.\n"
+            "  Sumbernya (MD) hanya memuat Januari-April dengan angka lama dan skema 3-kategori.\n"
+            "  Menjalankannya akan menghapus Mei & Juni 2026 (208.586 kg) dari dashboard.\n"
+            "  Pakai:  python parse_timbulan_master.py --out data\n"
+            "  Kalau benar-benar perlu (mis. riset arsip), tambahkan --i-know-this-is-retired\n"
+            "  dan JANGAN arahkan --out ke data/.",
+            file=sys.stderr,
+        )
+        return 1
 
     project = find_project_root()
     src = Path(args.source) if args.source else project / SOURCE_MD

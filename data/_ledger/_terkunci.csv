@@ -1,0 +1,3 @@
+dataset,periode_awal,periode_akhir,dikunci_pada,alasan
+timbulan,2026-01,2026-06,2026-07-10,Sumber asli hilang; JSON dashboard satu-satunya salinan. Keputusan pemilik: angka Jan-Jun tidak boleh berubah saat deploy.
+traffic_accidents,2025-04,2026-06,2026-07-10,Sumber asli hilang; Mei-Juni 2026 (6 kasus) hanya ada di JSON dashboard dan arsip.

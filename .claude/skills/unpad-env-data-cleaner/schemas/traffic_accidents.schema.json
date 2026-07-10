@@ -33,12 +33,13 @@
         }
       }
     },
-    "incidents_detail_2026": {
+    "incidents_detail": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["type", "location_id", "count"],
+        "required": ["year", "type", "location_id", "count"],
         "properties": {
+          "year": { "type": "integer" },
           "type": { "type": "string" },
           "location_id": { "type": "string" },
           "count": { "type": "integer", "minimum": 1 }

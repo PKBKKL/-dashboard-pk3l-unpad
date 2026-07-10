@@ -30,12 +30,14 @@ page_header(
     description=(
         "Pencatatan kecelakaan di kawasan kampus UNPAD oleh Kantor Lingkungan. "
         "Mencakup kecelakaan tunggal, tabrakan antar pengguna jalan, serta insiden yang "
-        "melibatkan armada sepeda listrik <b>Beam</b>. Data 2026 masih parsial (sampai April)."
+        "melibatkan armada sepeda listrik <b>Beam</b>. Tahun berjalan masih parsial."
     ),
 )
 
-y2025 = next((y for y in data["yearly"] if y["year"] == 2025), None)
-y2026 = next((y for y in data["yearly"] if y["year"] == 2026), None)
+# Tahun tidak dihafal: ambil apa adanya dari data.
+by_year = {y["year"]: y for y in data["yearly"]}
+years = sorted(by_year)
+latest = years[-1] if years else None
 
 def beam_count(y: dict | None) -> int:
     if not y:
@@ -52,11 +54,12 @@ def pedestrian_count(y: dict | None) -> int:
     return sum(m["by_type"].get("pejalan_kaki", 0) for m in y["monthly"])
 
 
-c1, c2, c3, c4 = st.columns(4)
-c1.metric("Total 2025", fmt_int(y2025["total_yearly_computed"] if y2025 else 0))
-c2.metric("YTD 2026", fmt_int(y2026["total_yearly_computed"] if y2026 else 0))
-c3.metric("Melibatkan Beam", fmt_int(beam_count(y2025) + beam_count(y2026)))
-c4.metric("Pejalan Kaki", fmt_int(pedestrian_count(y2025) + pedestrian_count(y2026)))
+cols = st.columns(len(years) + 2)
+for col, yr in zip(cols, years):
+    label = f"YTD {yr}" if yr == latest and len(years) > 1 else f"Total {yr}"
+    col.metric(label, fmt_int(by_year[yr]["total_yearly_computed"]))
+cols[len(years)].metric("Melibatkan Beam", fmt_int(sum(beam_count(by_year[y]) for y in years)))
+cols[len(years) + 1].metric("Pejalan Kaki", fmt_int(sum(pedestrian_count(by_year[y]) for y in years)))
 
 st.divider()
 
@@ -64,12 +67,12 @@ st.divider()
 
 year = st.radio(
     "Pilih tahun:",
-    options=[2025, 2026],
+    options=years,
     horizontal=True,
     index=0,
     label_visibility="collapsed",
 )
-selected = y2025 if year == 2025 else y2026
+selected = by_year[year]
 
 # Build monthly data for selected year
 rows = []
@@ -90,8 +93,14 @@ cols_palette = [
 color_map = {v["label"]: cols_palette[i % len(cols_palette)] for i, v in enumerate(data["vehicle_types"])}
 
 st.subheader(f"Distribusi Bulanan per Jenis ({year})")
-caption_text = "September 2025 adalah puncak dengan 16 kasus." if year == 2025 else "Data 2026 masih parsial."
-st.caption(caption_text)
+if year == latest and len(years) > 1:
+    st.caption(f"Data {year} masih parsial (YTD: {selected['total_yearly_computed']} kasus).")
+elif selected["monthly"]:
+    peak = max(selected["monthly"], key=lambda m: m["total"])
+    peak_label = MONTH_SHORT[int(peak["month"][-2:]) - 1]
+    st.caption(f"{peak_label} {year} adalah puncak dengan {peak['total']} kasus.")
+else:
+    st.caption(f"Belum ada kasus tercatat pada {year}.")
 fig = px.bar(
     df_year, x="Bulan",
     y=[v["label"] for v in data["vehicle_types"]],
@@ -104,12 +113,15 @@ st.plotly_chart(fig, width='stretch')
 
 st.divider()
 
-# ─── Detail 2026 by location ──────────────────────────────────────────
+# ─── Detail per lokasi ────────────────────────────────────────────────
+# spec 1.1 memakai `incidents_detail`; JSON lama (1.0) memakai `incidents_detail_2026`.
 
-if data.get("incidents_detail_2026"):
-    st.subheader("Detail Kasus 2026 per Lokasi")
+incidents = data.get("incidents_detail") or data.get("incidents_detail_2026") or []
+if incidents:
+    detail_years = sorted({it.get("year", int(str(it["month"])[:4])) for it in incidents})
+    st.subheader(f"Detail Kasus {' & '.join(map(str, detail_years))} per Lokasi")
     detail_rows = []
-    for it in data["incidents_detail_2026"]:
+    for it in incidents:
         loc_label = locations.get(it["location_id"], {}).get("label", it.get("location_label_raw", it["location_id"]))
         detail_rows.append({
             "No": it["no"],
@@ -138,9 +150,11 @@ for y in data["yearly"]:
         })
 df_ys = pd.DataFrame(yearly_summary)
 if not df_ys.empty:
+    year_cycle = [palette["exceedance"], palette["anorganik"], palette["maggot"],
+                  palette["organik"], palette["rdf"], palette["residu"]]
     fig_ys = px.bar(
         df_ys, x="Jenis", y="Kasus", color="Tahun", barmode="group",
-        color_discrete_map={"2025": palette["exceedance"], "2026": palette["anorganik"]},
+        color_discrete_map={str(y): year_cycle[i % len(year_cycle)] for i, y in enumerate(years)},
         height=320,
     )
     fig_ys.update_layout(margin=dict(t=10, b=10, l=10, r=10), xaxis_title=None)

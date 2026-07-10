@@ -96,12 +96,37 @@
         </div>
       </section>
 
+      <section id="tps-section" class="card overflow-hidden mt-8 hidden">
+        <header class="px-5 py-4 border-b border-slate-200 flex flex-wrap items-baseline justify-between gap-2">
+          <h3 class="text-sm font-semibold text-slate-900">Penyerahan ke Pengolah Berizin</h3>
+          <span class="text-xs text-slate-400">Sumber: logbook TPS Limbah B3 · seluruhnya dalam kilogram</span>
+        </header>
+        <div id="tps-kpis" class="grid gap-4 sm:grid-cols-3 px-5 py-4"></div>
+        <div class="overflow-x-auto">
+          <table class="data-table" id="tps-table">
+            <thead>
+              <tr>
+                <th>Tanggal Keluar</th>
+                <th>Tujuan</th>
+                <th>Periode Limbah Masuk</th>
+                <th class="num">Entri</th>
+                <th class="num">Masuk (kg)</th>
+                <th class="num">Keluar (kg)</th>
+                <th class="num">Selisih (kg)</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <p id="tps-sisa" class="px-5 py-3 text-xs text-slate-500 border-t border-slate-200"></p>
+      </section>
+
       <section class="mt-10">
         <h2 class="text-base font-semibold text-slate-900 mb-3">Infografis Detail per Kode Limbah</h2>
         <p class="text-xs text-slate-500 mb-4">Klasifikasi B3 sesuai PP 22/2021. Ukuran kotak treemap sebanding dengan kontribusi total (Liter cair + Kg padat).</p>
 
         <div class="card p-5 mb-4">
-          <h3 class="text-sm font-semibold text-slate-900 mb-1">Treemap: Proporsi Kontribusi 19 Kode Limbah</h3>
+          <h3 id="treemap-title" class="text-sm font-semibold text-slate-900 mb-1">Treemap: Proporsi Kontribusi Kode Limbah</h3>
           <p class="text-xs text-slate-400 mb-3">Kotak terbesar = kontribusi terbesar terhadap total timbulan B3.</p>
           <div id="treemap-kode"></div>
         </div>
@@ -173,6 +198,18 @@
     const data = await loadDataset("b3_waste");
     const p = meta.color_palette;
 
+    // ─── Satuan ──────────────────────────────────────────────────────
+    // Sejak spec 1.2 parser menerbitkan volume_liter & mass_kg per entri, sudah
+    // dikonversi. Halaman ini tidak boleh menebak dari teks satuan lagi: dulu
+    // `satuan.startsWith("liter")` membuang seluruh entri 'Mili Liter'.
+    // Fallback di bawah hanya dipakai bila JSON lama (tanpa kedua field itu)
+    // yang tersaji — dan kini sudah mengenal Mili Liter.
+    const KE_LITER = { "liter": 1, "l": 1, "ltr": 1, "lt": 1, "mili liter": 0.001, "mililiter": 0.001, "milliliter": 0.001, "ml": 0.001, "cc": 0.001 };
+    const KE_KG = { "kg": 1, "kilogram": 1, "kgs": 1, "gram": 0.001, "gr": 0.001, "g": 0.001, "ton": 1000 };
+    const satuanKey = e => (e.satuan || "").trim().toLowerCase().replace(/\s+/g, " ");
+    const literOf = e => e.volume_liter ?? ((KE_LITER[satuanKey(e)] ?? 0) * e.volume);
+    const kgOf = e => e.mass_kg ?? ((KE_KG[satuanKey(e)] ?? 0) * e.volume);
+
     renderHeader({
       title: "Limbah B3 (Bahan Berbahaya & Beracun)",
       period: `${data.period.start} – ${data.period.end}`,
@@ -222,9 +259,8 @@
       if (!semesterMonths[key]) semesterMonths[key] = new Set();
       semesterMonths[key].add(e.month);
       semesterAgg[key].entries += 1;
-      const sat = (e.satuan || "").toLowerCase();
-      if (sat.startsWith("liter") || sat === "l") semesterAgg[key].liter += e.volume;
-      else if (sat === "kg" || sat === "kilogram") semesterAgg[key].kg += e.volume;
+      semesterAgg[key].liter += literOf(e);
+      semesterAgg[key].kg += kgOf(e);
     }
     const semKeys = Object.keys(semesterAgg).sort();
     const semLabels = semKeys.map(k => {
@@ -267,10 +303,9 @@
         for (const m of monthsInSem) perMonth[m] = { liter: 0, kg: 0, entries: 0 };
         for (const e of data.entries) {
           if (!perMonth[e.month]) continue;
-          const sat = (e.satuan || "").toLowerCase();
           perMonth[e.month].entries += 1;
-          if (sat.startsWith("liter") || sat === "l") perMonth[e.month].liter += e.volume;
-          else if (sat === "kg" || sat === "kilogram") perMonth[e.month].kg += e.volume;
+          perMonth[e.month].liter += literOf(e);
+          perMonth[e.month].kg += kgOf(e);
         }
         liters = monthsInSem.map(m => Math.round(perMonth[m].liter * 100) / 100);
         kgs = monthsInSem.map(m => Math.round(perMonth[m].kg * 100) / 100);
@@ -322,18 +357,14 @@
     const lembagaMonths = {};  // { lembaga: { "YYYY-MM": { liter, kg, entries } } }
     const monthSet = new Set();
     for (const e of data.entries) {
-      const sat = (e.satuan || "").toLowerCase();
       const l = e.lembaga;
       const m = e.month;
       monthSet.add(m);
       if (!lembagaMonths[l]) lembagaMonths[l] = {};
       if (!lembagaMonths[l][m]) lembagaMonths[l][m] = { liter: 0, kg: 0, entries: 0 };
       lembagaMonths[l][m].entries += 1;
-      if (sat.startsWith("liter") || sat === "l") {
-        lembagaMonths[l][m].liter += e.volume;
-      } else if (sat === "kg" || sat === "kilogram") {
-        lembagaMonths[l][m].kg += e.volume;
-      }
+      lembagaMonths[l][m].liter += literOf(e);
+      lembagaMonths[l][m].kg += kgOf(e);
     }
     const sortedMonths = [...monthSet].sort();
     const monthLabels = sortedMonths.map(m => {
@@ -406,16 +437,13 @@
     // Build per-kode monthly aggregation from entries
     const kodeMonths = {};  // { kode: { "YYYY-MM": { liter, kg, entries } } }
     for (const e of data.entries) {
-      const sat = (e.satuan || "").toLowerCase();
       const k = e.kode_limbah || "—";
       const m = e.month;
       if (!kodeMonths[k]) kodeMonths[k] = {};
       if (!kodeMonths[k][m]) kodeMonths[k][m] = { liter: 0, kg: 0, entries: 0 };
       kodeMonths[k][m].entries += 1;
-      if (sat.startsWith("liter") || sat === "l") {
-        kodeMonths[k][m].liter += e.volume;
-      } else if (sat === "kg" || sat === "kilogram") {
-        kodeMonths[k][m].kg += e.volume;
+      kodeMonths[k][m].liter += literOf(e);
+      kodeMonths[k][m].kg += kgOf(e);
       }
     }
     const allKodes = kodeAll.map(k => k.kode);  // sudah sorted by total desc
@@ -507,6 +535,47 @@
       if (kategoriStr.includes("Cair") && kategoriStr.includes("Padat")) return p.maggot;
       return p.below_detection;
     };
+    // ─── Penyerahan ke pengolah berizin (logbook TPS) ────────────────
+    // Bagian ini baru ada sejak spec 1.4. JSON lama tidak memuatnya, jadi
+    // seksinya tetap tersembunyi alih-alih menampilkan tabel kosong.
+    const tps = data.tps_logbook;
+    if (tps && tps.pengiriman?.length) {
+      $("#tps-section").classList.remove("hidden");
+      const ts = tps.summary;
+      const kpi = (label, nilai, satuan, warna) => `
+        <div class="rounded border border-slate-200 px-4 py-3">
+          <div class="text-xs text-slate-500">${label}</div>
+          <div class="text-lg font-bold tabular-nums ${warna}">${fmtNum(nilai)} <span class="text-xs font-normal text-slate-400">${satuan}</span></div>
+        </div>`;
+      $("#tps-kpis").innerHTML =
+        kpi("Total Masuk TPS", ts.total_masuk_kg, "kg", "text-slate-900") +
+        kpi("Sudah Diserahkan", ts.total_keluar_kg, "kg", "text-green-700") +
+        kpi("Masih di TPS", ts.sisa_di_tps_kg, "kg",
+            ts.sisa_di_tps_kg > 0 ? "text-amber-600" : "text-slate-900");
+
+      $("#tps-table tbody").innerHTML = tps.pengiriman.map(p => {
+        const pm = p.periode_masuk || {};
+        const beda = p.selisih_kg;
+        return `<tr>
+          <td>${p.tanggal_keluar}</td>
+          <td>${p.tujuan ?? "—"}</td>
+          <td class="text-xs">${pm.start ?? "—"} s/d ${pm.end ?? "—"}</td>
+          <td class="num">${fmtInt(p.entri_masuk)}</td>
+          <td class="num">${fmtNum(p.total_masuk_kg)}</td>
+          <td class="num">${fmtNum(p.total_keluar_kg)}</td>
+          <td class="num ${beda ? "text-amber-600 font-semibold" : "text-slate-400"}">${fmtNum(beda)}</td>
+        </tr>`;
+      }).join("");
+
+      $("#tps-sisa").textContent = tps.sisa_per_kode?.length
+        ? "Belum tuntas diserahkan: " + tps.sisa_per_kode
+            .map(s => `${s.kode_limbah} ${fmtNum(s.sisa_kg)} kg`).join(" · ")
+        : "Seluruh limbah yang tercatat masuk sudah diserahkan ke pengolah berizin.";
+    }
+
+    // Judul ikut jumlah kode yang benar-benar ada. Dulu tertulis "19" secara harfiah.
+    $("#treemap-title").textContent =
+      `Treemap: Proporsi Kontribusi ${data.summary.unique_kode_limbah} Kode Limbah`;
     treemap("treemap-kode", {
       labels: kodeWithTotal.map(k => k.kode),
       values: kodeWithTotal.map(k => k.total),
@@ -574,7 +643,7 @@
           <td class="text-xs">${e.limbah}</td>
           <td class="num">${fmtNum(e.volume)}</td>
           <td class="text-xs">${e.satuan}</td>
-          <td class="text-xs font-mono">${e.kode_limbah || "—"}</td>
+          <td class="text-xs font-mono">${e.kode_limbah || "—"}${e.kode_status === "usulan" ? ' <span class="text-[10px] font-sans font-semibold text-amber-600 align-middle" title="Kode usulan dari kamus repo — belum disahkan PK3L, jangan dipakai untuk manifest/pelaporan">usulan</span>' : ""}</td>
           <td class="text-xs">${e.kategori || "—"}</td>
         </tr>
       `).join("");

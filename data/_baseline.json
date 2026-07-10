@@ -1,0 +1,127 @@
+{
+  "note": "Angka minimum yang pernah tercapai per dataset. validate.py MENOLAK hasil rebuild yang lebih kecil dari ini. Perbarui hanya lewat --update-baseline, setelah yakin penurunannya memang disengaja.",
+  "updated_at": "2026-07-10",
+  "datasets": {
+    "timbulan": {
+      "counts": {
+        "daily_entries": 84
+      },
+      "totals": {
+        "total_kg": 498818.0
+      },
+      "keys": {
+        "months_with_data": [
+          "2026-01",
+          "2026-02",
+          "2026-03",
+          "2026-04",
+          "2026-05",
+          "2026-06"
+        ]
+      }
+    },
+    "pengolahan_sampah": {
+      "counts": {
+        "daily_entries": 41
+      },
+      "totals": {
+        "incoming_kg": 30063
+      },
+      "keys": {
+        "months": [
+          "2025-12",
+          "2026-01"
+        ]
+      }
+    },
+    "water_quality": {
+      "counts": {
+        "reports": 9,
+        "measurements": 161
+      },
+      "totals": {},
+      "keys": {
+        "report_no": [
+          "1060810/LHU/AP/2025",
+          "1070810/LHU/AP/2025",
+          "1080810/LHU/AP/2025",
+          "1090810/LHU/AP/2025",
+          "1100810/LHU/AP/2025",
+          "1110810/LHU/AP/2025",
+          "1120810/LHU/ALI/2025",
+          "1130810/LHU/ALI/2025",
+          "1140810/LHU/AT/2025"
+        ]
+      }
+    },
+    "water_quality_ip": {
+      "counts": {
+        "points": 14,
+        "point_years": 30
+      },
+      "totals": {},
+      "keys": {
+        "years": [
+          "2024",
+          "2025",
+          "2026"
+        ]
+      }
+    },
+    "tree_incidents": {
+      "counts": {
+        "locations": 15
+      },
+      "totals": {
+        "total_events": 33
+      },
+      "keys": {}
+    },
+    "traffic_accidents": {
+      "counts": {
+        "incidents_detail": 4
+      },
+      "totals": {
+        "total_2025": 33,
+        "total_2026": 10
+      },
+      "keys": {
+        "years": [
+          "2025",
+          "2026"
+        ]
+      }
+    },
+    "b3_waste": {
+      "counts": {
+        "entries": 468,
+        "tps_entri_masuk": 108,
+        "tps_entri_keluar": 28,
+        "tps_pengiriman": 2
+      },
+      "totals": {
+        "volume_liter": 13173.58,
+        "tps_keluar_kg": 13496.863
+      },
+      "keys": {
+        "months": [
+          "2024-09",
+          "2024-11",
+          "2024-12",
+          "2025-02",
+          "2025-05",
+          "2025-06",
+          "2025-08",
+          "2025-09",
+          "2025-10",
+          "2025-12",
+          "2026-01",
+          "2026-02",
+          "2026-04",
+          "2026-06",
+          "2026-07"
+        ]
+      }
+    }
+  }
+}

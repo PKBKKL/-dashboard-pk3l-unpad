@@ -250,16 +250,21 @@ export type TrafficYearly = {
   ytd_through_month?: string;
 };
 
+export type TrafficIncidentDetail = {
+  no: number | null;
+  year: number;
+  month: string;
+  type: string;
+  location_id: string;
+  location_label_raw: string;
+  count: number;
+  note?: string;
+};
+
 export type TrafficAccidents = DatasetEnvelope & {
   vehicle_types: { id: VehicleType; label: string }[];
   yearly: TrafficYearly[];
-  incidents_detail_2026: {
-    no: number | null;
-    month: string;
-    type: string;
-    location_id: string;
-    location_label_raw: string;
-    count: number;
-    note?: string;
-  }[];
+  incidents_detail: TrafficIncidentDetail[];
+  /** @deprecated nama field spec 1.0; dipertahankan agar JSON lama tetap terbaca */
+  incidents_detail_2026?: TrafficIncidentDetail[];
 };

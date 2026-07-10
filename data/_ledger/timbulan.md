@@ -1,0 +1,93 @@
+# Buku Besar — Timbulan Sampah
+
+> **Cermin bacaan buku besar. Dihasilkan otomatis — jangan diedit.**  
+> Sumber kebenaran: `timbulan.csv`. Nilai turunan (unpad_kg, total_kg) tidak disimpan; parser menghitungnya.
+
+_84 baris_
+
+| tanggal | hari | organik_anorganik_kg | sisa_makanan_kg | lingkungan_kg | aset_kg | ipdn_kg | catatan | quality_flag | sumber | dicatat_pada |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 2026-01-26 | Senin | 3170 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-01-27 | Selasa | 3740 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-01-28 | Rabu | 3470 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-01-29 | Kamis | 2980 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-01-30 | Jumat | 1810 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-02-02 | Senin | 7660 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-02-03 | Selasa | 5610 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-02-04 | Rabu | 4199 | 0 | 1707 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-02-05 | Kamis | 4500 | 0 | 1182 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-02-06 | Jumat | 6060 | 0 | 0 | 467 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-02-09 | Senin | 7700 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-02-10 | Selasa | 6300 | 0 | 866 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-02-11 | Rabu | 7360 | 0 | 1288 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-02-12 | Kamis | 8190 | 0 | 0 | 290 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-02-13 | Jumat | 3130 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-02-18 | Rabu | 8650 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-02-19 | Kamis | 4990 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-02-20 | Jumat | 2870 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-02-23 | Senin | 7590 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-02-24 | Selasa | 3300 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-02-26 | Kamis | 4760 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-02-27 | Jumat | 2630 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-03-02 | Senin | 5870 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-03-03 | Selasa | 1040 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-03-04 | Rabu | 5280 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-03-05 | Kamis | 2490 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-03-06 | Jumat | 0 | 7004 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-03-09 | Senin | 6900 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-03-10 | Selasa | 4020 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-03-11 | Rabu | 1040 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-03-12 | Kamis | 2580 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-03-13 | Jumat | 1620 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-03-30 | Senin | 6820 | 0 | 25 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-03-31 | Selasa | 5500 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-04-01 | Rabu | 5890 | 1000 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-04-02 | Kamis | 6570 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-04-06 | Senin | 5680 | 0 | 82 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-04-07 | Selasa | 8620 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-04-08 | Rabu | 5600 | 0 | 342 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-04-09 | Kamis | 5970 | 0 | 182 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-04-10 | Jumat | 2630 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-04-13 | Senin | 9160 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-04-14 | Selasa | 6560 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-04-15 | Rabu | 5720 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-04-16 | Kamis | 3810 | 0 | 152 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-04-17 | Jumat | 3270 | 1070 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-04-20 | Senin | 8740 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-04-21 | Selasa | 5810 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-04-22 | Rabu | 6680 | 0 | 654 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-04-23 | Kamis | 5830 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-04-24 | Jumat | 4740 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-04-28 | Selasa | 4520 | 0 | 72 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-04-29 | Rabu | 5790 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-04-30 | Kamis | 7470 | 960 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-05-04 | Senin | 12020 | 690 | 162 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-05-07 | Kamis | 4450 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-05-08 | Jumat | 7120 | 0 | 0 | 0 | 550 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-05-11 | Senin | 9880 | 740 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-05-12 | Selasa | 6020 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-05-13 | Rabu | 7150 | 860 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-05-18 | Senin | 12080 | 780 | 6844 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-05-19 | Selasa | 8900 | 0 | 350 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-05-20 | Rabu | 8500 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-05-21 | Kamis | 7460 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-05-22 | Jumat | 4380 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-05-25 | Senin | 4270 | 0 | 70 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-05-26 | Selasa | 5410 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-05-29 | Jumat | 6530 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-06-02 | Selasa | 7430 | 990 | 1012 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-06-04 | Kamis | 7030 | 880 | 654 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-06-05 | Jumat | 5230 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-06-08 | Senin | 8270 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-06-09 | Selasa | 3810 | 1030 | 582 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-06-10 | Rabu | 5760 | 770 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-06-11 | Kamis | 2550 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-06-12 | Jumat | 2190 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-06-15 | Senin | 9850 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-06-17 | Rabu | 6470 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-06-22 | Senin | 4860 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-06-23 | Selasa | 4350 | 0 | 382 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-06-24 | Rabu | 4950 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-06-25 | Kamis | 2650 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-06-29 | Senin | 6440 | 1050 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-06-30 | Selasa | 4180 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |

@@ -929,6 +929,141 @@ Skrip `validate.py` harus menjalankan ini sebelum publish:
 | Versi | Tanggal | Perubahan |
 |---|---|---|
 | 1.0 | 2026-05-14 | Initial spec — frozen sebelum implementasi |
+| 1.1 | 2026-07-10 | `traffic_accidents`: `incidents_detail_2026` → **`incidents_detail`**, dengan field wajib `year` di tiap baris. Tahun tidak lagi menempel di nama field maupun di kode parser. |
+| 1.2 | 2026-07-10 | `b3_waste`: tiap entri kini wajib memuat **`volume_liter`** dan **`mass_kg`** hasil konversi satuan. Satuan tak dikenal membuat parser **gagal-keras**. |
+| 1.3 | 2026-07-10 | `b3_waste`: tiap entri kini wajib memuat **`kode_sumber`** (`excel`/`kamus`/`kosong`) dan **`kode_status`** (`tercatat`/`usulan`/`disahkan`/`""`). Kode limbah yang belum diisi di Excel diambil dari kamus ber-provenance `data/_ledger/b3_waste_kode.csv`. Excel selalu menang atas kamus. Notasi kode diselaraskan ke penulisan Lampiran IX (sufiks huruf kecil). |
+| 1.4 | 2026-07-10 | `b3_waste`: bagian baru **`tps_logbook`** — limbah masuk, limbah keluar ke pengolah berizin, pengiriman per tanggal, dan **sisa di TPS**. Sheet `Logbook (...)` tidak lagi dilewati. |
+
+### Catatan migrasi 1.3 → 1.4
+
+Sheet `Logbook (Sep 24 - Jan 26)` selama ini **dilewati** parser dan hanya ditandai flag `info`.
+Padahal di sanalah tercatat limbah B3 yang sudah **keluar** dari TPS ke pengolah berizin. Tanpa
+itu, dashboard hanya tahu berapa yang masuk, tidak tahu berapa yang sudah diserahkan dan berapa
+yang masih tersimpan.
+
+Sejak 1.4 `b3_waste.json` memuat bagian **`tps_logbook`**:
+
+- `summary` — total masuk, total keluar, jumlah pengiriman, dan **`sisa_di_tps_kg`**.
+- `pengiriman[]` — satu entri per tanggal penyerahan: tujuan, bukti dokumen, rentang tanggal
+  limbah masuk yang terangkut, total masuk vs total keluar, dan `selisih_per_kode`.
+- `sisa_per_kode[]` — kode yang jumlah masuk dan keluarnya tidak sama.
+- `masuk[]` dan `keluar[]` — baris mentahnya.
+
+**Akuntansinya terpisah dari `entries`.** Logbook TPS mencatat semuanya dalam kilogram; sheet
+`Laporan Limbah` memisahkan liter (cair) dan kilogram (padat). Keduanya tidak boleh dijumlahkan
+begitu saja.
+
+**Cara membaca sheetnya.** Dua tabel berdampingan dalam satu grid: kolom 1–6 limbah masuk,
+kolom 8–13 limbah keluar, barisnya **tidak sejajar**. Tanggal, tujuan, dan bukti dokumen hanya
+ditulis di baris pertama tiap pengiriman, jadi dibawa turun (forward-fill). Batas antar-pengiriman
+dikenali dari label baris `"Total Jumlah ..."` / `"Total Limbah yang keluar ..."` — **bukan nomor
+baris**, supaya tidak rusak bila pemilik menyisipkan baris.
+
+**Anomali yang diterbitkan sebagai flag, bukan diperbaiki diam-diam:**
+
+- Tanggal keluar pengiriman pertama disimpan sebagai **teks** `'30/06/2025'`, bukan tipe tanggal.
+  Parser menerimanya tetapi memberi peringatan.
+- Pengiriman 2 Maret 2026: kode `A105d` (merkuri) masuk 1 kg tetapi keluar tercatat 0 kg.
+- Pengiriman 2 Maret 2026: empat baris limbah masuk bertanggal 12 Juni 2026 — setelah tanggal
+  keluarnya sendiri. Mustahil terangkut; hampir pasti salah ketik bulan di sumber. Parser
+  **tidak** mengoreksinya.
+
+### Catatan migrasi 1.2 → 1.3
+
+Kolom **Kode Limbah** di logbook Excel kadang kosong. Excel adalah kotak masuk **baca-saja**
+(openpyxl merusak rumus ter-cache bila menyimpan ulang), jadi kode yang belum diisi tidak bisa
+dilengkapi di sumber. Sebelumnya entri tanpa kode masuk keranjang `—` begitu saja.
+
+Sejak 1.3, kode limbah yang kosong di Excel dilengkapi dari **kamus ber-provenance** di buku besar:
+
+- `data/_ledger/b3_waste_kode.csv` — memetakan entri → kode. Kunci baris gabungan
+  **`(tanggal, lembaga, nama_limbah, volume, satuan)`** — stabil terhadap penyisipan baris Excel,
+  dan mencakup `tanggal` agar dua entri identik pada tanggal berbeda (dugaan duplikat 4 vs 8 Juni)
+  tidak saling menimpa. Tiap baris membawa `kode`, `status`, `ditetapkan_pada`, `dasar`
+  (pasal/tabel PP 22/2021 Lampiran IX atau preseden internal), `keyakinan`, dan `catatan`.
+- `data/_ledger/b3_waste_kode_alias.csv` — substitusi kode global untuk kode dari kamus. Membalik
+  keputusan industri lab (mis. `A338-1`→`A337-3`) cukup **satu baris CSV**, bukan bedah kode.
+- **Excel menang.** Kamus dipakai **hanya bila** sel Kode Limbah di Excel kosong. Bila Excel terisi
+  dan berbeda dari kamus, kode Excel dipakai dan terbit flag `warning` berisi keduanya.
+- Tiap entri terbit dengan `kode_sumber` dan `kode_status`. Kode `usulan` **belum disahkan** PK3L
+  dan tidak boleh dipakai untuk manifest/pelaporan; frontend menandainya, tidak menyamarkannya
+  sebagai kode resmi.
+- Entri yang tetap tanpa kode setelah kamus dipakai tetap masuk keranjang `—` dan tetap
+  memunculkan flag `warning`.
+
+**Notasi kode diselaraskan.** Lampiran IX menulis kode Tabel 1 sebagai huruf besar + tiga angka +
+sufiks **huruf kecil** (`A106d`, `B104d`), dan kode industri sebagai `A337-1`. Logbook menulis
+sufiksnya huruf besar (`A106D`). Bila keduanya dibiarkan hidup berdampingan, `by_kode_limbah`
+memecah `A106D` (151 entri) dari `A106d` (25 entri) — satu kode yang sama tampil sebagai dua kotak
+di treemap. Lebih buruk lagi, pemecahan itu tidak konsisten: `A337-1` tetap menyatu karena
+sufiksnya angka.
+
+Sejak 1.3 `parse_b3_waste.py` menyelaraskan seluruh kode ke notasi Lampiran IX lewat
+`normalkan_kode()`, berlaku sama bagi kode dari Excel maupun dari kamus, dan menerbitkan flag
+`info` berisi jumlah kode yang diselaraskan. Kode dengan bentuk di luar pola `Axxxy` / `Bxxxy` /
+`Axxx-n` **tidak** diubah dan memunculkan flag `warning`.
+
+Provenance kode **tidak boleh dititipkan pada besar-kecil huruf** — itu tugas `kode_status`.
+
+**Dampak angka.** Tidak ada entri lama yang berubah nilainya, tidak ada bulan yang berkurang.
+Pengisian kode dari kamus hanya menyentuh entri yang sel Kode Limbah-nya kosong (per Juli 2026:
+61 entri usulan Juni–Juli 2026). Yang berubah hanya *penulisan* kode pada 343 entri
+(`A106D` → `A106d`), sehingga `unique_kode_limbah` menjadi **21**, bukan 28.
+
+**Pembacaan mundur.** `docs/limbah-b3.html` hanya membaca `kode_limbah` dan `kode`; field baru
+diabaikan bila tak ada. Badge "usulan" muncul hanya bila `kode_status === "usulan"`, jadi JSON lama
+(tanpa field itu) tetap terbaca tanpa error.
+
+### Catatan migrasi 1.1 → 1.2
+
+Satuan limbah B3 dulu ditafsirkan dari teks, terpisah-pisah, di **tiga tempat**: parser Python
+(`satuan.startswith("liter")`) dan empat blok agregasi di `docs/limbah-b3.html`. Ketiganya memakai
+logika yang sama, dan ketiganya salah dengan cara yang sama: `"Mili Liter"` tidak lolos uji
+`startswith("liter")` dan bukan `"kg"`, sehingga jatuh ke cabang "abaikan".
+
+Akibatnya **15 entri senilai 2.485 L hilang dari seluruh total** tanpa peringatan — termasuk
+300 mL limbah sianida (HCN) dan 200 mL kalium dikromat. Delapan di antaranya sudah ikut terbit
+di dashboard sejak Februari 2026.
+
+Sejak 1.2:
+
+- Satuan dinormalkan **satu kali**, di `parse_b3_waste.py`, lewat tabel `SATUAN_KE_LITER`,
+  `SATUAN_KE_KG`, dan `SATUAN_CACAH`.
+- Tiap entri terbit dengan `volume_liter` dan `mass_kg` yang sudah jadi. Frontend menjumlahkan
+  field itu dan **tidak boleh** menebak dari teks `satuan` lagi.
+- Satuan di luar ketiga tabel itu menghentikan build (`return 1`) — bukan diabaikan.
+- Satuan cacah (`Buah`) tetap terhitung sebagai entri, bernilai 0 pada volume dan massa, dan
+  memunculkan `data_quality_flags` bertingkat `warning`, bukan hilang diam-diam.
+
+**Dampak angka.** `total_volume_liter` naik 2,485 L dibanding build 1.1. Kenaikan ini adalah
+koreksi, bukan data baru: volume itu selalu ada di logbook, hanya tidak pernah terjumlah.
+
+**Pembacaan mundur.** `docs/limbah-b3.html` memakai `e.volume_liter ?? konversi_dari_satuan(e)`.
+JSON lama (tanpa kedua field) tetap terbaca, dan fallback-nya kini sudah mengenal `Mili Liter`,
+jadi halaman benar bahkan sebelum rebuild dijalankan.
+
+### Catatan migrasi 1.0 → 1.1
+
+Nama field `incidents_detail_2026` mengunci dataset ke satu tahun. Ketika 2027 tiba, parser
+melewati sheet tahun itu **diam-diam, tanpa error**, dan frontend tidak akan pernah
+menampilkannya.
+
+Sejak 1.1:
+
+- `parse_traffic_accidents_xlsx.py` menemukan tahun dari **nama sheet** (`^\d{4}$`).
+  Menambah 2027 cukup dengan menambah sheet bernama `2027` di workbook.
+- Tabel "Berdasarkan Lokasi" dibaca dari sheet tahun mana pun, bukan hanya 2026.
+- `period.start` dan `period.end` diturunkan dari bulan aktif paling awal dan paling akhir,
+  tidak lagi dari konstanta.
+
+**Pembacaan mundur.** `docs/kecelakaan-lalu-lintas.html`, `pages/5_Kecelakaan_Lalu_Lintas.py`,
+dan `validate.py` menerima **kedua** nama field — `incidents_detail` lebih dulu, lalu
+`incidents_detail_2026`. Jadi JSON lama tetap terbaca sampai rebuild berikutnya berjalan,
+dan tidak ada jendela waktu di mana dashboard rusak.
+
+**Dipensiunkan pada versi ini.** `update_traffic_from_xlsx.py` dan `update_timbulan_from_xlsx.py`
+menulis langsung ke `data/` dan `docs/data/`, melewati staging, validasi, dan pengaman
+anti-regresi. Keduanya kini menolak jalan tanpa flag `--i-know-this-is-retired`.
 
 ---
 

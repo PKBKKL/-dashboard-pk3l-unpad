@@ -1,4 +1,15 @@
-"""Rebuild data/timbulan.json with the 4-category vehicle-based schema.
+"""PENSIUN — JANGAN DIPAKAI. Lihat parse_timbulan_master.py.
+
+Skrip ini menulis LANGSUNG ke data/ dan docs/data/, melewati staging, validate,
+dan pengaman anti-regresi di run_all.py. Ia juga menyimpan TATA LETAK KOLOM
+SETIAP BULAN sebagai kode (dict LAYOUTS di bawah) — sehingga setiap bulan baru
+menuntut penyuntingan kode, dan pergeseran satu kolom membuatnya membaca sel
+yang salah tanpa error. Workbook yang dulu ia baca sudah tidak ada.
+
+Disimpan hanya sebagai rujukan sejarah. main() menolak jalan.
+
+──────────────────────────────────────────────────────────────────────────
+Rebuild data/timbulan.json with the 4-category vehicle-based schema.
 
 Reads the Excel workbook directly and applies the confirmed business rules:
 
@@ -255,6 +266,16 @@ def build_month_summary(cfg: dict, entries: list[dict]) -> dict:
 
 
 def main() -> int:
+    if "--i-know-this-is-retired" not in sys.argv:
+        print(
+            "[update_timbulan_from_xlsx] SKRIP INI SUDAH PENSIUN dan menolak jalan.\n"
+            "  Ia menulis langsung ke data/ dan docs/data/, melewati staging + anti-regresi,\n"
+            "  dan tata letak kolom tiap bulan di-hardcode di dalamnya.\n"
+            "  Pakai:  python run_all.py --out data   (memakai parse_timbulan_master.py)",
+            file=sys.stderr,
+        )
+        return 1
+
     wb = openpyxl.load_workbook(XLSX, data_only=True)
     wb_raw = openpyxl.load_workbook(XLSX)
 

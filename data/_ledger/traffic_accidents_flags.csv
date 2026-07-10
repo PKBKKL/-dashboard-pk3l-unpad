@@ -1,0 +1,2 @@
+severity,message
+info,"Persentase di sumber dihitung terhadap total tahun (33 untuk 2025). Untuk 2026 yang masih parsial, persentase dihitung ulang di frontend berdasarkan total YTD."

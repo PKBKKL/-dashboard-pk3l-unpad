@@ -1,0 +1,16 @@
+prioritas,pola,cocok,kategori,berlaku_sejak,berlaku_sampai,catatan
+1,SOD RS,substring,sisa_makanan,,,SOD Rumah Sakit
+2,Tim Angsa,substring,organik_anorganik,,,Truk UNPAD
+3,IPDN,substring,ipdn,,,"Operator tamu, dipisah dari UNPAD"
+4,Cator,substring,sisa_makanan,,,Cator UNPAD (SOD)
+5,Viar,substring,aset,,2026-06-30,Sampai Juni 2026 Viar dihitung sebagai aset
+6,Viar,substring,sisa_makanan,2026-07-01,,Keputusan pemilik 9 Juli 2026: Viar (SOD) = limbah sisa makanan
+7,Mobil Traga,substring,aset,,,Aset tak terpakai
+8,Daun & Ranting,substring,lingkungan,,,
+9,Pick Up,substring,lingkungan,,,Termasuk 'Pick Up (Seresah)'
+10,Traga,substring,aset,,,Cadangan bila label dipersingkat
+90,Total,awalan,__ABAIKAN__,,,Kolom Total tidak dipercaya: Overview Maret 43.160 kg vs total sebenarnya 50.189 kg
+91,Hari,exact,__ABAIKAN__,,,Kolom identitas
+92,Tanggal,exact,__ABAIKAN__,,,Kolom identitas
+93,Warna,exact,__ABAIKAN__,,,Kolom bantu
+94,Kosong,exact,__ABAIKAN__,,,Kolom bantu

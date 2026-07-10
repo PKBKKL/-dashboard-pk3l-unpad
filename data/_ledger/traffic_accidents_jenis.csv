@@ -1,0 +1,9 @@
+id,label
+tunggal_motor,Tunggal Sepeda Motor
+tunggal_mobil,Tunggal Mobil
+beam,Beam (sepeda listrik)
+tabrak_2roda,Tabrakan antar roda dua
+tabrak_2roda_beam,Tabrakan roda dua dan Beam
+tabrak_2roda_4roda,Tabrakan roda dua dan roda empat
+tabrak_4roda_beam,Tabrakan roda empat dan Beam
+pejalan_kaki,Pejalan kaki

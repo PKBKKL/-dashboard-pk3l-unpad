@@ -1,4 +1,14 @@
-"""Parse Kecelakaan Lalu Lintas.md → traffic_accidents.json.
+"""PENSIUN — JANGAN DIPAKAI. Lihat parse_traffic_accidents_xlsx.py.
+
+MD sumbernya hanya memuat 4 kasus untuk 2026, sementara dashboard memuat 10
+(Mei 3 + Juni 3 tidak ada di MD). Menjalankan skrip ini memundurkan
+traffic_accidents.json dan menghapus 6 kasus. Sumber resmi sekarang:
+'Kecelakaan Lalu Lintas (MASTER).xlsx'.
+
+Disimpan hanya sebagai rujukan sejarah parsing MD.
+
+──────────────────────────────────────────────────────────────────────────
+Parse Kecelakaan Lalu Lintas.md → traffic_accidents.json.
 
 Source has two yearly sections (2025 + 2026) each with:
   - 'Jumlah Kasus per Bulan' table
@@ -133,10 +143,22 @@ def parse_detailed_2026(md_text: str) -> list[dict]:
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description=f"Build {DATASET_ID}.json")
+    ap = argparse.ArgumentParser(description=f"[PENSIUN] Build {DATASET_ID}.json dari MD lama")
     ap.add_argument("--source", default=None)
     ap.add_argument("--out", default=None)
+    ap.add_argument("--i-know-this-is-retired", action="store_true",
+                    help="Wajib. Tanpa ini skrip menolak jalan.")
     args = ap.parse_args()
+
+    if not args.i_know_this_is_retired:
+        print(
+            "[parse_traffic_accidents] SKRIP INI SUDAH PENSIUN dan menolak jalan.\n"
+            "  MD sumbernya hanya memuat 4 kasus 2026; dashboard memuat 10.\n"
+            "  Menjalankannya menghapus Mei & Juni 2026 (6 kasus).\n"
+            "  Pakai:  python parse_traffic_accidents_xlsx.py --out data",
+            file=sys.stderr,
+        )
+        return 1
 
     project = find_project_root()
     src = Path(args.source) if args.source else project / SOURCE_MD

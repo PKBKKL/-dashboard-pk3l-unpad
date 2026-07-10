@@ -6,22 +6,30 @@ Checks:
   - Every location_id referenced in datasets exists in shared/locations.json
   - Every regulation_id in water_quality exists in shared/regulations.json
   - Per-dataset invariants (totals, compliance pct sanity, etc.)
+  - ANTI-REGRESI: hasil rebuild tidak boleh memuat lebih sedikit hari, bulan,
+    laporan, entri, atau kilogram daripada baseline yang tercatat di _baseline.json
 
 Exit code:
   0 = pass
-  1 = errors found
+  1 = errors found (termasuk regresi data)
   2 = warnings only
+
+Baseline:
+  python validate.py --data data --update-baseline   # setelah perubahan sah
 """
 from __future__ import annotations
 
 import argparse
 import sys
+from datetime import date
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from _utils import read_json, resolve_output
+from _utils import read_json, resolve_output, write_json
 
 REQUIRED_FIELDS = {"dataset_id", "version", "generated_at", "source_files", "period", "data_quality_flags"}
+BASELINE_NAME = "_baseline.json"
+FLOAT_TOL = 0.001
 
 
 def check_meta(out_dir: Path) -> tuple[list[str], list[str]]:
@@ -159,9 +167,157 @@ def check_traffic_yearly(out_dir: Path) -> list[str]:
     return warnings
 
 
+# ── Anti-regresi ─────────────────────────────────────────────────────────
+#
+# Pipeline menimpa data/*.json seutuhnya. Kalau sebuah file sumber terpotong,
+# tertukar dengan versi lama, atau parsernya salah kolom, rebuild akan
+# menghasilkan JSON yang lebih miskin TANPA error. Baseline mengunci angka
+# minimum yang pernah tercapai; setiap penurunan dianggap error, bukan warning.
+
+
+def _metrics(out_dir: Path) -> dict:
+    """Ukuran cakupan tiap dataset: counts & totals (harus naik atau tetap),
+    keys (daftar bulan/tahun/laporan yang tidak boleh hilang)."""
+    m: dict[str, dict] = {}
+
+    def add(ds, counts, totals=None, keys=None):
+        m[ds] = {"counts": counts, "totals": totals or {}, "keys": keys or {}}
+
+    p = out_dir / "timbulan.json"
+    if p.exists():
+        d = read_json(p)
+        months = [x["month"] for x in d.get("monthly_summary", []) if x.get("total_kg")]
+        add("timbulan",
+            {"daily_entries": len(d.get("daily_entries", []))},
+            {"total_kg": round(sum(e.get("total_kg") or 0 for e in d.get("daily_entries", [])), 3)},
+            {"months_with_data": months})
+
+    p = out_dir / "pengolahan_sampah.json"
+    if p.exists():
+        d = read_json(p)
+        add("pengolahan_sampah",
+            {"daily_entries": len(d.get("daily_entries", []))},
+            {"incoming_kg": round(sum(x.get("incoming_kg") or 0 for x in d.get("monthly_summary", [])), 3)},
+            {"months": [x["month"] for x in d.get("monthly_summary", [])]})
+
+    p = out_dir / "water_quality.json"
+    if p.exists():
+        d = read_json(p)
+        add("water_quality",
+            {"reports": len(d.get("reports", [])),
+             "measurements": sum(len(r.get("measurements", [])) for r in d.get("reports", []))},
+            {},
+            {"report_no": [r["report_no"] for r in d.get("reports", [])]})
+
+    p = out_dir / "water_quality_ip.json"
+    if p.exists():
+        d = read_json(p)
+        add("water_quality_ip",
+            {"points": len(d.get("points", [])),
+             "point_years": sum(len(pt.get("years", {})) for pt in d.get("points", []))},
+            {},
+            {"years": [str(y) for y in d.get("years", [])]})
+
+    p = out_dir / "tree_incidents.json"
+    if p.exists():
+        d = read_json(p)
+        add("tree_incidents",
+            {"locations": len(d.get("incidents_by_location", []))},
+            {"total_events": d.get("yearly_totals", {}).get("total", 0)})
+
+    p = out_dir / "traffic_accidents.json"
+    if p.exists():
+        d = read_json(p)
+        # spec 1.1 memakai `incidents_detail`; 1.0 memakai `incidents_detail_2026`.
+        # Toleransi dua nama agar baseline tetap berlaku selama masa transisi.
+        detail = d.get("incidents_detail")
+        if detail is None:
+            detail = d.get("incidents_detail_2026", [])
+        add("traffic_accidents",
+            {"incidents_detail": len(detail)},
+            {f"total_{y['year']}": y.get("total_yearly_computed", 0) for y in d.get("yearly", [])},
+            {"years": [str(y["year"]) for y in d.get("yearly", [])]})
+
+    p = out_dir / "b3_waste.json"
+    if p.exists():
+        d = read_json(p)
+        # Logbook TPS ikut dijaga. Kalau parsernya rusak, catatan limbah keluar
+        # akan menyusut — pengaman ini menahannya sebelum promosi.
+        tps = d.get("tps_logbook", {}).get("summary", {})
+        add("b3_waste",
+            {"entries": len(d.get("entries", [])),
+             "tps_entri_masuk": tps.get("entri_masuk", 0),
+             "tps_entri_keluar": tps.get("entri_keluar", 0),
+             "tps_pengiriman": tps.get("pengiriman", 0)},
+            {"volume_liter": round(d.get("summary", {}).get("total_volume_liter") or 0, 3),
+             "tps_keluar_kg": round(tps.get("total_keluar_kg") or 0, 3)},
+            {"months": [x["month"] for x in d.get("monthly_totals", []) if x.get("entries")]})
+
+    return m
+
+
+def write_baseline(out_dir: Path) -> Path:
+    path = out_dir / BASELINE_NAME
+    write_json(path, {
+        "note": ("Angka minimum yang pernah tercapai per dataset. validate.py MENOLAK hasil rebuild "
+                 "yang lebih kecil dari ini. Perbarui hanya lewat --update-baseline, setelah yakin "
+                 "penurunannya memang disengaja."),
+        "updated_at": date.today().isoformat(),
+        "datasets": _metrics(out_dir),
+    })
+    return path
+
+
+def check_no_regression(out_dir: Path) -> tuple[list[str], list[str]]:
+    errors: list[str] = []
+    warnings: list[str] = []
+    base_path = out_dir / BASELINE_NAME
+    if not base_path.exists():
+        warnings.append(
+            f"{BASELINE_NAME} belum ada — pengaman anti-regresi TIDAK aktif. "
+            f"Jalankan: python validate.py --data <dir> --update-baseline")
+        return errors, warnings
+
+    baseline = read_json(base_path).get("datasets", {})
+    current = _metrics(out_dir)
+
+    for ds, base in baseline.items():
+        cur = current.get(ds)
+        if cur is None:
+            errors.append(f"REGRESI {ds}: dataset ada di baseline tapi file-nya hilang dari hasil rebuild")
+            continue
+        for name, want in base.get("counts", {}).items():
+            got = cur["counts"].get(name)
+            if got is None:
+                errors.append(f"REGRESI {ds}.{name}: metrik hilang dari hasil rebuild")
+            elif got < want:
+                errors.append(f"REGRESI {ds}.{name}: {got} < baseline {want} (kehilangan {want - got})")
+        for name, want in base.get("totals", {}).items():
+            got = cur["totals"].get(name)
+            if got is None:
+                errors.append(f"REGRESI {ds}.{name}: metrik hilang dari hasil rebuild")
+            elif got < want - FLOAT_TOL:
+                errors.append(f"REGRESI {ds}.{name}: {got:,.3f} < baseline {want:,.3f} (selisih {want - got:,.3f})")
+        for name, want_keys in base.get("keys", {}).items():
+            got_keys = set(cur["keys"].get(name, []))
+            missing = [k for k in want_keys if k not in got_keys]
+            if missing:
+                errors.append(f"REGRESI {ds}.{name}: hilang {missing}")
+
+    for ds in current:
+        if ds not in baseline:
+            warnings.append(f"{ds}: belum ada di baseline (dataset baru?) — jalankan --update-baseline bila memang disengaja")
+
+    return errors, warnings
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description="Validate cleaned JSON outputs.")
     ap.add_argument("--data", default=None, help="Path to data dir (default: skill output/)")
+    ap.add_argument("--update-baseline", action="store_true",
+                    help="Tulis ulang _baseline.json dari isi data dir saat ini, lalu keluar.")
+    ap.add_argument("--skip-regression", action="store_true",
+                    help="Lewati pengaman anti-regresi (BAHAYA — hanya untuk penurunan data yang disengaja).")
     args = ap.parse_args()
 
     out_dir = resolve_output(args.data)
@@ -169,13 +325,20 @@ def main() -> int:
         print(f"[validate] data dir not found: {out_dir}", file=sys.stderr)
         return 1
 
+    if args.update_baseline:
+        path = write_baseline(out_dir)
+        print(f"[validate] baseline diperbarui: {path}")
+        for ds, m in _metrics(out_dir).items():
+            print(f"  {ds}: {m['counts']} {m['totals']}")
+        return 0
+
     all_errors: list[str] = []
     all_warnings: list[str] = []
 
     e, w = check_meta(out_dir)
     all_errors.extend(e); all_warnings.extend(w)
 
-    for ds in ["pengolahan_sampah", "timbulan", "water_quality", "tree_incidents", "traffic_accidents"]:
+    for ds in ["pengolahan_sampah", "timbulan", "water_quality", "tree_incidents", "traffic_accidents", "b3_waste"]:
         e, w = check_dataset_envelope(out_dir, ds)
         all_errors.extend(e); all_warnings.extend(w)
 
@@ -189,6 +352,12 @@ def main() -> int:
     all_errors.extend(e); all_warnings.extend(w)
 
     all_warnings.extend(check_traffic_yearly(out_dir))
+
+    if args.skip_regression:
+        all_warnings.append("pengaman anti-regresi DILEWATI (--skip-regression)")
+    else:
+        e, w = check_no_regression(out_dir)
+        all_errors.extend(e); all_warnings.extend(w)
 
     print(f"[validate] errors: {len(all_errors)}, warnings: {len(all_warnings)}")
     for w in all_warnings:

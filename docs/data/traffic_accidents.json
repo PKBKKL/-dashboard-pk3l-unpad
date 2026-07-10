@@ -1,9 +1,9 @@
 {
   "dataset_id": "traffic_accidents",
-  "version": "1.0",
-  "generated_at": "2026-07-01",
+  "version": "1.4",
+  "generated_at": "2026-07-10",
   "source_files": [
-    "Kecelakaan Lalu Lintas.md"
+    "_ledger/traffic_accidents.csv"
   ],
   "period": {
     "start": "2025-04-01",
@@ -165,9 +165,10 @@
       "ytd_through_month": "2026-06"
     }
   ],
-  "incidents_detail_2026": [
+  "incidents_detail": [
     {
       "no": 1,
+      "year": 2026,
       "month": "2026-01",
       "type": "tunggal_mobil",
       "location_id": "faperta",
@@ -176,6 +177,7 @@
     },
     {
       "no": 2,
+      "year": 2026,
       "month": "2026-01",
       "type": "tabrak_2roda",
       "location_id": "tugu-makalangan",
@@ -185,6 +187,7 @@
     },
     {
       "no": 3,
+      "year": 2026,
       "month": "2026-01",
       "type": "tunggal_motor",
       "location_id": "fkg",
@@ -194,6 +197,7 @@
     },
     {
       "no": 4,
+      "year": 2026,
       "month": "2026-01",
       "type": "tabrak_4roda_beam",
       "location_id": "feb",

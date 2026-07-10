@@ -64,16 +64,101 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["month", "lembaga", "limbah", "volume", "satuan", "kode_limbah", "kategori"],
+        "required": ["month", "lembaga", "limbah", "volume", "satuan", "volume_liter", "mass_kg", "kode_limbah", "kode_sumber", "kode_status", "kategori"],
         "properties": {
           "month": { "$ref": "_common.schema.json#/definitions/iso_month" },
           "date": { "anyOf": [{ "$ref": "_common.schema.json#/definitions/iso_date" }, { "type": "null" }] },
           "lembaga": { "type": "string" },
           "limbah": { "type": "string" },
-          "volume": { "type": "number" },
-          "satuan": { "type": "string" },
+          "volume": { "type": "number", "description": "Angka apa adanya dari logbook, dalam satuan aslinya." },
+          "satuan": { "type": "string", "description": "Satuan asli: Liter, Kg, Mili Liter, atau Buah." },
+          "volume_liter": { "type": "number", "description": "Volume cair setelah konversi ke liter. 0 bila entri ini padat atau bersatuan cacah." },
+          "mass_kg": { "type": "number", "description": "Massa padat setelah konversi ke kilogram. 0 bila entri ini cair atau bersatuan cacah." },
           "kode_limbah": { "type": "string" },
+          "kode_sumber": { "type": "string", "enum": ["excel", "kamus", "kosong"], "description": "Asal kode: 'excel' (diisi di logbook), 'kamus' (usulan dari data/_ledger/b3_waste_kode.csv karena sel Excel kosong), atau 'kosong' (tak ada kode)." },
+          "kode_status": { "type": "string", "description": "'tercatat' untuk kode dari Excel; 'usulan'/'disahkan' untuk kode dari kamus; '' bila tanpa kode. Kode 'usulan' belum disahkan PK3L dan tidak boleh dipakai untuk manifest/pelaporan." },
           "kategori": { "type": "string" }
+        }
+      }
+    },
+    "tps_logbook": {
+      "type": "object",
+      "description": "Catatan TPS Limbah B3: limbah masuk dari fakultas, limbah keluar ke pengolah berizin, dan sisa yang masih tersimpan. Sumber: sheet 'Logbook (Sep 24 - Jan 26)'. Akuntansinya terpisah dari `entries` — di sini semua satuan kilogram, sedangkan `entries` memisahkan liter dan kilogram.",
+      "required": ["summary", "pengiriman", "sisa_per_kode", "masuk", "keluar"],
+      "properties": {
+        "summary": {
+          "type": "object",
+          "required": ["entri_masuk", "entri_keluar", "pengiriman", "total_masuk_kg", "total_keluar_kg", "sisa_di_tps_kg"],
+          "properties": {
+            "entri_masuk": { "type": "integer" },
+            "entri_keluar": { "type": "integer" },
+            "pengiriman": { "type": "integer" },
+            "total_masuk_kg": { "type": "number" },
+            "total_keluar_kg": { "type": "number" },
+            "sisa_di_tps_kg": { "type": "number", "description": "total_masuk_kg - total_keluar_kg. Idealnya nol bila semua limbah sudah diserahkan." },
+            "periode_masuk": { "type": "object" }
+          }
+        },
+        "pengiriman": {
+          "type": "array",
+          "description": "Satu entri per tanggal penyerahan ke pihak ketiga berizin.",
+          "items": {
+            "type": "object",
+            "required": ["tanggal_keluar", "total_masuk_kg", "total_keluar_kg", "selisih_kg"],
+            "properties": {
+              "tanggal_keluar": { "$ref": "_common.schema.json#/definitions/iso_date" },
+              "tujuan": { "anyOf": [{ "type": "string" }, { "type": "null" }] },
+              "bukti_dokumen": { "anyOf": [{ "type": "string" }, { "type": "null" }] },
+              "periode_masuk": { "type": "object", "description": "Rentang tanggal limbah masuk yang terangkut pada pengiriman ini." },
+              "entri_masuk": { "type": "integer" },
+              "total_masuk_kg": { "type": "number" },
+              "total_keluar_kg": { "type": "number" },
+              "selisih_kg": { "type": "number", "description": "Bukan nol berarti ada limbah yang masuk tetapi tidak tercatat keluar." },
+              "selisih_per_kode": { "type": "array", "items": { "type": "object" } }
+            }
+          }
+        },
+        "sisa_per_kode": {
+          "type": "array",
+          "description": "Kode yang jumlah masuk dan keluarnya tidak sama. Kosong berarti seluruh limbah sudah diserahkan.",
+          "items": {
+            "type": "object",
+            "required": ["kode_limbah", "masuk_kg", "keluar_kg", "sisa_kg"],
+            "properties": {
+              "kode_limbah": { "type": "string" },
+              "masuk_kg": { "type": "number" },
+              "keluar_kg": { "type": "number" },
+              "sisa_kg": { "type": "number" }
+            }
+          }
+        },
+        "masuk": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["tanggal", "kode_limbah", "sumber", "mass_kg"],
+            "properties": {
+              "tanggal": { "type": "string" },
+              "kode_limbah": { "type": "string" },
+              "sumber": { "type": "string" },
+              "mass_kg": { "type": "number" },
+              "maksimal_penyimpanan": { "anyOf": [{ "type": "string" }, { "type": "null" }] }
+            }
+          }
+        },
+        "keluar": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["tanggal", "kode_limbah", "mass_kg"],
+            "properties": {
+              "tanggal": { "type": "string" },
+              "kode_limbah": { "type": "string" },
+              "mass_kg": { "type": "number" },
+              "tujuan": { "anyOf": [{ "type": "string" }, { "type": "null" }] },
+              "bukti_dokumen": { "anyOf": [{ "type": "string" }, { "type": "null" }] }
+            }
+          }
         }
       }
     }

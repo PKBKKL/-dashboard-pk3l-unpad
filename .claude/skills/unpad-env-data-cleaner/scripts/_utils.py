@@ -17,7 +17,7 @@ RESOURCES_DIR = SKILL_ROOT / "resources"
 SCHEMAS_DIR = SKILL_ROOT / "schemas"
 DEFAULT_OUTPUT_DIR = SKILL_ROOT / "output"
 
-SPEC_VERSION = "1.0"
+SPEC_VERSION = "1.4"
 GENERATED_AT_FALLBACK = "2026-05-14T10:00:00+07:00"
 
 
@@ -180,6 +180,27 @@ def find_project_root() -> Path:
         if (parent / "data-spec.md").exists():
             return parent
     return PROJECT_ROOT
+
+
+DATA_DIRNAME = "Data dan Pengetahuan"
+
+
+def find_source(filename: str, subdirs: tuple[str, ...] = ()) -> Path | None:
+    """Cari file sumber di root project, lalu di folder 'Data dan Pengetahuan'.
+
+    Sumber biner (.xlsx/.pdf) di-gitignore dan tidak pernah ada di root repo,
+    melainkan di folder data milik user. Kembalikan None kalau tak ketemu —
+    pemanggil wajib gagal keras, bukan melanjutkan dengan data kosong.
+    """
+    project = find_project_root()
+    candidates = [project / filename]
+    for base in (project.parent, project.parent.parent):
+        candidates.append(base / DATA_DIRNAME / filename)
+        candidates.extend(base / DATA_DIRNAME / sd / filename for sd in subdirs)
+    for c in candidates:
+        if c.exists():
+            return c
+    return None
 
 
 def resolve_output(out_arg: str | None) -> Path:
