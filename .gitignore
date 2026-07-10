@@ -43,3 +43,8 @@ __pycache__/
 
 # claude local settings (personal permissions — keep out of repo)
 .claude/settings.local.json
+
+# cadangan sementara — buku besar sudah punya riwayat git, .bak tidak perlu ikut
+*.bak
+*.orig
+*.rej

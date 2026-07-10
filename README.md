@@ -1,55 +1,84 @@
 # Dashboard Pemantauan Lingkungan UNPAD
 
-Dashboard berbasis web untuk Pusat Pengembangan Kampus Berkelanjutan serta Keselamatan dan Keamanan Lingkungan (**PKBKKL**) Universitas Padjadjaran. Menampilkan lima domain pemantauan: pengolahan sampah, timbulan harian, kualitas air, insiden vegetasi, dan kecelakaan lalu lintas.
+Dashboard berbasis web untuk Pusat Pengembangan Kampus Berkelanjutan serta Keselamatan dan Keamanan Lingkungan (**PKBKKL**) Universitas Padjadjaran. Menampilkan **enam domain** pemantauan: pengolahan sampah, timbulan harian, kualitas air, insiden vegetasi, kecelakaan lalu lintas, dan limbah B3.
+
+**Live:** <https://pkbkkl.github.io/-dashboard-pk3l-unpad/>
+
+> Sebelum menyentuh apa pun di repo ini, baca **[`CLAUDE.md`](CLAUDE.md)**. Di sana ada dua jaminan yang tidak boleh dilanggar dan sepuluh hukum besi yang menegakkannya. Dashboard ini dipakai sebagai rekam jejak resmi, dan sebagian datanya — kode limbah B3 — punya konsekuensi hukum.
 
 ## Dua Mode yang Berjalan Paralel
 
 | Mode | Untuk siapa | URL produksi |
 |---|---|---|
+| **HTML statis** | Publik/embed — load cepat, bisa di-iframe ke website UNPAD | <https://pkbkkl.github.io/-dashboard-pk3l-unpad/> |
 | **Streamlit** | Internal/operasional — iterasi cepat, filter interaktif penuh | <https://share.streamlit.io/> (sesuai konfigurasi akun) |
-| **HTML statis** | Publik/embed — load cepat, bisa di-iframe ke website UNPAD | GitHub Pages: `https://pkbkkl.github.io/-dashboard-pk3l-unpad/` |
 
-Keduanya membaca **data yang sama** dari skill `unpad-env-data-cleaner`. Jika data diubah, kedua mode otomatis sinkron setelah `git push`.
+Keduanya membaca **JSON yang sama**. HTML statis membaca `docs/data/`, Streamlit membaca `data/`.
 
-## Arsitektur
+> **Streamlit tertinggal satu domain.** `pages/` belum punya halaman Limbah B3, sedangkan HTML statis punya. Ini kesenjangan yang diketahui, bukan kelalaian yang tak disadari.
+
+## Arsitektur — tiga lapis
 
 ```
-┌──────────────────────────┐    ┌──────────────────────────┐   ┌─────────────────┐
-│ 5 file MD/XLSX sumber    │ →  │ Skill                    │ → │ data/*.json     │
-│ (Pengolahan, Timbulan,   │    │ unpad-env-data-cleaner   │   │ docs/data/*.json│
-│  Kualitas Air, dst.)     │    │ (Python, deterministik)  │   │ (terverifikasi) │
-└──────────────────────────┘    └──────────────────────────┘   └────────┬────────┘
-                                                                        │
-                                              ┌─────────────────────────┴───────────────────────┐
-                                              ▼                                                 ▼
-                                  ┌──────────────────────┐                       ┌────────────────────────┐
-                                  │ Streamlit (Python)   │                       │ HTML statis            │
-                                  │ streamlit_app.py     │                       │ docs/*.html            │
-                                  │ + pages/             │                       │ + Plotly.js + Leaflet  │
-                                  │ Deploy: Streamlit    │                       │ Deploy: GitHub Pages   │
-                                  │ Cloud                │                       │                        │
-                                  └──────────────────────┘                       └────────────────────────┘
+Kotak masuk    Data dan Pengetahuan\*.xlsx        milik pemilik, BACA-SAJA bagi mesin
+      |
+      |   import_inbox.py   append-only, dry-run bawaan
+      v
+Buku besar     data\_ledger\*.csv                 sumber kebenaran, ikut git
+      |
+      |   parser   staging -> validate -> promote
+      v
+Terbitan       data\*.json  ->  docs\data\*.json  boleh dibangun ulang kapan saja
+      |
+      +--> Streamlit (streamlit_app.py + pages\)
+      +--> HTML statis (docs\, GitHub Pages)
 ```
+
+Buku besar baru dipakai **timbulan** dan **traffic_accidents**. Empat dataset lain (`pengolahan_sampah`, `water_quality`, `tree_incidents`, `b3_waste`) masih dibaca langsung dari MD/XLSX oleh parser masing-masing.
+
+`b3_waste` punya **kamus kode ber-provenance** di `data/_ledger/b3_waste_kode.csv`. Kamus hanya dipakai bila sel `Kode Limbah` di Excel kosong; Excel selalu menang.
+
+`water_quality_ip.json` **tidak punya parser** dan tidak terdaftar di `PIPELINE`. Ia selamat dari rebuild karena promosi hanya menyalin, tidak pernah menghapus. Jangan menulis parser untuknya tanpa memastikan tahun 2024 dan 2025 tetap ada di keluarannya.
 
 ## Persyaratan
 
-- **Python 3.9+** — untuk skill data cleaner dan Streamlit
-- **Git** — untuk sinkronisasi ke GitHub (sudah terpasang)
+- **Python 3.9+** — untuk pipeline dan Streamlit
+- **Git** — untuk sinkronisasi ke GitHub
+- **tree-sitter** — hanya bila menyentuh `docs/*.html`:
+  `python -m pip install tree-sitter tree-sitter-javascript`
 
-> Versi HTML statis **tidak butuh apa-apa** untuk berjalan — cukup buka di browser dari GitHub Pages, atau lokal via `python -m http.server`. Yang dibutuhkan hanya browser modern.
+> Versi HTML statis **tidak butuh apa-apa** untuk berjalan — cukup browser modern. `node` tidak dibutuhkan, dan memang tidak terpasang di mesin pemilik.
 
 ## Quick Start
 
-### 1. Rebuild data dari sumber (saat sumber berubah)
+### 1. Rebuild data dari sumber
 
 ```powershell
-python .claude\skills\unpad-env-data-cleaner\scripts\run_all.py --out data
-Copy-Item -Path "data\*" -Destination "docs\data\" -Recurse -Force
+$S = ".claude\skills\unpad-env-data-cleaner\scripts"
+python $S\run_all.py --out data
 ```
 
-Skill menulis ke `data/`; copy ke `docs/data/` agar HTML statis ikut sinkron.
+`run_all.py` menulis ke folder sementara, memvalidasi hasil gabungannya, dan baru mempromosikan ke `data/` bila lolos. Exit code: `0` lulus · `1` error (termasuk regresi data) · `2` warning.
 
-### 2. Jalankan Streamlit (untuk internal/operasional)
+### 2. Terbitkan ke HTML statis
+
+```powershell
+python $S\publish_docs.py
+```
+
+> Jangan menyalinnya dengan tangan. `Copy-Item data\* docs\data\ -Recurse` akan menerbitkan seluruh buku besar `_ledger/` ke folder publik, dan bahkan `Copy-Item data\*.json docs\data\` ikut membawa `_baseline.json` — namanya memang berakhiran `.json`. `publish_docs.py` menolak setiap berkas berawalan garis bawah, lalu memverifikasi bahwa `docs/data/` benar-benar cocok dengan `data/`.
+>
+> `python $S\publish_docs.py --periksa` memeriksa tanpa menyalin.
+
+### 3. Periksa frontend (wajib bila `docs/*.html` disentuh)
+
+```powershell
+python $S\check_frontend.py
+```
+
+`SyntaxError` pada `<script type="module">` mengosongkan **seluruh** halaman, bukan sebagiannya. Ini pernah terjadi: satu kurung tutup liar menerbitkan halaman Limbah B3 dalam keadaan kosong total.
+
+### 4. Jalankan Streamlit
 
 ```powershell
 python -m pip install -r requirements.txt
@@ -58,109 +87,112 @@ streamlit run streamlit_app.py
 
 Buka <http://localhost:8501>.
 
-### 3. Jalankan HTML statis (untuk preview publik)
+### 5. Jalankan HTML statis secara lokal
 
 ```powershell
 python -m http.server 8000 --directory docs
 ```
 
-Buka <http://127.0.0.1:8000>.
-
-> HTML statis butuh HTTP server (bukan `file://`) karena pakai `fetch()` untuk load JSON. `http.server` Python sudah cukup.
+Butuh HTTP server (bukan `file://`) karena halaman memakai `fetch()` untuk memuat JSON.
 
 ## Struktur Proyek
 
 ```
 .
+├── CLAUDE.md                                 # Aturan wajib — baca duluan
 ├── README.md
-├── data-spec.md                              # Kontrak schema v1.0
-├── requirements.txt                          # streamlit + plotly + pandas
+├── data-spec.md                              # Kontrak schema v1.4
+├── requirements.txt
 ├── streamlit_app.py                          # Streamlit: home
-├── pages/                                    # Streamlit: halaman per-domain
-├── app_helpers.py                            # Streamlit: data loaders + format
-├── .streamlit/config.toml                    # Tema Streamlit
-├── docs/                                     # HTML statis (GitHub Pages root)
+├── app_helpers.py                            # Streamlit: data loader + format
+├── pages/                                    # Streamlit: 5 halaman (belum ada Limbah B3)
+├── .streamlit/config.toml
+│
+├── docs/                                     # HTML statis — akar GitHub Pages
 │   ├── index.html                            #   Ringkasan
 │   ├── pengolahan-sampah.html
 │   ├── timbulan-sampah.html
 │   ├── kualitas-air.html
 │   ├── insiden-vegetasi.html
 │   ├── kecelakaan-lalu-lintas.html
-│   ├── assets/
-│   │   ├── style.css
-│   │   ├── common.js                         #   Data loader, format, sidebar
-│   │   └── charts.js                         #   Plotly wrappers
-│   ├── data/                                 #   JSON copy untuk fetch()
-│   └── .nojekyll                             #   GitHub Pages: serve as-is
-├── data/                                     # JSON canonical (terverifikasi)
-│   ├── meta.json
-│   ├── shared/
-│   └── *.json
-├── .claude/skills/unpad-env-data-cleaner/    # Pipeline cleaning
-└── *.md                                      # 5 file MD sumber (XLSX/PDF di local saja)
+│   ├── limbah-b3.html
+│   ├── assets/                               #   style.css, common.js, charts.js
+│   ├── data/                                 #   salinan JSON untuk fetch()
+│   └── .nojekyll                             #   sajikan apa adanya, tanpa Jekyll
+│
+├── data/                                     # JSON kanonik + buku besar
+│   ├── meta.json  shared/  *.json            #   terbitan (disalin ke docs/data/)
+│   ├── _ledger/                              #   BUKU BESAR — sumber kebenaran
+│   └── _baseline.json                        #   pengaman anti-regresi
+│
+├── arsip/                                    # sumber MD yang sudah digantikan buku besar
+├── nextjs-scaffold/                          # arsip eksperimen React — bukan produksi
+│
+└── .claude/
+    ├── agents/                               # 11 agent pk3l-*
+    └── skills/unpad-env-data-cleaner/        # pipeline: scripts/, schemas/, resources/
 ```
+
+Berkas MD sumber yang **masih aktif** ada di root: `Data Pengolahan Sampah.md`, `Scan Sertifikat … Oktober 2025.md`, dan `Kecelakaan dan Kejadian Kantor Lingkungan Tahun 2025.md`. Sumber XLSX/PDF di-gitignore dan tinggal di `Data dan Pengetahuan/` milik pemilik.
 
 ## Halaman Dashboard
 
-Sama untuk Streamlit dan HTML:
-
 | Rute Streamlit | Rute HTML | Konten |
 |---|---|---|
-| `/` | `/index.html` | Ringkasan KPI lintas domain + penjelasan singkat |
+| `/` | `/index.html` | Ringkasan KPI lintas domain |
 | `/Pengolahan_Sampah` | `/pengolahan-sampah.html` | Komposisi sampah masuk, distribusi hasil olahan, rasio bulanan |
-| `/Timbulan_Sampah` | `/timbulan-sampah.html` | Timbulan harian, breakdown kategori (April+), sumber kendaraan |
-| `/Kualitas_Air` | `/kualitas-air.html` | 9 LHU, status kepatuhan, peta titik sampling |
+| `/Timbulan_Sampah` | `/timbulan-sampah.html` | Timbulan harian, 4 kategori, 7 sumber kendaraan |
+| `/Kualitas_Air` | `/kualitas-air.html` | 9 LHU, status kepatuhan, Indeks Pencemaran, peta titik sampling |
 | `/Insiden_Vegetasi` | `/insiden-vegetasi.html` | Heatmap lokasi × bulan, top lokasi |
-| `/Kecelakaan_Lalu_Lintas` | `/kecelakaan-lalu-lintas.html` | Distribusi bulanan 2025 & 2026, detail per lokasi |
+| `/Kecelakaan_Lalu_Lintas` | `/kecelakaan-lalu-lintas.html` | Distribusi bulanan per tahun, detail per lokasi |
+| *(belum ada)* | `/limbah-b3.html` | Timbulan B3 per fakultas dan kode PP 22/2021, penyerahan ke pengolah berizin, sisa di TPS |
 
 ## Stack & Library
 
 **Streamlit:** Streamlit 1.57 · Plotly 6.7 · Pandas 2.3
 
-**HTML statis (zero build, semua via CDN):**
-- Tailwind CSS via Play CDN
-- Plotly.js 2.35.2
-- Leaflet 1.9.4 (untuk peta titik sampling air)
-- Tidak ada framework JS — vanilla ES modules
+**HTML statis** (tanpa build, semua via CDN): Tailwind CSS Play CDN · Plotly.js 2.35.2 · Leaflet 1.9.4 · vanilla ES modules, tanpa framework.
 
-## Update Data Workflow
+**Pipeline:** Python murni. `openpyxl` untuk XLSX, `pypdf` untuk PDF, `tree-sitter` untuk memeriksa frontend.
 
-1. Edit file MD sumber (atau ganti XLSX + regenerate MD).
-2. Jalankan skill:
-   ```powershell
-   python .claude\skills\unpad-env-data-cleaner\scripts\run_all.py --out data
-   Copy-Item -Path "data\*" -Destination "docs\data\" -Recurse -Force
-   ```
-3. Verifikasi exit code: `0` clean, `2` ada warning.
-4. Commit:
-   ```powershell
-   git add data/ docs/data/
-   git commit -m "data: update <bulan/tahun>"
-   git push
-   ```
-5. Auto-deploy:
-   - **Streamlit Cloud** rebuild dalam ~1 menit
-   - **GitHub Pages** rebuild dalam ~1 menit
+## Alur Update Data
 
-Kedua mode dashboard akan sinkron otomatis tanpa kerja manual lanjutan.
+Jangan melompati langkah. Rinciannya di [`CLAUDE.md`](CLAUDE.md).
 
-## Deploy ke GitHub Pages (HTML statis)
+```powershell
+$S = ".claude\skills\unpad-env-data-cleaner\scripts"
 
-1. Push ke repo (sudah dilakukan).
-2. Di GitHub: `Settings` → `Pages` → `Source: Deploy from a branch` → pilih branch `main` dan folder `/docs` → Save.
-3. Tunggu ~1 menit. URL publik: `https://pkbkkl.github.io/-dashboard-pk3l-unpad/`.
+python $S\import_inbox.py                      # dry-run; tidak menulis apa pun
+# tunjukkan laporannya ke pemilik, tunggu persetujuan
+python $S\import_inbox.py --terapkan           # menambah ke buku besar
 
-`docs/.nojekyll` memastikan GitHub Pages menyajikan file apa adanya tanpa preprocess Jekyll.
+python $S\run_all.py --out data                # staging -> validate -> promote
+python $S\check_frontend.py                    # bila docs\*.html disentuh
 
-## Deploy ke Streamlit Cloud
+# hanya setelah data baru terbukti benar:
+python $S\validate.py --data data --update-baseline
 
-Sudah aktif. Untuk re-deploy / manage: <https://share.streamlit.io/>
+python $S\publish_docs.py                      # data\ -> docs\data\
+
+git add -A ; git commit -m "data: update <bulan/tahun>" ; git push
+```
+
+**Jangan pernah** memakai `--skip-validate`, `--allow-regression`, atau `--i-know-this-is-retired` atas inisiatif sendiri.
+
+## Deploy
+
+**GitHub Pages** (HTML statis) — `Settings` → `Pages` → `Deploy from a branch` → branch `main`, folder `/docs`. Rebuild ~1 menit setelah `git push`.
+
+**Streamlit Cloud** — sudah aktif; rebuild otomatis setelah push.
+
+Repo: <https://github.com/PKBKKL/-dashboard-pk3l-unpad> (perhatikan kapitalisasi `PKBKKL`).
 
 ## Versi & Kontrak Data
 
-- Data spec: `data-spec.md` v1.0 (frozen).
-- Setiap dataset JSON mengikuti envelope wajib (`dataset_id`, `version`, `generated_at`, `source_files`, `period`, `data_quality_flags`).
-- Perubahan struktur JSON → naik versi spec → naikkan versi parser di skill.
+- Data spec: [`data-spec.md`](data-spec.md) **v1.4**. Versinya tunggal, ditetapkan `SPEC_VERSION` di `scripts/_utils.py` dan diterbitkan ke tiap JSON.
+- Setiap dataset mengikuti envelope wajib: `dataset_id`, `version`, `generated_at`, `source_files`, `period`, `data_quality_flags`.
+- Perubahan struktur JSON → naikkan `SPEC_VERSION`, catat di changelog `data-spec.md`, sesuaikan parser dan frontend.
+- Berkas `schemas/*.schema.json` adalah **dokumentasi kontrak**, belum tersambung ke `validate.py`. Validasi saat ini berupa pemeriksaan manual per dataset plus pengaman anti-regresi.
 
 ## Lisensi & Kontak
 

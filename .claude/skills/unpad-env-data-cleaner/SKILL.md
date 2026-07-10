@@ -1,33 +1,41 @@
 ---
 name: unpad-env-data-cleaner
-description: Clean and normalize UNPAD environmental monitoring data (waste processing, waste generation, water quality, tree incidents, traffic accidents) from Markdown sources into validated JSON conforming to data-spec.md v1.0. Fixes Excel M/D vs D/M date errors, reconciles Overview-vs-detail totals, normalizes water quality threshold direction (max/min/range/deviation), and emits data_quality_flags. Use when user asks to "clean environmental data", "rebuild dashboard JSON", "regenerate data/", or refers to data-spec.md.
+description: Clean and normalize UNPAD environmental monitoring data (waste processing, waste generation, water quality, tree incidents, traffic accidents, B3 hazardous waste) from the append-only ledger plus Markdown/Excel sources into validated JSON conforming to data-spec.md v1.4. Enforces staging->validate->promote with an anti-regression guard, hard-fails on unknown units or unmapped columns, and emits data_quality_flags. Use when user asks to "clean environmental data", "rebuild dashboard JSON", "regenerate data/", or refers to data-spec.md.
 ---
 
 # UNPAD Environmental Data Cleaner
 
-Skill ini mengubah lima sumber Markdown menjadi JSON tervalidasi siap-dikonsumsi oleh dashboard. Pipeline sepenuhnya deterministik dan idempotent.
+Skill ini membangun **tujuh dataset JSON** untuk dashboard. Pipeline deterministik dan idempotent.
+
+Sebelum apa pun, baca `CLAUDE.md` di root repo: dua jaminan yang tidak boleh dilanggar, dan sepuluh hukum besi yang menegakkannya.
 
 ## Kapan Dipakai
 
 Pakai skill ini ketika user:
 - meminta "bersihkan data lingkungan UNPAD" / "regenerate data/" / "rebuild JSON dashboard"
-- mengubah salah satu MD sumber dan ingin sinkron ulang
+- mengubah salah satu sumber dan ingin sinkron ulang
 - menjalankan validasi sebelum deploy
-- referensi ke `data-spec.md` v1.0
+- merujuk `data-spec.md`
 
 ## Sumber Data
 
-Lima file MD di root project (`e:\Dashboard Pemantauan Lingkungan\`):
+Root project ditemukan lewat `find_project_root()` — **jangan hardcode**. (Dokumen ini pernah menulis `e:\Dashboard Pemantauan Lingkungan\`, path yang sudah tidak ada.)
 
-| ID Dataset | Sumber MD |
-|---|---|
-| `pengolahan_sampah` | `Data Pengolahan Sampah.md` |
-| `timbulan` | `Total Timbulan Sampah 2026  (Bulanan).md` (perhatikan dua spasi) |
-| `water_quality` | `Scan Sertifikat Hasil Uji Air Permukaan, Air Limbah, dan Air Tanah PK3L UNPAD Oktober 2025.md` |
-| `tree_incidents` | `Kecelakaan dan Kejadian Kantor Lingkungan Tahun 2025.md` |
-| `traffic_accidents` | `Kecelakaan Lalu Lintas.md` |
+| ID Dataset | Sumber | Lapis |
+|---|---|---|
+| `timbulan` | `data/_ledger/timbulan.csv` | buku besar |
+| `traffic_accidents` | `data/_ledger/traffic_accidents.csv` | buku besar |
+| `pengolahan_sampah` | `Data Pengolahan Sampah.md` | MD di root |
+| `water_quality` | `Scan Sertifikat Hasil Uji Air … Oktober 2025.md` | MD di root |
+| `tree_incidents` | `Kecelakaan dan Kejadian Kantor Lingkungan Tahun 2025.md` | MD di root |
+| `b3_waste` | `Data dan Pengetahuan/Limbah B3/Logbook Limbah B3.xlsx` + `data/_ledger/b3_waste_kode.csv` | XLSX + kamus |
+| `water_quality_ip` | **tidak ada parser** — selamat karena promosi hanya menyalin | — |
 
-Spec lengkap untuk output ada di `data-spec.md` di root project. Jika berubah, naikkan versi schema sebelum modify parser.
+Buku besar diisi dari Excel di `Data dan Pengetahuan/` lewat `import_inbox.py`, yang **append-only** dan **dry-run bawaan**. Folder itu **BACA-SAJA** bagi mesin: workbook pemilik menyimpan berat sebagai rumus, dan menyimpannya ulang lewat `openpyxl` membuang nilai ter-cache.
+
+Sumber MD lama untuk `timbulan` dan `traffic_accidents` sudah dipindahkan ke `arsip/`. Isinya **lebih miskin** daripada buku besar (timbulan: 278.518 kg vs 498.818 kg). Lihat `arsip/README.md`.
+
+Kontrak keluaran ada di `data-spec.md` **v1.4**. Mengubah struktur JSON berarti menaikkan `SPEC_VERSION` di `scripts/_utils.py`, mencatat di changelog, lalu menyesuaikan parser **dan** frontend.
 
 ## Output
 
@@ -56,14 +64,27 @@ Selama uji coba, `--out <dir>` mengarahkan output ke folder lain (default: `outp
 python .claude\skills\unpad-env-data-cleaner\scripts\run_all.py --out data
 ```
 
-**Per-dataset (untuk debugging):**
+**Per-dataset (untuk debugging).** Arahkan ke folder sementara, **jangan** ke `data/` — parser
+tunggal melewati staging, validasi, dan pengaman anti-regresi.
 
 ```powershell
-python .claude\skills\unpad-env-data-cleaner\scripts\parse_pengolahan_sampah.py --out data
-python .claude\skills\unpad-env-data-cleaner\scripts\parse_timbulan.py --out data
-python .claude\skills\unpad-env-data-cleaner\scripts\parse_water_quality.py --out data
-python .claude\skills\unpad-env-data-cleaner\scripts\parse_tree_incidents.py --out data
-python .claude\skills\unpad-env-data-cleaner\scripts\parse_traffic_accidents.py --out data
+$S = ".claude\skills\unpad-env-data-cleaner\scripts"
+python $S\parse_pengolahan_sampah.py        --out .tmp
+python $S\parse_timbulan_ledger.py          --out .tmp
+python $S\parse_water_quality.py            --out .tmp
+python $S\parse_tree_incidents.py           --out .tmp
+python $S\parse_traffic_accidents_ledger.py --out .tmp
+python $S\parse_b3_waste.py                 --out .tmp
+```
+
+> Dokumen ini pernah menyuruh menjalankan `parse_timbulan.py` dan `parse_traffic_accidents.py`
+> **ke `data/`**. Keduanya sudah **pensiun** dan menolak jalan tanpa `--i-know-this-is-retired`;
+> keluarannya juga lebih miskin daripada buku besar. Pakai varian `_ledger`.
+
+**Periksa frontend** (wajib bila `docs/*.html` disentuh):
+
+```powershell
+python $S\check_frontend.py
 ```
 
 **Validasi saja:**
@@ -128,25 +149,51 @@ Hasil `<0,016` disimpan sebagai:
 ├── SKILL.md                            (file ini)
 ├── README.md                           (catatan untuk manusia)
 ├── scripts/
-│   ├── _utils.py                       (date helpers, slug, IO)
+│   │   ── pustaka ──
+│   ├── _utils.py                       (SPEC_VERSION, date helpers, IO, find_source)
 │   ├── _md_parser.py                   (parser tabel MD generik)
+│   ├── _ledger.py                      (buku besar: baca/tulis CSV, peta kolom, penguncian)
+│   │
+│   │   ── orkestrasi ──
+│   ├── run_all.py                      (staging -> validate -> promote)
+│   ├── validate.py                     (invariant + pengaman anti-regresi)
+│   ├── check_frontend.py               (parse docs/*.html dengan tree-sitter)
+│   ├── publish_docs.py                 (data/ -> docs/data/, menolak berkas _*)
+│   │
+│   │   ── kotak masuk -> buku besar ──
+│   ├── import_inbox.py                 (Excel -> _ledger, append-only, dry-run bawaan)
+│   ├── seed_ledger.py                  (sekali pakai: JSON -> _ledger)
+│   │
+│   │   ── parser AKTIF (terdaftar di PIPELINE run_all.py) ──
 │   ├── build_shared.py                 (locations + regulations)
 │   ├── build_meta.py                   (meta.json)
 │   ├── parse_pengolahan_sampah.py
-│   ├── parse_timbulan.py
+│   ├── parse_timbulan_ledger.py
 │   ├── parse_water_quality.py
 │   ├── parse_tree_incidents.py
-│   ├── parse_traffic_accidents.py
-│   ├── validate.py                     (schema + invariant check)
-│   └── run_all.py                      (orchestrator)
+│   ├── parse_traffic_accidents_ledger.py
+│   ├── parse_b3_waste.py               (+ kamus kode, + logbook TPS)
+│   │
+│   │   ── PENSIUN: menolak jalan tanpa --i-know-this-is-retired ──
+│   ├── parse_timbulan.py               (baca arsip/*.md)
+│   ├── parse_timbulan_master.py
+│   ├── parse_traffic_accidents.py      (baca arsip/*.md)
+│   ├── parse_traffic_accidents_xlsx.py (!! masih dipakai import_inbox.py sebagai PUSTAKA)
+│   ├── update_timbulan_from_xlsx.py
+│   └── update_traffic_from_xlsx.py
 ├── schemas/
-│   └── *.schema.json                   (Draft 2020-12)
+│   └── *.schema.json                   (dokumentasi kontrak; BELUM dipakai validate.py)
 ├── resources/
 │   ├── locations_master.json           (kamus lokasi UNPAD)
 │   ├── regulations_master.json         (kamus baku mutu)
-│   └── parameter_thresholds.json       (mapping parameter air → threshold)
-└── output/                             (default --out untuk testing)
+│   └── parameter_thresholds.json       (mapping parameter air -> threshold)
+└── output/                             (default --out untuk testing, di-gitignore)
 ```
+
+**Jangan menghapus `parse_traffic_accidents_xlsx.py`** meski berlabel pensiun. `import_inbox.py`
+mengimpornya sebagai pustaka (`LOCATION_ID_MAP`, `MONTHS_ID`, `TYPE_MAP`, `_match_type_id`,
+`parse_year_sheet`). Guard pensiunnya hanya di `main()`, jadi impor tetap jalan — tetapi
+menghapus berkasnya akan mematikan jalur kotak-masuk kecelakaan yang aktif.
 
 ## Alur Internal Tiap Parser
 

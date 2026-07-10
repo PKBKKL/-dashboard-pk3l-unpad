@@ -1,6 +1,8 @@
 # unpad-env-data-cleaner
 
-Claude Code skill yang membersihkan 5 file MD pemantauan lingkungan UNPAD menjadi JSON tervalidasi.
+Claude Code skill yang membangun **tujuh dataset JSON** pemantauan lingkungan UNPAD dari buku besar `data/_ledger/`, tiga berkas MD di root, dan logbook Excel limbah B3.
+
+Kontrak keluaran: `data-spec.md` **v1.4**. Aturan wajib sebelum menyentuh apa pun: `CLAUDE.md` di root repo.
 
 ## Quick start
 

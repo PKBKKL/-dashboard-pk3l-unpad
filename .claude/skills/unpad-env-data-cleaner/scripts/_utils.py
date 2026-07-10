@@ -203,6 +203,24 @@ def find_source(filename: str, subdirs: tuple[str, ...] = ()) -> Path | None:
     return None
 
 
+ARSIP_DIRNAME = "arsip"
+
+
+def find_archived_md(project: Path, filename: str) -> Path:
+    """Cari MD sumber lama: 'arsip/' dulu, lalu root repo.
+
+    Sejak 10 Juli 2026 sumber MD timbulan dan kecelakaan dipindahkan ke 'arsip/'
+    karena data/_ledger/ sudah menggantikannya. Hanya parser PENSIUN yang
+    memakainya, dan hanya untuk forensik. Root tetap dicoba supaya salinan lama
+    di mesin siapa pun tetap terbaca.
+    """
+    for c in (project / ARSIP_DIRNAME / filename, project / filename):
+        if c.exists():
+            return c
+    # Kembalikan jalur arsip supaya pesan galat menunjuk tempat yang benar.
+    return project / ARSIP_DIRNAME / filename
+
+
 def resolve_output(out_arg: str | None) -> Path:
     """Resolve --out flag relative to project root, default to skill output/."""
     if out_arg is None:

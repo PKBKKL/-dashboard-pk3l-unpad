@@ -40,6 +40,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from _md_parser import find_tables
 from _utils import (
     base_dataset,
+    find_archived_md,
     find_project_root,
     flag,
     load_md,
@@ -199,7 +200,10 @@ def main() -> int:
         return 1
 
     project = find_project_root()
-    src = Path(args.source) if args.source else project / SOURCE_MD
+    # Sumber MD dipindahkan ke arsip/ pada 10 Juli 2026 setelah buku besar
+    # data/_ledger/timbulan.csv menggantikannya. Root tetap dicoba agar salinan
+    # lama masih bisa dibaca untuk forensik.
+    src = Path(args.source) if args.source else find_archived_md(project, SOURCE_MD)
     md_text = load_md(src)
 
     overview = parse_overview(md_text)

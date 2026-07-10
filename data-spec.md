@@ -1,10 +1,12 @@
 # Spec Data JSON — Dashboard Pemantauan Lingkungan UNPAD
 
-**Versi:** 1.0
-**Tanggal:** 2026-05-14
-**Status:** Draft stabil — frozen sebelum implementasi frontend.
+**Versi:** 1.4
+**Tanggal:** 2026-07-10
+**Status:** Aktif. Versi 1.0 di-freeze 2026-05-14; 1.1–1.4 menyusul, lihat [Changelog](#12-changelog).
 
-Spec ini mengikat kontrak data antara pipeline pembersihan (skill `unpad-env-data-cleaner`) dan aplikasi web (skill `nextjs-dashboard-builder`). Perubahan setelah freeze harus naik versi minor (1.x → 1.y) dan dicatat di changelog di bagian akhir.
+Spec ini mengikat kontrak data antara pipeline pembersihan (`.claude/skills/unpad-env-data-cleaner`) dan kedua frontend: HTML statis di `docs/` dan Streamlit di `pages/`. Perubahan struktur JSON harus menaikkan versi minor (1.x → 1.y) dan dicatat di changelog di bagian akhir.
+
+Sumber tunggal nomor versi adalah `SPEC_VERSION` di `scripts/_utils.py`. Ia diterbitkan ke field `version` tiap dataset **dan** ke `data/meta.json`, sehingga tidak bisa lagi bertentangan dengan dokumen ini.
 
 ---
 
@@ -20,8 +22,9 @@ Spec ini mengikat kontrak data antara pipeline pembersihan (skill `unpad-env-dat
 8. [Schema: `water_quality.json`](#8-schema-water_qualityjson)
 9. [Schema: `tree_incidents.json`](#9-schema-tree_incidentsjson)
 10. [Schema: `traffic_accidents.json`](#10-schema-traffic_accidentsjson)
-11. [Aturan Validasi & Rekonsiliasi](#11-aturan-validasi--rekonsiliasi)
-12. [Changelog](#12-changelog)
+11. [Schema: `b3_waste.json`](#11-schema-b3_wastejson)
+12. [Aturan Validasi & Rekonsiliasi](#12-aturan-validasi--rekonsiliasi)
+13. [Changelog](#13-changelog)
 
 ---
 
@@ -117,11 +120,22 @@ data/
 ├── pengolahan_sampah.json
 ├── timbulan.json
 ├── water_quality.json
+├── water_quality_ip.json           # Indeks Pencemaran — TIDAK punya parser
 ├── tree_incidents.json
-└── traffic_accidents.json
+├── traffic_accidents.json
+├── b3_waste.json
+│
+├── _ledger/                        # BUKU BESAR — sumber kebenaran, bukan terbitan
+└── _baseline.json                  # pengaman anti-regresi, bukan terbitan
 ```
 
-Frontend membaca dari `/data/*.json` (static, di-bundle saat build) atau `/api/data/[dataset]` (server route untuk live data).
+**Tujuh dataset**, ditambah `meta.json` dan `shared/`.
+
+`_ledger/` dan `_baseline.json` ikut git di `data/` tetapi **tidak diterbitkan** ke `docs/data/`. Menyalin `data/*` secara rekursif akan menaruh buku besar di folder yang disajikan publik.
+
+`water_quality_ip.json` tidak diproduksi parser mana pun dan tidak terdaftar di `PIPELINE`. Ia selamat dari rebuild hanya karena promosi bersifat menyalin, bukan mengganti isi folder.
+
+HTML statis membaca `docs/data/*.json` lewat `fetch()`. Streamlit membaca `data/*.json` langsung dari disk.
 
 ---
 
@@ -891,7 +905,94 @@ Sumber: kecelakaan lalu lintas kawasan UNPAD 2025–2026.
 
 ---
 
-## 11. Aturan Validasi & Rekonsiliasi
+## 11. Schema: `b3_waste.json`
+
+Logbook limbah bahan berbahaya dan beracun per lembaga dan kode limbah, mengacu **PP 22/2021 Lampiran IX**. Sumber: `Logbook Limbah B3.xlsx` di `Data dan Pengetahuan/Limbah B3/`.
+
+### 11.1 Struktur
+
+```json
+{
+  "dataset_id": "b3_waste",
+  "version": "1.4",
+  "summary": {
+    "total_entries": 468,
+    "total_volume_liter": 13173.58,
+    "total_mass_kg": 6853.96,
+    "unique_lembaga": 7,
+    "unique_kode_limbah": 21,
+    "months_with_data": 15
+  },
+  "monthly_totals": [ { "month": "2026-06", "label": "Juni 2026", "entries": 60, "volume_liter": 0, "mass_kg": 0, "by_kategori": {} } ],
+  "by_lembaga":     [ { "lembaga": "Fakultas Farmasi", "entries": 0, "volume_liter": 0, "mass_kg": 0 } ],
+  "by_kode_limbah": [ { "kode": "A106d", "entries": 176, "volume_liter": 0, "mass_kg": 0, "kategori": ["Cair"] } ],
+  "entries": [
+    {
+      "month": "2026-06", "date": "2026-06-04",
+      "lembaga": "Fakultas Teknik Industri Pertanian",
+      "limbah": "Limbah Kalium dikromat",
+      "volume": 200, "satuan": "Mili Liter",
+      "volume_liter": 0.2, "mass_kg": 0.0,
+      "kode_limbah": "A338-1", "kode_sumber": "kamus", "kode_status": "disahkan",
+      "kategori": "Cair"
+    }
+  ],
+  "tps_logbook": {
+    "summary": { "entri_masuk": 108, "entri_keluar": 28, "pengiriman": 2,
+                 "total_masuk_kg": 13497.863, "total_keluar_kg": 13496.863,
+                 "sisa_di_tps_kg": 1 },
+    "pengiriman":    [ { "tanggal_keluar": "2026-03-02", "tujuan": "PT DAME ALAM SEJAHTERA",
+                         "periode_masuk": { "start": "2025-08-27", "end": "2026-06-12" },
+                         "total_masuk_kg": 7542.353, "total_keluar_kg": 7541.353,
+                         "selisih_kg": 1, "selisih_per_kode": [] } ],
+    "sisa_per_kode": [ { "kode_limbah": "A105d", "masuk_kg": 1, "keluar_kg": 0, "sisa_kg": 1 } ],
+    "masuk":  [ { "tanggal": "2026-01-04", "kode_limbah": "A105d", "sumber": "Fakultas Farmasi", "mass_kg": 1 } ],
+    "keluar": [ { "tanggal": "2026-03-02", "kode_limbah": "A106d", "mass_kg": 2593.1, "tujuan": "PT DAME ALAM SEJAHTERA" } ]
+  }
+}
+```
+
+### 11.2 Satuan
+
+Satuan dinormalkan **satu kali**, di parser. Tiap entri terbit dengan `volume_liter` dan `mass_kg` yang sudah dikonversi; frontend menjumlahkan field itu dan **tidak boleh** menebak dari teks `satuan`.
+
+| Satuan sumber | Menjadi |
+|---|---|
+| `Liter`, `L` | `volume_liter` × 1 |
+| `Mili Liter`, `mL`, `cc` | `volume_liter` × 0,001 |
+| `Kg`, `kilogram` | `mass_kg` × 1 |
+| `Gram`, `Ton` | `mass_kg` × 0,001 / × 1000 |
+| `Buah`, `pcs`, `botol` | cacah — 0 pada keduanya, terbit sebagai flag `warning` |
+
+Satuan di luar tabel itu **menghentikan build** (`return 1`). Bukan diabaikan.
+
+### 11.3 Provenance kode limbah
+
+| Field | Nilai | Arti |
+|---|---|---|
+| `kode_sumber` | `excel` | Kolom `Kode Limbah` di logbook terisi |
+| | `kamus` | Sel kosong; kode diambil dari `data/_ledger/b3_waste_kode.csv` |
+| | `kosong` | Tidak ada kode di mana pun; masuk keranjang `—` |
+| `kode_status` | `tercatat` | Berasal dari Excel |
+| | `usulan` | Dari kamus, **belum disahkan** penanggung jawab B3 |
+| | `disahkan` | Dari kamus, sudah disahkan; tanggal dan pengesah tercatat di kamus |
+
+**Excel selalu menang.** Kamus hanya dipakai bila sel Excel kosong. Bila keduanya terisi dan berbeda, kode Excel dipakai dan terbit flag `warning` berisi keduanya.
+
+Notasi kode diselaraskan ke penulisan Lampiran IX: huruf besar, tiga angka, sufiks huruf **kecil** (`A106d`, `B104d`), atau kode industri `A337-1`. Provenance **tidak boleh** dititipkan pada besar-kecil huruf.
+
+### 11.4 Invariant
+
+- `summary.total_volume_liter` = Σ `entries[].volume_liter`
+- `summary.total_mass_kg` = Σ `entries[].mass_kg`
+- `tps_logbook.summary.sisa_di_tps_kg` = `total_masuk_kg` − `total_keluar_kg`
+- `pengiriman[].selisih_kg` ≠ 0 berarti ada limbah yang tercatat masuk tetapi tidak tercatat keluar. Jangan diperbaiki; terbitkan sebagai flag.
+
+Akuntansi `tps_logbook` **terpisah** dari `entries`: logbook TPS mencatat semuanya dalam kilogram, sedangkan `entries` memisahkan liter (cair) dan kilogram (padat). Keduanya tidak boleh dijumlahkan begitu saja.
+
+---
+
+## 12. Aturan Validasi & Rekonsiliasi
 
 Skrip `validate.py` harus menjalankan ini sebelum publish:
 
@@ -924,7 +1025,7 @@ Skrip `validate.py` harus menjalankan ini sebelum publish:
 
 ---
 
-## 12. Changelog
+## 13. Changelog
 
 | Versi | Tanggal | Perubahan |
 |---|---|---|
@@ -1069,7 +1170,11 @@ anti-regresi. Keduanya kini menolak jalan tanpa flag `--i-know-this-is-retired`.
 
 ## Lampiran A — JSON Schema (sketsa)
 
-Untuk validasi otomatis (`ajv`/`jsonschema`), tiap dataset akan punya file schema di `data/schemas/*.schema.json`. Contoh untuk water_quality (parsial):
+Schema tiap dataset ada di **`.claude/skills/unpad-env-data-cleaner/schemas/*.schema.json`** (bukan `data/schemas/` seperti tertulis di versi lama dokumen ini).
+
+> **Perhatikan.** Berkas schema itu **belum tersambung ke pipeline**. `_utils.py` mendefinisikan `SCHEMAS_DIR` tetapi tidak ada kode yang memakainya; `validate.py` melakukan pemeriksaan manual per dataset, bukan validasi JSON-Schema. Jadi schema di sini adalah dokumentasi kontrak, bukan penjaga. Jangan mengira ia menahan apa pun.
+
+Contoh untuk water_quality (parsial):
 
 ```json
 {

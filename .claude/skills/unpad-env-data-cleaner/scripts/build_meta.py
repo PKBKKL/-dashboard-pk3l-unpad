@@ -6,7 +6,13 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from _utils import resolve_output, write_json
+from _utils import SPEC_VERSION, now_iso, resolve_output, write_json
+
+# URL dashboard yang benar-benar aktif. Sebelumnya di sini tertulis
+# https://dashboard-pk3l.unpad.ac.id — domain kustom yang belum pernah menyala —
+# sehingga setiap rebuild menuliskan kembali URL salah itu ke data/meta.json.
+# Memperbaiki JSON-nya saja tidak cukup; akarnya di sini.
+DASHBOARD_URL = "https://pkbkkl.github.io/-dashboard-pk3l-unpad/"
 
 META = {
     "dashboard": {
@@ -14,9 +20,10 @@ META = {
         "subtitle": "Pusat Pengembangan Kampus Berkelanjutan serta Keselamatan dan Keamanan Lingkungan (PKBKKL)",
         "organization": "Universitas Padjadjaran",
         "owner_email": "k.susanto@geophys.unpad.ac.id",
-        "url": "https://dashboard-pk3l.unpad.ac.id",
-        "version": "1.0",
-        "last_updated": "2026-07-01"
+        "url": DASHBOARD_URL,
+        # Ikut SPEC_VERSION supaya tak bisa lagi bertentangan dengan data-spec.md.
+        "version": SPEC_VERSION,
+        "last_updated": now_iso()[:10],
     },
     "datasets": [
         {

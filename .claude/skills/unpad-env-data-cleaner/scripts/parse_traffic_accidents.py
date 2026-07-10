@@ -26,6 +26,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from _md_parser import find_tables
 from _utils import (
     base_dataset,
+    find_archived_md,
     find_project_root,
     flag,
     load_md,
@@ -161,7 +162,9 @@ def main() -> int:
         return 1
 
     project = find_project_root()
-    src = Path(args.source) if args.source else project / SOURCE_MD
+    # Dipindahkan ke arsip/ pada 10 Juli 2026; buku besar data/_ledger/
+    # traffic_accidents.csv yang kini jadi sumber kebenaran.
+    src = Path(args.source) if args.source else find_archived_md(project, SOURCE_MD)
     md_text = load_md(src)
 
     buckets_2025 = parse_year_table(md_text, "Tahun 2025", 2025)
