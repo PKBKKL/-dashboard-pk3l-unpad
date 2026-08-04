@@ -47,7 +47,6 @@
                 <th class="num">Total (kWh)</th>
                 <th class="num">Rata-rata/Bulan (kWh)</th>
                 <th class="num">Perubahan yoy</th>
-                <th>Definisi Sumber</th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -55,14 +54,13 @@
         </div>
       </section>
 
-      <section id="flags" class="mt-8"></section>
       <footer id="page-footer"></footer>
     </main>
   </div>
 
   <script type="module">
     import {
-      bootstrap, renderHeader, renderKpis, renderFlags, $, fmtInt, fmtPct,
+      bootstrap, renderHeader, renderKpis, $, fmtInt, fmtPct,
       loadDataset,
     } from "./assets/common.js";
     import { barLine, groupedBar } from "./assets/charts.js";
@@ -156,11 +154,8 @@
         <td class="num">${fmtInt(y.total_kwh)}</td>
         <td class="num">${fmtInt(y.avg_kwh)}</td>
         <td class="num ${cls}">${yoy}</td>
-        <td class="text-xs text-slate-500">${y.label_sumber}</td>
       </tr>`;
     }).join("");
-
-    renderFlags(data.data_quality_flags);
   </script>
 </body>
 </html>
