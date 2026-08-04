@@ -73,6 +73,14 @@ META = {
             "icon": "flask",
             "period_label": "Sep 2024 – 2026",
             "primary_kpi": {"label": "Total Volume Limbah B3", "value_field": "total_volume_liter"}
+        },
+        {
+            "id": "electricity",
+            "label": "Listrik",
+            "route": "/listrik",
+            "icon": "zap",
+            "period_label": "2022 – 2026",
+            "primary_kpi": {"label": "Total Konsumsi Listrik", "value_field": "total_kwh"}
         }
     ],
     "color_palette": {

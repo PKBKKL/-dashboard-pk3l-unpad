@@ -156,3 +156,38 @@ export function dailyBar(containerId, { x, y, color, name, height = 280 }) {
   };
   Plotly.newPlot(containerId, [trace], mergeLayout({ height }), PLOTLY_CONFIG);
 }
+
+// Batang (satu deret warna per kelompok, mis. per tahun) + garis overlay
+// (mis. rata-rata bergerak) pada sumbu-y yang sama. `x` kontinu; tiap deret
+// batang memberi nilai hanya di posisi miliknya (null di posisi lain), jadi
+// tiap kelompok tampil dengan warnanya sendiri di satu timeline.
+export function barLine(containerId, { x, bars, line, yLabel, height = 400 }) {
+  const barTraces = bars.map((b) => ({
+    x,
+    y: b.y,
+    name: b.label,
+    type: "bar",
+    marker: { color: b.color },
+  }));
+  const lineTraces = line
+    ? [{
+        x,
+        y: line.y,
+        name: line.label,
+        type: "scatter",
+        mode: "lines",
+        line: { color: line.color, width: 3 },
+        connectgaps: false,   // jangan menjembatani bulan yang belum ada MA-nya
+      }]
+    : [];
+  Plotly.newPlot(
+    containerId,
+    [...barTraces, ...lineTraces],
+    mergeLayout({
+      barmode: "stack",   // satu nilai per posisi x -> batang tampil penuh
+      height,
+      yaxis: { title: yLabel ?? "" },
+    }),
+    PLOTLY_CONFIG,
+  );
+}

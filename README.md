@@ -1,6 +1,6 @@
 # Dashboard Pemantauan Lingkungan UNPAD
 
-Dashboard berbasis web untuk Pusat Pengembangan Kampus Berkelanjutan serta Keselamatan dan Keamanan Lingkungan (**PKBKKL**) Universitas Padjadjaran. Menampilkan **enam domain** pemantauan: pengolahan sampah, timbulan harian, kualitas air, insiden vegetasi, kecelakaan lalu lintas, dan limbah B3.
+Dashboard berbasis web untuk Pusat Pengembangan Kampus Berkelanjutan serta Keselamatan dan Keamanan Lingkungan (**PKBKKL**) Universitas Padjadjaran. Menampilkan **tujuh domain** pemantauan: pengolahan sampah, timbulan harian, kualitas air, insiden vegetasi, kecelakaan lalu lintas, limbah B3, dan konsumsi listrik.
 
 **Live:** <https://pkbkkl.github.io/-dashboard-pk3l-unpad/>
 
@@ -116,6 +116,7 @@ Butuh HTTP server (bukan `file://`) karena halaman memakai `fetch()` untuk memua
 │   ├── insiden-vegetasi.html
 │   ├── kecelakaan-lalu-lintas.html
 │   ├── limbah-b3.html
+│   ├── listrik.html
 │   ├── assets/                               #   style.css, common.js, charts.js
 │   ├── data/                                 #   salinan JSON untuk fetch()
 │   └── .nojekyll                             #   sajikan apa adanya, tanpa Jekyll
@@ -146,6 +147,7 @@ Berkas MD sumber yang **masih aktif** ada di root: `Data Pengolahan Sampah.md`, 
 | `/Insiden_Vegetasi` | `/insiden-vegetasi.html` | Heatmap lokasi × bulan, top lokasi |
 | `/Kecelakaan_Lalu_Lintas` | `/kecelakaan-lalu-lintas.html` | Distribusi bulanan per tahun, detail per lokasi |
 | *(belum ada)* | `/limbah-b3.html` | Timbulan B3 per fakultas dan kode PP 22/2021, penyerahan ke pengolah berizin, sisa di TPS |
+| *(belum ada)* | `/listrik.html` | Konsumsi listrik Jatinangor per bulan (batang per tahun) + rata-rata bergerak 12 bulan |
 
 ## Stack & Library
 

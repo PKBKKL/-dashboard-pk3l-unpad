@@ -1,0 +1,508 @@
+{
+  "dataset_id": "electricity",
+  "version": "1.4",
+  "generated_at": "2026-05-14T10:00:00+07:00",
+  "source_files": [
+    "Data Listrik.xlsx"
+  ],
+  "period": {
+    "start": "2022-01-01",
+    "end": "2026-04-01"
+  },
+  "data_quality_flags": [
+    {
+      "severity": "info",
+      "message": "Hanya data Jatinangor; kolom Pangandaran, Arjasari, dan DU diabaikan sesuai permintaan."
+    },
+    {
+      "severity": "info",
+      "message": "Catatan sumber: 'Jatinangor tanpa RSPTN' (konsumsi rumah sakit tidak termasuk)."
+    },
+    {
+      "severity": "warning",
+      "message": "Definisi berubah: tahun 2025, 2026 berlabel 'Jatinangor (Just UNPAD)' di sumber, sedangkan tahun sebelumnya 'Jatinangor'. Angka lintas tahun mungkin tidak sepenuhnya setara."
+    },
+    {
+      "severity": "warning",
+      "message": "Tahun 2026 baru 4 bulan (parsial); total dan rata-ratanya belum setahun penuh."
+    }
+  ],
+  "location": "Jatinangor",
+  "unit": "kWh",
+  "ma_window_months": 12,
+  "years": [
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "summary": {
+    "total_kwh": 36179581.16,
+    "months_with_data": 52,
+    "year_count": 5,
+    "first_month": "2022-01",
+    "last_month": "2026-04",
+    "avg_kwh_per_month": 695761.18
+  },
+  "yearly": [
+    {
+      "year": 2022,
+      "months": 12,
+      "total_kwh": 9487694.07,
+      "avg_kwh": 790641.17,
+      "label_sumber": "Jatinangor",
+      "lengkap": true
+    },
+    {
+      "year": 2023,
+      "months": 12,
+      "total_kwh": 8011638.48,
+      "avg_kwh": 667636.54,
+      "label_sumber": "Jatinangor",
+      "lengkap": true
+    },
+    {
+      "year": 2024,
+      "months": 12,
+      "total_kwh": 8439928,
+      "avg_kwh": 703327.33,
+      "label_sumber": "Jatinangor",
+      "lengkap": true
+    },
+    {
+      "year": 2025,
+      "months": 12,
+      "total_kwh": 7903313.25,
+      "avg_kwh": 658609.44,
+      "label_sumber": "Jatinangor (Just UNPAD)",
+      "lengkap": true
+    },
+    {
+      "year": 2026,
+      "months": 4,
+      "total_kwh": 2337007.36,
+      "avg_kwh": 584251.84,
+      "label_sumber": "Jatinangor (Just UNPAD)",
+      "lengkap": false
+    }
+  ],
+  "monthly": [
+    {
+      "month": "2022-01",
+      "label": "Jan 2022",
+      "year": 2022,
+      "month_name": "Januari",
+      "kwh": 903151.29,
+      "ma12": null
+    },
+    {
+      "month": "2022-02",
+      "label": "Feb 2022",
+      "year": 2022,
+      "month_name": "Februari",
+      "kwh": 495739.67,
+      "ma12": null
+    },
+    {
+      "month": "2022-03",
+      "label": "Mar 2022",
+      "year": 2022,
+      "month_name": "Maret",
+      "kwh": 437459.49,
+      "ma12": null
+    },
+    {
+      "month": "2022-04",
+      "label": "Apr 2022",
+      "year": 2022,
+      "month_name": "April",
+      "kwh": 808535.49,
+      "ma12": null
+    },
+    {
+      "month": "2022-05",
+      "label": "Mei 2022",
+      "year": 2022,
+      "month_name": "Mei",
+      "kwh": 759051.97,
+      "ma12": null
+    },
+    {
+      "month": "2022-06",
+      "label": "Jun 2022",
+      "year": 2022,
+      "month_name": "Juni",
+      "kwh": 488624.96,
+      "ma12": null
+    },
+    {
+      "month": "2022-07",
+      "label": "Jul 2022",
+      "year": 2022,
+      "month_name": "Juli",
+      "kwh": 512133.42,
+      "ma12": null
+    },
+    {
+      "month": "2022-08",
+      "label": "Agu 2022",
+      "year": 2022,
+      "month_name": "Agustus",
+      "kwh": 945620.82,
+      "ma12": null
+    },
+    {
+      "month": "2022-09",
+      "label": "Sep 2022",
+      "year": 2022,
+      "month_name": "September",
+      "kwh": 1009614.53,
+      "ma12": null
+    },
+    {
+      "month": "2022-10",
+      "label": "Okt 2022",
+      "year": 2022,
+      "month_name": "Oktober",
+      "kwh": 1404224.06,
+      "ma12": null
+    },
+    {
+      "month": "2022-11",
+      "label": "Nov 2022",
+      "year": 2022,
+      "month_name": "November",
+      "kwh": 1095406.37,
+      "ma12": null
+    },
+    {
+      "month": "2022-12",
+      "label": "Des 2022",
+      "year": 2022,
+      "month_name": "Desember",
+      "kwh": 628132,
+      "ma12": 790641.17
+    },
+    {
+      "month": "2023-01",
+      "label": "Jan 2023",
+      "year": 2023,
+      "month_name": "Januari",
+      "kwh": 646051.54,
+      "ma12": 769216.19
+    },
+    {
+      "month": "2023-02",
+      "label": "Feb 2023",
+      "year": 2023,
+      "month_name": "Februari",
+      "kwh": 557779.61,
+      "ma12": 774386.19
+    },
+    {
+      "month": "2023-03",
+      "label": "Mar 2023",
+      "year": 2023,
+      "month_name": "Maret",
+      "kwh": 554310.34,
+      "ma12": 784123.76
+    },
+    {
+      "month": "2023-04",
+      "label": "Apr 2023",
+      "year": 2023,
+      "month_name": "April",
+      "kwh": 682075.93,
+      "ma12": 773585.46
+    },
+    {
+      "month": "2023-05",
+      "label": "Mei 2023",
+      "year": 2023,
+      "month_name": "Mei",
+      "kwh": 524528.05,
+      "ma12": 754041.8
+    },
+    {
+      "month": "2023-06",
+      "label": "Jun 2023",
+      "year": 2023,
+      "month_name": "Juni",
+      "kwh": 731374.27,
+      "ma12": 774270.91
+    },
+    {
+      "month": "2023-07",
+      "label": "Jul 2023",
+      "year": 2023,
+      "month_name": "Juli",
+      "kwh": 645376.18,
+      "ma12": 785374.48
+    },
+    {
+      "month": "2023-08",
+      "label": "Agu 2023",
+      "year": 2023,
+      "month_name": "Agustus",
+      "kwh": 603075.82,
+      "ma12": 756829.06
+    },
+    {
+      "month": "2023-09",
+      "label": "Sep 2023",
+      "year": 2023,
+      "month_name": "September",
+      "kwh": 678211.42,
+      "ma12": 729212.13
+    },
+    {
+      "month": "2023-10",
+      "label": "Okt 2023",
+      "year": 2023,
+      "month_name": "Oktober",
+      "kwh": 767000.29,
+      "ma12": 676110.15
+    },
+    {
+      "month": "2023-11",
+      "label": "Nov 2023",
+      "year": 2023,
+      "month_name": "November",
+      "kwh": 755950.24,
+      "ma12": 647822.14
+    },
+    {
+      "month": "2023-12",
+      "label": "Des 2023",
+      "year": 2023,
+      "month_name": "Desember",
+      "kwh": 865904.79,
+      "ma12": 667636.54
+    },
+    {
+      "month": "2024-01",
+      "label": "Jan 2024",
+      "year": 2024,
+      "month_name": "Januari",
+      "kwh": 707600,
+      "ma12": 672765.58
+    },
+    {
+      "month": "2024-02",
+      "label": "Feb 2024",
+      "year": 2024,
+      "month_name": "Februari",
+      "kwh": 609680,
+      "ma12": 677090.61
+    },
+    {
+      "month": "2024-03",
+      "label": "Mar 2024",
+      "year": 2024,
+      "month_name": "Maret",
+      "kwh": 579600,
+      "ma12": 679198.08
+    },
+    {
+      "month": "2024-04",
+      "label": "Apr 2024",
+      "year": 2024,
+      "month_name": "April",
+      "kwh": 696640,
+      "ma12": 680411.76
+    },
+    {
+      "month": "2024-05",
+      "label": "Mei 2024",
+      "year": 2024,
+      "month_name": "Mei",
+      "kwh": 620000,
+      "ma12": 688367.75
+    },
+    {
+      "month": "2024-06",
+      "label": "Jun 2024",
+      "year": 2024,
+      "month_name": "Juni",
+      "kwh": 774440,
+      "ma12": 691956.56
+    },
+    {
+      "month": "2024-07",
+      "label": "Jul 2024",
+      "year": 2024,
+      "month_name": "Juli",
+      "kwh": 703208,
+      "ma12": 696775.88
+    },
+    {
+      "month": "2024-08",
+      "label": "Agu 2024",
+      "year": 2024,
+      "month_name": "Agustus",
+      "kwh": 612760,
+      "ma12": 697582.9
+    },
+    {
+      "month": "2024-09",
+      "label": "Sep 2024",
+      "year": 2024,
+      "month_name": "September",
+      "kwh": 742000,
+      "ma12": 702898.61
+    },
+    {
+      "month": "2024-10",
+      "label": "Okt 2024",
+      "year": 2024,
+      "month_name": "Oktober",
+      "kwh": 787584,
+      "ma12": 704613.92
+    },
+    {
+      "month": "2024-11",
+      "label": "Nov 2024",
+      "year": 2024,
+      "month_name": "November",
+      "kwh": 852960,
+      "ma12": 712698.07
+    },
+    {
+      "month": "2024-12",
+      "label": "Des 2024",
+      "year": 2024,
+      "month_name": "Desember",
+      "kwh": 753456,
+      "ma12": 703327.33
+    },
+    {
+      "month": "2025-01",
+      "label": "Jan 2025",
+      "year": 2025,
+      "month_name": "Januari",
+      "kwh": 554432,
+      "ma12": 690563.33
+    },
+    {
+      "month": "2025-02",
+      "label": "Feb 2025",
+      "year": 2025,
+      "month_name": "Februari",
+      "kwh": 609880,
+      "ma12": 690580
+    },
+    {
+      "month": "2025-03",
+      "label": "Mar 2025",
+      "year": 2025,
+      "month_name": "Maret",
+      "kwh": 613600,
+      "ma12": 693413.33
+    },
+    {
+      "month": "2025-04",
+      "label": "Apr 2025",
+      "year": 2025,
+      "month_name": "April",
+      "kwh": 621888,
+      "ma12": 687184
+    },
+    {
+      "month": "2025-05",
+      "label": "Mei 2025",
+      "year": 2025,
+      "month_name": "Mei",
+      "kwh": 706050,
+      "ma12": 694354.83
+    },
+    {
+      "month": "2025-06",
+      "label": "Jun 2025",
+      "year": 2025,
+      "month_name": "Juni",
+      "kwh": 609854,
+      "ma12": 680639.33
+    },
+    {
+      "month": "2025-07",
+      "label": "Jul 2025",
+      "year": 2025,
+      "month_name": "Juli",
+      "kwh": 588312,
+      "ma12": 671064.67
+    },
+    {
+      "month": "2025-08",
+      "label": "Agu 2025",
+      "year": 2025,
+      "month_name": "Agustus",
+      "kwh": 692664,
+      "ma12": 677723.33
+    },
+    {
+      "month": "2025-09",
+      "label": "Sep 2025",
+      "year": 2025,
+      "month_name": "September",
+      "kwh": 744904,
+      "ma12": 677965.33
+    },
+    {
+      "month": "2025-10",
+      "label": "Okt 2025",
+      "year": 2025,
+      "month_name": "Oktober",
+      "kwh": 837688,
+      "ma12": 682140.67
+    },
+    {
+      "month": "2025-11",
+      "label": "Nov 2025",
+      "year": 2025,
+      "month_name": "November",
+      "kwh": 755736,
+      "ma12": 674038.67
+    },
+    {
+      "month": "2025-12",
+      "label": "Des 2025",
+      "year": 2025,
+      "month_name": "Desember",
+      "kwh": 568305.25,
+      "ma12": 658609.44
+    },
+    {
+      "month": "2026-01",
+      "label": "Jan 2026",
+      "year": 2026,
+      "month_name": "Januari",
+      "kwh": 569896,
+      "ma12": 659898.1
+    },
+    {
+      "month": "2026-02",
+      "label": "Feb 2026",
+      "year": 2026,
+      "month_name": "Februari",
+      "kwh": 568688,
+      "ma12": 656465.44
+    },
+    {
+      "month": "2026-03",
+      "label": "Mar 2026",
+      "year": 2026,
+      "month_name": "Maret",
+      "kwh": 595192,
+      "ma12": 654931.44
+    },
+    {
+      "month": "2026-04",
+      "label": "Apr 2026",
+      "year": 2026,
+      "month_name": "April",
+      "kwh": 603231.36,
+      "ma12": 653376.72
+    }
+  ]
+}

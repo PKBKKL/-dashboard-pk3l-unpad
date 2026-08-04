@@ -6,7 +6,7 @@
     "owner_email": "k.susanto@geophys.unpad.ac.id",
     "url": "https://pkbkkl.github.io/-dashboard-pk3l-unpad/",
     "version": "1.4",
-    "last_updated": "2026-07-10"
+    "last_updated": "2026-08-04"
   },
   "datasets": [
     {
@@ -73,6 +73,17 @@
       "primary_kpi": {
         "label": "Total Volume Limbah B3",
         "value_field": "total_volume_liter"
+      }
+    },
+    {
+      "id": "electricity",
+      "label": "Listrik",
+      "route": "/listrik",
+      "icon": "zap",
+      "period_label": "2022 – 2026",
+      "primary_kpi": {
+        "label": "Total Konsumsi Listrik",
+        "value_field": "total_kwh"
       }
     }
   ],

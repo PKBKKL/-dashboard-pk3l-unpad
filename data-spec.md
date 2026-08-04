@@ -23,8 +23,9 @@ Sumber tunggal nomor versi adalah `SPEC_VERSION` di `scripts/_utils.py`. Ia dite
 9. [Schema: `tree_incidents.json`](#9-schema-tree_incidentsjson)
 10. [Schema: `traffic_accidents.json`](#10-schema-traffic_accidentsjson)
 11. [Schema: `b3_waste.json`](#11-schema-b3_wastejson)
-12. [Aturan Validasi & Rekonsiliasi](#12-aturan-validasi--rekonsiliasi)
-13. [Changelog](#13-changelog)
+12. [Schema: `electricity.json`](#12-schema-electricityjson)
+13. [Aturan Validasi & Rekonsiliasi](#13-aturan-validasi--rekonsiliasi)
+14. [Changelog](#14-changelog)
 
 ---
 
@@ -992,7 +993,52 @@ Akuntansi `tps_logbook` **terpisah** dari `entries`: logbook TPS mencatat semuan
 
 ---
 
-## 12. Aturan Validasi & Rekonsiliasi
+## 12. Schema: `electricity.json`
+
+Konsumsi listrik kampus **Jatinangor** (tanpa RSPTN), per bulan. Sumber: `Data Listrik.xlsx`, blok lebar (kolom Jatinangor per tahun). Lokasi lain (Pangandaran, Arjasari, DU) sengaja tidak diikutkan.
+
+### 12.1 Struktur
+
+```json
+{
+  "dataset_id": "electricity",
+  "version": "1.4",
+  "location": "Jatinangor",
+  "unit": "kWh",
+  "ma_window_months": 12,
+  "years": [2022, 2023, 2024, 2025, 2026],
+  "summary": {
+    "total_kwh": 36179581.16, "months_with_data": 52, "year_count": 5,
+    "first_month": "2022-01", "last_month": "2026-04", "avg_kwh_per_month": 695761.18
+  },
+  "yearly": [
+    { "year": 2022, "months": 12, "total_kwh": 9487694.1, "avg_kwh": 790641.2,
+      "label_sumber": "Jatinangor", "lengkap": true }
+  ],
+  "monthly": [
+    { "month": "2022-01", "label": "Jan 2022", "year": 2022, "month_name": "Januari",
+      "kwh": 903151.29, "ma12": null }
+  ]
+}
+```
+
+### 12.2 Aturan
+
+- `monthly` adalah **seri kontinu** dari `first_month`. `kwh` boleh `null` untuk bulan yang bolong di tengah rentang; sel 0 atau kosong di sumber diperlakukan sebagai belum-ada-data.
+- `ma12` adalah rata-rata bergerak **trailing** `ma_window_months` bulan. Bernilai `null` sampai jendela penuh (11 bulan pertama). Dihitung dari nilai non-null; kalau ada bolong di jendela, titik itu `null`.
+- `label_sumber` menyimpan label kolom asli di Excel. Ia **menandai perubahan definisi**: 2022–2024 = `"Jatinangor"`, 2025–2026 = `"Jatinangor (Just UNPAD)"`. Angka lintas tahun mungkin tidak sepenuhnya setara — diterbitkan sebagai flag `warning`, bukan disamakan diam-diam.
+- Tahun parsial (`lengkap: false`) memunculkan flag `warning`; total dan rata-ratanya belum setahun penuh.
+- Tata letak dibaca lewat **label** (baris header "Jatinangor" + penanda tahun), bukan indeks kolom buta. Kalau tata letak Excel berubah, parser **gagal-keras**.
+
+### 12.3 Invariant
+
+- `summary.total_kwh` = Σ `monthly[].kwh` (yang non-null)
+- tiap `yearly[].total_kwh` = Σ `kwh` bulan pada tahun itu; `avg_kwh` = total ÷ `months`
+- `years` = daftar tahun di `yearly`, urut menaik
+
+---
+
+## 13. Aturan Validasi & Rekonsiliasi
 
 Skrip `validate.py` harus menjalankan ini sebelum publish:
 
@@ -1025,7 +1071,7 @@ Skrip `validate.py` harus menjalankan ini sebelum publish:
 
 ---
 
-## 13. Changelog
+## 14. Changelog
 
 | Versi | Tanggal | Perubahan |
 |---|---|---|
@@ -1034,6 +1080,7 @@ Skrip `validate.py` harus menjalankan ini sebelum publish:
 | 1.2 | 2026-07-10 | `b3_waste`: tiap entri kini wajib memuat **`volume_liter`** dan **`mass_kg`** hasil konversi satuan. Satuan tak dikenal membuat parser **gagal-keras**. |
 | 1.3 | 2026-07-10 | `b3_waste`: tiap entri kini wajib memuat **`kode_sumber`** (`excel`/`kamus`/`kosong`) dan **`kode_status`** (`tercatat`/`usulan`/`disahkan`/`""`). Kode limbah yang belum diisi di Excel diambil dari kamus ber-provenance `data/_ledger/b3_waste_kode.csv`. Excel selalu menang atas kamus. Notasi kode diselaraskan ke penulisan Lampiran IX (sufiks huruf kecil). |
 | 1.4 | 2026-07-10 | `b3_waste`: bagian baru **`tps_logbook`** — limbah masuk, limbah keluar ke pengolah berizin, pengiriman per tanggal, dan **sisa di TPS**. Sheet `Logbook (...)` tidak lagi dilewati. |
+| 1.4 | 2026-08-04 | Dataset baru **`electricity`** (konsumsi listrik Jatinangor per bulan, rata-rata bergerak 12 bulan). Envelope 1.4 tidak berubah; tidak ada dataset lain yang tersentuh. Menjadi dataset ke-7 dan halaman ke-8 (`docs/listrik.html`). |
 
 ### Catatan migrasi 1.3 → 1.4
 

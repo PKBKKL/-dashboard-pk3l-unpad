@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "electricity.schema.json",
+  "allOf": [{ "$ref": "_common.schema.json#/definitions/dataset_envelope" }],
+  "type": "object",
+  "required": ["dataset_id", "location", "unit", "ma_window_months", "years", "summary", "yearly", "monthly"],
+  "properties": {
+    "dataset_id": { "const": "electricity" },
+    "location": { "type": "string", "description": "Lokasi tunggal; saat ini 'Jatinangor' (tanpa RSPTN)." },
+    "unit": { "const": "kWh" },
+    "ma_window_months": { "type": "integer", "description": "Lebar jendela rata-rata bergerak, dalam bulan." },
+    "years": { "type": "array", "items": { "type": "integer" } },
+    "summary": {
+      "type": "object",
+      "required": ["total_kwh", "months_with_data", "year_count", "first_month", "last_month", "avg_kwh_per_month"],
+      "properties": {
+        "total_kwh": { "type": "number" },
+        "months_with_data": { "type": "integer" },
+        "year_count": { "type": "integer" },
+        "first_month": { "$ref": "_common.schema.json#/definitions/iso_month" },
+        "last_month": { "$ref": "_common.schema.json#/definitions/iso_month" },
+        "avg_kwh_per_month": { "type": "number" }
+      }
+    },
+    "yearly": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["year", "months", "total_kwh", "avg_kwh", "lengkap"],
+        "properties": {
+          "year": { "type": "integer" },
+          "months": { "type": "integer" },
+          "total_kwh": { "type": "number" },
+          "avg_kwh": { "type": "number" },
+          "label_sumber": { "type": "string", "description": "Label kolom asli di Excel; menandai perubahan definisi (mis. 'Jatinangor (Just UNPAD)')." },
+          "lengkap": { "type": "boolean", "description": "true bila 12 bulan penuh." }
+        }
+      }
+    },
+    "monthly": {
+      "type": "array",
+      "description": "Seri kontinu dari first_month; kwh boleh null bila bolong, ma12 null bila jendela belum penuh.",
+      "items": {
+        "type": "object",
+        "required": ["month", "label", "year", "kwh", "ma12"],
+        "properties": {
+          "month": { "$ref": "_common.schema.json#/definitions/iso_month" },
+          "label": { "type": "string" },
+          "year": { "type": "integer" },
+          "month_name": { "type": "string" },
+          "kwh": { "anyOf": [{ "type": "number" }, { "type": "null" }] },
+          "ma12": { "anyOf": [{ "type": "number" }, { "type": "null" }], "description": "Rata-rata bergerak ma_window_months bulan (trailing)." }
+        }
+      }
+    }
+  }
+}

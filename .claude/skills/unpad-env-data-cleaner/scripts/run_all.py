@@ -44,6 +44,7 @@ PIPELINE = [
     "parse_tree_incidents",
     "parse_traffic_accidents_ledger",
     "parse_b3_waste",
+    "parse_electricity",
 ]
 
 

@@ -253,6 +253,16 @@ def _metrics(out_dir: Path) -> dict:
              "tps_keluar_kg": round(tps.get("total_keluar_kg") or 0, 3)},
             {"months": [x["month"] for x in d.get("monthly_totals", []) if x.get("entries")]})
 
+    p = out_dir / "electricity.json"
+    if p.exists():
+        d = read_json(p)
+        s = d.get("summary", {})
+        add("electricity",
+            {"months_with_data": s.get("months_with_data", 0),
+             "year_count": s.get("year_count", 0)},
+            {"total_kwh": round(s.get("total_kwh") or 0, 2)},
+            {"months": [x["month"] for x in d.get("monthly", []) if x.get("kwh")]})
+
     return m
 
 
@@ -338,7 +348,7 @@ def main() -> int:
     e, w = check_meta(out_dir)
     all_errors.extend(e); all_warnings.extend(w)
 
-    for ds in ["pengolahan_sampah", "timbulan", "water_quality", "tree_incidents", "traffic_accidents", "b3_waste"]:
+    for ds in ["pengolahan_sampah", "timbulan", "water_quality", "tree_incidents", "traffic_accidents", "b3_waste", "electricity"]:
         e, w = check_dataset_envelope(out_dir, ds)
         all_errors.extend(e); all_warnings.extend(w)
 

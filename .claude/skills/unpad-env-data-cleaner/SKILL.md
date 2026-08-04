@@ -5,7 +5,7 @@ description: Clean and normalize UNPAD environmental monitoring data (waste proc
 
 # UNPAD Environmental Data Cleaner
 
-Skill ini membangun **tujuh dataset JSON** untuk dashboard. Pipeline deterministik dan idempotent.
+Skill ini membangun **delapan dataset JSON** untuk dashboard. Pipeline deterministik dan idempotent.
 
 Sebelum apa pun, baca `CLAUDE.md` di root repo: dua jaminan yang tidak boleh dilanggar, dan sepuluh hukum besi yang menegakkannya.
 
@@ -29,6 +29,7 @@ Root project ditemukan lewat `find_project_root()` — **jangan hardcode**. (Dok
 | `water_quality` | `Scan Sertifikat Hasil Uji Air … Oktober 2025.md` | MD di root |
 | `tree_incidents` | `Kecelakaan dan Kejadian Kantor Lingkungan Tahun 2025.md` | MD di root |
 | `b3_waste` | `Data dan Pengetahuan/Limbah B3/Logbook Limbah B3.xlsx` + `data/_ledger/b3_waste_kode.csv` | XLSX + kamus |
+| `electricity` | `Data dan Pengetahuan/Data Listrik.xlsx` (Jatinangor saja) | XLSX |
 | `water_quality_ip` | **tidak ada parser** — selamat karena promosi hanya menyalin | — |
 
 Buku besar diisi dari Excel di `Data dan Pengetahuan/` lewat `import_inbox.py`, yang **append-only** dan **dry-run bawaan**. Folder itu **BACA-SAJA** bagi mesin: workbook pemilik menyimpan berat sebagai rumus, dan menyimpannya ulang lewat `openpyxl` membuang nilai ter-cache.
@@ -75,6 +76,7 @@ python $S\parse_water_quality.py            --out .tmp
 python $S\parse_tree_incidents.py           --out .tmp
 python $S\parse_traffic_accidents_ledger.py --out .tmp
 python $S\parse_b3_waste.py                 --out .tmp
+python $S\parse_electricity.py              --out .tmp
 ```
 
 > Dokumen ini pernah menyuruh menjalankan `parse_timbulan.py` dan `parse_traffic_accidents.py`
@@ -173,6 +175,7 @@ Hasil `<0,016` disimpan sebagai:
 │   ├── parse_tree_incidents.py
 │   ├── parse_traffic_accidents_ledger.py
 │   ├── parse_b3_waste.py               (+ kamus kode, + logbook TPS)
+│   ├── parse_electricity.py            (Data Listrik.xlsx, Jatinangor, + MA 12 bln)
 │   │
 │   │   ── PENSIUN: menolak jalan tanpa --i-know-this-is-retired ──
 │   ├── parse_timbulan.py               (baca arsip/*.md)

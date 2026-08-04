@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Listrik</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="./assets/style.css" />
+</head>
+<body>
+  <div class="min-h-screen flex">
+    <aside id="sidebar" class="hidden lg:flex fixed left-0 top-0 h-screen w-64 flex-col border-r border-slate-200 bg-white z-20"></aside>
+    <main class="flex-1 ml-0 lg:ml-64 px-6 py-6 lg:px-10 lg:py-8 max-w-[1400px]">
+      <button id="sidebar-toggle" class="lg:hidden mb-3 p-2 rounded border border-slate-200 bg-white">≡</button>
+
+      <section id="page-header" class="mb-8"></section>
+      <section id="kpis" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"></section>
+
+      <section class="card p-5 mt-8">
+        <h3 class="text-sm font-semibold text-slate-900 mb-1">Konsumsi Listrik Bulanan Jatinangor</h3>
+        <p class="text-xs text-slate-400 mb-3">
+          Batang = konsumsi tiap bulan (kWh), diwarnai per tahun. Garis =
+          rata-rata bergerak <span id="ma-window"></span> bulan, yang menyerap
+          fluktuasi musiman sehingga arah jangka panjangnya terlihat.
+        </p>
+        <div id="chart-monthly"></div>
+      </section>
+
+      <section class="card p-5 mt-6">
+        <h3 class="text-sm font-semibold text-slate-900 mb-1">Rata-rata Konsumsi per Bulan, per Tahun</h3>
+        <p class="text-xs text-slate-400 mb-3">Rata-rata konsumsi bulanan tiap tahun. Tahun berjalan masih parsial.</p>
+        <div id="chart-yearly"></div>
+      </section>
+
+      <section class="card overflow-hidden mt-6">
+        <header class="px-5 py-4 border-b border-slate-200 flex flex-wrap items-baseline justify-between gap-2">
+          <h3 class="text-sm font-semibold text-slate-900">Ringkasan per Tahun</h3>
+          <span class="text-xs text-slate-400">Konsumsi = kWh · Jatinangor tanpa RSPTN</span>
+        </header>
+        <div class="overflow-x-auto">
+          <table class="data-table" id="yearly-table">
+            <thead>
+              <tr>
+                <th>Tahun</th>
+                <th class="num">Bulan Terdata</th>
+                <th class="num">Total (kWh)</th>
+                <th class="num">Rata-rata/Bulan (kWh)</th>
+                <th class="num">Perubahan yoy</th>
+                <th>Definisi Sumber</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="flags" class="mt-8"></section>
+      <footer id="page-footer"></footer>
+    </main>
+  </div>
+
+  <script type="module">
+    import {
+      bootstrap, renderHeader, renderKpis, renderFlags, $, fmtInt, fmtPct,
+      loadDataset,
+    } from "./assets/common.js";
+    import { barLine, groupedBar } from "./assets/charts.js";
+
+    const meta = await bootstrap("listrik.html");
+    const data = await loadDataset("electricity");
+    const p = meta.color_palette;
+
+    renderHeader({
+      title: "Konsumsi Listrik — Jatinangor",
+      period: `${data.period.start} – ${data.period.end}`,
+      description: "Konsumsi listrik kampus UNPAD Jatinangor (tanpa RSPTN), per bulan sejak 2022. " +
+        "Pangandaran, Arjasari, dan DU tidak ditampilkan. Sumber: Data Listrik.xlsx.",
+    });
+
+    $("#ma-window").textContent = data.ma_window_months;
+
+    // Tahun tidak dihafal: ambil dari data, urut menaik.
+    const YEARS = [...data.years].sort((a, b) => a - b);
+    const LATEST = YEARS[YEARS.length - 1];
+    const byYear = Object.fromEntries(data.yearly.map(y => [y.year, y]));
+
+    // ─── KPI ──────────────────────────────────────────────────────────
+    const firstFull = data.yearly.find(y => y.lengkap);
+    const lastFull = [...data.yearly].reverse().find(y => y.lengkap);
+    let trendPct = null;
+    if (firstFull && lastFull && firstFull.year !== lastFull.year) {
+      trendPct = (lastFull.avg_kwh - firstFull.avg_kwh) / firstFull.avg_kwh * 100;
+    }
+    renderKpis("#kpis", [
+      { label: "Total Konsumsi", value: fmtInt(data.summary.total_kwh), unit: "kWh",
+        trend: `${data.summary.months_with_data} bulan · ${data.summary.year_count} tahun`, icon: "zap", accent: "amber" },
+      { label: "Rata-rata per Bulan", value: fmtInt(data.summary.avg_kwh_per_month), unit: "kWh",
+        trend: "Sepanjang periode terdata", icon: "zap", accent: "slate" },
+      { label: `Rata-rata ${LATEST}`, value: fmtInt(byYear[LATEST]?.avg_kwh ?? 0), unit: "kWh/bln",
+        trend: byYear[LATEST]?.lengkap ? "Tahun penuh" : `Parsial · ${byYear[LATEST]?.months} bulan`,
+        icon: "zap", accent: byYear[LATEST]?.lengkap ? "brand" : "amber" },
+      trendPct == null ? null : {
+        label: "Tren Antar-Tahun Penuh",
+        value: `${trendPct > 0 ? "+" : ""}${fmtPct(trendPct)}`,
+        trend: `Rata-rata bulanan ${firstFull.year} → ${lastFull.year}`,
+        icon: trendPct <= 0 ? "recycle" : "info",
+        accent: trendPct <= 0 ? "brand" : "red",
+      },
+    ].filter(Boolean));
+
+    // ─── Grafik utama: batang per tahun + garis MA ────────────────────
+    const x = data.monthly.map(m => m.label);
+    const warna = [p.anorganik, p.organik, p.rdf, p.maggot, p.dumping, p.residu, p.kompos];
+    const bars = YEARS.map((yr, i) => ({
+      label: String(yr),
+      color: warna[i % warna.length],
+      // nilai hanya di posisi bulan milik tahun ini; null di posisi lain
+      y: data.monthly.map(m => (m.year === yr ? m.kwh : null)),
+    }));
+    barLine("chart-monthly", {
+      x,
+      bars,
+      line: { label: `Rata-rata bergerak ${data.ma_window_months} bln`, color: p.exceedance,
+              y: data.monthly.map(m => m.ma12) },
+      yLabel: "kWh",
+      height: 440,
+    });
+
+    // ─── Grafik rata-rata bulanan per tahun ───────────────────────────
+    groupedBar("chart-yearly", {
+      x: YEARS.map(String),
+      series: [{
+        label: "Rata-rata kWh/bulan",
+        color: p.anorganik,
+        y: YEARS.map(yr => byYear[yr]?.avg_kwh ?? 0),
+      }],
+      yLabel: "kWh/bulan",
+      height: 300,
+    });
+
+    // ─── Tabel ringkasan per tahun ────────────────────────────────────
+    $("#yearly-table tbody").innerHTML = YEARS.map((yr, i) => {
+      const y = byYear[yr];
+      if (!y) return "";
+      const prev = i > 0 ? byYear[YEARS[i - 1]] : null;
+      let yoy = "—", cls = "text-slate-400";
+      if (prev) {
+        const d = (y.avg_kwh - prev.avg_kwh) / prev.avg_kwh * 100;
+        yoy = `${d > 0 ? "+" : ""}${fmtPct(d)}`;
+        cls = d <= 0 ? "text-green-700 font-medium" : "text-red-600 font-medium";
+      }
+      return `<tr>
+        <td class="font-medium">${yr}${y.lengkap ? "" : ' <span class="text-[10px] font-sans text-amber-600 align-middle">parsial</span>'}</td>
+        <td class="num">${y.months}</td>
+        <td class="num">${fmtInt(y.total_kwh)}</td>
+        <td class="num">${fmtInt(y.avg_kwh)}</td>
+        <td class="num ${cls}">${yoy}</td>
+        <td class="text-xs text-slate-500">${y.label_sumber}</td>
+      </tr>`;
+    }).join("");
+
+    renderFlags(data.data_quality_flags);
+  </script>
+</body>
+</html>

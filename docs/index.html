@@ -89,18 +89,19 @@
 
     const meta = await bootstrap("index.html");
 
-    const [pengolahan, timbulan, water, trees, traffic, b3] = await Promise.all([
+    const [pengolahan, timbulan, water, trees, traffic, b3, listrik] = await Promise.all([
       loadDataset("pengolahan_sampah"),
       loadDataset("timbulan"),
       loadDataset("water_quality"),
       loadDataset("tree_incidents"),
       loadDataset("traffic_accidents"),
       loadDataset("b3_waste"),
+      loadDataset("electricity"),
     ]);
 
     renderHeader({
       title: meta.dashboard.title,
-      description: `Ringkasan kinerja lingkungan Universitas Padjadjaran dari enam domain pengawasan PKBKKL: pengolahan sampah, timbulan harian, kualitas air, insiden vegetasi, kecelakaan lalu lintas kampus, dan timbulan limbah B3. Data diperbarui terakhir ${meta.dashboard.last_updated}.`,
+      description: `Ringkasan kinerja lingkungan Universitas Padjadjaran dari tujuh domain pengawasan PKBKKL: pengolahan sampah, timbulan harian, kualitas air, insiden vegetasi, kecelakaan lalu lintas kampus, timbulan limbah B3, dan konsumsi listrik. Data diperbarui terakhir ${meta.dashboard.last_updated}.`,
     });
 
     // ─── Compute KPIs ─────────────────────────────────────────────
@@ -130,6 +131,7 @@
       { label: "Total Insiden Pohon 2025", value: fmtInt(treesTotal), unit: "kejadian", trend: `${treesUnplanned} insiden tak terencana`, icon: "trees", accent: "brand", href: "./insiden-vegetasi.html" },
       { label: "Kecelakaan 2025", value: fmtInt(traffic2025), unit: "kasus", trend: `${fmtInt(traffic2026)} kasus YTD 2026`, icon: "car-front", accent: "red", href: "./kecelakaan-lalu-lintas.html" },
       { label: "Limbah B3", value: `${fmtInt(b3.summary.total_volume_liter)} L`, unit: `+ ${fmtInt(b3.summary.total_mass_kg)} kg`, trend: `${b3.summary.total_entries} entri · ${b3.summary.unique_lembaga} fakultas · ${b3.summary.unique_kode_limbah} kode`, icon: "flask", accent: "amber", href: "./limbah-b3.html" },
+      { label: "Listrik Jatinangor", value: fmtInt(listrik.summary.total_kwh), unit: "kWh", trend: `${listrik.summary.months_with_data} bulan · ${listrik.summary.year_count} tahun`, icon: "zap", accent: "amber", href: "./listrik.html" },
     ]);
 
     // ─── Periode per Domain table ────────────────────────────────

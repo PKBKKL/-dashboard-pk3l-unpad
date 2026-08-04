@@ -117,6 +117,7 @@ const NAV = [
   { href: "./insiden-vegetasi.html", label: "Insiden Vegetasi", icon: "trees" },
   { href: "./kecelakaan-lalu-lintas.html", label: "Kecelakaan Lalu Lintas", icon: "car-front" },
   { href: "./limbah-b3.html", label: "Limbah B3", icon: "flask" },
+  { href: "./listrik.html", label: "Listrik", icon: "zap" },
 ];
 
 // Minimal inline SVG icons (avoiding external lib for offline + speed)
@@ -130,6 +131,7 @@ const ICONS = {
   "info": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>`,
   "menu": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>`,
   "flask": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2v6.5L2 21a1 1 0 0 0 .9 1.5h18.2A1 1 0 0 0 22 21L15 8.5V2"/><path d="M8 2h8"/><path d="M7.5 14h9"/></svg>`,
+  "zap": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>`,
 };
 
 export function renderSidebar(currentPage) {
