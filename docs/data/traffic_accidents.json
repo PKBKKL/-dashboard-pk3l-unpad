@@ -3,7 +3,8 @@
   "version": "1.4",
   "generated_at": "2026-09-18",
   "source_files": [
-    "_ledger/traffic_accidents.csv"
+    "_ledger/traffic_accidents.csv",
+    "_ledger/traffic_accidents_fatality.csv"
   ],
   "period": {
     "start": "2025-04-01",
@@ -58,7 +59,8 @@
           "by_type": {
             "tunggal_mobil": 1
           },
-          "total": 1
+          "total": 1,
+          "fatalities": 0
         },
         {
           "month": "2025-06",
@@ -66,14 +68,16 @@
             "tunggal_mobil": 1,
             "tabrak_2roda": 1
           },
-          "total": 2
+          "total": 2,
+          "fatalities": 0
         },
         {
           "month": "2025-08",
           "by_type": {
             "tunggal_motor": 3
           },
-          "total": 3
+          "total": 3,
+          "fatalities": 0
         },
         {
           "month": "2025-09",
@@ -85,7 +89,8 @@
             "tabrak_2roda_4roda": 2,
             "pejalan_kaki": 2
           },
-          "total": 16
+          "total": 16,
+          "fatalities": 0
         },
         {
           "month": "2025-10",
@@ -94,7 +99,8 @@
             "tunggal_mobil": 1,
             "tabrak_2roda_4roda": 2
           },
-          "total": 6
+          "total": 6,
+          "fatalities": 0
         },
         {
           "month": "2025-11",
@@ -103,18 +109,21 @@
             "beam": 1,
             "tabrak_2roda": 1
           },
-          "total": 3
+          "total": 3,
+          "fatalities": 0
         },
         {
           "month": "2025-12",
           "by_type": {
             "tunggal_motor": 2
           },
-          "total": 2
+          "total": 2,
+          "fatalities": 0
         }
       ],
       "total_yearly_computed": 33,
-      "total_yearly_reported": 33
+      "total_yearly_reported": 33,
+      "total_fatalities": 0
     },
     {
       "year": 2026,
@@ -125,21 +134,24 @@
             "tunggal_mobil": 1,
             "tabrak_2roda": 1
           },
-          "total": 2
+          "total": 2,
+          "fatalities": 0
         },
         {
           "month": "2026-03",
           "by_type": {
             "tunggal_motor": 1
           },
-          "total": 1
+          "total": 1,
+          "fatalities": 0
         },
         {
           "month": "2026-04",
           "by_type": {
             "tabrak_4roda_beam": 1
           },
-          "total": 1
+          "total": 1,
+          "fatalities": 0
         },
         {
           "month": "2026-05",
@@ -148,7 +160,8 @@
             "tabrak_2roda_4roda": 1,
             "pejalan_kaki": 1
           },
-          "total": 3
+          "total": 3,
+          "fatalities": 0
         },
         {
           "month": "2026-06",
@@ -157,7 +170,8 @@
             "tunggal_mobil": 1,
             "tabrak_2roda": 1
           },
-          "total": 3
+          "total": 3,
+          "fatalities": 0
         },
         {
           "month": "2026-08",
@@ -165,7 +179,8 @@
             "tunggal_motor": 2,
             "tabrak_2roda_beam": 1
           },
-          "total": 3
+          "total": 3,
+          "fatalities": 0
         },
         {
           "month": "2026-09",
@@ -174,11 +189,16 @@
             "tabrak_2roda": 1,
             "tabrak_2roda_beam": 1
           },
-          "total": 4
+          "total": 4,
+          "fatalities": 1,
+          "fatalities_by_type": {
+            "tunggal_motor": 1
+          }
         }
       ],
       "total_yearly_computed": 17,
       "total_yearly_reported": 17,
+      "total_fatalities": 1,
       "ytd_through_month": "2026-09"
     }
   ],

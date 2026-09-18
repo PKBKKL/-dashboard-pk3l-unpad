@@ -86,7 +86,9 @@
       },
       "totals": {
         "total_2025": 33,
-        "total_2026": 17
+        "total_2026": 17,
+        "fatalities_2025": 0,
+        "fatalities_2026": 1
       },
       "keys": {
         "years": [

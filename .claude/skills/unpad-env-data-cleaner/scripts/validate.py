@@ -233,9 +233,17 @@ def _metrics(out_dir: Path) -> dict:
         detail = d.get("incidents_detail")
         if detail is None:
             detail = d.get("incidents_detail_2026", [])
+        # Fatalitas ikut dijaga. Sumbernya buku besar tersendiri yang tidak
+        # diisi oleh import_inbox.py; kalau berkasnya hilang atau parsernya
+        # rusak, angka kematian lenyap dari JSON tanpa satu pun error. Pengaman
+        # ini menahannya sebelum promosi.
+        totals = {f"total_{y['year']}": y.get("total_yearly_computed", 0)
+                  for y in d.get("yearly", [])}
+        totals.update({f"fatalities_{y['year']}": y.get("total_fatalities", 0)
+                       for y in d.get("yearly", [])})
         add("traffic_accidents",
             {"incidents_detail": len(detail)},
-            {f"total_{y['year']}": y.get("total_yearly_computed", 0) for y in d.get("yearly", [])},
+            totals,
             {"years": [str(y["year"]) for y in d.get("yearly", [])]})
 
     p = out_dir / "b3_waste.json"

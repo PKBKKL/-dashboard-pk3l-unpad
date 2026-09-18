@@ -904,6 +904,35 @@ Sumber: kecelakaan lalu lintas kawasan UNPAD 2025–2026.
 }
 ```
 
+> Contoh di atas dipertahankan dari versi 1.0 sebagai ilustrasi bentuk. Angka dan nama
+> field `incidents_detail_2026` sudah digantikan `incidents_detail` sejak 1.1 — lihat changelog.
+
+### 10.1 Fatalitas
+
+Sejak 18 September 2026 tiap entri `monthly` memuat `fatalities`, dan tiap entri `yearly`
+memuat `total_fatalities`:
+
+| Field | Tipe | Keterangan |
+|---|---|---|
+| `monthly[].fatalities` | integer | Jumlah korban meninggal pada bulan itu. **Selalu ada**, bernilai `0` bila tidak ada. |
+| `monthly[].fatalities_by_type` | object | Rincian korban per `vehicle_types[].id`. **Hanya ada** bila bulan itu memuat fatalitas; hilang sama sekali bila `fatalities` nol. |
+| `yearly[].total_fatalities` | integer | Penjumlahan `monthly[].fatalities` dalam tahun itu. Selalu ada. |
+
+**Sumbernya buku besar tersendiri**, `data/_ledger/traffic_accidents_fatality.csv`, dengan
+kunci `(tahun, bulan, jenis)` dan kolom provenance `sumber`, `dicatat_pada`, `catatan`.
+Dipisah dari `traffic_accidents.csv` karena pencatatan bulanan di workbook pemilik **tidak
+punya kolom fatalitas** — keterangannya ditulis mengapung di bawah tabel, sehingga tidak bisa
+diimpor otomatis oleh `import_inbox.py` dan harus dicatat manual dengan provenance sendiri.
+Berkasnya opsional: bila tidak ada, semua `fatalities` bernilai 0 dan JSON tetap sah.
+
+**Fatalitas wajib punya kasus yang menaunginya.** `parse_traffic_accidents_ledger.py`
+**gagal keras** bila ada fatalitas pada `(bulan, jenis)` yang tidak mencatat satu kasus pun,
+atau bila jumlah fatalitas melebihi jumlah kasusnya. Angka kematian di rekam jejak publik
+tidak boleh menggantung tanpa kasusnya.
+
+`fatalities` **tidak** ikut dijumlahkan ke `total`, `total_yearly_computed`, maupun
+`total_yearly_reported`. Ia atribut dari kasus, bukan kasus tambahan.
+
 ---
 
 ## 11. Schema: `b3_waste.json`
@@ -1081,6 +1110,7 @@ Skrip `validate.py` harus menjalankan ini sebelum publish:
 | 1.3 | 2026-07-10 | `b3_waste`: tiap entri kini wajib memuat **`kode_sumber`** (`excel`/`kamus`/`kosong`) dan **`kode_status`** (`tercatat`/`usulan`/`disahkan`/`""`). Kode limbah yang belum diisi di Excel diambil dari kamus ber-provenance `data/_ledger/b3_waste_kode.csv`. Excel selalu menang atas kamus. Notasi kode diselaraskan ke penulisan Lampiran IX (sufiks huruf kecil). |
 | 1.4 | 2026-07-10 | `b3_waste`: bagian baru **`tps_logbook`** — limbah masuk, limbah keluar ke pengolah berizin, pengiriman per tanggal, dan **sisa di TPS**. Sheet `Logbook (...)` tidak lagi dilewati. |
 | 1.4 | 2026-08-04 | Dataset baru **`electricity`** (konsumsi listrik Jatinangor per bulan, rata-rata bergerak 12 bulan). Envelope 1.4 tidak berubah; tidak ada dataset lain yang tersentuh. Menjadi dataset ke-7 dan halaman ke-8 (`docs/listrik.html`). |
+| 1.4 | 2026-09-18 | `traffic_accidents`: field baru **`monthly[].fatalities`**, **`monthly[].fatalities_by_type`**, dan **`yearly[].total_fatalities`**, bersumber dari buku besar baru `data/_ledger/traffic_accidents_fatality.csv`. Aditif dan opsional; envelope 1.4 tidak berubah dan tidak ada dataset lain yang tersentuh. Lihat [§10.1](#101-fatalitas). |
 
 ### Catatan migrasi 1.3 → 1.4
 

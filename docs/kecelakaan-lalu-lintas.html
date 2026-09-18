@@ -15,7 +15,7 @@
       <button id="sidebar-toggle" class="lg:hidden mb-3 p-2 rounded border border-slate-200 bg-white">≡</button>
 
       <section id="page-header" class="mb-8"></section>
-      <section id="kpis" class="grid gap-4 sm:grid-cols-2"></section>
+      <section id="kpis" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"></section>
 
       <section class="mt-8">
         <div class="flex items-baseline justify-between mb-3 flex-wrap gap-2">
@@ -87,13 +87,40 @@
     const LATEST = YEARS[YEARS.length - 1];
     const byYear = Object.fromEntries(data.yearly.map(y => [y.year, y]));
 
-    renderKpis("#kpis", YEARS.map((yr, i) => ({
+    const kpiCards = YEARS.map((yr, i) => ({
       label: yr === LATEST && YEARS.length > 1 ? `YTD ${yr}` : `Total ${yr}`,
       value: fmtInt(byYear[yr]?.total_yearly_computed ?? 0),
       unit: "kasus",
       icon: i === 0 ? "car-front" : undefined,
       accent: yr === LATEST ? "amber" : "red",
-    })));
+    }));
+
+    // Fatalitas adalah atribut dari kasus, bukan kasus tambahan — karena itu ia
+    // tidak ikut menambah angka "kasus" di kartu tahun. Kartunya hanya muncul
+    // bila ada yang tercatat: menampilkan "0" akan terbaca sebagai jaminan tidak
+    // ada korban, padahal pencatatannya sendiri diakui parsial.
+    const fatalTotal = data.yearly.reduce((a, y) => a + (y.total_fatalities ?? 0), 0);
+    if (fatalTotal > 0) {
+      const rincian = data.yearly
+        .flatMap(y => y.monthly.filter(m => m.fatalities > 0))
+        .map((m) => {
+          const jenis = Object.keys(m.fatalities_by_type ?? {})
+            .map(id => typeLabels[id] ?? id)
+            .join(", ");
+          return jenis ? `${fmtMonth(m.month)} — ${jenis}` : fmtMonth(m.month);
+        })
+        .join(" · ");
+      kpiCards.push({
+        label: "Kejadian Fatal Tercatat",
+        value: fmtInt(fatalTotal),
+        unit: "korban meninggal",
+        icon: "info",
+        accent: "red",
+        trend: rincian,
+      });
+    }
+
+    renderKpis("#kpis", kpiCards);
 
     const PALETTE_CYCLE = [p.exceedance, p.maggot, p.anorganik, p.organik, p.rdf, p.residu, p.dumping, p.kompos];
 

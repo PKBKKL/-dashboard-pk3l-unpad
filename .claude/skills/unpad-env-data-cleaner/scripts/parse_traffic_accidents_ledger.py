@@ -21,7 +21,60 @@ from _utils import base_dataset, resolve_output, write_json
 DATASET_ID = "traffic_accidents"
 
 
-def build_yearly(rows: list[dict], jenis_order: list[str]) -> list[dict]:
+def build_fatality_index(rows: list[dict]) -> dict[tuple[int, str], dict[str, int]]:
+    """Indeks fatalitas per (tahun, bulan) -> {jenis: jumlah}.
+
+    Sumbernya buku besar tersendiri (`traffic_accidents_fatality.csv`), bukan
+    kolom di buku besar kasus. Dipisah karena fatalitas dicatat manual dengan
+    provenance sendiri: pencatatan bulanan di workbook tidak memuat kolom
+    fatalitas, hanya keterangan mengapung di bawah tabel.
+    """
+    idx: dict[tuple[int, str], dict[str, int]] = {}
+    for r in rows:
+        jml = int(r["jumlah"])
+        if jml <= 0:
+            continue
+        key = (int(r["tahun"]), r["bulan"])
+        per_jenis = idx.setdefault(key, {})
+        per_jenis[r["jenis"]] = per_jenis.get(r["jenis"], 0) + jml
+    return idx
+
+
+def check_fatality(yearly: list[dict], fatality: dict[tuple[int, str], dict[str, int]]) -> None:
+    """Gagal keras bila fatalitas tidak punya kasus yang menaunginya.
+
+    Fatalitas lebih banyak daripada kasus, atau fatalitas pada (bulan, jenis)
+    yang tidak mencatat satu kasus pun, berarti salah satu dari dua buku besar
+    keliru. Jangan diterbitkan: angka kematian di rekam jejak publik tidak
+    boleh menggantung tanpa kasusnya.
+    """
+    kasus = {
+        (y["year"], m["month"]): m["by_type"]
+        for y in yearly for m in y["monthly"]
+    }
+    masalah: list[str] = []
+    for (year, month), per_jenis in sorted(fatality.items()):
+        ada = kasus.get((year, month), {})
+        for jenis, jml in sorted(per_jenis.items()):
+            if jenis not in ada:
+                masalah.append(
+                    f"{month} '{jenis}': {jml} fatalitas tetapi TIDAK ADA kasus "
+                    f"pada bulan/jenis itu di traffic_accidents.csv")
+            elif jml > ada[jenis]:
+                masalah.append(
+                    f"{month} '{jenis}': {jml} fatalitas melebihi {ada[jenis]} kasus")
+    if masalah:
+        detail = "\n".join(f"    - {m}" for m in masalah)
+        raise SystemExit(
+            f"\n[parse_traffic_accidents_ledger] GAGAL KERAS — fatalitas tidak cocok "
+            f"dengan kasus:\n{detail}\n"
+            f"  Perbaiki data/_ledger/traffic_accidents_fatality.csv atau "
+            f"traffic_accidents.csv, lalu ulangi.\n")
+
+
+def build_yearly(rows: list[dict], jenis_order: list[str],
+                 fatality: dict[tuple[int, str], dict[str, int]] | None = None) -> list[dict]:
+    fatality = fatality or {}
     per_year: dict[int, dict[str, dict[str, int]]] = {}
     for r in rows:
         jml = int(r["jumlah"])
@@ -40,13 +93,27 @@ def build_yearly(rows: list[dict], jenis_order: list[str]) -> list[dict]:
             # Urutan kunci mengikuti kamus jenis, bukan urutan baris CSV.
             ordered = {j: types[j] for j in jenis_order if j in types}
             ordered.update({j: v for j, v in types.items() if j not in ordered})
-            monthly.append({"month": month, "by_type": ordered, "total": sum(ordered.values())})
+            fat = fatality.get((year, month), {})
+            # Fatalitas mengikuti urutan jenis yang sama, dan hanya memuat
+            # jenis yang benar-benar tercatat memakan korban.
+            fat_ordered = {j: fat[j] for j in ordered if j in fat}
+            fat_ordered.update({j: v for j, v in fat.items() if j not in fat_ordered})
+            entry_m = {
+                "month": month,
+                "by_type": ordered,
+                "total": sum(ordered.values()),
+                "fatalities": sum(fat_ordered.values()),
+            }
+            if fat_ordered:
+                entry_m["fatalities_by_type"] = fat_ordered
+            monthly.append(entry_m)
         total = sum(m["total"] for m in monthly)
         entry = {
             "year": year,
             "monthly": monthly,
             "total_yearly_computed": total,
             "total_yearly_reported": total,
+            "total_fatalities": sum(m["fatalities"] for m in monthly),
         }
         if year == latest and monthly:
             entry["ytd_through_month"] = monthly[-1]["month"]
@@ -105,14 +172,23 @@ def main() -> int:
     jenis = read_rows(led / "traffic_accidents_jenis.csv")
     jenis_order = [j["id"] for j in jenis]
 
-    yearly = build_yearly(read_rows(src), jenis_order)
+    # Buku besar fatalitas bersifat opsional: repo yang belum memilikinya tetap
+    # membangun JSON yang sah, dengan fatalities = 0 di tiap bulan.
+    fat_src = led / "traffic_accidents_fatality.csv"
+    fatality = build_fatality_index(read_rows(fat_src)) if fat_src.exists() else {}
+
+    yearly = build_yearly(read_rows(src), jenis_order, fatality)
     if not yearly or all(y["total_yearly_computed"] == 0 for y in yearly):
         raise SystemExit(f"[parse_{DATASET_ID}] tidak ada satu pun kasus di buku besar. "
                          f"Menolak menulis output kosong. ABORT.")
+    check_fatality(yearly, fatality)
 
     detail = build_detail(read_rows(led / "traffic_accidents_detail.csv"))
 
-    data = base_dataset(DATASET_ID, source_files=["_ledger/traffic_accidents.csv"],
+    sources = ["_ledger/traffic_accidents.csv"]
+    if fatality:
+        sources.append("_ledger/traffic_accidents_fatality.csv")
+    data = base_dataset(DATASET_ID, source_files=sources,
                         period=_period(yearly))
     data["generated_at"] = dt.date.today().isoformat()
     data["data_quality_flags"] = [
@@ -129,7 +205,8 @@ def main() -> int:
     print(f"[parse_{DATASET_ID}] buku besar: {src}")
     print(f"[parse_{DATASET_ID}] wrote {target} (" +
           ", ".join(f"{y['year']}: {y['total_yearly_computed']}" for y in yearly) +
-          f", {len(detail)} detail lokasi)")
+          f", {len(detail)} detail lokasi, " +
+          f"{sum(y['total_fatalities'] for y in yearly)} fatalitas)")
     return 0
 
 

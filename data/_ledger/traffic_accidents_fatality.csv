@@ -1,0 +1,2 @@
+tahun,bulan,jenis,jumlah,sumber,dicatat_pada,catatan
+2026,2026-09,tunggal_motor,1,Kecelakaan Lalu Lintas.xlsx sheet 2026 sel I14/J14; dipastikan pemilik 2026-09-18,2026-09-18,"Label 'Fatality/kematian' ada di J14 dengan angka 1 di I14. Baris 14 berada DI BAWAH baris 'Total Kasus' (r12) sehingga di luar grid bulan, jadi posisi kolomnya bukan penanda bulan — I3 adalah Agustus. Pemilik memastikan 18 September 2026 bahwa fatalitas ini milik September 2026, jenis tunggal sepeda motor. Sebaiknya angka di workbook dipindah ke kolom J agar impor berikutnya tidak menyesatkan."
