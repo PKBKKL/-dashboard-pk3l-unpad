@@ -3,7 +3,7 @@
 > **Cermin bacaan buku besar. Dihasilkan otomatis — jangan diedit.**  
 > Sumber kebenaran: `timbulan.csv`. Nilai turunan (unpad_kg, total_kg) tidak disimpan; parser menghitungnya.
 
-_84 baris_
+_117 baris_
 
 | tanggal | hari | organik_anorganik_kg | sisa_makanan_kg | lingkungan_kg | aset_kg | ipdn_kg | catatan | quality_flag | sumber | dicatat_pada |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -91,3 +91,36 @@ _84 baris_
 | 2026-06-25 | Kamis | 2650 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
 | 2026-06-29 | Senin | 6440 | 1050 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
 | 2026-06-30 | Selasa | 4180 | 0 | 0 | 0 | 0 |  |  | data/timbulan.json (semai) | 2026-07-10 |
+| 2026-07-16 | Kamis | 4250 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
+| 2026-07-17 | Jumat | 2760 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
+| 2026-07-20 | Senin | 1190 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
+| 2026-07-21 | Selasa | 5560 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
+| 2026-07-22 | Rabu | 4150 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
+| 2026-07-23 | Kamis | 4470 | 0 | 430 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
+| 2026-07-27 | Senin | 4100 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
+| 2026-07-28 | Selasa | 5650 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
+| 2026-07-29 | Rabu | 5280 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
+| 2026-07-30 | Kamis | 3620 | 0 | 880 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
+| 2026-07-31 | Jumat | 3470 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
+| 2026-08-03 | Senin | 6000 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
+| 2026-08-04 | Selasa | 4050 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
+| 2026-08-05 | Rabu | 4490 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
+| 2026-08-06 | Kamis | 3350 | 1010 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
+| 2026-08-07 | Jumat | 2700 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
+| 2026-08-18 | Selasa | 6000 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
+| 2026-08-19 | Rabu | 6280 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
+| 2026-08-20 | Kamis | 2550 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
+| 2026-08-21 | Jumat | 4560 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
+| 2026-08-24 | Senin | 5470 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
+| 2026-08-26 | Rabu | 5130 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
+| 2026-08-28 | Jumat | 4620 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
+| 2026-08-31 | Senin | 8000 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
+| 2026-09-01 | Selasa | 3510 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
+| 2026-09-02 | Rabu | 3940 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
+| 2026-09-03 | Kamis | 6300 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
+| 2026-09-04 | Jumat | 4060 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
+| 2026-09-07 | Senin | 2930 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
+| 2026-09-08 | Selasa | 6540 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
+| 2026-09-09 | Rabu | 4440 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
+| 2026-09-15 | Selasa | 6920 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
+| 2026-09-16 | Rabu | 2780 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |

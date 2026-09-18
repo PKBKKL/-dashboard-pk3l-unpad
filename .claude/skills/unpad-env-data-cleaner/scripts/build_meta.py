@@ -39,7 +39,7 @@ META = {
             "label": "Timbulan Sampah",
             "route": "/sampah/timbulan",
             "icon": "trash",
-            "period_label": "Jan – Jun 2026",
+            "period_label": "Jan – Sep 2026",
             "primary_kpi": {"label": "Total Timbulan YTD", "value_field": "total_kg"}
         },
         {
@@ -63,7 +63,7 @@ META = {
             "label": "Kecelakaan Lalu Lintas",
             "route": "/lalu-lintas",
             "icon": "car-crash",
-            "period_label": "Apr 2025 – Jun 2026",
+            "period_label": "Apr 2025 – Sep 2026",
             "primary_kpi": {"label": "Total Kecelakaan", "value_field": "total_cases"}
         },
         {
