@@ -1,13 +1,13 @@
 {
   "note": "Angka minimum yang pernah tercapai per dataset. validate.py MENOLAK hasil rebuild yang lebih kecil dari ini. Perbarui hanya lewat --update-baseline, setelah yakin penurunannya memang disengaja.",
-  "updated_at": "2026-09-18",
+  "updated_at": "2026-10-16",
   "datasets": {
     "timbulan": {
       "counts": {
-        "daily_entries": 117
+        "daily_entries": 123
       },
       "totals": {
-        "total_kg": 650258.0
+        "total_kg": 683948.0
       },
       "keys": {
         "months_with_data": [
@@ -86,7 +86,7 @@
       },
       "totals": {
         "total_2025": 33,
-        "total_2026": 17,
+        "total_2026": 19,
         "fatalities_2025": 0,
         "fatalities_2026": 1
       },

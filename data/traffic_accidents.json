@@ -1,14 +1,14 @@
 {
   "dataset_id": "traffic_accidents",
   "version": "1.4",
-  "generated_at": "2026-09-18",
+  "generated_at": "2026-10-16",
   "source_files": [
     "_ledger/traffic_accidents.csv",
     "_ledger/traffic_accidents_fatality.csv"
   ],
   "period": {
     "start": "2025-04-01",
-    "end": "2026-09-30"
+    "end": "2026-10-31"
   },
   "data_quality_flags": [
     {
@@ -185,21 +185,29 @@
         {
           "month": "2026-09",
           "by_type": {
-            "tunggal_motor": 2,
+            "tunggal_motor": 3,
             "tabrak_2roda": 1,
             "tabrak_2roda_beam": 1
           },
-          "total": 4,
+          "total": 5,
           "fatalities": 1,
           "fatalities_by_type": {
             "tunggal_motor": 1
           }
+        },
+        {
+          "month": "2026-10",
+          "by_type": {
+            "pejalan_kaki": 1
+          },
+          "total": 1,
+          "fatalities": 0
         }
       ],
-      "total_yearly_computed": 17,
-      "total_yearly_reported": 17,
+      "total_yearly_computed": 19,
+      "total_yearly_reported": 19,
       "total_fatalities": 1,
-      "ytd_through_month": "2026-09"
+      "ytd_through_month": "2026-10"
     }
   ],
   "incidents_detail": [

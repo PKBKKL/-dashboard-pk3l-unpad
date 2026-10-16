@@ -6,7 +6,7 @@
     "owner_email": "k.susanto@geophys.unpad.ac.id",
     "url": "https://pkbkkl.github.io/-dashboard-pk3l-unpad/",
     "version": "1.4",
-    "last_updated": "2026-09-18"
+    "last_updated": "2026-10-16"
   },
   "datasets": [
     {
@@ -58,7 +58,7 @@
       "label": "Kecelakaan Lalu Lintas",
       "route": "/lalu-lintas",
       "icon": "car-crash",
-      "period_label": "Apr 2025 – Sep 2026",
+      "period_label": "Apr 2025 – Okt 2026",
       "primary_kpi": {
         "label": "Total Kecelakaan",
         "value_field": "total_cases"

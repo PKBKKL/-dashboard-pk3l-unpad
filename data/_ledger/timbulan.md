@@ -3,7 +3,7 @@
 > **Cermin bacaan buku besar. Dihasilkan otomatis — jangan diedit.**  
 > Sumber kebenaran: `timbulan.csv`. Nilai turunan (unpad_kg, total_kg) tidak disimpan; parser menghitungnya.
 
-_117 baris_
+_123 baris_
 
 | tanggal | hari | organik_anorganik_kg | sisa_makanan_kg | lingkungan_kg | aset_kg | ipdn_kg | catatan | quality_flag | sumber | dicatat_pada |
 |---|---|---|---|---|---|---|---|---|---|---|
@@ -122,5 +122,11 @@ _117 baris_
 | 2026-09-07 | Senin | 2930 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
 | 2026-09-08 | Selasa | 6540 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
 | 2026-09-09 | Rabu | 4440 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
+| 2026-09-10 | Kamis | 5090 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-10-16 |
+| 2026-09-11 | Jumat | 5530 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-10-16 |
+| 2026-09-14 | Senin | 7830 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-10-16 |
 | 2026-09-15 | Selasa | 6920 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
-| 2026-09-16 | Rabu | 2780 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-09-18 |
+| 2026-09-16 | Rabu | 5730 | 0 | 0 | 0 | 0 | Koreksi 2026-10-16 atas keputusan pemilik: organik_anorganik 2780 -> 5730 kg. Workbook dilengkapi setelah impor 2026-09-18; pemilik memastikan angka workbook yang benar. |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-10-16 |
+| 2026-09-17 | Kamis | 3320 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-10-16 |
+| 2026-09-18 | Jumat | 2690 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-10-16 |
+| 2026-09-22 | Selasa | 6280 | 0 | 0 | 0 | 0 |  |  | Copy of Total Timbulan Sampah 2026  (Bulanan).xlsx | 2026-10-16 |

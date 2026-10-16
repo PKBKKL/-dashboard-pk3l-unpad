@@ -3,7 +3,7 @@
 > **Cermin bacaan buku besar. Dihasilkan otomatis — jangan diedit.**  
 > Sumber kebenaran: `traffic_accidents.csv`. Satu baris = satu (tahun, bulan, jenis). Total dihitung parser.
 
-_32 baris_
+_33 baris_
 
 | tahun | bulan | jenis | jumlah | sumber | dicatat_pada |
 |---|---|---|---|---|---|
@@ -38,4 +38,5 @@ _32 baris_
 | 2026 | 2026-08 | tunggal_motor | 2 | Kecelakaan Lalu Lintas.xlsx | 2026-09-18 |
 | 2026 | 2026-09 | tabrak_2roda | 1 | Kecelakaan Lalu Lintas.xlsx | 2026-09-18 |
 | 2026 | 2026-09 | tabrak_2roda_beam | 1 | Kecelakaan Lalu Lintas.xlsx | 2026-09-18 |
-| 2026 | 2026-09 | tunggal_motor | 2 | Kecelakaan Lalu Lintas.xlsx | 2026-09-18 |
+| 2026 | 2026-09 | tunggal_motor | 3 | Kecelakaan Lalu Lintas.xlsx | 2026-10-16 |
+| 2026 | 2026-10 | pejalan_kaki | 1 | Kecelakaan Lalu Lintas.xlsx | 2026-10-16 |
