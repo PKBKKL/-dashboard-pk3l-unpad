@@ -209,6 +209,18 @@ def _metrics(out_dir: Path) -> dict:
             {},
             {"report_no": [r["report_no"] for r in d.get("reports", [])]})
 
+    # Kualitas udara: jumlah LHU, titik, dan pengukuran dijaga. Sumbernya transkrip
+    # MD di root; kalau transkripnya terpotong, LHU akan menyusut tanpa error lain.
+    p = out_dir / "air_quality.json"
+    if p.exists():
+        d = read_json(p)
+        add("air_quality",
+            {"reports": len(d.get("reports", [])),
+             "locations": len(d.get("locations", [])),
+             "measurements": sum(len(r.get("measurements", [])) for r in d.get("reports", []))},
+            {},
+            {"report_no": [r["report_no"] for r in d.get("reports", [])]})
+
     p = out_dir / "water_quality_ip.json"
     if p.exists():
         d = read_json(p)

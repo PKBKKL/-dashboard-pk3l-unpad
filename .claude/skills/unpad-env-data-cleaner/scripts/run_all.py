@@ -41,6 +41,7 @@ PIPELINE = [
     # Parser MD lama dan parser XLSX langsung sudah dikeluarkan dari sini.
     "parse_timbulan_ledger",
     "parse_water_quality",
+    "parse_air_quality",
     "parse_tree_incidents",
     "parse_traffic_accidents_ledger",
     "parse_b3_waste",

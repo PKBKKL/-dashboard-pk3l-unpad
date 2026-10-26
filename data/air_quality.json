@@ -1,0 +1,1174 @@
+{
+  "dataset_id": "air_quality",
+  "version": "1.4",
+  "generated_at": "2026-10-26",
+  "source_files": [
+    "Laporan Hasil Uji Udara Ambien dan Kebisingan PK3L UNPAD Juli 2026.md"
+  ],
+  "period": {
+    "start": "2026-07-10",
+    "end": "2026-07-22"
+  },
+  "data_quality_flags": [
+    {
+      "severity": "info",
+      "message": "Baku mutu diambil apa adanya dari kolom “Baku Mutu” di LHU, bukan dari teks peraturan. Parameter yang di LHU tertulis “-” tidak dinilai kepatuhannya: Kebisingan Lingkungan, PM 10, PM 2,5, Timbal (Pb)."
+    },
+    {
+      "severity": "info",
+      "message": "Timbal (Pb) pada 4 titik tercatat di bawah batas deteksi metode (<0,04 µg/m³); nilainya dicatat sebagai batas deteksi."
+    },
+    {
+      "severity": "warning",
+      "message": "Ketidakpastian (U95) tidak dicantumkan di laporan asli untuk: 003/LHU/UA-EKS/AKALAB/VII/2026 · Total Suspended Particulate (TSP)."
+    },
+    {
+      "severity": "info",
+      "message": "Baru tersedia satu periode sampling (10–14 Juli 2026), sehingga perbandingan antar waktu belum dapat ditampilkan."
+    }
+  ],
+  "issuing_lab": {
+    "name": "PT Akalab Mahardika Indonesia",
+    "head": "Tri Hadhi Nugroho",
+    "technical_manager": "Galih Noviar Pratama",
+    "report_place_date": "Sleman, 22 Juli 2026",
+    "sampling_method_ambient": "SNI 19.7119.6-2005"
+  },
+  "parameter_dictionary": {
+    "so2": {
+      "label": "Sulfur Dioksida (SO₂)",
+      "unit": "µg/m³",
+      "category": "gas",
+      "averaging_time": "1 Jam"
+    },
+    "no2": {
+      "label": "Nitrogen Dioksida (NO₂)",
+      "unit": "µg/m³",
+      "category": "gas",
+      "averaging_time": "1 Jam"
+    },
+    "o3": {
+      "label": "Oksidan (O₃)",
+      "unit": "µg/m³",
+      "category": "gas",
+      "averaging_time": "1 Jam"
+    },
+    "tsp": {
+      "label": "Total Suspended Particulate (TSP)",
+      "unit": "µg/m³",
+      "category": "partikulat",
+      "averaging_time": "24 Jam"
+    },
+    "pb": {
+      "label": "Timbal (Pb)",
+      "unit": "µg/m³",
+      "category": "logam",
+      "averaging_time": "24 Jam"
+    },
+    "pm25": {
+      "label": "PM 2,5",
+      "unit": "µg/m³",
+      "category": "partikulat",
+      "averaging_time": "24 Jam"
+    },
+    "pm10": {
+      "label": "PM 10",
+      "unit": "µg/m³",
+      "category": "partikulat",
+      "averaging_time": "24 Jam"
+    },
+    "kebisingan": {
+      "label": "Kebisingan Lingkungan",
+      "unit": "dBA",
+      "category": "fisika",
+      "averaging_time": "Sesaat"
+    }
+  },
+  "locations": [
+    {
+      "id": "gerbang-kampus-barat",
+      "label": "Gerbang Kampus Barat (Pintu B, RS UNPAD)",
+      "lat": -6.932306,
+      "lon": 107.771889,
+      "coordinates_dms": "06°55’56.3”S 107°46’18.8”E"
+    },
+    {
+      "id": "gerbang-unpad-lama",
+      "label": "Gerbang UNPAD Lama (Gerbang D)",
+      "lat": -6.931056,
+      "lon": 107.776083,
+      "coordinates_dms": "06°55’51.8”S 107°46’33.9”E"
+    },
+    {
+      "id": "pemukiman-penduduk-cileles",
+      "label": "Pemukiman Penduduk Cileles (Pintu G)",
+      "lat": -6.912778,
+      "lon": 107.774333,
+      "coordinates_dms": "06°54’46.0”S 107°46’27.6”E"
+    },
+    {
+      "id": "pemukiman-penduduk-cinenggang",
+      "label": "Pemukiman Penduduk Cinenggang",
+      "lat": -6.920167,
+      "lon": 107.773861,
+      "coordinates_dms": "06°55’12.6”S 107°46’25.9”E"
+    }
+  ],
+  "sample_type_label": {
+    "udara_ambien": "Udara Ambien",
+    "kebisingan_lingkungan": "Kebisingan Lingkungan"
+  },
+  "reports": [
+    {
+      "report_no": "001/LHU/UA-EKS/AKALAB/VII/2026",
+      "sample_code": "001/UA-EKS/AKALAB/VII/2026",
+      "sample_label": "UA 1",
+      "sample_type": "udara_ambien",
+      "location_id": "pemukiman-penduduk-cileles",
+      "location_label_raw": "Pemukiman Penduduk Cileles (Pintu G)",
+      "coordinates_dms": "06°54’46.0”S 107°46’27.6”E",
+      "lat": -6.912778,
+      "lon": 107.774333,
+      "regulation_raw": "PP RI Nomor 22 Tahun 2021 tentang Penyelenggaraan Perlindungan dan Pengelolaan Lingkungan Hidup, Baku Mutu Udara Ambien (Lampiran VII)",
+      "sampling_date": {
+        "start": "2026-07-10",
+        "end": "2026-07-11"
+      },
+      "received_date": "2026-07-15",
+      "testing_period": {
+        "start": "2026-07-15",
+        "end": "2026-07-21"
+      },
+      "report_date": "2026-07-22",
+      "measurements": [
+        {
+          "parameter_id": "so2",
+          "parameter_label": "Sulfur Dioksida (SO₂)",
+          "category": "gas",
+          "unit": "µg/m³",
+          "averaging_time": "1 Jam",
+          "result": 14.01,
+          "result_display": "14,01",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 150.0
+          },
+          "compliant": true,
+          "method": "SNI 7119.7:2017",
+          "uncertainty_u95": 0.43
+        },
+        {
+          "parameter_id": "no2",
+          "parameter_label": "Nitrogen Dioksida (NO₂)",
+          "category": "gas",
+          "unit": "µg/m³",
+          "averaging_time": "1 Jam",
+          "result": 59.11,
+          "result_display": "59,11",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 200.0
+          },
+          "compliant": true,
+          "method": "SNI 7119.2:2017",
+          "uncertainty_u95": 0.29
+        },
+        {
+          "parameter_id": "o3",
+          "parameter_label": "Oksidan (O₃)",
+          "category": "gas",
+          "unit": "µg/m³",
+          "averaging_time": "1 Jam",
+          "result": 33.69,
+          "result_display": "33,69",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 150.0
+          },
+          "compliant": true,
+          "method": "SNI 7119.8:2017",
+          "uncertainty_u95": 0.57
+        },
+        {
+          "parameter_id": "tsp",
+          "parameter_label": "Total Suspended Particulate (TSP)",
+          "category": "partikulat",
+          "unit": "µg/m³",
+          "averaging_time": "24 Jam",
+          "result": 186.24,
+          "result_display": "186,24",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 230.0
+          },
+          "compliant": true,
+          "method": "SNI 7119.3-2017",
+          "uncertainty_u95": 6.25
+        },
+        {
+          "parameter_id": "pb",
+          "parameter_label": "Timbal (Pb)",
+          "category": "logam",
+          "unit": "µg/m³",
+          "averaging_time": "24 Jam",
+          "result": 0.04,
+          "result_display": "<0,04",
+          "below_detection_limit": true,
+          "threshold": null,
+          "compliant": null,
+          "method": "SNI 7119.4-2017",
+          "uncertainty_u95": null
+        },
+        {
+          "parameter_id": "pm25",
+          "parameter_label": "PM 2,5",
+          "category": "partikulat",
+          "unit": "µg/m³",
+          "averaging_time": "24 Jam",
+          "result": 6.34,
+          "result_display": "6,34",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "method": "IK-M/7.2.49/AKALAB",
+          "uncertainty_u95": 0.07
+        },
+        {
+          "parameter_id": "pm10",
+          "parameter_label": "PM 10",
+          "category": "partikulat",
+          "unit": "µg/m³",
+          "averaging_time": "24 Jam",
+          "result": 9.68,
+          "result_display": "9,68",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "method": "IK-M/7.2.50/AKALAB",
+          "uncertainty_u95": 0.12
+        }
+      ],
+      "climatology": [
+        {
+          "parameter": "Temperatur",
+          "value_1h": "32",
+          "value_24h": "22.7",
+          "unit": "oC"
+        },
+        {
+          "parameter": "Kelembaban",
+          "value_1h": "36.9",
+          "value_24h": "61.5",
+          "unit": "%RH"
+        },
+        {
+          "parameter": "Tekanan Udara",
+          "value_1h": "685.6",
+          "value_24h": "662.8",
+          "unit": "mmHg"
+        },
+        {
+          "parameter": "Kecepatan angin",
+          "value_1h": "0.0-1.3",
+          "value_24h": "0.0-1.3",
+          "unit": "m/s"
+        },
+        {
+          "parameter": "Arah angin dominan",
+          "value_1h": "Selatan",
+          "value_24h": "Barat",
+          "unit": "-"
+        },
+        {
+          "parameter": "Cuaca",
+          "value_1h": "Cerah",
+          "value_24h": "Cerah",
+          "unit": "-"
+        }
+      ],
+      "summary": {
+        "total_parameters": 7,
+        "parameters_with_threshold": 4,
+        "compliant_count": 4,
+        "non_compliant_count": 0,
+        "non_compliant_parameters": [],
+        "compliance_pct": 100.0
+      }
+    },
+    {
+      "report_no": "002/LHU/UA-EKS/AKALAB/VII/2026",
+      "sample_code": "002/UA-EKS/AKALAB/VII/2026",
+      "sample_label": "UA 2",
+      "sample_type": "udara_ambien",
+      "location_id": "gerbang-kampus-barat",
+      "location_label_raw": "Gerbang Kampus Barat (Pintu B, RS UNPAD)",
+      "coordinates_dms": "06°55’56.3”S 107°46’18.8”E",
+      "lat": -6.932306,
+      "lon": 107.771889,
+      "regulation_raw": "PP RI Nomor 22 Tahun 2021 tentang Penyelenggaraan Perlindungan dan Pengelolaan Lingkungan Hidup, Baku Mutu Udara Ambien (Lampiran VII)",
+      "sampling_date": {
+        "start": "2026-07-11",
+        "end": "2026-07-12"
+      },
+      "received_date": "2026-07-15",
+      "testing_period": {
+        "start": "2026-07-15",
+        "end": "2026-07-21"
+      },
+      "report_date": "2026-07-22",
+      "measurements": [
+        {
+          "parameter_id": "so2",
+          "parameter_label": "Sulfur Dioksida (SO₂)",
+          "category": "gas",
+          "unit": "µg/m³",
+          "averaging_time": "1 Jam",
+          "result": 68.72,
+          "result_display": "68,72",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 150.0
+          },
+          "compliant": true,
+          "method": "SNI 7119.7:2017",
+          "uncertainty_u95": 2.11
+        },
+        {
+          "parameter_id": "no2",
+          "parameter_label": "Nitrogen Dioksida (NO₂)",
+          "category": "gas",
+          "unit": "µg/m³",
+          "averaging_time": "1 Jam",
+          "result": 16.52,
+          "result_display": "16,52",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 200.0
+          },
+          "compliant": true,
+          "method": "SNI 7119.2:2017",
+          "uncertainty_u95": 0.08
+        },
+        {
+          "parameter_id": "o3",
+          "parameter_label": "Oksidan (O₃)",
+          "category": "gas",
+          "unit": "µg/m³",
+          "averaging_time": "1 Jam",
+          "result": 55.81,
+          "result_display": "55,81",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 150.0
+          },
+          "compliant": true,
+          "method": "SNI 7119.8:2017",
+          "uncertainty_u95": 0.95
+        },
+        {
+          "parameter_id": "tsp",
+          "parameter_label": "Total Suspended Particulate (TSP)",
+          "category": "partikulat",
+          "unit": "µg/m³",
+          "averaging_time": "24 Jam",
+          "result": 128.64,
+          "result_display": "128,64",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 230.0
+          },
+          "compliant": true,
+          "method": "SNI 7119.3-2017",
+          "uncertainty_u95": 4.39
+        },
+        {
+          "parameter_id": "pb",
+          "parameter_label": "Timbal (Pb)",
+          "category": "logam",
+          "unit": "µg/m³",
+          "averaging_time": "24 Jam",
+          "result": 0.04,
+          "result_display": "<0,04",
+          "below_detection_limit": true,
+          "threshold": null,
+          "compliant": null,
+          "method": "SNI 7119.4-2017",
+          "uncertainty_u95": null
+        },
+        {
+          "parameter_id": "pm25",
+          "parameter_label": "PM 2,5",
+          "category": "partikulat",
+          "unit": "µg/m³",
+          "averaging_time": "24 Jam",
+          "result": 7.38,
+          "result_display": "7,38",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "method": "IK-M/7.2.49/AKALAB",
+          "uncertainty_u95": 0.08
+        },
+        {
+          "parameter_id": "pm10",
+          "parameter_label": "PM 10",
+          "category": "partikulat",
+          "unit": "µg/m³",
+          "averaging_time": "24 Jam",
+          "result": 10.04,
+          "result_display": "10,04",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "method": "IK-M/7.2.50/AKALAB",
+          "uncertainty_u95": 0.11
+        }
+      ],
+      "climatology": [
+        {
+          "parameter": "Temperatur",
+          "value_1h": "32.7",
+          "value_24h": "25.1",
+          "unit": "oC"
+        },
+        {
+          "parameter": "Kelembaban",
+          "value_1h": "31.2",
+          "value_24h": "65.2",
+          "unit": "%RH"
+        },
+        {
+          "parameter": "Tekanan Udara",
+          "value_1h": "697.3",
+          "value_24h": "697.0",
+          "unit": "mmHg"
+        },
+        {
+          "parameter": "Kecepatan angin",
+          "value_1h": "0.0-2.0",
+          "value_24h": "0.0-2.0",
+          "unit": "m/s"
+        },
+        {
+          "parameter": "Arah angin dominan",
+          "value_1h": "Selatan",
+          "value_24h": "Barat",
+          "unit": "-"
+        },
+        {
+          "parameter": "Cuaca",
+          "value_1h": "Cerah",
+          "value_24h": "Cerah",
+          "unit": "-"
+        }
+      ],
+      "summary": {
+        "total_parameters": 7,
+        "parameters_with_threshold": 4,
+        "compliant_count": 4,
+        "non_compliant_count": 0,
+        "non_compliant_parameters": [],
+        "compliance_pct": 100.0
+      }
+    },
+    {
+      "report_no": "003/LHU/UA-EKS/AKALAB/VII/2026",
+      "sample_code": "003/UA-EKS/AKALAB/VII/2026",
+      "sample_label": "UA 3",
+      "sample_type": "udara_ambien",
+      "location_id": "gerbang-unpad-lama",
+      "location_label_raw": "Gerbang UNPAD Lama (Gerbang D)",
+      "coordinates_dms": "06°55’51.8”S 107°46’33.9”E",
+      "lat": -6.931056,
+      "lon": 107.776083,
+      "regulation_raw": "PP RI Nomor 22 Tahun 2021 tentang Penyelenggaraan Perlindungan dan Pengelolaan Lingkungan Hidup, Baku Mutu Udara Ambien (Lampiran VII)",
+      "sampling_date": {
+        "start": "2026-07-12",
+        "end": "2026-07-13"
+      },
+      "received_date": "2026-07-15",
+      "testing_period": {
+        "start": "2026-07-15",
+        "end": "2026-07-21"
+      },
+      "report_date": "2026-07-22",
+      "measurements": [
+        {
+          "parameter_id": "so2",
+          "parameter_label": "Sulfur Dioksida (SO₂)",
+          "category": "gas",
+          "unit": "µg/m³",
+          "averaging_time": "1 Jam",
+          "result": 9.91,
+          "result_display": "9,91",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 150.0
+          },
+          "compliant": true,
+          "method": "SNI 7119.7:2017",
+          "uncertainty_u95": 0.3
+        },
+        {
+          "parameter_id": "no2",
+          "parameter_label": "Nitrogen Dioksida (NO₂)",
+          "category": "gas",
+          "unit": "µg/m³",
+          "averaging_time": "1 Jam",
+          "result": 21.0,
+          "result_display": "21",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 200.0
+          },
+          "compliant": true,
+          "method": "SNI 7119.2:2017",
+          "uncertainty_u95": 0.1
+        },
+        {
+          "parameter_id": "o3",
+          "parameter_label": "Oksidan (O₃)",
+          "category": "gas",
+          "unit": "µg/m³",
+          "averaging_time": "1 Jam",
+          "result": 62.9,
+          "result_display": "62,9",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 150.0
+          },
+          "compliant": true,
+          "method": "SNI 7119.8:2017",
+          "uncertainty_u95": 1.07
+        },
+        {
+          "parameter_id": "tsp",
+          "parameter_label": "Total Suspended Particulate (TSP)",
+          "category": "partikulat",
+          "unit": "µg/m³",
+          "averaging_time": "24 Jam",
+          "result": 124.8,
+          "result_display": "124,8",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 230.0
+          },
+          "compliant": true,
+          "method": "SNI 7119.3-2017",
+          "uncertainty_u95": null
+        },
+        {
+          "parameter_id": "pb",
+          "parameter_label": "Timbal (Pb)",
+          "category": "logam",
+          "unit": "µg/m³",
+          "averaging_time": "24 Jam",
+          "result": 0.04,
+          "result_display": "<0,04",
+          "below_detection_limit": true,
+          "threshold": null,
+          "compliant": null,
+          "method": "SNI 7119.4-2017",
+          "uncertainty_u95": null
+        },
+        {
+          "parameter_id": "pm25",
+          "parameter_label": "PM 2,5",
+          "category": "partikulat",
+          "unit": "µg/m³",
+          "averaging_time": "24 Jam",
+          "result": 7.18,
+          "result_display": "7,18",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "method": "IK-M/7.2.49/AKALAB",
+          "uncertainty_u95": 0.06
+        },
+        {
+          "parameter_id": "pm10",
+          "parameter_label": "PM 10",
+          "category": "partikulat",
+          "unit": "µg/m³",
+          "averaging_time": "24 Jam",
+          "result": 10.48,
+          "result_display": "10,48",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "method": "IK-M/7.2.50/AKALAB",
+          "uncertainty_u95": 0.09
+        }
+      ],
+      "climatology": [
+        {
+          "parameter": "Temperatur",
+          "value_1h": "36.7",
+          "value_24h": "34.2",
+          "unit": "oC"
+        },
+        {
+          "parameter": "Kelembaban",
+          "value_1h": "31.6",
+          "value_24h": "74.2",
+          "unit": "%RH"
+        },
+        {
+          "parameter": "Tekanan Udara",
+          "value_1h": "697.3",
+          "value_24h": "697.1",
+          "unit": "mmHg"
+        },
+        {
+          "parameter": "Kecepatan angin",
+          "value_1h": "0.0-1.9",
+          "value_24h": "0.0-1.9",
+          "unit": "m/s"
+        },
+        {
+          "parameter": "Arah angin dominan",
+          "value_1h": "Utara",
+          "value_24h": "Utara",
+          "unit": "-"
+        },
+        {
+          "parameter": "Cuaca",
+          "value_1h": "Cerah",
+          "value_24h": "Cerah",
+          "unit": "-"
+        }
+      ],
+      "summary": {
+        "total_parameters": 7,
+        "parameters_with_threshold": 4,
+        "compliant_count": 4,
+        "non_compliant_count": 0,
+        "non_compliant_parameters": [],
+        "compliance_pct": 100.0
+      }
+    },
+    {
+      "report_no": "004/LHU/UA-EKS/AKALAB/VII/2026",
+      "sample_code": "004/UA-EKS/AKALAB/VII/2026",
+      "sample_label": "UA 4",
+      "sample_type": "udara_ambien",
+      "location_id": "pemukiman-penduduk-cinenggang",
+      "location_label_raw": "Pemukiman Penduduk Cinenggang",
+      "coordinates_dms": "06°55’12.6”S 107°46’25.9”E",
+      "lat": -6.920167,
+      "lon": 107.773861,
+      "regulation_raw": "PP RI Nomor 22 Tahun 2021 tentang Penyelenggaraan Perlindungan dan Pengelolaan Lingkungan Hidup, Baku Mutu Udara Ambien (Lampiran VII)",
+      "sampling_date": {
+        "start": "2026-07-13",
+        "end": "2026-07-14"
+      },
+      "received_date": "2026-07-15",
+      "testing_period": {
+        "start": "2026-07-15",
+        "end": "2026-07-21"
+      },
+      "report_date": "2026-07-22",
+      "measurements": [
+        {
+          "parameter_id": "so2",
+          "parameter_label": "Sulfur Dioksida (SO₂)",
+          "category": "gas",
+          "unit": "µg/m³",
+          "averaging_time": "1 Jam",
+          "result": 12.59,
+          "result_display": "12,59",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 150.0
+          },
+          "compliant": true,
+          "method": "SNI 7119.7:2017",
+          "uncertainty_u95": 0.39
+        },
+        {
+          "parameter_id": "no2",
+          "parameter_label": "Nitrogen Dioksida (NO₂)",
+          "category": "gas",
+          "unit": "µg/m³",
+          "averaging_time": "1 Jam",
+          "result": 11.33,
+          "result_display": "11,33",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 200.0
+          },
+          "compliant": true,
+          "method": "SNI 7119.2:2017",
+          "uncertainty_u95": 0.06
+        },
+        {
+          "parameter_id": "o3",
+          "parameter_label": "Oksidan (O₃)",
+          "category": "gas",
+          "unit": "µg/m³",
+          "averaging_time": "1 Jam",
+          "result": 84.21,
+          "result_display": "84,21",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 150.0
+          },
+          "compliant": true,
+          "method": "SNI 7119.8:2017",
+          "uncertainty_u95": 1.43
+        },
+        {
+          "parameter_id": "tsp",
+          "parameter_label": "Total Suspended Particulate (TSP)",
+          "category": "partikulat",
+          "unit": "µg/m³",
+          "averaging_time": "24 Jam",
+          "result": 106.82,
+          "result_display": "106,82",
+          "below_detection_limit": false,
+          "threshold": {
+            "type": "max",
+            "max": 230.0
+          },
+          "compliant": true,
+          "method": "SNI 7119.3-2017",
+          "uncertainty_u95": 3.67
+        },
+        {
+          "parameter_id": "pb",
+          "parameter_label": "Timbal (Pb)",
+          "category": "logam",
+          "unit": "µg/m³",
+          "averaging_time": "24 Jam",
+          "result": 0.04,
+          "result_display": "<0,04",
+          "below_detection_limit": true,
+          "threshold": null,
+          "compliant": null,
+          "method": "SNI 7119.4-2017",
+          "uncertainty_u95": null
+        },
+        {
+          "parameter_id": "pm25",
+          "parameter_label": "PM 2,5",
+          "category": "partikulat",
+          "unit": "µg/m³",
+          "averaging_time": "24 Jam",
+          "result": 7.23,
+          "result_display": "7,23",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "method": "IK-M/7.2.49/AKALAB",
+          "uncertainty_u95": 0.08
+        },
+        {
+          "parameter_id": "pm10",
+          "parameter_label": "PM 10",
+          "category": "partikulat",
+          "unit": "µg/m³",
+          "averaging_time": "24 Jam",
+          "result": 10.34,
+          "result_display": "10,34",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "method": "IK-M/7.2.50/AKALAB",
+          "uncertainty_u95": 0.11
+        }
+      ],
+      "climatology": [
+        {
+          "parameter": "Temperatur",
+          "value_1h": "33.6",
+          "value_24h": "24",
+          "unit": "oC"
+        },
+        {
+          "parameter": "Kelembaban",
+          "value_1h": "31.7",
+          "value_24h": "75.5",
+          "unit": "%RH"
+        },
+        {
+          "parameter": "Tekanan Udara",
+          "value_1h": "693.8",
+          "value_24h": "693.6",
+          "unit": "mmHg"
+        },
+        {
+          "parameter": "Kecepatan angin",
+          "value_1h": "0.0-2.0",
+          "value_24h": "0.0-2.0",
+          "unit": "m/s"
+        },
+        {
+          "parameter": "Arah angin dominan",
+          "value_1h": "Selatan",
+          "value_24h": "Selatan",
+          "unit": "-"
+        },
+        {
+          "parameter": "Cuaca",
+          "value_1h": "Cerah",
+          "value_24h": "Cerah",
+          "unit": "-"
+        }
+      ],
+      "summary": {
+        "total_parameters": 7,
+        "parameters_with_threshold": 4,
+        "compliant_count": 4,
+        "non_compliant_count": 0,
+        "non_compliant_parameters": [],
+        "compliance_pct": 100.0
+      }
+    },
+    {
+      "report_no": "001/LHU/UK-EKS/AKALAB/VII/2026",
+      "sample_code": "001/UK-EKS/AKALAB/VII/2026",
+      "sample_label": "UK 1",
+      "sample_type": "kebisingan_lingkungan",
+      "location_id": "pemukiman-penduduk-cileles",
+      "location_label_raw": "Pemukiman Penduduk Cileles (Pintu G)",
+      "coordinates_dms": "06°54’46.0”S 107°46’27.6”E",
+      "lat": -6.912778,
+      "lon": 107.774333,
+      "regulation_raw": "-",
+      "sampling_date": {
+        "start": "2026-07-10",
+        "end": "2026-07-10"
+      },
+      "received_date": "2026-07-15",
+      "testing_period": {
+        "start": "2026-07-15",
+        "end": "2026-07-21"
+      },
+      "report_date": "2026-07-22",
+      "measurements": [
+        {
+          "parameter_id": "kebisingan",
+          "parameter_label": "Kebisingan Lingkungan",
+          "category": "fisika",
+          "unit": "dBA",
+          "averaging_time": "Sesaat",
+          "result": 66.8,
+          "result_display": "66,8",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "method": "IK-M/7.2.25/AKALAB",
+          "uncertainty_u95": 0.9
+        }
+      ],
+      "climatology": [
+        {
+          "parameter": "Temperatur",
+          "value": "28.6",
+          "unit": "oC"
+        },
+        {
+          "parameter": "Kelembaban",
+          "value": "45.8",
+          "unit": "%RH"
+        },
+        {
+          "parameter": "Tekanan Udara",
+          "value": "693.5",
+          "unit": "mmHg"
+        },
+        {
+          "parameter": "Kecepatan angin",
+          "value": "0.0-1.3",
+          "unit": "m/s"
+        },
+        {
+          "parameter": "Arah angin dominan",
+          "value": "Barat",
+          "unit": "-"
+        },
+        {
+          "parameter": "Cuaca",
+          "value": "Cerah",
+          "unit": "-"
+        }
+      ],
+      "summary": {
+        "total_parameters": 1,
+        "parameters_with_threshold": 0,
+        "compliant_count": 0,
+        "non_compliant_count": 0,
+        "non_compliant_parameters": [],
+        "compliance_pct": null
+      }
+    },
+    {
+      "report_no": "002/LHU/UK-EKS/AKALAB/VII/2026",
+      "sample_code": "002/UK-EKS/AKALAB/VII/2026",
+      "sample_label": "UK 2",
+      "sample_type": "kebisingan_lingkungan",
+      "location_id": "gerbang-kampus-barat",
+      "location_label_raw": "Gerbang Kampus Barat (Pintu B, RS UNPAD)",
+      "coordinates_dms": "06°55’56.3”S 107°46’18.8”E",
+      "lat": -6.932306,
+      "lon": 107.771889,
+      "regulation_raw": "-",
+      "sampling_date": {
+        "start": "2026-07-11",
+        "end": "2026-07-11"
+      },
+      "received_date": "2026-07-15",
+      "testing_period": {
+        "start": "2026-07-15",
+        "end": "2026-07-21"
+      },
+      "report_date": "2026-07-22",
+      "measurements": [
+        {
+          "parameter_id": "kebisingan",
+          "parameter_label": "Kebisingan Lingkungan",
+          "category": "fisika",
+          "unit": "dBA",
+          "averaging_time": "Sesaat",
+          "result": 74.0,
+          "result_display": "74",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "method": "IK-M/7.2.25/AKALAB",
+          "uncertainty_u95": 0.9
+        }
+      ],
+      "climatology": [
+        {
+          "parameter": "Temperatur",
+          "value": "29.6",
+          "unit": "oC"
+        },
+        {
+          "parameter": "Kelembaban",
+          "value": "37.3",
+          "unit": "%RH"
+        },
+        {
+          "parameter": "Tekanan Udara",
+          "value": "698.3",
+          "unit": "mmHg"
+        },
+        {
+          "parameter": "Kecepatan angin",
+          "value": "0.0-2.0",
+          "unit": "m/s"
+        },
+        {
+          "parameter": "Arah angin dominan",
+          "value": "Selatan",
+          "unit": "-"
+        },
+        {
+          "parameter": "Cuaca",
+          "value": "Cerah",
+          "unit": "-"
+        }
+      ],
+      "summary": {
+        "total_parameters": 1,
+        "parameters_with_threshold": 0,
+        "compliant_count": 0,
+        "non_compliant_count": 0,
+        "non_compliant_parameters": [],
+        "compliance_pct": null
+      }
+    },
+    {
+      "report_no": "003/LHU/UK-EKS/AKALAB/VII/2026",
+      "sample_code": "003/UK-EKS/AKALAB/VII/2026",
+      "sample_label": "UK 3",
+      "sample_type": "kebisingan_lingkungan",
+      "location_id": "gerbang-unpad-lama",
+      "location_label_raw": "Gerbang UNPAD Lama (Gerbang D)",
+      "coordinates_dms": "06°55’51.8”S 107°46’33.9”E",
+      "lat": -6.931056,
+      "lon": 107.776083,
+      "regulation_raw": "-",
+      "sampling_date": {
+        "start": "2026-07-12",
+        "end": "2026-07-12"
+      },
+      "received_date": "2026-07-15",
+      "testing_period": {
+        "start": "2026-07-15",
+        "end": "2026-07-21"
+      },
+      "report_date": "2026-07-22",
+      "measurements": [
+        {
+          "parameter_id": "kebisingan",
+          "parameter_label": "Kebisingan Lingkungan",
+          "category": "fisika",
+          "unit": "dBA",
+          "averaging_time": "Sesaat",
+          "result": 66.5,
+          "result_display": "66,5",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "method": "IK-M/7.2.25/AKALAB",
+          "uncertainty_u95": 0.9
+        }
+      ],
+      "climatology": [
+        {
+          "parameter": "Temperatur",
+          "value": "27.2",
+          "unit": "oC"
+        },
+        {
+          "parameter": "Kelembaban",
+          "value": "53.4",
+          "unit": "%RH"
+        },
+        {
+          "parameter": "Tekanan Udara",
+          "value": "698.3",
+          "unit": "mmHg"
+        },
+        {
+          "parameter": "Kecepatan angin",
+          "value": "0.0-1.9",
+          "unit": "m/s"
+        },
+        {
+          "parameter": "Arah angin dominan",
+          "value": "Utara",
+          "unit": "-"
+        },
+        {
+          "parameter": "Cuaca",
+          "value": "Cerah",
+          "unit": "-"
+        }
+      ],
+      "summary": {
+        "total_parameters": 1,
+        "parameters_with_threshold": 0,
+        "compliant_count": 0,
+        "non_compliant_count": 0,
+        "non_compliant_parameters": [],
+        "compliance_pct": null
+      }
+    },
+    {
+      "report_no": "004/LHU/UK-EKS/AKALAB/VII/2026",
+      "sample_code": "004/UK-EKS/AKALAB/VII/2026",
+      "sample_label": "UK 4",
+      "sample_type": "kebisingan_lingkungan",
+      "location_id": "pemukiman-penduduk-cinenggang",
+      "location_label_raw": "Pemukiman Penduduk Cinenggang",
+      "coordinates_dms": "06°55’12.6”S 107°46’25.9”E",
+      "lat": -6.920167,
+      "lon": 107.773861,
+      "regulation_raw": "-",
+      "sampling_date": {
+        "start": "2026-07-13",
+        "end": "2026-07-13"
+      },
+      "received_date": "2026-07-15",
+      "testing_period": {
+        "start": "2026-07-15",
+        "end": "2026-07-21"
+      },
+      "report_date": "2026-07-22",
+      "measurements": [
+        {
+          "parameter_id": "kebisingan",
+          "parameter_label": "Kebisingan Lingkungan",
+          "category": "fisika",
+          "unit": "dBA",
+          "averaging_time": "Sesaat",
+          "result": 59.2,
+          "result_display": "59,2",
+          "below_detection_limit": false,
+          "threshold": null,
+          "compliant": null,
+          "method": "IK-M/7.2.25/AKALAB",
+          "uncertainty_u95": 0.9
+        }
+      ],
+      "climatology": [
+        {
+          "parameter": "Temperatur",
+          "value": "24.5",
+          "unit": "oC"
+        },
+        {
+          "parameter": "Kelembaban",
+          "value": "66.6",
+          "unit": "%RH"
+        },
+        {
+          "parameter": "Tekanan Udara",
+          "value": "694.6",
+          "unit": "mmHg"
+        },
+        {
+          "parameter": "Kecepatan angin",
+          "value": "0.0-2.0",
+          "unit": "m/s"
+        },
+        {
+          "parameter": "Arah angin dominan",
+          "value": "Selatan",
+          "unit": "-"
+        },
+        {
+          "parameter": "Cuaca",
+          "value": "Cerah",
+          "unit": "-"
+        }
+      ],
+      "summary": {
+        "total_parameters": 1,
+        "parameters_with_threshold": 0,
+        "compliant_count": 0,
+        "non_compliant_count": 0,
+        "non_compliant_parameters": [],
+        "compliance_pct": null
+      }
+    }
+  ],
+  "aggregate_summary": {
+    "by_sample_type": {
+      "udara_ambien": {
+        "reports": 4,
+        "locations": 4,
+        "compliance_pct_avg": 100.0,
+        "common_exceedances": []
+      },
+      "kebisingan_lingkungan": {
+        "reports": 4,
+        "locations": 4,
+        "compliance_pct_avg": null,
+        "common_exceedances": [],
+        "noise_min_dba": 59.2,
+        "noise_max_dba": 74.0,
+        "noise_avg_dba": 66.62
+      }
+    }
+  }
+}

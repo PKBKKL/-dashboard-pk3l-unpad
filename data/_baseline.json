@@ -58,6 +58,26 @@
         ]
       }
     },
+    "air_quality": {
+      "counts": {
+        "reports": 8,
+        "locations": 4,
+        "measurements": 32
+      },
+      "totals": {},
+      "keys": {
+        "report_no": [
+          "001/LHU/UA-EKS/AKALAB/VII/2026",
+          "002/LHU/UA-EKS/AKALAB/VII/2026",
+          "003/LHU/UA-EKS/AKALAB/VII/2026",
+          "004/LHU/UA-EKS/AKALAB/VII/2026",
+          "001/LHU/UK-EKS/AKALAB/VII/2026",
+          "002/LHU/UK-EKS/AKALAB/VII/2026",
+          "003/LHU/UK-EKS/AKALAB/VII/2026",
+          "004/LHU/UK-EKS/AKALAB/VII/2026"
+        ]
+      }
+    },
     "water_quality_ip": {
       "counts": {
         "points": 14,

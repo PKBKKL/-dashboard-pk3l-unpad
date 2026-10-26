@@ -24,6 +24,7 @@ Sumber tunggal nomor versi adalah `SPEC_VERSION` di `scripts/_utils.py`. Ia dite
 10. [Schema: `traffic_accidents.json`](#10-schema-traffic_accidentsjson)
 11. [Schema: `b3_waste.json`](#11-schema-b3_wastejson)
 12. [Schema: `electricity.json`](#12-schema-electricityjson)
+12A. [Schema: `air_quality.json`](#12a-schema-air_qualityjson)
 13. [Aturan Validasi & Rekonsiliasi](#13-aturan-validasi--rekonsiliasi)
 14. [Changelog](#14-changelog)
 
@@ -1067,6 +1068,81 @@ Konsumsi listrik kampus **Jatinangor** (tanpa RSPTN), per bulan. Sumber: `Data L
 
 ---
 
+## 12A. Schema: `air_quality.json`
+
+Hasil uji **udara ambien** dan **kebisingan lingkungan** di kawasan UNPAD Jatinangor.
+Sumbernya transkrip Markdown di root repo —
+`Laporan Hasil Uji Udara Ambien dan Kebisingan PK3L UNPAD Juli 2026.md` — bukan PDF, karena
+`*.pdf` di-gitignore dan repo tidak boleh bergantung pada berkas yang tidak ikut git.
+Polanya sama dengan `water_quality`.
+
+```json
+{
+  "dataset_id": "air_quality",
+  "version": "1.4",
+  "period": { "start": "2026-07-10", "end": "2026-07-22" },
+  "issuing_lab": { "name": "PT Akalab Mahardika Indonesia", "head": "…", "technical_manager": "…" },
+  "parameter_dictionary": {
+    "so2": { "label": "Sulfur Dioksida (SO₂)", "unit": "µg/m³", "category": "gas", "averaging_time": "1 Jam" }
+  },
+  "locations": [
+    { "id": "pemukiman-penduduk-cileles", "label": "Pemukiman Penduduk Cileles (Pintu G)",
+      "lat": -6.912778, "lon": 107.774333, "coordinates_dms": "06°54’46.0”S 107°46’27.6”E" }
+  ],
+  "sample_type_label": { "udara_ambien": "Udara Ambien", "kebisingan_lingkungan": "Kebisingan Lingkungan" },
+  "reports": [
+    {
+      "report_no": "001/LHU/UA-EKS/AKALAB/VII/2026",
+      "sample_code": "001/UA-EKS/AKALAB/VII/2026", "sample_label": "UA 1",
+      "sample_type": "udara_ambien",
+      "location_id": "pemukiman-penduduk-cileles",
+      "lat": -6.912778, "lon": 107.774333,
+      "sampling_date": { "start": "2026-07-10", "end": "2026-07-11" },
+      "received_date": "2026-07-15",
+      "testing_period": { "start": "2026-07-15", "end": "2026-07-21" },
+      "measurements": [
+        { "parameter_id": "so2", "unit": "µg/m³", "averaging_time": "1 Jam",
+          "result": 14.01, "result_display": "14,01", "below_detection_limit": false,
+          "threshold": { "type": "max", "max": 150 }, "compliant": true,
+          "method": "SNI 7119.7:2017", "uncertainty_u95": 0.43 }
+      ],
+      "climatology": [
+        { "parameter": "Temperatur", "value_1h": "32", "value_24h": "22.7", "unit": "oC" }
+      ],
+      "summary": { "total_parameters": 7, "parameters_with_threshold": 4,
+                   "compliant_count": 4, "non_compliant_count": 0,
+                   "non_compliant_parameters": [], "compliance_pct": 100.0 }
+    }
+  ],
+  "aggregate_summary": { "by_sample_type": { "udara_ambien": { "reports": 4, "compliance_pct_avg": 100.0 } } }
+}
+```
+
+### 12A.1 Baku mutu dibaca dari LHU, bukan dari teks peraturan
+
+`threshold` diisi **apa adanya dari kolom “Baku Mutu” di LHU**. Untuk Pb, PM 2,5, PM 10, dan
+kebisingan lingkungan, LHU menulis `-`; parameter itu mendapat `threshold: null` dan
+`compliant: null`, lalu selisihnya diterbitkan sebagai `data_quality_flag`.
+
+**Angka baku mutu tidak pernah diambil dari ingatan atau dari peraturan yang tidak ada
+salinannya di repo.** PP 22/2021 Lampiran VII memang memuat nilai untuk sebagian parameter
+itu, tetapi salinannya belum tersedia di `Data dan Pengetahuan\`. Bila kelak tersedia,
+tambahkan ambangnya lewat berkas sumber daya dan sebutkan dasarnya — jangan menuliskannya
+langsung di parser.
+
+### 12A.2 Catatan lapangan
+
+- `result` numerik; nilai di bawah batas deteksi disimpan sebagai **batas deteksinya** dengan
+  `below_detection_limit: true` dan `result_display` berawalan `<` (mis. `"<0,04"`).
+- `climatology` punya dua bentuk: udara ambien memakai `value_1h` + `value_24h` (LHU mencatat
+  dua kolom), kebisingan memakai `value` tunggal.
+- Parameter yang belum terdaftar di tabel `PARAM` parser membuat build **gagal-keras** —
+  tidak pernah dibuang diam-diam.
+- Baru ada satu periode sampling (10–14 Juli 2026), sehingga halaman membandingkan
+  **antar titik**, bukan antar waktu seperti `kualitas-air.html`.
+
+---
+
 ## 13. Aturan Validasi & Rekonsiliasi
 
 Skrip `validate.py` harus menjalankan ini sebelum publish:
@@ -1111,6 +1187,7 @@ Skrip `validate.py` harus menjalankan ini sebelum publish:
 | 1.4 | 2026-07-10 | `b3_waste`: bagian baru **`tps_logbook`** — limbah masuk, limbah keluar ke pengolah berizin, pengiriman per tanggal, dan **sisa di TPS**. Sheet `Logbook (...)` tidak lagi dilewati. |
 | 1.4 | 2026-08-04 | Dataset baru **`electricity`** (konsumsi listrik Jatinangor per bulan, rata-rata bergerak 12 bulan). Envelope 1.4 tidak berubah; tidak ada dataset lain yang tersentuh. Menjadi dataset ke-7 dan halaman ke-8 (`docs/listrik.html`). |
 | 1.4 | 2026-09-18 | `traffic_accidents`: field baru **`monthly[].fatalities`**, **`monthly[].fatalities_by_type`**, dan **`yearly[].total_fatalities`**, bersumber dari buku besar baru `data/_ledger/traffic_accidents_fatality.csv`. Aditif dan opsional; envelope 1.4 tidak berubah dan tidak ada dataset lain yang tersentuh. Lihat [§10.1](#101-fatalitas). |
+| 1.4 | 2026-10-26 | Dataset baru **`air_quality`** — hasil uji udara ambien dan kebisingan lingkungan, 8 LHU di 4 titik, bersumber dari transkrip MD di root repo. Aditif: envelope 1.4 tidak berubah dan tidak ada dataset lain yang tersentuh. Menjadi dataset ke-8 dan halaman ke-9 (`docs/kualitas-udara.html`). Lihat [§12A](#12a-schema-air_qualityjson). |
 
 ### Catatan migrasi 1.3 → 1.4
 

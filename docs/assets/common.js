@@ -114,6 +114,7 @@ const NAV = [
   { href: "./pengolahan-sampah.html", label: "Pengolahan Sampah", icon: "recycle" },
   { href: "./timbulan-sampah.html", label: "Timbulan Sampah", icon: "trash-2" },
   { href: "./kualitas-air.html", label: "Kualitas Air", icon: "droplet" },
+  { href: "./kualitas-udara.html", label: "Kualitas Udara", icon: "wind" },
   { href: "./insiden-vegetasi.html", label: "Insiden Vegetasi", icon: "trees" },
   { href: "./kecelakaan-lalu-lintas.html", label: "Kecelakaan Lalu Lintas", icon: "car-front" },
   { href: "./limbah-b3.html", label: "Limbah B3", icon: "flask" },
@@ -132,6 +133,7 @@ const ICONS = {
   "menu": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>`,
   "flask": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2v6.5L2 21a1 1 0 0 0 .9 1.5h18.2A1 1 0 0 0 22 21L15 8.5V2"/><path d="M8 2h8"/><path d="M7.5 14h9"/></svg>`,
   "zap": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>`,
+  "wind": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.8 19.6A2 2 0 1 0 14 16H2"/><path d="M17.5 8a2.5 2.5 0 1 1 2 4H2"/><path d="M9.8 4.4A2 2 0 1 1 11 8H2"/></svg>`,
 };
 
 export function renderSidebar(currentPage) {

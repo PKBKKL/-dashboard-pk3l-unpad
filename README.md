@@ -1,6 +1,6 @@
 # Dashboard Pemantauan Lingkungan UNPAD
 
-Dashboard berbasis web untuk Pusat Pengembangan Kampus Berkelanjutan serta Keselamatan dan Keamanan Lingkungan (**PKBKKL**) Universitas Padjadjaran. Menampilkan **tujuh domain** pemantauan: pengolahan sampah, timbulan harian, kualitas air, insiden vegetasi, kecelakaan lalu lintas, limbah B3, dan konsumsi listrik.
+Dashboard berbasis web untuk Pusat Pengembangan Kampus Berkelanjutan serta Keselamatan dan Keamanan Lingkungan (**PKBKKL**) Universitas Padjadjaran. Menampilkan **delapan domain** pemantauan: pengolahan sampah, timbulan harian, kualitas air, kualitas udara, insiden vegetasi, kecelakaan lalu lintas, limbah B3, dan konsumsi listrik.
 
 **Live:** <https://pkbkkl.github.io/-dashboard-pk3l-unpad/>
 
@@ -113,6 +113,7 @@ Butuh HTTP server (bukan `file://`) karena halaman memakai `fetch()` untuk memua
 │   ├── pengolahan-sampah.html
 │   ├── timbulan-sampah.html
 │   ├── kualitas-air.html
+│   ├── kualitas-udara.html
 │   ├── insiden-vegetasi.html
 │   ├── kecelakaan-lalu-lintas.html
 │   ├── limbah-b3.html
@@ -134,7 +135,7 @@ Butuh HTTP server (bukan `file://`) karena halaman memakai `fetch()` untuk memua
     └── skills/unpad-env-data-cleaner/        # pipeline: scripts/, schemas/, resources/
 ```
 
-Berkas MD sumber yang **masih aktif** ada di root: `Data Pengolahan Sampah.md`, `Scan Sertifikat … Oktober 2025.md`, dan `Kecelakaan dan Kejadian Kantor Lingkungan Tahun 2025.md`. Sumber XLSX/PDF di-gitignore dan tinggal di `Data dan Pengetahuan/` milik pemilik.
+Berkas MD sumber yang **masih aktif** ada di root: `Data Pengolahan Sampah.md`, `Scan Sertifikat … Oktober 2025.md`, `Laporan Hasil Uji Udara Ambien dan Kebisingan … Juli 2026.md`, dan `Kecelakaan dan Kejadian Kantor Lingkungan Tahun 2025.md`. Sumber XLSX/PDF di-gitignore dan tinggal di `Data dan Pengetahuan/` milik pemilik.
 
 ## Halaman Dashboard
 
@@ -144,6 +145,7 @@ Berkas MD sumber yang **masih aktif** ada di root: `Data Pengolahan Sampah.md`, 
 | `/Pengolahan_Sampah` | `/pengolahan-sampah.html` | Komposisi sampah masuk, distribusi hasil olahan, rasio bulanan |
 | `/Timbulan_Sampah` | `/timbulan-sampah.html` | Timbulan harian, 4 kategori, 7 sumber kendaraan |
 | `/Kualitas_Air` | `/kualitas-air.html` | 9 LHU, status kepatuhan, Indeks Pencemaran, peta titik sampling |
+| *(belum ada)* | `/kualitas-udara.html` | 8 LHU udara ambien & kebisingan di 4 titik, peta, matriks parameter, perbandingan antar titik |
 | `/Insiden_Vegetasi` | `/insiden-vegetasi.html` | Heatmap lokasi × bulan, top lokasi |
 | `/Kecelakaan_Lalu_Lintas` | `/kecelakaan-lalu-lintas.html` | Distribusi bulanan per tahun, detail per lokasi |
 | *(belum ada)* | `/limbah-b3.html` | Timbulan B3 per fakultas dan kode PP 22/2021, penyerahan ke pengolah berizin, sisa di TPS |

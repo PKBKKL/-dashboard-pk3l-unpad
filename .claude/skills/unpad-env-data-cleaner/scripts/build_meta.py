@@ -51,6 +51,14 @@ META = {
             "primary_kpi": {"label": "Persentase Parameter Patuh", "value_field": "compliance_pct"}
         },
         {
+            "id": "air_quality",
+            "label": "Kualitas Udara",
+            "route": "/udara",
+            "icon": "wind",
+            "period_label": "Juli 2026",
+            "primary_kpi": {"label": "Persentase Parameter Patuh", "value_field": "compliance_pct"}
+        },
+        {
             "id": "tree_incidents",
             "label": "Insiden Vegetasi",
             "route": "/vegetasi",

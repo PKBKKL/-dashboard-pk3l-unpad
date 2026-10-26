@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kualitas Udara</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="./assets/style.css" />
+</head>
+<body>
+  <div class="min-h-screen flex">
+    <aside id="sidebar" class="hidden lg:flex fixed left-0 top-0 h-screen w-64 flex-col border-r border-slate-200 bg-white z-20"></aside>
+    <main class="flex-1 ml-0 lg:ml-64 px-6 py-6 lg:px-10 lg:py-8 max-w-[1400px]">
+      <button id="sidebar-toggle" class="lg:hidden mb-3 p-2 rounded border border-slate-200 bg-white">≡</button>
+
+      <section id="page-header" class="mb-8"></section>
+      <section id="kpis" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4"></section>
+
+      <!-- ─── PETA TITIK SAMPLING ─── -->
+      <section class="card p-5 mt-8">
+        <div class="flex flex-wrap items-start justify-between gap-3 mb-1">
+          <div>
+            <h3 class="text-sm font-semibold text-slate-900">Peta Titik Sampling Udara</h3>
+            <p class="text-xs text-slate-400 mt-0.5">
+              Warna titik = status kepatuhan parameter udara ambien yang punya baku mutu di LHU. Klik titik untuk detail.
+            </p>
+          </div>
+          <div id="type-toggle" class="flex gap-1.5"></div>
+        </div>
+        <div id="map" style="height: 460px; border-radius: 8px;"></div>
+        <div id="map-legend" class="flex flex-wrap gap-x-5 gap-y-1.5 mt-3 text-xs text-slate-600"></div>
+      </section>
+
+      <!-- ─── MATRIKS PARAMETER PER TITIK ─── -->
+      <section class="card p-5 mt-6">
+        <h3 class="text-sm font-semibold text-slate-900 mb-1">Matriks Hasil Uji per Parameter &amp; Titik</h3>
+        <p class="text-xs text-slate-400 mb-3">
+          Warna sel = kepatuhan terhadap baku mutu di LHU. Sel abu-abu = parameter tanpa baku mutu di LHU, sehingga tidak dinilai.
+        </p>
+        <div id="matrix" class="overflow-x-auto"></div>
+      </section>
+
+      <!-- ─── PERBANDINGAN ANTAR TITIK ─── -->
+      <section class="card p-5 mt-6">
+        <h3 class="text-sm font-semibold text-slate-900 mb-1">Perbandingan Konsentrasi Antar Titik</h3>
+        <p class="text-xs text-slate-400 mb-3">
+          Pilih parameter. Tiap batang = satu titik sampling. Garis putus-putus merah = baku mutu (bila dicantumkan di LHU).
+        </p>
+        <div class="flex flex-wrap gap-3 mb-4">
+          <label class="text-xs text-slate-600">
+            <span class="block mb-1 font-medium">Parameter</span>
+            <select id="param-select" class="border border-slate-300 rounded-md px-3 py-1.5 text-sm bg-white min-w-[230px]"></select>
+          </label>
+        </div>
+        <div id="param-chart"></div>
+        <p id="param-note" class="text-xs text-slate-400 mt-2"></p>
+      </section>
+
+      <!-- ─── RINCIAN LHU ─── -->
+      <section class="card overflow-hidden mt-6">
+        <header class="px-5 py-4 border-b border-slate-200">
+          <h3 class="text-sm font-semibold text-slate-900">Rincian Laporan Hasil Uji</h3>
+          <p class="text-xs text-slate-400 mt-1">Delapan LHU PT Akalab Mahardika Indonesia, sampling 10–14 Juli 2026.</p>
+        </header>
+        <div class="overflow-x-auto">
+          <table class="data-table" id="lhu-table">
+            <thead><tr>
+              <th>No. LHU</th><th>Jenis</th><th>Titik</th><th>Tanggal Sampling</th>
+              <th class="num">Parameter</th><th class="num">Dinilai</th><th class="num">Patuh</th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="flags" class="mt-8"></section>
+      <footer id="page-footer"></footer>
+    </main>
+  </div>
+
+  <script type="module">
+    import {
+      bootstrap, renderHeader, renderKpis, renderFlags, $, loadDataset, fmtInt,
+    } from "./assets/common.js";
+
+    await bootstrap("kualitas-udara.html");
+    const data = await loadDataset("air_quality");
+
+    const PD = data.parameter_dictionary;
+    const TYPELABEL = data.sample_type_label;
+    const LOKLABEL = Object.fromEntries(data.locations.map(l => [l.id, l.label]));
+    const BAR_COLORS = ["#2563eb", "#16a34a", "#f97316", "#db2777", "#7c3aed", "#0891b2"];
+
+    // Status titik: hijau bila semua parameter berbaku-mutu patuh, merah bila ada
+    // yang melebihi, abu-abu bila tidak ada satu pun parameter yang bisa dinilai.
+    const STATUS = {
+      patuh:    { label: "Seluruh parameter patuh", color: "#0ca30c" },
+      lampau:   { label: "Ada parameter melebihi baku mutu", color: "#d03b3b" },
+      tak_nilai:{ label: "Tidak ada baku mutu di LHU", color: "#898781" },
+    };
+
+    const ambien = data.reports.filter(r => r.sample_type === "udara_ambien");
+    const bising = data.reports.filter(r => r.sample_type === "kebisingan_lingkungan");
+    const ag = data.aggregate_summary.by_sample_type;
+
+    renderHeader({
+      title: "Kualitas Udara",
+      period: `Sampling 10–14 Juli 2026 · laporan 22 Juli 2026`,
+      description: `Hasil uji <b>udara ambien</b> dan <b>kebisingan lingkungan</b> di `
+        + `<b>${data.locations.length} titik</b> kawasan UNPAD Jatinangor oleh `
+        + `${data.issuing_lab.name}. Baku mutu udara ambien mengikuti yang tercantum pada LHU `
+        + `(PP 22/2021 Lampiran VII). Parameter yang di LHU tidak diberi baku mutu `
+        + `tidak dinilai kepatuhannya.`,
+    });
+
+    // ─── KPI ────────────────────────────────────────────────────────────
+    const totalParam = data.reports.reduce((a, r) => a + r.measurements.length, 0);
+    const dinilai = data.reports.reduce((a, r) => a + r.summary.parameters_with_threshold, 0);
+    const lampau = data.reports.reduce((a, r) => a + r.summary.non_compliant_count, 0);
+    renderKpis("#kpis", [
+      { label: "Titik Sampling", value: String(data.locations.length), icon: "wind", trend: "Juli 2026" },
+      { label: "Parameter Patuh", value: `${String(ag.udara_ambien.compliance_pct_avg).replace(".", ",")}%`,
+        accent: lampau ? "amber" : "brand", trend: `${dinilai - lampau} dari ${dinilai} parameter berbaku mutu` },
+      { label: "Kebisingan Tertinggi", value: String(ag.kebisingan_lingkungan.noise_max_dba).replace(".", ","),
+        unit: "dBA", accent: "amber",
+        trend: `rata-rata ${String(ag.kebisingan_lingkungan.noise_avg_dba).replace(".", ",")} dBA` },
+      { label: "Laporan Hasil Uji", value: String(data.reports.length), accent: "blue",
+        trend: `${totalParam} pengukuran` },
+    ]);
+
+    // ─── PETA ───────────────────────────────────────────────────────────
+    const map = L.map("map").setView([-6.921, 107.773], 14);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      maxZoom: 19,
+    }).addTo(map);
+    const pts = data.locations.filter(l => l.lat != null).map(l => [l.lat, l.lon]);
+    if (pts.length) map.fitBounds(pts, { padding: [50, 50] });
+
+    const markerLayer = L.layerGroup().addTo(map);
+    let currentType = "udara_ambien";
+
+    function statusOf(rep) {
+      const d = rep.summary.parameters_with_threshold;
+      if (!d) return "tak_nilai";
+      return rep.summary.non_compliant_count > 0 ? "lampau" : "patuh";
+    }
+
+    function renderMap(type) {
+      markerLayer.clearLayers();
+      data.reports.filter(r => r.sample_type === type).forEach(rep => {
+        if (rep.lat == null) return;
+        const st = STATUS[statusOf(rep)];
+        const baris = rep.measurements.map(m => {
+          const thr = m.threshold ? `${String(m.threshold.max).replace(".", ",")} ${m.unit}` : "–";
+          const warna = m.compliant === false ? "#d03b3b" : (m.compliant === true ? "#0b0b0b" : "#898781");
+          return `<tr>
+            <td style="padding:1px 0;color:#475569">${m.parameter_label}</td>
+            <td style="padding:1px 0 1px 10px;text-align:right;font-weight:600;color:${warna}">${m.result_display}</td>
+            <td style="padding:1px 0 1px 8px;color:#94a3b8">${m.unit}</td>
+            <td style="padding:1px 0 1px 10px;color:#94a3b8">${thr}</td></tr>`;
+        }).join("");
+        L.circleMarker([rep.lat, rep.lon], {
+          radius: 9, fillColor: st.color, color: "#ffffff", weight: 2, fillOpacity: 0.92,
+        }).addTo(markerLayer).bindPopup(`
+          <div style="min-width:280px;font-size:12px;line-height:1.5">
+            <div style="font-weight:600;color:#0f172a">${rep.location_label_raw}</div>
+            <div style="color:#64748b">${TYPELABEL[rep.sample_type]} · ${rep.sample_label}</div>
+            <div style="margin-top:3px;color:#475569">Sampling ${rep.sampling_date.start}${
+              rep.sampling_date.end !== rep.sampling_date.start ? " s.d. " + rep.sampling_date.end : ""}</div>
+            <div style="margin-top:6px;padding:5px 8px;border-radius:6px;background:${st.color}1a">
+              <span style="font-weight:700;color:${st.color}">${st.label}</span>
+            </div>
+            <table style="margin-top:7px;border-collapse:collapse;width:100%">
+              <tr><td colspan="2" style="color:#94a3b8;font-size:11px">Parameter</td>
+                  <td colspan="2" style="color:#94a3b8;font-size:11px;padding-left:10px">Baku mutu</td></tr>
+              ${baris}
+            </table>
+            <div style="margin-top:5px;color:#64748b">LHU ${rep.report_no}</div>
+          </div>`, { maxWidth: 340 });
+      });
+    }
+
+    function renderTypeToggle() {
+      $("#type-toggle").innerHTML = Object.keys(TYPELABEL).map(t => `
+        <button data-type="${t}" class="tp-btn px-3 py-1.5 rounded-md text-xs font-medium border ${
+          t === currentType ? "bg-green-600 border-green-600 text-white" : "bg-white border-slate-300 text-slate-600"
+        }">${TYPELABEL[t]}</button>`).join("");
+      document.querySelectorAll(".tp-btn").forEach(b => b.onclick = () => {
+        currentType = b.dataset.type;
+        renderTypeToggle();
+        renderMap(currentType);
+      });
+    }
+    $("#map-legend").innerHTML = Object.values(STATUS).map(s => `
+      <span class="inline-flex items-center gap-1.5">
+        <span style="width:11px;height:11px;border-radius:50%;background:${s.color};display:inline-block;border:2px solid #fff;box-shadow:0 0 0 1px ${s.color}"></span>
+        ${s.label}
+      </span>`).join("");
+    renderTypeToggle();
+    renderMap(currentType);
+    setTimeout(() => map.invalidateSize(), 200);
+
+    // ─── MATRIKS PARAMETER × TITIK ──────────────────────────────────────
+    (function renderMatrix() {
+      const lokIds = data.locations.map(l => l.id);
+      // parameter diurutkan mengikuti urutan kemunculan di LHU
+      const urut = [];
+      data.reports.forEach(r => r.measurements.forEach(m => {
+        if (!urut.includes(m.parameter_id)) urut.push(m.parameter_id);
+      }));
+      const cari = (pid, lok) => {
+        for (const r of data.reports) {
+          if (r.location_id !== lok) continue;
+          const m = r.measurements.find(x => x.parameter_id === pid);
+          if (m) return m;
+        }
+        return null;
+      };
+      let rows = "";
+      let lastType = null;
+      urut.forEach(pid => {
+        const tipe = pid === "kebisingan" ? "kebisingan_lingkungan" : "udara_ambien";
+        if (tipe !== lastType) {
+          rows += `<tr><td colspan="${lokIds.length + 2}" style="background:#f1f5f9;font-weight:600;color:#334155;padding:6px 10px">${TYPELABEL[tipe]}</td></tr>`;
+          lastType = tipe;
+        }
+        const meta = PD[pid];
+        let thrLabel = "–";
+        let cells = "";
+        lokIds.forEach(lok => {
+          const m = cari(pid, lok);
+          if (!m) { cells += `<td style="text-align:center;color:#cbd5e1">—</td>`; return; }
+          if (m.threshold) thrLabel = String(m.threshold.max).replace(".", ",");
+          const c = m.compliant === false ? "#d03b3b" : (m.compliant === true ? "#0ca30c" : "#898781");
+          cells += `<td style="text-align:center;padding:5px">
+            <span style="display:inline-block;min-width:58px;padding:3px 8px;border-radius:6px;background:${c}1f;color:${c};font-weight:600"
+              title="${m.compliant === null ? "Tidak ada baku mutu di LHU" : (m.compliant ? "Patuh" : "Melebihi baku mutu")}">${m.result_display}</span></td>`;
+        });
+        rows += `<tr>
+          <td style="padding:5px 10px;color:#0f172a">${meta.label}<span style="color:#94a3b8"> · ${meta.unit}</span>
+            <div style="font-size:11px;color:#94a3b8">${meta.averaging_time}</div></td>
+          ${cells}
+          <td style="text-align:center;color:#475569">${thrLabel}</td></tr>`;
+      });
+      $("#matrix").innerHTML = `
+        <table class="data-table" style="min-width:720px">
+          <thead><tr><th>Parameter</th>${
+            lokIds.map(id => `<th class="num" style="text-align:center">${LOKLABEL[id]}</th>`).join("")
+          }<th class="num" style="text-align:center">Baku Mutu</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>`;
+    })();
+
+    // ─── PERBANDINGAN ANTAR TITIK ───────────────────────────────────────
+    const sel = $("#param-select");
+    const urutParam = [];
+    data.reports.forEach(r => r.measurements.forEach(m => {
+      if (!urutParam.includes(m.parameter_id)) urutParam.push(m.parameter_id);
+    }));
+    sel.innerHTML = urutParam.map(pid =>
+      `<option value="${pid}">${PD[pid].label} (${PD[pid].unit})</option>`).join("");
+
+    function renderParam() {
+      const pid = sel.value, meta = PD[pid];
+      const labels = [], vals = [], texts = [];
+      let thr = null, adaLOD = false;
+      data.locations.forEach(l => {
+        let m = null;
+        for (const r of data.reports) {
+          if (r.location_id !== l.id) continue;
+          const f = r.measurements.find(x => x.parameter_id === pid);
+          if (f) { m = f; break; }
+        }
+        if (!m) return;
+        if (m.threshold) thr = m.threshold.max;
+        if (m.below_detection_limit) adaLOD = true;
+        labels.push(l.label);
+        vals.push(m.result);
+        texts.push(m.result_display);
+      });
+      const warna = labels.map((_, i) => BAR_COLORS[i % BAR_COLORS.length]);
+      Plotly.newPlot("param-chart", [{
+        x: labels, y: vals, type: "bar", text: texts, textposition: "outside",
+        marker: { color: warna },
+        hovertemplate: `<b>%{x}</b><br>%{y} ${meta.unit}<extra></extra>`,
+      }], {
+        height: 380,
+        margin: { t: 20, b: 80, l: 60, r: 14 },
+        font: { family: "Inter, system-ui, sans-serif", size: 12, color: "#475569" },
+        paper_bgcolor: "transparent", plot_bgcolor: "transparent",
+        xaxis: { gridcolor: "#e2e8f0", linecolor: "#cbd5e1", automargin: true },
+        yaxis: { title: meta.unit, gridcolor: "#e2e8f0", linecolor: "#cbd5e1",
+                 automargin: true, rangemode: "tozero" },
+        hoverlabel: { bgcolor: "white", bordercolor: "#e2e8f0", font: { size: 12, color: "#0f172a" } },
+        shapes: thr != null ? [{
+          type: "line", xref: "paper", x0: 0, x1: 1, y0: thr, y1: thr,
+          line: { color: "#dc2626", width: 1.5, dash: "dash" },
+        }] : [],
+        annotations: thr != null ? [{
+          xref: "paper", x: 1, y: thr, xanchor: "right",
+          text: `Baku mutu: ${String(thr).replace(".", ",")}`, showarrow: false, yshift: 10,
+          font: { size: 10, color: "#dc2626" },
+        }] : [],
+      }, { responsive: true, displayModeBar: false, locale: "id" });
+
+      $("#param-note").textContent =
+        `${meta.label} (${meta.unit}) · waktu pengukuran ${meta.averaging_time}`
+        + (thr != null ? "" : " · parameter ini tidak diberi baku mutu di LHU, sehingga tidak dinilai kepatuhannya")
+        + (adaLOD ? " · nilai bertanda “<” berada di bawah batas deteksi metode" : "");
+    }
+    sel.onchange = renderParam;
+    renderParam();
+
+    // ─── TABEL RINCIAN LHU ──────────────────────────────────────────────
+    $("#lhu-table").querySelector("tbody").innerHTML = data.reports.map(r => `
+      <tr>
+        <td>${r.report_no}</td>
+        <td>${TYPELABEL[r.sample_type]}</td>
+        <td>${r.location_label_raw}</td>
+        <td>${r.sampling_date.start}${r.sampling_date.end !== r.sampling_date.start ? " – " + r.sampling_date.end : ""}</td>
+        <td class="num">${fmtInt(r.summary.total_parameters)}</td>
+        <td class="num">${fmtInt(r.summary.parameters_with_threshold)}</td>
+        <td class="num">${fmtInt(r.summary.compliant_count)}</td>
+      </tr>`).join("");
+
+    renderFlags(data.data_quality_flags);
+  </script>
+</body>
+</html>
