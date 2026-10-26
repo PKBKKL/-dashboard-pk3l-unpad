@@ -59,14 +59,13 @@
         </div>
       </section>
 
-      <section id="flags" class="mt-8"></section>
       <footer id="page-footer"></footer>
     </main>
   </div>
 
   <script type="module">
     import {
-      bootstrap, renderHeader, renderKpis, renderFlags, $,
+      bootstrap, renderHeader, renderKpis, $,
       loadDataset, fmtInt, fmtKg, fmtPct,
     } from "./assets/common.js";
     import { stackedBar, donutChart, groupedBar } from "./assets/charts.js";
@@ -141,10 +140,6 @@
       </tr>
     `).join("");
 
-    const filteredFlags = (data.data_quality_flags ?? []).filter(
-      f => !(f.message ?? "").includes("M/D → D/M"),
-    );
-    renderFlags(filteredFlags);
   </script>
 </body>
 </html>

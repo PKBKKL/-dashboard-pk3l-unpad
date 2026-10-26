@@ -241,29 +241,6 @@ export function renderKpis(containerSel, cards) {
   initAnimations(container.parentElement || document);
 }
 
-// ─── Data quality flags ───────────────────────────────────────────────
-
-export function renderFlags(flags, containerSel = "#flags", title = "Catatan Integritas Data") {
-  const container = $(containerSel);
-  if (!container || !flags?.length) return;
-  const stylesBySeverity = {
-    info: "bg-blue-50 border-blue-200 text-blue-800",
-    warning: "bg-amber-50 border-amber-200 text-amber-800",
-    error: "bg-red-50 border-red-200 text-red-800",
-  };
-  const labels = { info: "Info", warning: "Peringatan", error: "Error" };
-  container.innerHTML = `
-    <h2 class="text-sm font-semibold text-slate-700 mb-3">${title}</h2>
-    <ul class="space-y-2">
-      ${flags.map((f) => `
-        <li class="rounded-lg border px-3 py-2.5 text-sm ${stylesBySeverity[f.severity] ?? ""}">
-          <span class="font-medium mr-1.5">${labels[f.severity] ?? f.severity}.</span>${f.message}
-        </li>
-      `).join("")}
-    </ul>
-  `;
-}
-
 // ─── Footer ───────────────────────────────────────────────────────────
 
 export function renderFooter(meta) {

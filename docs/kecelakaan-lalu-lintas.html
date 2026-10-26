@@ -55,14 +55,13 @@
         </div>
       </section>
 
-      <section id="flags" class="mt-8"></section>
       <footer id="page-footer"></footer>
     </main>
   </div>
 
   <script type="module">
     import {
-      bootstrap, renderHeader, renderKpis, renderFlags, $, MONTH_SHORT,
+      bootstrap, renderHeader, renderKpis, $, MONTH_SHORT,
       loadDataset, loadShared, fmtInt, fmtMonth,
     } from "./assets/common.js";
     import { stackedBar } from "./assets/charts.js";
@@ -237,7 +236,6 @@
         </tr>`;
     }
 
-    renderFlags(data.data_quality_flags);
   </script>
 </body>
 </html>

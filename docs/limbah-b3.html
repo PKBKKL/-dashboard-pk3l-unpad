@@ -182,14 +182,13 @@
         </div>
       </section>
 
-      <section id="flags" class="mt-8"></section>
       <footer id="page-footer"></footer>
     </main>
   </div>
 
   <script type="module">
     import {
-      bootstrap, renderHeader, renderKpis, renderFlags, $, $$, MONTH_SHORT,
+      bootstrap, renderHeader, renderKpis, $, $$, MONTH_SHORT,
       loadDataset, fmtInt, fmtNum,
     } from "./assets/common.js";
     import { lineChart, groupedBar, treemap } from "./assets/charts.js";
@@ -653,7 +652,6 @@
     renderEntries();
     $("#filter-input").addEventListener("input", (e) => renderEntries(e.target.value));
 
-    renderFlags(data.data_quality_flags);
   </script>
 </body>
 </html>

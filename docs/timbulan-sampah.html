@@ -104,14 +104,13 @@
         </div>
       </section>
 
-      <section id="flags" class="mt-8"></section>
       <footer id="page-footer"></footer>
     </main>
   </div>
 
   <script type="module">
     import {
-      bootstrap, renderHeader, renderKpis, renderFlags, $, MONTH_SHORT,
+      bootstrap, renderHeader, renderKpis, $, MONTH_SHORT,
       loadDataset, fmtInt, fmtKg, fmtMonth, fmtNum,
     } from "./assets/common.js";
     import { stackedBar, lineChart, donutChart } from "./assets/charts.js";
@@ -291,8 +290,6 @@
           </tr>`;
         }).join("");
 
-    const infoFlags = (data.data_quality_flags ?? []).filter(f => f.severity === "info");
-    renderFlags(infoFlags);
   </script>
 </body>
 </html>
