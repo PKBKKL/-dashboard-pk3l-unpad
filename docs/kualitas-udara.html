@@ -59,31 +59,13 @@
         <p id="param-note" class="text-xs text-slate-400 mt-2"></p>
       </section>
 
-      <!-- ─── RINCIAN LHU ─── -->
-      <section class="card overflow-hidden mt-6">
-        <header class="px-5 py-4 border-b border-slate-200">
-          <h3 class="text-sm font-semibold text-slate-900">Rincian Laporan Hasil Uji</h3>
-          <p class="text-xs text-slate-400 mt-1">Delapan LHU PT Akalab Mahardika Indonesia, sampling 10–14 Juli 2026.</p>
-        </header>
-        <div class="overflow-x-auto">
-          <table class="data-table" id="lhu-table">
-            <thead><tr>
-              <th>No. LHU</th><th>Jenis</th><th>Titik</th><th>Tanggal Sampling</th>
-              <th class="num">Parameter</th><th class="num">Dinilai</th><th class="num">Patuh</th>
-            </tr></thead>
-            <tbody></tbody>
-          </table>
-        </div>
-      </section>
-
-      <section id="flags" class="mt-8"></section>
       <footer id="page-footer"></footer>
     </main>
   </div>
 
   <script type="module">
     import {
-      bootstrap, renderHeader, renderKpis, renderFlags, $, loadDataset, fmtInt,
+      bootstrap, renderHeader, renderKpis, $, loadDataset,
     } from "./assets/common.js";
 
     await bootstrap("kualitas-udara.html");
@@ -315,19 +297,6 @@
     sel.onchange = renderParam;
     renderParam();
 
-    // ─── TABEL RINCIAN LHU ──────────────────────────────────────────────
-    $("#lhu-table").querySelector("tbody").innerHTML = data.reports.map(r => `
-      <tr>
-        <td>${r.report_no}</td>
-        <td>${TYPELABEL[r.sample_type]}</td>
-        <td>${r.location_label_raw}</td>
-        <td>${r.sampling_date.start}${r.sampling_date.end !== r.sampling_date.start ? " – " + r.sampling_date.end : ""}</td>
-        <td class="num">${fmtInt(r.summary.total_parameters)}</td>
-        <td class="num">${fmtInt(r.summary.parameters_with_threshold)}</td>
-        <td class="num">${fmtInt(r.summary.compliant_count)}</td>
-      </tr>`).join("");
-
-    renderFlags(data.data_quality_flags);
   </script>
 </body>
 </html>
