@@ -6,7 +6,7 @@
     "owner_email": "k.susanto@geophys.unpad.ac.id",
     "url": "https://pkbkkl.github.io/-dashboard-pk3l-unpad/",
     "version": "1.4",
-    "last_updated": "2026-10-16"
+    "last_updated": "2026-10-26"
   },
   "datasets": [
     {
@@ -25,7 +25,7 @@
       "label": "Timbulan Sampah",
       "route": "/sampah/timbulan",
       "icon": "trash",
-      "period_label": "Jan – Sep 2026",
+      "period_label": "Jan – Okt 2026",
       "primary_kpi": {
         "label": "Total Timbulan YTD",
         "value_field": "total_kg"

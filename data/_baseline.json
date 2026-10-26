@@ -1,13 +1,13 @@
 {
   "note": "Angka minimum yang pernah tercapai per dataset. validate.py MENOLAK hasil rebuild yang lebih kecil dari ini. Perbarui hanya lewat --update-baseline, setelah yakin penurunannya memang disengaja.",
-  "updated_at": "2026-10-16",
+  "updated_at": "2026-10-26",
   "datasets": {
     "timbulan": {
       "counts": {
-        "daily_entries": 123
+        "daily_entries": 130
       },
       "totals": {
-        "total_kg": 683948.0
+        "total_kg": 726988.0
       },
       "keys": {
         "months_with_data": [
@@ -19,7 +19,8 @@
           "2026-06",
           "2026-07",
           "2026-08",
-          "2026-09"
+          "2026-09",
+          "2026-10"
         ]
       }
     },
@@ -99,14 +100,14 @@
     },
     "b3_waste": {
       "counts": {
-        "entries": 468,
-        "tps_entri_masuk": 108,
+        "entries": 512,
+        "tps_entri_masuk": 148,
         "tps_entri_keluar": 28,
         "tps_pengiriman": 2
       },
       "totals": {
-        "volume_liter": 13173.58,
-        "tps_keluar_kg": 13496.863
+        "volume_liter": 15043.69,
+        "tps_keluar_kg": 13005.863
       },
       "keys": {
         "months": [
@@ -124,7 +125,9 @@
           "2026-02",
           "2026-04",
           "2026-06",
-          "2026-07"
+          "2026-07",
+          "2026-09",
+          "2026-10"
         ]
       }
     },

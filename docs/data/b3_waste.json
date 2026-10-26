@@ -7,32 +7,92 @@
   ],
   "period": {
     "start": "2024-09-01",
-    "end": "2026-07-09"
+    "end": "2026-10-20"
   },
   "data_quality_flags": [
     {
       "severity": "warning",
-      "message": "Logbook TPS — Tanggal disimpan sebagai teks, bukan tipe tanggal Excel: keluar baris 7: '30/06/2025'"
-    },
-    {
-      "severity": "warning",
-      "message": "Logbook TPS — Pengiriman 2026-03-02: kode A105d masuk 1 kg tetapi keluar 0 kg (selisih 1 kg)."
-    },
-    {
-      "severity": "warning",
-      "message": "Logbook TPS — Pengiriman 2026-03-02: 4 baris limbah masuk bertanggal SETELAH tanggal keluar (2026-06-12). Mustahil terangkut; kemungkinan salah ketik bulan di sumber."
+      "message": "Logbook TPS — Tanggal disimpan sebagai teks, bukan tipe tanggal Excel: keluar baris 7: '30/06/2025'; keluar baris 177: '1496.7'"
     },
     {
       "severity": "warning",
       "message": "1 entri bersatuan cacah (Buah/pcs) terhitung sebagai entri tetapi tidak menambah total volume maupun massa."
     },
     {
-      "severity": "info",
-      "message": "61 entri memakai kode limbah dari kamus repo (b3_waste_kode.csv) karena sel Kode Limbah di Excel kosong. Kode berstatus DISAHKAN; tanggal dan pihak yang mengesahkan tercatat di kamus."
+      "severity": "warning",
+      "message": "Kode Excel berbeda dari usulan kamus — 2026-06-09 Fakultas Matematika dan Ilmu Pengetahuan Alam 'Alat-alat gelas pecah': Excel='A337-1' vs kamus='B104d' (status disahkan). Excel dipakai."
+    },
+    {
+      "severity": "warning",
+      "message": "Kode Excel berbeda dari usulan kamus — 2026-06-09 Fakultas Matematika dan Ilmu Pengetahuan Alam 'Limbah cairan non halogen': Excel='A106D' vs kamus='A107d' (status disahkan). Excel dipakai."
+    },
+    {
+      "severity": "warning",
+      "message": "Kode Excel berbeda dari usulan kamus — 2026-06-09 Fakultas Matematika dan Ilmu Pengetahuan Alam 'Limbah organik mengandung halogen (Chlof': Excel='A106D' vs kamus='A107d' (status disahkan). Excel dipakai."
+    },
+    {
+      "severity": "warning",
+      "message": "Kode Excel berbeda dari usulan kamus — 2026-06-09 Fakultas Matematika dan Ilmu Pengetahuan Alam 'Campuran limbah air-minyak-alkohol': Excel='A106D' vs kamus='A107d' (status disahkan). Excel dipakai."
+    },
+    {
+      "severity": "warning",
+      "message": "Kode Excel berbeda dari usulan kamus — 2026-06-09 Fakultas Matematika dan Ilmu Pengetahuan Alam 'Limbah minyak padat': Excel='A106D' vs kamus='A108d' (status disahkan). Excel dipakai."
+    },
+    {
+      "severity": "warning",
+      "message": "Kode Excel berbeda dari usulan kamus — 2026-06-04 Fakultas Teknik Industri Pertanian 'Limbah Kadar Nitrat KNO3 KLOROFORM HCl': Excel='A106D' vs kamus='A107d' (status disahkan). Excel dipakai."
+    },
+    {
+      "severity": "warning",
+      "message": "Kode Excel berbeda dari usulan kamus — 2026-06-04 Fakultas Teknik Industri Pertanian 'Limbah Bilangan Peroksida Klorofom Etano': Excel='A106D' vs kamus='A107d' (status disahkan). Excel dipakai."
+    },
+    {
+      "severity": "warning",
+      "message": "Kode Excel berbeda dari usulan kamus — 2026-06-04 Fakultas Teknik Industri Pertanian 'Limbah HCl': Excel='A109D' vs kamus='A103c' (status disahkan). Excel dipakai."
+    },
+    {
+      "severity": "warning",
+      "message": "Kode Excel berbeda dari usulan kamus — 2026-06-04 Fakultas Teknik Industri Pertanian 'Limbah kurkuminoid etanol': Excel='A106D' vs kamus='A107d' (status disahkan). Excel dipakai."
+    },
+    {
+      "severity": "warning",
+      "message": "Kode Excel berbeda dari usulan kamus — 2026-06-04 Fakultas Teknik Industri Pertanian 'Limbah Saponifikasi Spirulina KOH Etanol': Excel='A106D' vs kamus='A107d' (status disahkan). Excel dipakai."
+    },
+    {
+      "severity": "warning",
+      "message": "Kode Excel berbeda dari usulan kamus — 2026-06-08 Fakultas Farmasi 'Limbah cair campuran pelarut organik': Excel='A106D' vs kamus='A107d' (status disahkan). Excel dipakai."
+    },
+    {
+      "severity": "warning",
+      "message": "Kode Excel berbeda dari usulan kamus — 2026-06-08 Fakultas Teknik Industri Pertanian 'Limbah Potassium iodide': Excel='A106D' vs kamus='A338-1' (status disahkan). Excel dipakai."
+    },
+    {
+      "severity": "warning",
+      "message": "Kode Excel berbeda dari usulan kamus — 2026-06-08 Fakultas Teknik Industri Pertanian 'Limbah Kemasan Sodium Chlorida': Excel='A106D' vs kamus='B104d' (status disahkan). Excel dipakai."
+    },
+    {
+      "severity": "warning",
+      "message": "Kode Excel berbeda dari usulan kamus — 2026-06-08 Fakultas Farmasi 'Limbah padat pecahan alat gelas/kemasan ': Excel='A337-1' vs kamus='B104d' (status disahkan). Excel dipakai."
+    },
+    {
+      "severity": "warning",
+      "message": "Kode Excel berbeda dari usulan kamus — 2026-06-08 Fakultas Farmasi 'Limbah botol kosong bekas produk farmasi': Excel='B104D' vs kamus='B337-1' (status disahkan). Excel dipakai."
+    },
+    {
+      "severity": "warning",
+      "message": "Kode Excel berbeda dari usulan kamus — 2026-06-04 Fakultas Teknik Industri Pertanian 'Limbah Potassium iodide': Excel='A106D' vs kamus='A338-1' (status disahkan). Excel dipakai."
+    },
+    {
+      "severity": "warning",
+      "message": "Kode Excel berbeda dari usulan kamus — 2026-06-22 Fakultas Kedokteran 'Limbah zat kimia padat/bubuk kadaluarsa': Excel='A338-1' vs kamus='A337-3' (status disahkan). Excel dipakai."
+    },
+    {
+      "severity": "warning",
+      "message": "Kode Excel berbeda dari usulan kamus — 2026-06-22 Fakultas Kedokteran 'Limbah zat kimia cair kaluarsa': Excel='A338-1' vs kamus='A337-3' (status disahkan). Excel dipakai."
     },
     {
       "severity": "info",
-      "message": "343 kode diselaraskan ke notasi Lampiran IX (sufiks huruf kecil, mis. 'A106D' ditulis 'A106d'). Penyelarasan ini murni penulisan: tanpa itu satu kode yang sama terpecah dua di agregasi per kode."
+      "message": "436 kode diselaraskan ke notasi Lampiran IX (sufiks huruf kecil, mis. 'A106D' ditulis 'A106d'). Penyelarasan ini murni penulisan: tanpa itu satu kode yang sama terpecah dua di agregasi per kode."
     },
     {
       "severity": "warning",
@@ -44,12 +104,12 @@
     }
   ],
   "summary": {
-    "total_entries": 468,
-    "total_volume_liter": 13173.58,
-    "total_mass_kg": 6853.96,
-    "unique_lembaga": 7,
+    "total_entries": 512,
+    "total_volume_liter": 15043.69,
+    "total_mass_kg": 6933.36,
+    "unique_lembaga": 9,
     "unique_kode_limbah": 21,
-    "months_with_data": 15
+    "months_with_data": 17
   },
   "monthly_totals": [
     {
@@ -273,11 +333,11 @@
       "month": "2026-06",
       "label": "Juni 2026",
       "entries": 60,
-      "volume_liter": 5974.9,
+      "volume_liter": 6123.7,
       "mass_kg": 418,
       "by_kategori": {
         "cair": {
-          "volume_liter": 5966.9,
+          "volume_liter": 6115.7,
           "mass_kg": 180
         },
         "padat": {
@@ -289,13 +349,51 @@
     {
       "month": "2026-07",
       "label": "Juli 2026",
-      "entries": 1,
-      "volume_liter": 0,
-      "mass_kg": 121,
+      "entries": 13,
+      "volume_liter": 300,
+      "mass_kg": 125,
       "by_kategori": {
         "padat": {
           "volume_liter": 0,
-          "mass_kg": 121
+          "mass_kg": 125
+        },
+        "cair": {
+          "volume_liter": 300,
+          "mass_kg": 0
+        }
+      }
+    },
+    {
+      "month": "2026-09",
+      "label": "September 2026",
+      "entries": 16,
+      "volume_liter": 659,
+      "mass_kg": 70,
+      "by_kategori": {
+        "cair": {
+          "volume_liter": 659,
+          "mass_kg": 0
+        },
+        "padat": {
+          "volume_liter": 0,
+          "mass_kg": 70
+        }
+      }
+    },
+    {
+      "month": "2026-10",
+      "label": "Oktober 2026",
+      "entries": 16,
+      "volume_liter": 762.3,
+      "mass_kg": 5.4,
+      "by_kategori": {
+        "cair": {
+          "volume_liter": 762.3,
+          "mass_kg": 0
+        },
+        "padat": {
+          "volume_liter": 0,
+          "mass_kg": 5.4
         }
       }
     }
@@ -303,20 +401,20 @@
   "by_lembaga": [
     {
       "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
-      "entries": 91,
-      "volume_liter": 3364,
-      "mass_kg": 5232.1
+      "entries": 104,
+      "volume_liter": 3949,
+      "mass_kg": 5236.1
     },
     {
       "lembaga": "Fakultas Farmasi",
-      "entries": 133,
-      "volume_liter": 7506.2,
-      "mass_kg": 491.4
+      "entries": 149,
+      "volume_liter": 8165.2,
+      "mass_kg": 561.4
     },
     {
       "lembaga": "Fakultas Teknik Industri Pertanian",
       "entries": 178,
-      "volume_liter": 905.28,
+      "volume_liter": 1054.08,
       "mass_kg": 246.75
     },
     {
@@ -338,36 +436,39 @@
       "mass_kg": 563
     },
     {
+      "lembaga": "PUI-PT Nano Powder Fungsional (FiNder U-CoE) Universitas Padjadjaran",
+      "entries": 10,
+      "volume_liter": 306.3,
+      "mass_kg": 5.4
+    },
+    {
       "lembaga": "Fakultas Perikanan dan Ilmu Kelautan",
       "entries": 4,
       "volume_liter": 200,
+      "mass_kg": 0
+    },
+    {
+      "lembaga": "Fakultas Ilmu Perikanan dan Ilmu Kelautan",
+      "entries": 5,
+      "volume_liter": 171,
       "mass_kg": 0
     }
   ],
   "by_kode_limbah": [
     {
       "kode": "A106d",
-      "entries": 176,
-      "volume_liter": 4812,
-      "mass_kg": 4267.87,
+      "entries": 212,
+      "volume_liter": 8150.1,
+      "mass_kg": 4320.87,
       "kategori": [
         "Cair",
         "Padat"
       ]
     },
     {
-      "kode": "A107d",
-      "entries": 26,
-      "volume_liter": 2704.2,
-      "mass_kg": 0,
-      "kategori": [
-        "Cair"
-      ]
-    },
-    {
       "kode": "A109d",
-      "entries": 25,
-      "volume_liter": 2402.2,
+      "entries": 35,
+      "volume_liter": 2854.8,
       "mass_kg": 71.09,
       "kategori": [
         "Cair",
@@ -376,9 +477,9 @@
     },
     {
       "kode": "B104d",
-      "entries": 68,
+      "entries": 69,
       "volume_liter": 61,
-      "mass_kg": 1013.25,
+      "mass_kg": 1016.25,
       "kategori": [
         "Cair",
         "Padat"
@@ -386,19 +487,9 @@
     },
     {
       "kode": "B105d",
-      "entries": 22,
+      "entries": 23,
       "volume_liter": 794.8,
-      "mass_kg": 29,
-      "kategori": [
-        "Cair",
-        "Padat"
-      ]
-    },
-    {
-      "kode": "A103c",
-      "entries": 22,
-      "volume_liter": 690.93,
-      "mass_kg": 12,
+      "mass_kg": 29.4,
       "kategori": [
         "Cair",
         "Padat"
@@ -406,8 +497,8 @@
     },
     {
       "kode": "A108c",
-      "entries": 23,
-      "volume_liter": 564.61,
+      "entries": 28,
+      "volume_liter": 721.61,
       "mass_kg": 94.7,
       "kategori": [
         "Cair",
@@ -415,13 +506,32 @@
       ]
     },
     {
-      "kode": "A337-1",
-      "entries": 43,
-      "volume_liter": 211,
-      "mass_kg": 367.4,
+      "kode": "A103c",
+      "entries": 21,
+      "volume_liter": 685.93,
+      "mass_kg": 12,
       "kategori": [
         "Cair",
         "Padat"
+      ]
+    },
+    {
+      "kode": "A337-1",
+      "entries": 48,
+      "volume_liter": 211,
+      "mass_kg": 410.4,
+      "kategori": [
+        "Cair",
+        "Padat"
+      ]
+    },
+    {
+      "kode": "A107d",
+      "entries": 16,
+      "volume_liter": 572,
+      "mass_kg": 0,
+      "kategori": [
+        "Cair"
       ]
     },
     {
@@ -435,9 +545,9 @@
     },
     {
       "kode": "A108d",
-      "entries": 13,
+      "entries": 12,
       "volume_liter": 320,
-      "mass_kg": 68,
+      "mass_kg": 58,
       "kategori": [
         "Cair",
         "Padat"
@@ -454,10 +564,10 @@
       ]
     },
     {
-      "kode": "A337-3",
-      "entries": 2,
+      "kode": "A338-1",
+      "entries": 9,
       "volume_liter": 0,
-      "mass_kg": 290,
+      "mass_kg": 342.63,
       "kategori": [
         "Cair",
         "Padat"
@@ -475,12 +585,21 @@
     },
     {
       "kode": "B337-1",
-      "entries": 5,
+      "entries": 4,
       "volume_liter": 65,
-      "mass_kg": 15,
+      "mass_kg": 5,
       "kategori": [
         "Cair",
         "Padat"
+      ]
+    },
+    {
+      "kode": "A336-2",
+      "entries": 1,
+      "volume_liter": 60,
+      "mass_kg": 0,
+      "kategori": [
+        "Cair"
       ]
     },
     {
@@ -488,16 +607,6 @@
       "entries": 4,
       "volume_liter": 30,
       "mass_kg": 25,
-      "kategori": [
-        "Cair",
-        "Padat"
-      ]
-    },
-    {
-      "kode": "A338-1",
-      "entries": 10,
-      "volume_liter": 0.2,
-      "mass_kg": 54.63,
       "kategori": [
         "Cair",
         "Padat"
@@ -523,6 +632,15 @@
       ]
     },
     {
+      "kode": "A102d",
+      "entries": 2,
+      "volume_liter": 0,
+      "mass_kg": 2,
+      "kategori": [
+        "Padat"
+      ]
+    },
+    {
       "kode": "A102b",
       "entries": 1,
       "volume_liter": 1,
@@ -536,15 +654,6 @@
       "entries": 1,
       "volume_liter": 0,
       "mass_kg": 1,
-      "kategori": [
-        "Cair"
-      ]
-    },
-    {
-      "kode": "A112b",
-      "entries": 1,
-      "volume_liter": 0.2,
-      "mass_kg": 0,
       "kategori": [
         "Cair"
       ]
@@ -6260,8 +6369,8 @@
       "kategori": "Cair",
       "volume_liter": 70,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6274,8 +6383,8 @@
       "kategori": "Cair",
       "volume_liter": 105,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6288,8 +6397,8 @@
       "kategori": "Cair",
       "volume_liter": 25,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6298,12 +6407,12 @@
       "limbah": "Alat-alat gelas pecah",
       "volume": 15,
       "satuan": "Kg",
-      "kode_limbah": "B104d",
+      "kode_limbah": "A337-1",
       "kategori": "Padat",
       "volume_liter": 0.0,
       "mass_kg": 15,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6312,12 +6421,12 @@
       "limbah": "Limbah cairan non halogen",
       "volume": 50,
       "satuan": "Liter",
-      "kode_limbah": "A107d",
+      "kode_limbah": "A106d",
       "kategori": "Cair",
       "volume_liter": 50,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6330,8 +6439,8 @@
       "kategori": "Padat",
       "volume_liter": 0.0,
       "mass_kg": 5,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6340,12 +6449,12 @@
       "limbah": "Limbah organik mengandung halogen (Chloform)",
       "volume": 10,
       "satuan": "Liter",
-      "kode_limbah": "A107d",
+      "kode_limbah": "A106d",
       "kategori": "Cair",
       "volume_liter": 10,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6358,8 +6467,8 @@
       "kategori": "Cair",
       "volume_liter": 25,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6368,12 +6477,12 @@
       "limbah": "Campuran limbah air-minyak-alkohol",
       "volume": 25,
       "satuan": "Liter",
-      "kode_limbah": "A107d",
+      "kode_limbah": "A106d",
       "kategori": "Cair",
       "volume_liter": 25,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6382,12 +6491,12 @@
       "limbah": "Limbah minyak padat",
       "volume": 10,
       "satuan": "Kg",
-      "kode_limbah": "A108d",
+      "kode_limbah": "A106d",
       "kategori": "Padat",
       "volume_liter": 0.0,
       "mass_kg": 10,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6400,22 +6509,22 @@
       "kategori": "Cair",
       "volume_liter": 30,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
       "date": "2026-06-04",
       "lembaga": "Fakultas Teknik Industri Pertanian",
       "limbah": "Limbah HCN (ASAM SIANIDA) asam nitrat (HNO3) 6N AgNO3 0,02N FAS 40% NH4CNS 0,02N",
-      "volume": 300,
-      "satuan": "Mili Liter",
-      "kode_limbah": "A106d",
+      "volume": 0.3,
+      "satuan": "Liter",
+      "kode_limbah": "A109d",
       "kategori": "Cair",
       "volume_liter": 0.3,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6428,8 +6537,8 @@
       "kategori": "Cair",
       "volume_liter": 9,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6438,12 +6547,12 @@
       "limbah": "Limbah Kadar Nitrat KNO3 KLOROFORM HCl",
       "volume": 2,
       "satuan": "Liter",
-      "kode_limbah": "A107d",
+      "kode_limbah": "A106d",
       "kategori": "Cair",
       "volume_liter": 2,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6456,8 +6565,8 @@
       "kategori": "Cair",
       "volume_liter": 15,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6470,8 +6579,8 @@
       "kategori": "Cair",
       "volume_liter": 7,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6484,8 +6593,8 @@
       "kategori": "Cair",
       "volume_liter": 8,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6493,13 +6602,13 @@
       "lembaga": "Fakultas Teknik Industri Pertanian",
       "limbah": "Limbah Defatting Heksan",
       "volume": 150,
-      "satuan": "Mili Liter",
-      "kode_limbah": "A107d",
+      "satuan": "Liter",
+      "kode_limbah": "A106d",
       "kategori": "Cair",
-      "volume_liter": 0.15,
+      "volume_liter": 150,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6512,8 +6621,8 @@
       "kategori": "Cair",
       "volume_liter": 2,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6526,8 +6635,8 @@
       "kategori": "Cair",
       "volume_liter": 1,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6540,8 +6649,8 @@
       "kategori": "Cair",
       "volume_liter": 1,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6554,8 +6663,8 @@
       "kategori": "Cair",
       "volume_liter": 0,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6564,12 +6673,12 @@
       "limbah": "Limbah Bilangan Peroksida Klorofom Etanol Asam Asetat Glasial Amilum Na2S2O3.5H2O",
       "volume": 12,
       "satuan": "Liter",
-      "kode_limbah": "A107d",
+      "kode_limbah": "A106d",
       "kategori": "Cair",
       "volume_liter": 12,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6582,8 +6691,8 @@
       "kategori": "Cair",
       "volume_liter": 1,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6596,8 +6705,8 @@
       "kategori": "Cair",
       "volume_liter": 5,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6610,8 +6719,8 @@
       "kategori": "Cair",
       "volume_liter": 2,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6624,8 +6733,8 @@
       "kategori": "Cair",
       "volume_liter": 1,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6638,64 +6747,64 @@
       "kategori": "Cair",
       "volume_liter": 6,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
       "date": "2026-06-04",
       "lembaga": "Fakultas Teknik Industri Pertanian",
       "limbah": "Limbah Ekstraksi Sample Metanol HCL kloroform heksana",
-      "volume": 50,
-      "satuan": "Mili Liter",
-      "kode_limbah": "A107d",
+      "volume": 0.05,
+      "satuan": "Liter",
+      "kode_limbah": "A106d",
       "kategori": "Cair",
       "volume_liter": 0.05,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
       "date": "2026-06-04",
       "lembaga": "Fakultas Teknik Industri Pertanian",
       "limbah": "Limbah Toluena Toluena",
-      "volume": 200,
-      "satuan": "Mili Liter",
-      "kode_limbah": "A112b",
+      "volume": 0.05,
+      "satuan": "Liter",
+      "kode_limbah": "A106d",
       "kategori": "Cair",
-      "volume_liter": 0.2,
+      "volume_liter": 0.05,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
       "date": "2026-06-04",
       "lembaga": "Fakultas Teknik Industri Pertanian",
       "limbah": "Limbah Prak Kimia Organik Alkhohol dan Fenol heksana Metanol 1 propanol 2 propanol ZNnCl 2 Butanol Fenol (90%) NaOH 10% Asam kromat HCl Aseton",
-      "volume": 500,
-      "satuan": "Mili Liter",
+      "volume": 0.05,
+      "satuan": "Liter",
       "kode_limbah": "A106d",
       "kategori": "Cair",
-      "volume_liter": 0.5,
+      "volume_liter": 0.05,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
       "date": "2026-06-04",
       "lembaga": "Fakultas Teknik Industri Pertanian",
       "limbah": "Limbah Prak Kimia Organik Hidrokarbon KMnO4 H2SO4 NaOH 10% Heksana Butana",
-      "volume": 500,
-      "satuan": "Mili Liter",
+      "volume": 0.05,
+      "satuan": "Liter",
       "kode_limbah": "A106d",
       "kategori": "Cair",
-      "volume_liter": 0.5,
+      "volume_liter": 0.05,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6708,8 +6817,8 @@
       "kategori": "Cair",
       "volume_liter": 5,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6718,26 +6827,26 @@
       "limbah": "Limbah HCl",
       "volume": 5,
       "satuan": "Liter",
-      "kode_limbah": "A103c",
+      "kode_limbah": "A109d",
       "kategori": "Cair",
       "volume_liter": 5,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
       "date": "2026-06-04",
       "lembaga": "Fakultas Teknik Industri Pertanian",
       "limbah": "Limbah Kalium dikromat",
-      "volume": 200,
-      "satuan": "Mili Liter",
-      "kode_limbah": "A338-1",
+      "volume": 0.2,
+      "satuan": "Liter",
+      "kode_limbah": "A106d",
       "kategori": "Cair",
       "volume_liter": 0.2,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6746,12 +6855,12 @@
       "limbah": "Limbah kurkuminoid etanol",
       "volume": 6,
       "satuan": "Liter",
-      "kode_limbah": "A107d",
+      "kode_limbah": "A106d",
       "kategori": "Cair",
       "volume_liter": 6,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6760,12 +6869,12 @@
       "limbah": "Limbah Saponifikasi Spirulina KOH Etanol Heksana",
       "volume": 27,
       "satuan": "Liter",
-      "kode_limbah": "A107d",
+      "kode_limbah": "A106d",
       "kategori": "Cair",
       "volume_liter": 27,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6778,8 +6887,8 @@
       "kategori": "Padat",
       "volume_liter": 0.0,
       "mass_kg": 1,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6788,12 +6897,12 @@
       "limbah": "Limbah cair campuran pelarut organik",
       "volume": 2000,
       "satuan": "Liter",
-      "kode_limbah": "A107d",
+      "kode_limbah": "A106d",
       "kategori": "Cair",
       "volume_liter": 2000,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6802,12 +6911,12 @@
       "limbah": "Limbah Potassium iodide",
       "volume": 1,
       "satuan": "Kg",
-      "kode_limbah": "A338-1",
+      "kode_limbah": "A106d",
       "kategori": "Padat",
       "volume_liter": 0.0,
       "mass_kg": 1,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6816,12 +6925,12 @@
       "limbah": "Limbah Kemasan Sodium Chlorida",
       "volume": 1,
       "satuan": "Kg",
-      "kode_limbah": "B104d",
+      "kode_limbah": "A106d",
       "kategori": "Padat",
       "volume_liter": 0.0,
       "mass_kg": 1,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6830,12 +6939,12 @@
       "limbah": "Limbah padat pecahan alat gelas/kemasan bahan kimia lab anfisko",
       "volume": 12,
       "satuan": "Kg",
-      "kode_limbah": "B104d",
+      "kode_limbah": "A337-1",
       "kategori": "Padat",
       "volume_liter": 0.0,
       "mass_kg": 12,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6844,12 +6953,12 @@
       "limbah": "Limbah botol kosong bekas produk farmasi lab anfisko",
       "volume": 10,
       "satuan": "Kg",
-      "kode_limbah": "B337-1",
+      "kode_limbah": "B104d",
       "kategori": "Padat",
       "volume_liter": 0.0,
       "mass_kg": 10,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6862,8 +6971,8 @@
       "kategori": "Cair",
       "volume_liter": 2000,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6876,8 +6985,8 @@
       "kategori": "Cair",
       "volume_liter": 150,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6890,8 +6999,8 @@
       "kategori": "Cair",
       "volume_liter": 60,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6904,8 +7013,8 @@
       "kategori": "Cair",
       "volume_liter": 1200,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6918,8 +7027,8 @@
       "kategori": "Padat",
       "volume_liter": 0.0,
       "mass_kg": 10,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6932,8 +7041,8 @@
       "kategori": "Cair",
       "volume_liter": 80,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6946,8 +7055,8 @@
       "kategori": "Cair",
       "volume_liter": 20,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6960,8 +7069,8 @@
       "kategori": "Padat",
       "volume_liter": 0.0,
       "mass_kg": 10,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6970,12 +7079,12 @@
       "limbah": "Limbah Potassium iodide",
       "volume": 1,
       "satuan": "Kg",
-      "kode_limbah": "A338-1",
+      "kode_limbah": "A106d",
       "kategori": "Padat",
       "volume_liter": 0.0,
       "mass_kg": 1,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -6988,8 +7097,8 @@
       "kategori": "Padat",
       "volume_liter": 2,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -7002,8 +7111,8 @@
       "kategori": "Padat",
       "volume_liter": 2,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -7016,8 +7125,8 @@
       "kategori": "Padat",
       "volume_liter": 2,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -7030,8 +7139,8 @@
       "kategori": "Padat",
       "volume_liter": 2,
       "mass_kg": 0.0,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -7044,8 +7153,8 @@
       "kategori": "Padat",
       "volume_liter": 0.0,
       "mass_kg": 34,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -7058,8 +7167,8 @@
       "kategori": "Padat",
       "volume_liter": 0.0,
       "mass_kg": 18,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -7068,12 +7177,12 @@
       "limbah": "Limbah zat kimia padat/bubuk kadaluarsa",
       "volume": 110,
       "satuan": "Kg",
-      "kode_limbah": "A337-3",
+      "kode_limbah": "A338-1",
       "kategori": "Padat",
       "volume_liter": 0.0,
       "mass_kg": 110,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-06",
@@ -7082,12 +7191,12 @@
       "limbah": "Limbah zat kimia cair kaluarsa",
       "volume": 180,
       "satuan": "Kg",
-      "kode_limbah": "A337-3",
+      "kode_limbah": "A338-1",
       "kategori": "Cair",
       "volume_liter": 0.0,
       "mass_kg": 180,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     },
     {
       "month": "2026-07",
@@ -7100,21 +7209,637 @@
       "kategori": "Padat",
       "volume_liter": 0.0,
       "mass_kg": 121,
-      "kode_sumber": "kamus",
-      "kode_status": "disahkan"
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-07",
+      "date": "2026-07-26",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "KIO3, KMnO4",
+      "volume": 20,
+      "satuan": "Liter",
+      "kode_limbah": "A106d",
+      "kategori": "Cair",
+      "volume_liter": 20,
+      "mass_kg": 0.0,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-07",
+      "date": "2026-07-26",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "CaCl2, KMnO4, HCl, H2SO4, CaCo3, NaOH, K2CrO7, AgNO3, FeSO4 dll",
+      "volume": 40,
+      "satuan": "Liter",
+      "kode_limbah": "A106d",
+      "kategori": "Cair",
+      "volume_liter": 40,
+      "mass_kg": 0.0,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-07",
+      "date": "2026-07-26",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah cair â€“ Inorganic : Na-boraks, AgNo3, FeCl2, dll",
+      "volume": 80,
+      "satuan": "Liter",
+      "kode_limbah": "A106d",
+      "kategori": "Cair",
+      "volume_liter": 80,
+      "mass_kg": 0.0,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-07",
+      "date": "2026-07-26",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah cair â€“ Organic : etanol, metanol, vylene, n-heksan, NaOH, sikloheksan, sikloheksen, dll",
+      "volume": 50,
+      "satuan": "Liter",
+      "kode_limbah": "A106d",
+      "kategori": "Cair",
+      "volume_liter": 50,
+      "mass_kg": 0.0,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-07",
+      "date": "2026-07-26",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah cair â€“ Acid: HCl, H2SO2, HNO3, dll",
+      "volume": 40,
+      "satuan": "Liter",
+      "kode_limbah": "A109d",
+      "kategori": "Cair",
+      "volume_liter": 40,
+      "mass_kg": 0.0,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-07",
+      "date": "2026-07-26",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah cair â€“ Alkali: NaOH, KCl, dll",
+      "volume": 40,
+      "satuan": "Liter",
+      "kode_limbah": "A108c",
+      "kategori": "Cair",
+      "volume_liter": 40,
+      "mass_kg": 0.0,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-07",
+      "date": "2026-07-26",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah cair â€“ Thiosulphate: na-tiosulfat, dll",
+      "volume": 20,
+      "satuan": "Liter",
+      "kode_limbah": "A106d",
+      "kategori": "Cair",
+      "volume_liter": 20,
+      "mass_kg": 0.0,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-07",
+      "date": "2026-07-26",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Sikloheksanon",
+      "volume": 10,
+      "satuan": "Liter",
+      "kode_limbah": "A106d",
+      "kategori": "Cair",
+      "volume_liter": 10,
+      "mass_kg": 0.0,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-07",
+      "date": "2026-07-26",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah padat- Pecahan alat kaca dan alat rusak",
+      "volume": 1,
+      "satuan": "Kg",
+      "kode_limbah": "A337-1",
+      "kategori": "Padat",
+      "volume_liter": 0.0,
+      "mass_kg": 1,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-07",
+      "date": "2026-07-26",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah padat- Baterai",
+      "volume": 1,
+      "satuan": "Kg",
+      "kode_limbah": "A102d",
+      "kategori": "Padat",
+      "volume_liter": 0.0,
+      "mass_kg": 1,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-07",
+      "date": "2026-07-26",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah padat- Element heating mantle, kabel, holder baterai",
+      "volume": 1,
+      "satuan": "Kg",
+      "kode_limbah": "A102d",
+      "kategori": "Padat",
+      "volume_liter": 0.0,
+      "mass_kg": 1,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-07",
+      "date": "2026-07-26",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "Limbah padat- Botol bekas bahan kimia padat",
+      "volume": 1,
+      "satuan": "Kg",
+      "kode_limbah": "B104d",
+      "kategori": "Padat",
+      "volume_liter": 0.0,
+      "mass_kg": 1,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-09",
+      "date": "2026-09-17",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Campuran asam",
+      "volume": 80,
+      "satuan": "Liter",
+      "kode_limbah": "A109d",
+      "kategori": "Cair",
+      "volume_liter": 80,
+      "mass_kg": 0.0,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-09",
+      "date": "2026-09-17",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "botol kaca, barang pecah belah, limbah padat",
+      "volume": 5,
+      "satuan": "Kg",
+      "kode_limbah": "A337-1",
+      "kategori": "Padat",
+      "volume_liter": 0.0,
+      "mass_kg": 5,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-09",
+      "date": "2026-09-17",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah cair organik",
+      "volume": 195,
+      "satuan": "Liter",
+      "kode_limbah": "A106d",
+      "kategori": "Cair",
+      "volume_liter": 195,
+      "mass_kg": 0.0,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-09",
+      "date": "2026-09-17",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Pecah belah, limbah padat, botol kaca",
+      "volume": 10,
+      "satuan": "Kg",
+      "kode_limbah": "B104d",
+      "kategori": "Padat",
+      "volume_liter": 0.0,
+      "mass_kg": 10,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-09",
+      "date": "2026-09-17",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah cair",
+      "volume": 80,
+      "satuan": "Liter",
+      "kode_limbah": "A106d",
+      "kategori": "Cair",
+      "volume_liter": 80,
+      "mass_kg": 0.0,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-09",
+      "date": "2026-09-17",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "limbah padat, pecah belah",
+      "volume": 10,
+      "satuan": "Kg",
+      "kode_limbah": "B104d",
+      "kategori": "Padat",
+      "volume_liter": 0.0,
+      "mass_kg": 10,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-09",
+      "date": "2026-09-17",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "limbah cair organik",
+      "volume": 100,
+      "satuan": "Liter",
+      "kode_limbah": "A106d",
+      "kategori": "Cair",
+      "volume_liter": 100,
+      "mass_kg": 0.0,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-09",
+      "date": "2026-09-17",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "pecah belah",
+      "volume": 5,
+      "satuan": "Kg",
+      "kode_limbah": "A106d",
+      "kategori": "Padat",
+      "volume_liter": 0.0,
+      "mass_kg": 5,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-09",
+      "date": "2026-09-17",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "limbah destruksi media",
+      "volume": 37,
+      "satuan": "Liter",
+      "kode_limbah": "A106d",
+      "kategori": "Cair",
+      "volume_liter": 37,
+      "mass_kg": 0.0,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-09",
+      "date": "2026-09-17",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "limbah media mikrobiologi",
+      "volume": 87,
+      "satuan": "Liter",
+      "kode_limbah": "A106d",
+      "kategori": "Cair",
+      "volume_liter": 87,
+      "mass_kg": 0.0,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-09",
+      "date": "2026-09-17",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "limbah padat lab mikro",
+      "volume": 5,
+      "satuan": "Kg",
+      "kode_limbah": "A106d",
+      "kategori": "Padat",
+      "volume_liter": 0.0,
+      "mass_kg": 5,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-09",
+      "date": "2026-09-17",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "Limbah suntikan",
+      "volume": 10,
+      "satuan": "Kg",
+      "kode_limbah": "A337-1",
+      "kategori": "Padat",
+      "volume_liter": 0.0,
+      "mass_kg": 10,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-09",
+      "date": "2026-09-17",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "limbah cair farmasi",
+      "volume": 60,
+      "satuan": "Liter",
+      "kode_limbah": "A336-2",
+      "kategori": "Cair",
+      "volume_liter": 60,
+      "mass_kg": 0.0,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-09",
+      "date": "2026-09-17",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "limbah padat farmasi",
+      "volume": 5,
+      "satuan": "Kg",
+      "kode_limbah": "A106d",
+      "kategori": "Padat",
+      "volume_liter": 0.0,
+      "mass_kg": 5,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-09",
+      "date": "2026-09-17",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "limbah media sel",
+      "volume": 20,
+      "satuan": "Liter",
+      "kode_limbah": "A106d",
+      "kategori": "Cair",
+      "volume_liter": 20,
+      "mass_kg": 0.0,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-09",
+      "date": "2026-09-17",
+      "lembaga": "Fakultas Farmasi",
+      "limbah": "limbah padat biosel",
+      "volume": 20,
+      "satuan": "Kg",
+      "kode_limbah": "A106d",
+      "kategori": "Padat",
+      "volume_liter": 0.0,
+      "mass_kg": 20,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-10",
+      "date": "2026-10-13",
+      "lembaga": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+      "limbah": "NaCl dalam air (konsentrasi tinggi)",
+      "volume": 285,
+      "satuan": "Liter",
+      "kode_limbah": "A106d",
+      "kategori": "Cair",
+      "volume_liter": 285,
+      "mass_kg": 0.0,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-10",
+      "date": "2026-10-12",
+      "lembaga": "PUI-PT Nano Powder Fungsional (FiNder U-CoE) Universitas Padjadjaran",
+      "limbah": "Sampel aspal (kental)",
+      "volume": 0.4,
+      "satuan": "Kg",
+      "kode_limbah": "B105d",
+      "kategori": "Padat",
+      "volume_liter": 0.0,
+      "mass_kg": 0.4,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-10",
+      "date": "2026-10-12",
+      "lembaga": "PUI-PT Nano Powder Fungsional (FiNder U-CoE) Universitas Padjadjaran",
+      "limbah": "Sampel media agar",
+      "volume": 5,
+      "satuan": "Kg",
+      "kode_limbah": "A106d",
+      "kategori": "Padat",
+      "volume_liter": 0.0,
+      "mass_kg": 5,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-10",
+      "date": "2026-10-12",
+      "lembaga": "PUI-PT Nano Powder Fungsional (FiNder U-CoE) Universitas Padjadjaran",
+      "limbah": "Cair pH 2-3",
+      "volume": 165.5,
+      "satuan": "Liter",
+      "kode_limbah": "A109d",
+      "kategori": "Cair",
+      "volume_liter": 165.5,
+      "mass_kg": 0.0,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-10",
+      "date": "2026-10-12",
+      "lembaga": "PUI-PT Nano Powder Fungsional (FiNder U-CoE) Universitas Padjadjaran",
+      "limbah": "Cair pH 3-4",
+      "volume": 15.8,
+      "satuan": "Liter",
+      "kode_limbah": "A109d",
+      "kategori": "Cair",
+      "volume_liter": 15.8,
+      "mass_kg": 0.0,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-10",
+      "date": "2026-10-12",
+      "lembaga": "PUI-PT Nano Powder Fungsional (FiNder U-CoE) Universitas Padjadjaran",
+      "limbah": "Cair pH 5-6",
+      "volume": 22,
+      "satuan": "Liter",
+      "kode_limbah": "A106d",
+      "kategori": "Cair",
+      "volume_liter": 22,
+      "mass_kg": 0.0,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-10",
+      "date": "2026-10-12",
+      "lembaga": "PUI-PT Nano Powder Fungsional (FiNder U-CoE) Universitas Padjadjaran",
+      "limbah": "Cair pH 8",
+      "volume": 5,
+      "satuan": "Liter",
+      "kode_limbah": "A106d",
+      "kategori": "Cair",
+      "volume_liter": 5,
+      "mass_kg": 0.0,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-10",
+      "date": "2026-10-12",
+      "lembaga": "PUI-PT Nano Powder Fungsional (FiNder U-CoE) Universitas Padjadjaran",
+      "limbah": "Cair pH 10-11",
+      "volume": 90,
+      "satuan": "Liter",
+      "kode_limbah": "A108c",
+      "kategori": "Cair",
+      "volume_liter": 90,
+      "mass_kg": 0.0,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-10",
+      "date": "2026-10-12",
+      "lembaga": "PUI-PT Nano Powder Fungsional (FiNder U-CoE) Universitas Padjadjaran",
+      "limbah": "NaOH (pencucian)",
+      "volume": 2,
+      "satuan": "Liter",
+      "kode_limbah": "A108c",
+      "kategori": "Cair",
+      "volume_liter": 2,
+      "mass_kg": 0.0,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-10",
+      "date": "2026-10-12",
+      "lembaga": "PUI-PT Nano Powder Fungsional (FiNder U-CoE) Universitas Padjadjaran",
+      "limbah": "Ammonia pH 13-14 (pencucian)",
+      "volume": 5,
+      "satuan": "Liter",
+      "kode_limbah": "A108c",
+      "kategori": "Cair",
+      "volume_liter": 5,
+      "mass_kg": 0.0,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-10",
+      "date": "2026-10-12",
+      "lembaga": "PUI-PT Nano Powder Fungsional (FiNder U-CoE) Universitas Padjadjaran",
+      "limbah": "HCl + H2SO4 pH (pencucian)",
+      "volume": 1,
+      "satuan": "Liter",
+      "kode_limbah": "A109d",
+      "kategori": "Cair",
+      "volume_liter": 1,
+      "mass_kg": 0.0,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-10",
+      "date": "2026-10-20",
+      "lembaga": "Fakultas Ilmu Perikanan dan Ilmu Kelautan",
+      "limbah": "Campuran pH 3 (Aquadest 50%, Campuran 50%: Asam Nitrat, Asam Sulfat, H2O2 30%, Aquadest)",
+      "volume": 40,
+      "satuan": "Liter",
+      "kode_limbah": "A109d",
+      "kategori": "Cair",
+      "volume_liter": 40,
+      "mass_kg": 0.0,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-10",
+      "date": "2026-10-20",
+      "lembaga": "Fakultas Ilmu Perikanan dan Ilmu Kelautan",
+      "limbah": "Campuran pH 9 (Aquadest 50%, Campuran 50%: Ammonium Hidroksida 10%, Timah Klorida, Siegnette, Nessler, Ammonium Molibdat, KOH 10%)",
+      "volume": 20,
+      "satuan": "Liter",
+      "kode_limbah": "A108c",
+      "kategori": "Cair",
+      "volume_liter": 20,
+      "mass_kg": 0.0,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-10",
+      "date": "2026-10-20",
+      "lembaga": "Fakultas Ilmu Perikanan dan Ilmu Kelautan",
+      "limbah": "Campuran pH 1 (O2 Reagent 10%, MnSO4 10%, H2SO4 pekat 12%, Na2SO3 12%, Siegnette 8%, Nessler 8%, Phenoldisulfonic Acid 7%, Sulfonic Acid 5%, Na-Asetat 5%, Naftilamin 5%, SnCl2 3%, CuSO4 1%, NH4 Molibdat 4%, Aseton 2%)",
+      "volume": 80,
+      "satuan": "Liter",
+      "kode_limbah": "A109d",
+      "kategori": "Cair",
+      "volume_liter": 80,
+      "mass_kg": 0.0,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-10",
+      "date": "2026-10-20",
+      "lembaga": "Fakultas Ilmu Perikanan dan Ilmu Kelautan",
+      "limbah": "Campuran pH 1 (NaCl 50%, FeSO4 10%, KOH 10%, H2SO4 10%, H2O2 10%, Gliserin 2%, Sorbitol 4%, HNO3 6%, HClO4 18%)",
+      "volume": 25,
+      "satuan": "Liter",
+      "kode_limbah": "A109d",
+      "kategori": "Cair",
+      "volume_liter": 25,
+      "mass_kg": 0.0,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
+    },
+    {
+      "month": "2026-10",
+      "date": "2026-10-20",
+      "lembaga": "Fakultas Ilmu Perikanan dan Ilmu Kelautan",
+      "limbah": "Campuran pH 6 (NaCl 50%, FeSO4 10%, KOH 10%, H2SO4 10%, H2O2 10%)",
+      "volume": 6,
+      "satuan": "Liter",
+      "kode_limbah": "A106d",
+      "kategori": "Cair",
+      "volume_liter": 6,
+      "mass_kg": 0.0,
+      "kode_sumber": "excel",
+      "kode_status": "tercatat"
     }
   ],
   "tps_logbook": {
     "summary": {
-      "entri_masuk": 108,
+      "entri_masuk": 148,
       "entri_keluar": 28,
       "pengiriman": 2,
-      "total_masuk_kg": 13497.863,
-      "total_keluar_kg": 13496.863,
-      "sisa_di_tps_kg": 1,
+      "total_masuk_kg": 21669.263,
+      "total_keluar_kg": 13005.863,
+      "sisa_di_tps_kg": 8663.4,
       "periode_masuk": {
         "start": "2024-09-17",
-        "end": "2026-06-12"
+        "end": "2026-10-20"
       }
     },
     "pengiriman": [
@@ -7138,28 +7863,69 @@
         "bukti_dokumen": null,
         "periode_masuk": {
           "start": "2025-08-27",
-          "end": "2026-06-12"
+          "end": "2026-02-26"
         },
-        "entri_masuk": 68,
-        "total_masuk_kg": 7542.353,
-        "total_keluar_kg": 7541.353,
-        "selisih_kg": 1,
-        "selisih_per_kode": [
-          {
-            "kode_limbah": "A105d",
-            "masuk_kg": 1,
-            "keluar_kg": 0,
-            "selisih_kg": 1
-          }
-        ]
+        "entri_masuk": 71,
+        "total_masuk_kg": 7050.353,
+        "total_keluar_kg": 7050.353,
+        "selisih_kg": 0,
+        "selisih_per_kode": []
       }
     ],
     "sisa_per_kode": [
       {
-        "kode_limbah": "A105d",
-        "masuk_kg": 1,
+        "kode_limbah": "A102d",
+        "masuk_kg": 2,
         "keluar_kg": 0,
-        "sisa_kg": 1
+        "sisa_kg": 2
+      },
+      {
+        "kode_limbah": "A106d",
+        "masuk_kg": 12601.774,
+        "keluar_kg": 7351.374,
+        "sisa_kg": 5250.4
+      },
+      {
+        "kode_limbah": "A108c",
+        "masuk_kg": 831.203,
+        "keluar_kg": 564.203,
+        "sisa_kg": 267
+      },
+      {
+        "kode_limbah": "A109d",
+        "masuk_kg": 2729.195,
+        "keluar_kg": 206.595,
+        "sisa_kg": 2522.6
+      },
+      {
+        "kode_limbah": "A336-2",
+        "masuk_kg": 60,
+        "keluar_kg": 0,
+        "sisa_kg": 60
+      },
+      {
+        "kode_limbah": "A337-1",
+        "masuk_kg": 605.4,
+        "keluar_kg": 500.4,
+        "sisa_kg": 105
+      },
+      {
+        "kode_limbah": "A338-1",
+        "masuk_kg": 342.635,
+        "keluar_kg": 47.635,
+        "sisa_kg": 295
+      },
+      {
+        "kode_limbah": "B104d",
+        "masuk_kg": 1066.753,
+        "keluar_kg": 905.753,
+        "sisa_kg": 161
+      },
+      {
+        "kode_limbah": "B105d",
+        "masuk_kg": 824.2,
+        "keluar_kg": 823.8,
+        "sisa_kg": 0.4
       }
     ],
     "masuk": [
@@ -7571,353 +8337,633 @@
       },
       {
         "tanggal": "2026-01-04",
-        "kode_limbah": "A101d",
+        "kode_limbah": "B105d",
         "sumber": "Fakultas Farmasi",
-        "mass_kg": 1,
-        "maksimal_penyimpanan": null
-      },
-      {
-        "tanggal": "2026-01-04",
-        "kode_limbah": "A105d",
-        "sumber": "Fakultas Farmasi",
-        "mass_kg": 1,
-        "maksimal_penyimpanan": null
-      },
-      {
-        "tanggal": "2026-01-04",
-        "kode_limbah": "A106d",
-        "sumber": "Fakultas Farmasi",
-        "mass_kg": 0,
-        "maksimal_penyimpanan": null
-      },
-      {
-        "tanggal": "2026-01-04",
-        "kode_limbah": "A107d",
-        "sumber": "Fakultas Farmasi",
-        "mass_kg": 220,
-        "maksimal_penyimpanan": null
+        "mass_kg": 97,
+        "maksimal_penyimpanan": "2026-04-04"
       },
       {
         "tanggal": "2026-01-04",
         "kode_limbah": "A337-1",
         "sumber": "Fakultas Farmasi",
         "mass_kg": 38,
-        "maksimal_penyimpanan": null
+        "maksimal_penyimpanan": "2026-04-04"
+      },
+      {
+        "tanggal": "2026-01-04",
+        "kode_limbah": "A107d",
+        "sumber": "Fakultas Farmasi",
+        "mass_kg": 220,
+        "maksimal_penyimpanan": "2026-04-04"
       },
       {
         "tanggal": "2026-01-04",
         "kode_limbah": "B104d",
         "sumber": "Fakultas Farmasi",
         "mass_kg": 5,
-        "maksimal_penyimpanan": null
+        "maksimal_penyimpanan": "2026-04-04"
       },
       {
         "tanggal": "2026-01-04",
-        "kode_limbah": "B105d",
+        "kode_limbah": "A105d",
         "sumber": "Fakultas Farmasi",
-        "mass_kg": 97,
-        "maksimal_penyimpanan": null
+        "mass_kg": 1,
+        "maksimal_penyimpanan": "2026-04-04"
       },
       {
-        "tanggal": "2026-01-12",
-        "kode_limbah": "A101a",
-        "sumber": "FMIPA",
-        "mass_kg": 155,
-        "maksimal_penyimpanan": null
-      },
-      {
-        "tanggal": "2026-01-12",
+        "tanggal": "2026-01-04",
         "kode_limbah": "A101d",
-        "sumber": "FMIPA",
-        "mass_kg": 10,
-        "maksimal_penyimpanan": null
+        "sumber": "Fakultas Farmasi",
+        "mass_kg": 1,
+        "maksimal_penyimpanan": "2026-04-04"
       },
       {
         "tanggal": "2026-01-12",
         "kode_limbah": "A103c",
-        "sumber": "FMIPA",
-        "mass_kg": 492,
-        "maksimal_penyimpanan": null
-      },
-      {
-        "tanggal": "2026-06-12",
-        "kode_limbah": "A106d",
-        "sumber": "FMIPA",
-        "mass_kg": 24,
-        "maksimal_penyimpanan": null
-      },
-      {
-        "tanggal": "2026-06-12",
-        "kode_limbah": "A107d",
-        "sumber": "FMIPA",
-        "mass_kg": 95,
-        "maksimal_penyimpanan": null
-      },
-      {
-        "tanggal": "2026-06-12",
-        "kode_limbah": "A337-1",
-        "sumber": "FMIPA",
-        "mass_kg": 5,
-        "maksimal_penyimpanan": null
-      },
-      {
-        "tanggal": "2026-06-12",
-        "kode_limbah": "B104d",
-        "sumber": "FMIPA",
-        "mass_kg": 171,
-        "maksimal_penyimpanan": null
-      },
-      {
-        "tanggal": "2026-01-12",
-        "kode_limbah": "B105d",
-        "sumber": "FMIPA",
-        "mass_kg": 394,
-        "maksimal_penyimpanan": null
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+        "mass_kg": 220,
+        "maksimal_penyimpanan": "2026-04-12"
       },
       {
         "tanggal": "2026-01-12",
         "kode_limbah": "A108c",
-        "sumber": "FMIPA",
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
         "mass_kg": 200,
-        "maksimal_penyimpanan": null
+        "maksimal_penyimpanan": "2026-04-12"
       },
       {
         "tanggal": "2026-01-12",
         "kode_limbah": "A108d",
-        "sumber": "FMIPA",
-        "mass_kg": 201,
-        "maksimal_penyimpanan": null
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+        "mass_kg": 200,
+        "maksimal_penyimpanan": "2026-04-12"
+      },
+      {
+        "tanggal": "2026-01-12",
+        "kode_limbah": "B104d",
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+        "mass_kg": 54,
+        "maksimal_penyimpanan": "2026-04-12"
+      },
+      {
+        "tanggal": "2026-01-12",
+        "kode_limbah": "A101d",
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+        "mass_kg": 10,
+        "maksimal_penyimpanan": "2026-04-12"
+      },
+      {
+        "tanggal": "2026-01-12",
+        "kode_limbah": "B105d",
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+        "mass_kg": 354,
+        "maksimal_penyimpanan": "2026-04-12"
+      },
+      {
+        "tanggal": "2026-01-12",
+        "kode_limbah": "A101a",
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+        "mass_kg": 155,
+        "maksimal_penyimpanan": "2026-04-12"
+      },
+      {
+        "tanggal": "2026-01-12",
+        "kode_limbah": "A337-1",
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+        "mass_kg": 5,
+        "maksimal_penyimpanan": "2026-04-12"
+      },
+      {
+        "tanggal": "2026-01-12",
+        "kode_limbah": "A337-2",
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+        "mass_kg": 5,
+        "maksimal_penyimpanan": "2026-04-12"
+      },
+      {
+        "tanggal": "2026-01-23",
+        "kode_limbah": "A107d",
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+        "mass_kg": 95,
+        "maksimal_penyimpanan": "2026-04-23"
+      },
+      {
+        "tanggal": "2026-01-23",
+        "kode_limbah": "A103c",
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+        "mass_kg": 12,
+        "maksimal_penyimpanan": "2026-04-23"
+      },
+      {
+        "tanggal": "2026-01-23",
+        "kode_limbah": "A108d",
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+        "mass_kg": 1,
+        "maksimal_penyimpanan": "2026-04-23"
+      },
+      {
+        "tanggal": "2026-01-23",
+        "kode_limbah": "B104d",
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+        "mass_kg": 12,
+        "maksimal_penyimpanan": "2026-04-23"
+      },
+      {
+        "tanggal": "2026-01-26",
+        "kode_limbah": "A103c",
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+        "mass_kg": 260,
+        "maksimal_penyimpanan": "2026-04-26"
+      },
+      {
+        "tanggal": "2026-01-26",
+        "kode_limbah": "B105d",
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+        "mass_kg": 40,
+        "maksimal_penyimpanan": "2026-04-26"
+      },
+      {
+        "tanggal": "2026-01-26",
+        "kode_limbah": "A106d",
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+        "mass_kg": 24,
+        "maksimal_penyimpanan": "2026-04-26"
+      },
+      {
+        "tanggal": "2026-01-26",
+        "kode_limbah": "B104d",
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+        "mass_kg": 105,
+        "maksimal_penyimpanan": "2026-04-26"
       },
       {
         "tanggal": "2026-02-09",
         "kode_limbah": "A101a",
         "sumber": "Fakultas Pertanian",
         "mass_kg": 60,
-        "maksimal_penyimpanan": null
+        "maksimal_penyimpanan": "2026-05-10"
+      },
+      {
+        "tanggal": "2026-02-09",
+        "kode_limbah": "A108c",
+        "sumber": "Fakultas Pertanian",
+        "mass_kg": 1,
+        "maksimal_penyimpanan": "2026-05-10"
       },
       {
         "tanggal": "2026-02-09",
         "kode_limbah": "A106d",
         "sumber": "Fakultas Pertanian",
-        "mass_kg": 16,
-        "maksimal_penyimpanan": null
+        "mass_kg": 11,
+        "maksimal_penyimpanan": "2026-05-10"
       },
       {
         "tanggal": "2026-02-09",
         "kode_limbah": "A337-4",
         "sumber": "Fakultas Pertanian",
-        "mass_kg": 55,
-        "maksimal_penyimpanan": null
+        "mass_kg": 10,
+        "maksimal_penyimpanan": "2026-05-10"
       },
       {
         "tanggal": "2026-02-09",
         "kode_limbah": "B104d",
         "sumber": "Fakultas Pertanian",
         "mass_kg": 10,
-        "maksimal_penyimpanan": null
+        "maksimal_penyimpanan": "2026-05-10"
       },
       {
         "tanggal": "2026-02-09",
         "kode_limbah": "B105d",
         "sumber": "Fakultas Pertanian",
         "mass_kg": 2,
-        "maksimal_penyimpanan": null
+        "maksimal_penyimpanan": "2026-05-10"
       },
       {
-        "tanggal": "2026-02-09",
+        "tanggal": "2026-02-10",
+        "kode_limbah": "A337-4",
+        "sumber": "Fakultas Pertanian",
+        "mass_kg": 45,
+        "maksimal_penyimpanan": "2026-05-11"
+      },
+      {
+        "tanggal": "2026-02-10",
+        "kode_limbah": "A106d",
+        "sumber": "Fakultas Pertanian",
+        "mass_kg": 5,
+        "maksimal_penyimpanan": "2026-05-11"
+      },
+      {
+        "tanggal": "2026-02-10",
         "kode_limbah": "A108c",
         "sumber": "Fakultas Pertanian",
-        "mass_kg": 3,
-        "maksimal_penyimpanan": null
+        "mass_kg": 2,
+        "maksimal_penyimpanan": "2026-05-11"
       },
       {
-        "tanggal": "2026-02-26",
+        "tanggal": "2026-02-05",
         "kode_limbah": "A101a",
-        "sumber": "Fakultas Farmasi",
-        "mass_kg": 95,
-        "maksimal_penyimpanan": null
+        "sumber": "Fakultas Teknik Industri Pertanian",
+        "mass_kg": 86.4,
+        "maksimal_penyimpanan": "2026-05-06"
       },
       {
-        "tanggal": "2026-02-26",
-        "kode_limbah": "A101d",
-        "sumber": "Fakultas Farmasi",
-        "mass_kg": 10,
-        "maksimal_penyimpanan": null
-      },
-      {
-        "tanggal": "2026-02-26",
+        "tanggal": "2026-02-05",
         "kode_limbah": "A103c",
-        "sumber": "Fakultas Farmasi",
-        "mass_kg": 70,
-        "maksimal_penyimpanan": null
+        "sumber": "Fakultas Teknik Industri Pertanian",
+        "mass_kg": 365.7,
+        "maksimal_penyimpanan": "2026-05-06"
+      },
+      {
+        "tanggal": "2026-02-05",
+        "kode_limbah": "A107d",
+        "sumber": "Fakultas Teknik Industri Pertanian",
+        "mass_kg": 31,
+        "maksimal_penyimpanan": "2026-05-06"
+      },
+      {
+        "tanggal": "2026-02-05",
+        "kode_limbah": "B105d",
+        "sumber": "Fakultas Teknik Industri Pertanian",
+        "mass_kg": 30.8,
+        "maksimal_penyimpanan": "2026-05-06"
+      },
+      {
+        "tanggal": "2026-02-05",
+        "kode_limbah": "A106d",
+        "sumber": "Fakultas Teknik Industri Pertanian",
+        "mass_kg": 232.5,
+        "maksimal_penyimpanan": "2026-05-06"
+      },
+      {
+        "tanggal": "2026-02-05",
+        "kode_limbah": "A108c",
+        "sumber": "Fakultas Teknik Industri Pertanian",
+        "mass_kg": 131.3,
+        "maksimal_penyimpanan": "2026-05-06"
+      },
+      {
+        "tanggal": "2026-02-05",
+        "kode_limbah": "B104d",
+        "sumber": "Fakultas Teknik Industri Pertanian",
+        "mass_kg": 36.25,
+        "maksimal_penyimpanan": "2026-05-06"
       },
       {
         "tanggal": "2026-02-26",
-        "kode_limbah": "A106d",
+        "kode_limbah": "B105d",
         "sumber": "Fakultas Farmasi",
-        "mass_kg": 1,
-        "maksimal_penyimpanan": null
+        "mass_kg": 195,
+        "maksimal_penyimpanan": "2026-05-27"
+      },
+      {
+        "tanggal": "2026-02-26",
+        "kode_limbah": "B104d",
+        "sumber": "Fakultas Farmasi",
+        "mass_kg": 53,
+        "maksimal_penyimpanan": "2026-05-27"
       },
       {
         "tanggal": "2026-02-26",
         "kode_limbah": "A107d",
         "sumber": "Fakultas Farmasi",
         "mass_kg": 226,
-        "maksimal_penyimpanan": null
+        "maksimal_penyimpanan": "2026-05-27"
       },
       {
         "tanggal": "2026-02-26",
         "kode_limbah": "A337-1",
         "sumber": "Fakultas Farmasi",
-        "mass_kg": 88.1,
-        "maksimal_penyimpanan": null
-      },
-      {
-        "tanggal": "2026-02-26",
-        "kode_limbah": "A337-2",
-        "sumber": "Fakultas Farmasi",
-        "mass_kg": 1,
-        "maksimal_penyimpanan": null
-      },
-      {
-        "tanggal": "2026-02-26",
-        "kode_limbah": "B104d",
-        "sumber": "Fakultas Farmasi",
-        "mass_kg": 73,
-        "maksimal_penyimpanan": null
-      },
-      {
-        "tanggal": "2026-02-26",
-        "kode_limbah": "B105d",
-        "sumber": "Fakultas Farmasi",
-        "mass_kg": 300,
-        "maksimal_penyimpanan": null
-      },
-      {
-        "tanggal": "2026-02-26",
-        "kode_limbah": "A108c",
-        "sumber": "Fakultas Farmasi",
-        "mass_kg": 75,
-        "maksimal_penyimpanan": null
-      },
-      {
-        "tanggal": "2026-02-26",
-        "kode_limbah": "A108d",
-        "sumber": "Fakultas Farmasi",
-        "mass_kg": 120,
-        "maksimal_penyimpanan": null
+        "mass_kg": 87.1,
+        "maksimal_penyimpanan": "2026-05-27"
       },
       {
         "tanggal": "2026-02-02",
-        "kode_limbah": "A101a",
-        "sumber": "FMIPA",
-        "mass_kg": 95,
-        "maksimal_penyimpanan": null
+        "kode_limbah": "A103c",
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+        "mass_kg": 70,
+        "maksimal_penyimpanan": "2026-05-03"
+      },
+      {
+        "tanggal": "2026-02-02",
+        "kode_limbah": "A108c",
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+        "mass_kg": 75,
+        "maksimal_penyimpanan": "2026-05-03"
+      },
+      {
+        "tanggal": "2026-02-02",
+        "kode_limbah": "A108d",
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+        "mass_kg": 120,
+        "maksimal_penyimpanan": "2026-05-03"
+      },
+      {
+        "tanggal": "2026-02-02",
+        "kode_limbah": "B104d",
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+        "mass_kg": 20,
+        "maksimal_penyimpanan": "2026-05-03"
       },
       {
         "tanggal": "2026-02-02",
         "kode_limbah": "A101d",
-        "sumber": "FMIPA",
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
         "mass_kg": 10,
-        "maksimal_penyimpanan": null
+        "maksimal_penyimpanan": "2026-05-03"
       },
       {
         "tanggal": "2026-02-02",
-        "kode_limbah": "A103c",
-        "sumber": "FMIPA",
-        "mass_kg": 70,
-        "maksimal_penyimpanan": null
+        "kode_limbah": "B105d",
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+        "mass_kg": 105,
+        "maksimal_penyimpanan": "2026-05-03"
+      },
+      {
+        "tanggal": "2026-02-02",
+        "kode_limbah": "A101a",
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+        "mass_kg": 95,
+        "maksimal_penyimpanan": "2026-05-03"
       },
       {
         "tanggal": "2026-02-02",
         "kode_limbah": "A337-1",
-        "sumber": "FMIPA",
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
         "mass_kg": 1,
-        "maksimal_penyimpanan": null
+        "maksimal_penyimpanan": "2026-05-03"
       },
       {
         "tanggal": "2026-02-02",
         "kode_limbah": "A337-2",
-        "sumber": "FMIPA",
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
         "mass_kg": 1,
-        "maksimal_penyimpanan": null
+        "maksimal_penyimpanan": "2026-05-03"
       },
       {
-        "tanggal": "2026-02-02",
-        "kode_limbah": "B104d",
-        "sumber": "FMIPA",
-        "mass_kg": 20,
-        "maksimal_penyimpanan": null
-      },
-      {
-        "tanggal": "2026-02-02",
-        "kode_limbah": "B105d",
-        "sumber": "FMIPA",
-        "mass_kg": 105,
-        "maksimal_penyimpanan": null
-      },
-      {
-        "tanggal": "2026-02-02",
-        "kode_limbah": "A108c",
-        "sumber": "FMIPA",
-        "mass_kg": 75,
-        "maksimal_penyimpanan": null
-      },
-      {
-        "tanggal": "2026-02-02",
-        "kode_limbah": "A108d",
-        "sumber": "FMIPA",
-        "mass_kg": 120,
-        "maksimal_penyimpanan": null
-      },
-      {
-        "tanggal": "2026-02-05",
-        "kode_limbah": "A101a",
-        "sumber": "FTIP",
-        "mass_kg": 86.4,
-        "maksimal_penyimpanan": null
-      },
-      {
-        "tanggal": "2026-02-05",
-        "kode_limbah": "A103c",
-        "sumber": "FTIP",
-        "mass_kg": 365.7,
-        "maksimal_penyimpanan": null
-      },
-      {
-        "tanggal": "2026-02-05",
+        "tanggal": "2026-02-26",
         "kode_limbah": "A106d",
-        "sumber": "FTIP",
-        "mass_kg": 232.5,
-        "maksimal_penyimpanan": null
+        "sumber": "Fakultas Farmasi",
+        "mass_kg": 1,
+        "maksimal_penyimpanan": "2026-05-27"
       },
       {
-        "tanggal": "2026-02-05",
-        "kode_limbah": "A107d",
-        "sumber": "FTIP",
-        "mass_kg": 31,
-        "maksimal_penyimpanan": null
+        "tanggal": "2026-04-07",
+        "kode_limbah": "A106d",
+        "sumber": "Fakultas Perikanan dan Ilmu Kelautan",
+        "mass_kg": 200,
+        "maksimal_penyimpanan": "2026-07-06"
       },
       {
-        "tanggal": "2026-02-05",
-        "kode_limbah": "B104d",
-        "sumber": "FTIP",
-        "mass_kg": 36.25,
-        "maksimal_penyimpanan": null
+        "tanggal": "2026-06-09",
+        "kode_limbah": "A109d",
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+        "mass_kg": 70,
+        "maksimal_penyimpanan": "2026-09-07"
       },
       {
-        "tanggal": "2026-02-05",
-        "kode_limbah": "B105d",
-        "sumber": "FTIP",
-        "mass_kg": 30.8,
-        "maksimal_penyimpanan": null
-      },
-      {
-        "tanggal": "2026-02-05",
+        "tanggal": "2026-06-09",
         "kode_limbah": "A108c",
-        "sumber": "FTIP",
-        "mass_kg": 131.3,
-        "maksimal_penyimpanan": null
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+        "mass_kg": 105,
+        "maksimal_penyimpanan": "2026-09-07"
+      },
+      {
+        "tanggal": "2026-06-09",
+        "kode_limbah": "A106d",
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+        "mass_kg": 175,
+        "maksimal_penyimpanan": "2026-09-07"
+      },
+      {
+        "tanggal": "2026-06-09",
+        "kode_limbah": "A337-1",
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+        "mass_kg": 15,
+        "maksimal_penyimpanan": "2026-09-07"
+      },
+      {
+        "tanggal": "2026-06-09",
+        "kode_limbah": "A338-1",
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+        "mass_kg": 5,
+        "maksimal_penyimpanan": "2026-09-07"
+      },
+      {
+        "tanggal": "2026-06-04",
+        "kode_limbah": "A106d",
+        "sumber": "Fakultas Teknik Industri Pertanian",
+        "mass_kg": 256.4,
+        "maksimal_penyimpanan": "2026-09-02"
+      },
+      {
+        "tanggal": "2026-06-04",
+        "kode_limbah": "A108c",
+        "sumber": "Fakultas Teknik Industri Pertanian",
+        "mass_kg": 5,
+        "maksimal_penyimpanan": "2026-09-02"
+      },
+      {
+        "tanggal": "2026-06-04",
+        "kode_limbah": "A109d",
+        "sumber": "Fakultas Teknik Industri Pertanian",
+        "mass_kg": 5.3,
+        "maksimal_penyimpanan": "2026-09-02"
+      },
+      {
+        "tanggal": "2026-06-04",
+        "kode_limbah": "B104d",
+        "sumber": "Fakultas Teknik Industri Pertanian",
+        "mass_kg": 9,
+        "maksimal_penyimpanan": "2026-09-02"
+      },
+      {
+        "tanggal": "2026-06-08",
+        "kode_limbah": "A106d",
+        "sumber": "Fakultas Farmasi",
+        "mass_kg": 3520,
+        "maksimal_penyimpanan": "2026-09-06"
+      },
+      {
+        "tanggal": "2026-06-08",
+        "kode_limbah": "A106d",
+        "sumber": "Fakultas Teknik Industri Pertanian",
+        "mass_kg": 2,
+        "maksimal_penyimpanan": "2026-09-06"
+      },
+      {
+        "tanggal": "2026-06-08",
+        "kode_limbah": "A337-1",
+        "sumber": "Fakultas Farmasi",
+        "mass_kg": 22,
+        "maksimal_penyimpanan": "2026-09-06"
+      },
+      {
+        "tanggal": "2026-06-08",
+        "kode_limbah": "B104d",
+        "sumber": "Fakultas Farmasi",
+        "mass_kg": 10,
+        "maksimal_penyimpanan": "2026-09-06"
+      },
+      {
+        "tanggal": "2026-06-08",
+        "kode_limbah": "A109d",
+        "sumber": "Fakultas Farmasi",
+        "mass_kg": 2000,
+        "maksimal_penyimpanan": "2026-09-06"
+      },
+      {
+        "tanggal": "2026-06-22",
+        "kode_limbah": "A337-1",
+        "sumber": "Fakultas Kedokteran",
+        "mass_kg": 52,
+        "maksimal_penyimpanan": "2026-09-20"
+      },
+      {
+        "tanggal": "2026-06-22",
+        "kode_limbah": "A338-1",
+        "sumber": "Fakultas Kedokteran",
+        "mass_kg": 290,
+        "maksimal_penyimpanan": "2026-09-20"
+      },
+      {
+        "tanggal": "2026-07-09",
+        "kode_limbah": "B104d",
+        "sumber": "Fakultas Kedokteran",
+        "mass_kg": 121,
+        "maksimal_penyimpanan": "2026-10-07"
+      },
+      {
+        "tanggal": "2026-07-26",
+        "kode_limbah": "A106d",
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+        "mass_kg": 220,
+        "maksimal_penyimpanan": "2026-10-24"
+      },
+      {
+        "tanggal": "2026-07-26",
+        "kode_limbah": "A109d",
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+        "mass_kg": 40,
+        "maksimal_penyimpanan": "2026-10-24"
+      },
+      {
+        "tanggal": "2026-07-26",
+        "kode_limbah": "A108c",
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+        "mass_kg": 40,
+        "maksimal_penyimpanan": "2026-10-24"
+      },
+      {
+        "tanggal": "2026-07-26",
+        "kode_limbah": "A337-1",
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+        "mass_kg": 1,
+        "maksimal_penyimpanan": "2026-10-24"
+      },
+      {
+        "tanggal": "2026-07-26",
+        "kode_limbah": "A102d",
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+        "mass_kg": 2,
+        "maksimal_penyimpanan": "2026-10-24"
+      },
+      {
+        "tanggal": "2026-07-26",
+        "kode_limbah": "B104d",
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+        "mass_kg": 1,
+        "maksimal_penyimpanan": "2026-10-24"
+      },
+      {
+        "tanggal": "2026-09-17",
+        "kode_limbah": "A109d",
+        "sumber": "Fakultas Farmasi",
+        "mass_kg": 80,
+        "maksimal_penyimpanan": "2026-12-16"
+      },
+      {
+        "tanggal": "2026-09-17",
+        "kode_limbah": "A337-1",
+        "sumber": "Fakultas Farmasi",
+        "mass_kg": 15,
+        "maksimal_penyimpanan": "2026-12-16"
+      },
+      {
+        "tanggal": "2026-09-17",
+        "kode_limbah": "A106d",
+        "sumber": "Fakultas Farmasi",
+        "mass_kg": 554,
+        "maksimal_penyimpanan": "2026-12-16"
+      },
+      {
+        "tanggal": "2026-09-17",
+        "kode_limbah": "B104d",
+        "sumber": "Fakultas Farmasi",
+        "mass_kg": 20,
+        "maksimal_penyimpanan": "2026-12-16"
+      },
+      {
+        "tanggal": "2026-09-17",
+        "kode_limbah": "A336-2",
+        "sumber": "Fakultas Farmasi",
+        "mass_kg": 60,
+        "maksimal_penyimpanan": "2026-12-16"
+      },
+      {
+        "tanggal": "2026-10-12",
+        "kode_limbah": "A109d",
+        "sumber": "PUI-PT Nano Powder Fungsional (FiNder U-CoE) Universitas Padjadjaran",
+        "mass_kg": 182.3,
+        "maksimal_penyimpanan": "2027-01-10"
+      },
+      {
+        "tanggal": "2026-10-12",
+        "kode_limbah": "A108c",
+        "sumber": "PUI-PT Nano Powder Fungsional (FiNder U-CoE) Universitas Padjadjaran",
+        "mass_kg": 97,
+        "maksimal_penyimpanan": "2027-01-10"
+      },
+      {
+        "tanggal": "2026-10-12",
+        "kode_limbah": "A106d",
+        "sumber": "PUI-PT Nano Powder Fungsional (FiNder U-CoE) Universitas Padjadjaran",
+        "mass_kg": 32,
+        "maksimal_penyimpanan": "2027-01-10"
+      },
+      {
+        "tanggal": "2026-10-12",
+        "kode_limbah": "B105d",
+        "sumber": "PUI-PT Nano Powder Fungsional (FiNder U-CoE) Universitas Padjadjaran",
+        "mass_kg": 0.4,
+        "maksimal_penyimpanan": "2027-01-10"
+      },
+      {
+        "tanggal": "2026-10-13",
+        "kode_limbah": "A106d",
+        "sumber": "Fakultas Matematika dan Ilmu Pengetahuan Alam",
+        "mass_kg": 285,
+        "maksimal_penyimpanan": "2027-01-11"
+      },
+      {
+        "tanggal": "2026-10-20",
+        "kode_limbah": "A109d",
+        "sumber": "Fakultas Ilmu Perikanan dan Ilmu Kelautan",
+        "mass_kg": 145,
+        "maksimal_penyimpanan": "2027-01-18"
+      },
+      {
+        "tanggal": "2026-10-20",
+        "kode_limbah": "A108c",
+        "sumber": "Fakultas Ilmu Perikanan dan Ilmu Kelautan",
+        "mass_kg": 20,
+        "maksimal_penyimpanan": "2027-01-18"
+      },
+      {
+        "tanggal": "2026-10-20",
+        "kode_limbah": "A106d",
+        "sumber": "Fakultas Ilmu Perikanan dan Ilmu Kelautan",
+        "mass_kg": 6,
+        "maksimal_penyimpanan": "2027-01-18"
       }
     ],
     "keluar": [
@@ -8001,28 +9047,28 @@
       {
         "tanggal": "2026-03-02",
         "kode_limbah": "A101a",
-        "mass_kg": 491.4,
+        "mass_kg": 396.4,
         "tujuan": "PT DAME ALAM SEJAHTERA",
         "bukti_dokumen": null
       },
       {
         "tanggal": "2026-03-02",
         "kode_limbah": "A101d",
-        "mass_kg": 31,
+        "mass_kg": 21,
         "tujuan": "PT DAME ALAM SEJAHTERA",
         "bukti_dokumen": null
       },
       {
         "tanggal": "2026-03-02",
         "kode_limbah": "A103c",
-        "mass_kg": 997.7,
+        "mass_kg": 927.7,
         "tujuan": "PT DAME ALAM SEJAHTERA",
         "bukti_dokumen": null
       },
       {
         "tanggal": "2026-03-02",
         "kode_limbah": "A105d",
-        "mass_kg": 0,
+        "mass_kg": 1,
         "tujuan": "PT DAME ALAM SEJAHTERA",
         "bukti_dokumen": null
       },
@@ -8043,14 +9089,14 @@
       {
         "tanggal": "2026-03-02",
         "kode_limbah": "A108c",
-        "mass_kg": 631,
+        "mass_kg": 556,
         "tujuan": "PT DAME ALAM SEJAHTERA",
         "bukti_dokumen": null
       },
       {
         "tanggal": "2026-03-02",
         "kode_limbah": "A108d",
-        "mass_kg": 442,
+        "mass_kg": 322,
         "tujuan": "PT DAME ALAM SEJAHTERA",
         "bukti_dokumen": null
       },
@@ -8064,14 +9110,14 @@
       {
         "tanggal": "2026-03-02",
         "kode_limbah": "A337-1",
-        "mass_kg": 193.1,
+        "mass_kg": 192.1,
         "tujuan": "PT DAME ALAM SEJAHTERA",
         "bukti_dokumen": null
       },
       {
         "tanggal": "2026-03-02",
         "kode_limbah": "A337-2",
-        "mass_kg": 2,
+        "mass_kg": 6,
         "tujuan": "PT DAME ALAM SEJAHTERA",
         "bukti_dokumen": null
       },
@@ -8092,14 +9138,14 @@
       {
         "tanggal": "2026-03-02",
         "kode_limbah": "B104d",
-        "mass_kg": 398.25,
+        "mass_kg": 378.25,
         "tujuan": "PT DAME ALAM SEJAHTERA",
         "bukti_dokumen": null
       },
       {
         "tanggal": "2026-03-02",
         "kode_limbah": "B105d",
-        "mass_kg": 928.8,
+        "mass_kg": 823.8,
         "tujuan": "PT DAME ALAM SEJAHTERA",
         "bukti_dokumen": null
       },

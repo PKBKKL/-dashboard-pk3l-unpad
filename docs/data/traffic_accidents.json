@@ -1,7 +1,7 @@
 {
   "dataset_id": "traffic_accidents",
   "version": "1.4",
-  "generated_at": "2026-10-16",
+  "generated_at": "2026-10-26",
   "source_files": [
     "_ledger/traffic_accidents.csv",
     "_ledger/traffic_accidents_fatality.csv"
